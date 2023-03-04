@@ -1,10 +1,32 @@
 {
-  "tools": [
+  "desktop_apps": [
+    {
+      "name": "Lastpass",
+      "description": "Password manager",
+      "notes": "Need to install the desktop app and extension for the browser",
+      "command": null,
+      "package_name": null,
+      "install": "manual",
+      "tags": ["Desktop Apps"],
+      "depends_on": [],
+      "subscription": {
+        "price": 0,
+        "billing": null
+      },
+      "websites": {
+        "official": "https://www.lastpass.com/",
+        "binary_url": "",
+        "set_up": "",
+        "sandbox": ""
+      },
+      "libraries": []
+    },
     {
       "name": "Justinmind",
       "description": "Wireframe tools",
       "notes": "Need to install the desktop app",
       "command": null,
+      "package_name": null,
       "install": "manual",
       "tags": ["Desktop Apps"],
       "depends_on": [],
@@ -21,18 +43,13 @@
       "libraries": []
     },
     {
-      "pip": {
-        "awslocal": "https://docs.localstack.cloud/user-guide/integrations/aws-cli/#localstack-aws-cli-awslocal",
-        "terraform-local": "trlocal"
-      }
-    },
-    {
       "name": "Docker",
       "description": "Docker is an open source platform that enables developers to build, deploy, run, update and manage containers",
       "notes": "To install Docker with Desktop it requires different process.",
       "command": "docker",
+      "package_name": "docker",
       "install": "manual",
-      "tags": ["Containers"],
+      "tags": ["Desktop Apps"],
       "depends_on": [],
       "subscription": {
         "price": 0,
@@ -40,40 +57,20 @@
       },
       "websites": {
         "official": "https://www.docker.com/",
-        "binary_url": "https://desktop.docker.com/mac/main/amd64/Docker.dmg?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=module",
+        "binary_url": "",
         "set_up": "",
         "sandbox": ""
       },
-      "libraries": [
-        {
-          "name": "Example Name",
-          "description": "Just for example purposes.",
-          "notes": "",
-          "command": "example",
-          "install": "hybrid | manual | auto",
-          "subscription": {
-            "price": 0,
-            "billing": "free | monthly | yearly"
-          },
-          "websites": [
-            {
-              "official": "",
-              "documentation": {
-                "download": "https://example.com",
-                "binary_url": "",
-                "set_up": "https://set-up.com",
-                "sandbox": ""
-              }
-            }
-          ]
-        }
-      ]
-    },
+      "libraries": []
+    }
+  ],
+  "tools": [
     {
       "name": "Homebrew",
       "description": "Package Manager",
       "notes": "For/usr/local/share/zsh/site-functions Mac: Installed packages live in `/usr/local/Cellar/`. Commands create by each install poackage live in `/usr/local/share/zsh/site-functions`",
       "command": "brew",
+      "package_name": "brew",
       "install": "manual",
       "tags": ["Package Installer"],
       "depends_on": [],
@@ -93,7 +90,9 @@
           "description": "Just for example purposes.",
           "notes": "",
           "command": "example",
+          "package_name": "example",
           "install": "hybrid | manual | auto",
+          "type": "formulae | cask | tap",
           "subscription": {
             "price": 0,
             "billing": "free | monthly | yearly"
@@ -115,7 +114,9 @@
           "description": "Software Version Control",
           "notes": "",
           "command": "git",
+          "package_name": "git",
           "install": "auto",
+          "type": "formulae",
           "tags": ["Version Control"],
           "depends_on": [],
           "subscription": {
@@ -133,11 +134,37 @@
           }
         },
         {
+          "name": "zsh",
+          "description": "The Z shell (also known as zsh) is a Unix shell that is built on top of bash",
+          "notes": "",
+          "command": "zsh",
+          "package_name": "zsh",
+          "install": "auto",
+          "type": "formulae",
+          "tags": ["cli"],
+          "depends_on": [],
+          "subscription": {
+            "price": 0,
+            "billing": "free"
+          },
+          "websites": {
+            "official": "https://zsh.sourceforge.io",
+            "documentation": {
+              "download": "https://formulae.brew.sh/formula/zsh",
+              "binary_url": "",
+              "set_up": "",
+              "sandbox": ""
+            }
+          }
+        },
+        {
           "name": "AWS CLI (Command Line Interface)",
           "description": "AWS Cloud services cli apis",
           "notes": "",
           "command": "aws",
+          "package_name": "awscli",
           "install": "auto",
+          "type": "formulae",
           "tags": ["Cloud"],
           "depends_on": [],
           "subscription": {
@@ -159,7 +186,9 @@
           "description": "Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes.",
           "notes": "",
           "command": "argocd",
+          "package_name": "argocd",
           "install": "auto",
+          "type": "formulae",
           "tags": ["Kubernetes", "CI/CD (Continous Integration/Continuos Delivery)"],
           "depends_on": ["Running `minikube` or `eks` cluster"],
           "subscription": {
@@ -181,7 +210,9 @@
           "description": "For orchestrating parallel jobs on Kubernetes",
           "notes": "",
           "command": "argo",
+          "package_name": "argo",
           "install": "auto",
+          "type": "formulae",
           "tags": ["Kubernetes", "CI/CD (Continous Integration/Continuos Delivery)"],
           "depends_on": ["Running `minikube` or `eks` cluster"],
           "subscription": {
@@ -199,11 +230,37 @@
           }
         },
         {
+          "name": "Byobu",
+          "description": "Byobu is a GPLv3 open source text-based window manager and terminal multiplexer",
+          "notes": "",
+          "command": "byobu",
+          "package_name": "byobu",
+          "install": "auto",
+          "type": "formulae",
+          "tags": ["Terminal"],
+          "depends_on": [],
+          "subscription": {
+            "price": 0,
+            "billing": "free"
+          },
+          "websites": {
+            "official": "https://www.byobu.org/home",
+            "documentation": {
+              "download": "https://formulae.brew.sh/formula/byobu#default",
+              "binary_url": "",
+              "set_up": "",
+              "sandbox": ""
+            }
+          }
+        },
+        {
           "name": "Docker Compose",
           "description": "To Create a YAML file to define the services and with a single command, can spin everything up or tear it all down.",
           "notes": "",
           "command": "docker-compose",
+          "package_name": "docker-compose",
           "install": "auto",
+          "type": "formulae",
           "tags": ["docker"],
           "depends_on": ["docker"],
           "subscription": {
@@ -225,7 +282,9 @@
           "description": "Is a simple CLI tool for creating and managing clusters on EKS in AWS",
           "notes": "",
           "command": "eksctl",
+          "package_name": "eksctl",
           "install": "auto",
+          "type": "formulae",
           "tags": ["aws", "Kubernetes"],
           "depends_on": ["aws-account"],
           "subscription": {
@@ -245,10 +304,12 @@
         {
           "name": "fig",
           "description": "Next generation of command line",
-          "notes": "it must be run like: `brew install --cask fig`",
-          "command": "",
+          "notes": "it must be run like: `brew install --cask fig` Fig does not have command.",
+          "command": "fig",
+          "package_name": "fig",
           "install": "auto",
-          "tags": ["apis-fastify"],
+          "type": "cask",
+          "tags": ["Terminal"],
           "depends_on": [""],
           "subscription": {
             "price": 0,
@@ -257,8 +318,7 @@
           "websites": {
             "official": "https://fig.io/",
             "documentation": {
-              "download": "https://formulae.brew.sh/formula/fig#default",
-              "cast": true,
+              "download": "https://formulae.brew.sh/cask/fig#default",
               "binary_url": "",
               "set_up": "",
               "sandbox": ""
@@ -266,21 +326,23 @@
           }
         },
         {
-          "name": "fswatch",
-          "description": "Watching file pages",
+          "name": "fzf",
+          "description": "",
           "notes": "",
-          "command": "fswatch",
+          "command": "fzf",
+          "package_name": "fzf",
           "install": "auto",
-          "tags": ["apis-fastify"],
+          "type": "formulae",
+          "tags": ["Terminal"],
           "depends_on": [""],
           "subscription": {
             "price": 0,
             "billing": "free"
           },
           "websites": {
-            "official": "http://emcrisostomo.github.io/fswatch/doc/1.5.0/html/fswatch/Index-of-Command-Line-Options.html",
+            "official": "https://github.com/junegunn/fzf",
             "documentation": {
-              "download": "https://formulae.brew.sh/formula/fswatch#default",
+              "download": "https://formulae.brew.sh/formula/fzf",
               "binary_url": "",
               "set_up": "",
               "sandbox": ""
@@ -292,7 +354,9 @@
           "description": "Known as the package manager for Kubernetes, focused on automating the Kubernetes applications lifecycle in a simple and consistent way.",
           "notes": "",
           "command": "helm",
+          "package_name": "helm",
           "install": "auto",
+          "type": "formulae",
           "tags": ["Kubernetes"],
           "depends_on": ["Running `minikube` or `eks` cluster"],
           "subscription": {
@@ -314,7 +378,9 @@
           "description": "Is an open-source hypervisor for macOS hypervisor, optimized for lightweight virtual machines and container deployment.",
           "notes": "",
           "command": "hyperkit",
+          "package_name": "hyperkit",
           "install": "auto",
+          "type": "formulae",
           "tags": ["Minikube-Drivers"],
           "depends_on": ["minikube"],
           "subscription": {
@@ -336,7 +402,9 @@
           "description": "",
           "notes": "",
           "command": "istioctl",
+          "package_name": "istioctl",
           "install": "auto",
+          "type": "formulae",
           "tags": [""],
           "depends_on": [],
           "subscription": {
@@ -354,11 +422,37 @@
           }
         },
         {
+          "name": "iTerm2",
+          "description": "",
+          "notes": "",
+          "command": "iterm2",
+          "package_name": "iterm2",
+          "install": "auto",
+          "type": "cask",
+          "tags": [""],
+          "depends_on": [],
+          "subscription": {
+            "price": 0,
+            "billing": "free"
+          },
+          "websites": {
+            "official": "https://iterm2.com",
+            "documentation": {
+              "download": "https://formulae.brew.sh/cask/iterm2",
+              "binary_url": "",
+              "set_up": "",
+              "sandbox": ""
+            }
+          }
+        },
+        {
           "name": "jq (JSON Query)",
           "description": "",
           "notes": "",
           "command": "jq",
+          "package_name": "jq",
           "install": "auto",
+          "type": "formulae",
           "tags": ["tool"],
           "depends_on": [],
           "subscription": {
@@ -376,11 +470,61 @@
           }
         },
         {
+          "name": "kind",
+          "description": "Similar to minikube",
+          "notes": "Something are not suppoerted in minikube like multi-clusters",
+          "command": "kind",
+          "package_name": "kind",
+          "install": "auto",
+          "type": "formulae",
+          "tags": ["Kubernetes"],
+          "depends_on": [],
+          "subscription": {
+            "price": 0,
+            "billing": "free"
+          },
+          "websites": {
+            "official": "https://kind.sigs.k8s.io",
+            "documentation": {
+              "download": "https://formulae.brew.sh/formula/kind#default",
+              "binary_url": "",
+              "set_up": "",
+              "sandbox": ""
+            }
+          }
+        },
+        {
+          "name": "knative cli",
+          "description": "he Knative CLI (kn) provides a quick and easy interface for creating Knative resources, such as Knative Services and Event Sources, without the need to create or modify YAML files directly.",
+          "notes": "This installation is not from `brew install kn`.",
+          "command": "kn",
+          "package_name": "knative/client/kn",
+          "install": "auto",
+          "type": "tap",
+          "tags": ["Kubernetes"],
+          "depends_on": [],
+          "subscription": {
+            "price": 0,
+            "billing": "free"
+          },
+          "websites": {
+            "official": "https://knative.dev/docs/client/install-kn/",
+            "documentation": {
+              "download": "https://formulae.brew.sh/formula/kn#default",
+              "binary_url": "",
+              "set_up": "",
+              "sandbox": ""
+            }
+          }
+        },
+        {
           "name": "kubernetes-cli (Kubernetes Command Line Interface)",
           "description": "A command line tool for communicating with a Kubernetes cluster's control plane, using the Kubernetes API",
           "notes": "For Kubernetes version >= 1.26, `brew install kubectl` is for older versions, which is not needed.",
           "command": "kubectl",
+          "package_name": "kubectl",
           "install": "auto",
+          "type": "formulae",
           "tags": ["Kubernetes"],
           "depends_on": ["Running `minikube` or `eks` cluster"],
           "subscription": {
@@ -400,9 +544,11 @@
         {
           "name": "Kubevela",
           "description": "Make shipping applications more enjoyable.",
-          "notes": "It's like k-native",
+          "notes": "It's like k-native. cli command vela",
           "command": "vela",
+          "package_name": "kubevela",
           "install": "auto",
+          "type": "formulae",
           "tags": ["kubernetes"],
           "depends_on": ["Running `minikube` or `eks` cluster"],
           "subscription": {
@@ -424,7 +570,9 @@
           "description": "Run Cloud services local mode.",
           "notes": "",
           "command": "localstack",
+          "package_name": "localstack",
           "install": "auto",
+          "type": "formulae",
           "tags": ["cloud"],
           "depends_on": [""],
           "subscription": {
@@ -446,7 +594,9 @@
           "description": "Lets you easily switch between multiple versions of Python.",
           "notes": "",
           "command": "minikube",
+          "package_name": "minikube",
           "install": "auto",
+          "type": "formulae",
           "tags": ["Kubernetes"],
           "depends_on": [],
           "subscription": {
@@ -468,7 +618,9 @@
           "description": "Lets you easily switch between multiple versions of NodeJs.",
           "notes": "",
           "command": "nvm",
+          "package_name": "nvm",
           "install": "auto",
+          "type": "formulae",
           "tags": ["Package Manager"],
           "depends_on": [],
           "subscription": {
@@ -486,11 +638,37 @@
           }
         },
         {
+          "name": "Powerlevel10k",
+          "description": "Styles the items.",
+          "notes": "These brew package is a tap",
+          "command": "",
+          "package_name": "romkatv/powerlevel10k/powerlevel10k",
+          "install": "auto",
+          "type": "tap",
+          "tags": ["Terminal"],
+          "depends_on": [],
+          "subscription": {
+            "price": 0,
+            "billing": "free"
+          },
+          "websites": {
+            "official": "https://github.com/romkatv/homebrew-powerlevel10k",
+            "documentation": {
+              "download": "https://formulae.brew.sh/formula/pyenv#default",
+              "binary_url": "",
+              "set_up": "",
+              "sandbox": ""
+            }
+          }
+        },
+        {
           "name": "PyEnv (Python Enviroment)",
           "description": "Lets you easily switch between multiple versions of Python.",
           "notes": "",
           "command": "pyenv",
+          "package_name": "pyenv",
           "install": "auto",
+          "type": "formulae",
           "tags": ["language"],
           "depends_on": [],
           "subscription": {
@@ -511,8 +689,10 @@
           "name": "Rust (rustup)",
           "description": "Rust programming language.",
           "notes": "`rustup` allows to have multiple versions. commands for terminal is `rustc`",
-          "command": "rustup",
+          "command": "rustup-init",
+          "package_name": "rustup",
           "install": "auto",
+          "type": "formulae",
           "tags": ["language"],
           "depends_on": [],
           "subscription": {
@@ -534,7 +714,9 @@
           "description": "Use to build cloud infrastructure",
           "notes": "",
           "command": "terraform",
+          "package_name": "terraform",
           "install": "auto",
+          "type": "formulae",
           "tags": ["Kubernetes"],
           "depends_on": ["aws-account"],
           "subscription": {
@@ -556,7 +738,9 @@
           "description": "Used along with terraform to make code dry",
           "notes": "",
           "command": "terragrunt",
+          "package_name": "terragrunt",
           "install": "auto",
+          "type": "formulae",
           "tags": ["Kubernetes"],
           "depends_on": ["terraform", "aws"],
           "subscription": {
@@ -578,7 +762,9 @@
           "description": "It lets you switch easily between several programs in one terminal, detach them (they keep running in the background) and reattach them to a different terminal.",
           "notes": "",
           "command": "tmux",
+          "package_name": "tmux",
           "install": "auto",
+          "type": "formulae",
           "tags": ["terminal"],
           "depends_on": [],
           "subscription": {
@@ -596,11 +782,13 @@
           }
         },
         {
-          "name": "Valero",
+          "name": "Velero",
           "description": "To backup and migrate Kubernetes resources and persistent volumes",
           "notes": "",
-          "command": "valero",
+          "command": "velero",
+          "package_name": "velero",
           "install": "auto",
+          "type": "formulae",
           "tags": ["Kubernetes"],
           "depends_on": ["Running `minikube` or `eks` cluster"],
           "subscription": {
@@ -624,7 +812,9 @@
       "description": "Mobile framework",
       "notes": "npm install -g nativescript",
       "command": "nativescript",
+      "package_name": "nativescript",
       "install": "",
+      "type": "formulae",
       "tags": ["Mobile"],
       "depends_on": ["node"],
       "subscription": {

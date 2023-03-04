@@ -1,0 +1,82 @@
+# Refereces:
+
+# ohmyzsh themes
+https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+
+# for history and matrix
+https://towardsdatascience.com/the-ultimate-guide-to-your-terminal-makeover-e11f9b87ac99
+
+https://towardsdatascience.com/the-ultimate-guide-to-your-terminal-makeover-e11f9b87ac99
+
+# Some good shortcuts
+https://dev.to/equiman/iterm2--oh-my-zsh--powerlevel9k-best-terminal-combination-for-geeks-58l5
+https://blog.larsbehrenberg.com/the-definitive-iterm2-and-oh-my-zsh-setup-on-macos
+
+# Vim Themes
+https://vimcolorschemes.com/page/2
+
+# Terminal (not vim) Set Up
+https://www.freecodecamp.org/news/jazz-up-your-bash-terminal-a-step-by-step-guide-with-pictures-80267554cb22/
+
+In terminal do
+```sh
+echo "source $(brew --prefix)/opt/powerlevel10k/powerlevel10k.zsh-theme" >>~/.zshrc
+```
+
+Vim Airline installation
+```sh
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+```
+Once Vim Plug is installed, edit ~/.vimrc:
+```
+call plug#begin('~/.vim/plugged')
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+call plug#end()
+```
+# Close Vim and open Vim again (without anyfile)
+and type:
+```
+:PlugInstall
+```
+
+# Clone Vim Airline Fonts
+```
+$ git clone https://github.com/powerline/fonts.git --depth=1
+$ cd fonts
+$ ./install.sh
+$ cd ..
+$ rm -rf fonts
+```
+
+Set up fzf
+Add this line in ~/.zshrc
+```
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+Add this line in ~/.vimrc
+```
+set rtp+=/opt/homebrew/bin/fzf
+```
+
+```sh
+fzf usage inside vim, type
+```sh
+:FZF
+```
+
+Install vim theme
+```
+$ git clone https://github.com/joshdick/onedark.vim.git ~/onedark
+$ cd ~/onedark
+$ mkdir ~/.vim/colors
+$ cp colors/onedark.vim ~/.vim/colors/
+$ cp autoload/onedark.vim ~/.vim/autoload/
+```
+
+
+# Add autosuggestions
+
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
