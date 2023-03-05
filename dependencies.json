@@ -1,27 +1,6 @@
 {
   "desktop_apps": [
     {
-      "name": "Lastpass",
-      "description": "Password manager",
-      "notes": "Need to install the desktop app and extension for the browser",
-      "command": null,
-      "package_name": null,
-      "install": "manual",
-      "tags": ["Desktop Apps"],
-      "depends_on": [],
-      "subscription": {
-        "price": 0,
-        "billing": null
-      },
-      "websites": {
-        "official": "https://www.lastpass.com/",
-        "binary_url": "",
-        "set_up": "",
-        "sandbox": ""
-      },
-      "libraries": []
-    },
-    {
       "name": "Justinmind",
       "description": "Wireframe tools",
       "notes": "Need to install the desktop app",
@@ -350,6 +329,30 @@
           }
         },
         {
+          "name": "Harbor",
+          "description": "Harbor is an open source registry that secures artifacts with policies and role-based access control, ensures images are scanned and free from vulnerabilities, and signs images as trusted",
+          "notes": "",
+          "command": "",
+          "package_name": "harbor",
+          "install": "auto",
+          "type": "cask",
+          "tags": ["Registry"],
+          "depends_on": ["Running `minikube` or `eks` cluster"],
+          "subscription": {
+            "price": 0,
+            "billing": "free"
+          },
+          "websites": {
+            "official": "https://goharbor.io",
+            "documentation": {
+              "download": "https://formulae.brew.sh/cask/harbor",
+              "binary_url": "",
+              "set_up": "",
+              "sandbox": ""
+            }
+          }
+        },
+        {
           "name": "Helm",
           "description": "Known as the package manager for Kubernetes, focused on automating the Kubernetes applications lifecycle in a simple and consistent way.",
           "notes": "",
@@ -566,6 +569,78 @@
           }
         },
         {
+          "name": "Kyverno",
+          "description": "The Kyverno Command Line Interface (CLI) is designed to validate and test policy behavior to resources prior to adding them to a cluster",
+          "notes": "",
+          "command": "kyverno",
+          "package_name": "kyverno",
+          "install": "auto",
+          "type": "formulae",
+          "tags": ["kubernetes"],
+          "depends_on": ["Running `minikube` or `eks` cluster"],
+          "subscription": {
+            "price": 0,
+            "billing": "free"
+          },
+          "websites": {
+            "official": "https://kyverno.io",
+            "documentation": {
+              "download": "https://formulae.brew.sh/formula/kyverno#default",
+              "binary_url": "",
+              "set_up": "",
+              "sandbox": ""
+            }
+          }
+        },
+        {
+          "name": "Lastpass",
+          "description": "Password Management",
+          "notes": "",
+          "command": "",
+          "package_name": "lastpass",
+          "install": "auto",
+          "type": "cask",
+          "tags": ["Desktop"],
+          "depends_on": [""],
+          "subscription": {
+            "price": 0,
+            "billing": "free"
+          },
+          "websites": {
+            "official": "https://www.lastpass.com",
+            "documentation": {
+              "download": "https://formulae.brew.sh/cask/lastpass",
+              "binary_url": "",
+              "set_up": "",
+              "sandbox": ""
+            }
+          }
+        },
+        {
+          "name": "Lens",
+          "description": "Kubernetes is the OS for the cloud.",
+          "notes": "",
+          "command": "",
+          "package_name": "lens",
+          "install": "auto",
+          "type": "cask",
+          "tags": ["Desktop", "Kubernetes"],
+          "depends_on": [""],
+          "subscription": {
+            "price": 0,
+            "billing": "free"
+          },
+          "websites": {
+            "official": "https://k8slens.dev",
+            "documentation": {
+              "download": "https://formulae.brew.sh/cask/lens",
+              "binary_url": "",
+              "set_up": "",
+              "sandbox": ""
+            }
+          }
+        },
+        {
           "name": "LocalStack",
           "description": "Run Cloud services local mode.",
           "notes": "",
@@ -631,6 +706,30 @@
             "official": "https://github.com/nvm-sh/nvm",
             "documentation": {
               "download": "https://formulae.brew.sh/formula/nvm#default",
+              "binary_url": "",
+              "set_up": "",
+              "sandbox": ""
+            }
+          }
+        },
+        {
+          "name": "Postman",
+          "description": "Api management",
+          "notes": "",
+          "command": "",
+          "package_name": "postman",
+          "install": "auto",
+          "type": "cask",
+          "tags": ["Desktop"],
+          "depends_on": [],
+          "subscription": {
+            "price": 0,
+            "billing": "free"
+          },
+          "websites": {
+            "official": "https://www.postman.com",
+            "documentation": {
+              "download": "https://formulae.brew.sh/cask/postman",
               "binary_url": "",
               "set_up": "",
               "sandbox": ""

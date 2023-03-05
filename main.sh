@@ -38,24 +38,25 @@ hasMacChip() {
 # ARGS:
 # - $1 - package_name
 # - $2 - _type
-brewInstallPackage () {
+# - $3 - _command
+brewInstallPackage() {
   package_name=$1
   _type=$2
+  _command=$3
   echo "${package_name}"
   success_message="Installing "${_type}" ${package_name}..."
   error_message="${package_name}'s ${_type} does not exist..."
   # tap
   if [[ "$_type" == "tap" ]]; then
     echo "${success_message}"
+    # echo "$(brew --repository)/Library/Taps/${package_name}"
+    # /opt/homebrew/Library/Taps/knative
+    # brew tap-info "knative/client" --json
     brew install "${package_name}"
+
   # fomulae and cask
   else
     flag="--${_type}"
-
-    # if [[ "${_type}" == "cask" ]]; then
-    #   flag="--cask"
-    # fi
-
     if brew ls --versions "${flag}" "${package_name}" &>/dev/null; then
       echo "${package_name} is already installed..."
     else
@@ -105,7 +106,7 @@ brewInstall() {
   brewInstallPackage "jq" "formulae"
 
   # Return array: (<[package_name]>.<[type]> <[package_name]>.<[type]>)
-  brew_packages=($(jq -r '.tools[] | select(.name=="Homebrew").libraries[] | select(.package_name != "example") | (.package_name + "." + .type)' dependencies.json))
+  brew_packages=($(jq -r '.tools[] | select(.name=="Homebrew").libraries[] | select(.package_name != "example") | (.package_name + "." + .type + "." + .command)' dependencies.json))
   # echo "${brew_packages[@]}"
   # ---------------------------------------------------------------------------
   # NOTE: Do remove the below code. It's helpful to remember how to create different
@@ -125,12 +126,13 @@ brewInstall() {
     package_info_arr=($(echo $package_info | tr "." " "))
     package_name="$(echo ${package_info_arr[0]})"
     _type="${package_info_arr[1]}"
+    _command="${package_info_arr[2]}"
     if [ "${has_mac_chip}" == "true" ] && [ "${package_name}" == "hyperkit" ]; then
       echo "${package_name} is not supported in mac chips yet. Use qemu or docker driver."
       continue
     fi
     echo "${package_name} ${_type}---------------"
-    brewInstallPackage "${package_name}" "${_type}"
+    brewInstallPackage "${package_name}" "${_type}" "${_command}"
   done
 }
 

@@ -1,0 +1,2 @@
+CloudBees - for harbor - used personal email
+Lens - IDE for k8s - used personal email
