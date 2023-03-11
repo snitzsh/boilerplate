@@ -8,9 +8,7 @@ cloneRepos() {
     if [ ! -d "../${repo}" ]; then
       git clone git@github.com:snitzsh/"${repo}".git ../$repo
       (cd ../$repo && echo "git fetching at $(pwd)..." && git fetch --all)
-      git_fetch
     else
-      $git_fetch
       echo "${repo} is already cloned..."
       (cd ../$repo && echo "git fetching at $(pwd)..." && git fetch --all )
       echo ""
@@ -27,6 +25,7 @@ main() {
     "composer-docker"
     "apis-fastify"
     "mobile-nativescript"
+    "machine-set-up"
   )
   cloneRepos $repos
 }
