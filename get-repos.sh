@@ -19,13 +19,13 @@ cloneRepos() {
 main() {
   # boilerplate repo should not be included here.
   repos=(
-    "website-vue"
-    "infrastructure-terraform"
-    "composer-docker"
-    "composer-docker"
     "apis-fastify"
-    "mobile-nativescript"
+    "composer-docker"
+    "infrastructure-terraform"
+    "infrastructure-helm"
     "machine-set-up"
+    "mobile-nativescript"
+    "website-vue"
   )
   cloneRepos $repos
 }

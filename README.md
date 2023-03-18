@@ -1,2 +1,3 @@
 # boilerplate
-Installs machine dependencies to run the project.
+
+Installs Repos, helm-charts, docker-compose
