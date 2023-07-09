@@ -4,9 +4,51 @@
 # - https://istio.io/latest/docs/setup/platform-setup/kind/
 
 # Docke Memory issues:
-# https://stackoverflow.com/questions/58277794/diagnosing-high-cpu-usage-on-docker-for-mac
+# Instance types:
+# - https://stackoverflow.com/questions/58277794/diagnosing-high-cpu-usage-on-docker-for-mac
+#
+# Instance Price:
+# - https://aws.amazon.com/ec2/pricing/on-demand/
+#
 PLATFORM="snitzsh"
+# https://aws.amazon.com/ec2/instance-types/
 
+eksCTL () {
+  eksctl create cluster \
+    --region us-east-1 \
+    --profile k8s-admin \
+    --name dev \
+    --version 1.22 \
+    --nodegroup-name standard-workers \
+    --node-type t4g.large \
+    --nodes 5 \
+    --managed
+    # --nodes-min 1 \
+    # --nodes-max 10 \
+
+  eksctl utils write-kubeconfig \
+    --cluster dev \
+    --region us-east-1 \
+    --profile k8s-admin
+
+  eksctl delete cluster \
+    --region us-east-1 \
+    --profile k8s-admin \
+    --name dev
+
+  aws ecr get-login-password \
+    --region us-east-1 \
+    --profile k8s-admin |
+      docker login \
+        --username AWS \
+        --password-stdin \
+        076081023637.dkr.ecr.us-east-1.amazonaws.com
+
+  # TODO: with terraform, create ecr repositories and s3, etc
+
+  docker tag apis-rust 076081023637.dkr.ecr.us-east-1.amazonaws.com/apis-rust:latest
+  docker push 076081023637.dkr.ecr.us-east-1.amazonaws.com/apis-rust:latest
+}
 kindClusterCreate () {
   # Clears all cache file. For local run this:
   docker system prune --all --force
