@@ -31,6 +31,9 @@ eksCTL () {
     --region us-east-1 \
     --profile k8s-admin
 
+  # Change name
+  kubectl config rename-context k8-admin@dev.us-east-1.eksctl.io dev
+
   eksctl delete cluster \
     --region us-east-1 \
     --profile k8s-admin \
