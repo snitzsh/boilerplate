@@ -1,0 +1,339 @@
+# NOTES:
+# Source of truth
+#
+# if `namespaced: false`, it will install chart in the `default` namespace # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+# IMPORTANT:
+# - Do not use null, instead use "null" <- with quotes. Since we are passing arguments
+#   bash does not take empty arguments, arguments shifts if argument is empty.
+
+# NOTES:
+# - Does not support the following:
+#   - if specific_name is not null and namespaced is false, it will NOT place the helm-chart in that specified_name,
+#     it will place it helm-chart in the charts.name namespace
+dependencies:
+  - name: argo
+    repository: https://argoproj.github.io/argo-helm
+    charts:
+      - name: argo-cd
+        condition: argo-cd.disabled # opts: disabled | enabled
+        specific_name: "argo-cd" # For example istio/base install documentation shows istio-base when installing
+        namespace_name: "argo-cd" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 5.46.6 # 1.22 4.9.5
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: true
+        platform_repo: true
+        engine: helm
+      - name: argo-workflows
+        condition: argo-workflows.disabled # opts: disabled | enabled
+        specific_name: "argo-workflows" # For example istio/base install documentation shows istio-base when installing
+        namespace_name: "argo-workflows" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 0.33.3
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: true
+        platform_repo: true
+        engine: helm
+  - name: cert-manager
+    repository: https://charts.jetstack.io
+    charts:
+      - name: cert-manager
+        condition: cert-manager.disabled # opts: disabled | enabled
+        specific_name: "cert-manager" # For example istio/base install documentation shows istio-base when installing
+        namespace_name: "cert-manager" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: "v1.13.0" # ""v1.11.1""
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: true
+        platform_repo: true
+        engine: helm
+  - name: cetic
+    repository: https://cetic.github.io/helm-charts
+    charts:
+      - name: adminer
+        condition: adminer.disabled # opts: disabled | enabled
+        specific_name: "adminer" # For example istio/base install documentation shows istio-base when installing
+        namespace_name: "adminer" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 0.2.1
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: true
+        platform_repo: true
+        engine: helm
+  - name: chartmuseum
+    repository: https://chartmuseum.github.io/charts
+    charts:
+      - name: chartmuseum
+        condition: chartmuseum.disabled # opts: disabled | enabled
+        specific_name: "chartmuseum" # For example istio/base install documentation shows istio-base when installing
+        namespace_name: "chartmuseum" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 3.10.1
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: true
+        platform_repo: true
+        engine: helm
+  - name: external-secrets
+    repository: https://charts.external-secrets.io
+    charts:
+      - name: external-secrets
+        condition: external-secrets.disabled # opts: disabled | enabled
+        specific_name: "external-secrets" # For example istio/base install documentation shows istio-base when installing
+        namespace_name: "default" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 0.9.5
+        namespaced: false # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: true
+        platform_repo: true
+        engine: helm
+  - name: fluent
+    repository: https://fluent.github.io/helm-charts
+    charts:
+      - name: fluent-bit
+        condition: fluent-bit.disabled # opts: disabled | enabled
+        specific_name: "fluent-bit" # For example istio/base install documentation shows istio-base when installing
+        namespace_name: "fluent-bit" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 0.38.0
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: true
+        platform_repo: true
+        engine: helm
+  - name: grafana
+    repository: https://grafana.github.io/helm-charts
+    charts:
+      - name: grafana
+        condition: grafana.disabled # opts: disabled | enabled
+        specific_name: "grafana" # For example istio/base install documentation shows istio-base when installing
+        namespace_name: "grafana" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 6.60.1
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: true
+        platform_repo: true
+        engine: helm
+  - name: istio
+    repository: https://istio-release.storage.googleapis.com/charts
+    charts:
+      # Charts must be install in this order
+      - name: base
+        condition: base.disabled # opts: disabled | enabled
+        specific_name: istio-base # For example istio/base install documentation shows istio-base when installing
+        namespace_name: istio-system # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 1.19.0
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: true
+        platform_repo: true
+        engine: helm
+      - name: istiod
+        condition: istiod.disabled # opts: disabled | enabled
+        specific_name: "istiod" # For example istio/base install documentation shows istio-base when installing
+        namespace_name: istio-system # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 1.19.0
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: true
+        platform_repo: true
+        engine: helm
+      - name: gateway
+        condition: gateway.disabled # opts: disabled | enabled"
+        specific_name: istio-ingressgateway # For example istio/base install documentation shows istio-base when installing
+        namespace_name: istio-system # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 1.19.0
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: true
+        platform_repo: true
+        engine: helm
+  - name: jaegertracing
+    repository: https://jaegertracing.github.io/helm-charts
+    charts:
+      - name: jaeger # Consumes too much cpu in minikube
+        condition: jaeger.disabled # opts: disabled | enabled
+        specific_name: jaeger # Consumes too much cpu in minikube
+        namespace_name: jaeger # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 0.71.14
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: true
+        platform_repo: true
+        engine: helm
+  - name: kiali # Consumes too much cpu in minikube
+    repository: https://kiali.org/helm-charts
+    charts:
+      - name: kiali-operator
+        condition: kiali-operator.disabled # opts: disabled | enabled
+        specific_name: "kiali-operator" # For example istio/base install documentation shows istio-base when installing
+        namespace_name: "kiali-operator" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 1.74.0
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: true
+        platform_repo: true
+        engine: helm
+  - name: kyverno
+    repository: https://kyverno.github.io/kyverno
+    charts:
+      - name: kyverno
+        condition: kyverno.disabled # opts: disabled | enabled
+        specific_name: "kyverno" # For example istio/base install documentation shows istio-base when installing
+        namespace_name: "kyverno" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 3.1.0-beta.2
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: true
+        platform_repo: true
+        engine: helm
+  - name: linkerd
+    repository: https://helm.linkerd.io/stable
+    charts:
+      - name: linkerd-crds
+        condition: linkerd-crds.disabled # opts: disabled | enabled
+        specific_name: "linkerd-crds"
+        namespace_name: "linkerd" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 1.8.0
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: true
+        platform_repo: true
+        engine: helm
+      - name: linkerd-control-plane
+        condition: linkerd-control-plane.disabled # opts: disabled | enabled
+        specific_name: "linkerd-control-plane"
+        namespace_name: "linkerd" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 1.15.0
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: true
+        platform_repo: true
+        engine: helm
+      - name: linkerd2-cni
+        condition: linkerd2-cni.disabled # opts: disabled | enabled
+        specific_name: "linkerd2-cni"
+        namespace_name: "linkerd-cni" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 30.11.0
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: true
+        platform_repo: true
+        engine: helm
+  - name: metrics-server
+    repository: https://kubernetes-sigs.github.io/metrics-server/
+    charts:
+      - name: metrics-server
+        condition: metrics-server.disabled # opts: disabled | enabled
+        specific_name: "metrics-server" # For example istio/base install documentation shows istio-base when installing
+        namespace_name: "metrics-server" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 3.11.0 # ""v1.11.1"" v3.10.0
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: true
+        platform_repo: true
+        engine: helm
+  - name: prometheus-community
+    repository: https://prometheus-community.github.io/helm-charts
+    charts:
+      - name: prometheus
+        condition: prometheus.disabled # opts: disabled | enabled
+        specific_name: "prometheus"
+        namespace_name: "prometheus"
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 25.0.0
+        namespaced: true
+        has_repo: true
+        platform_repo: true
+        engine: helm
+  - name: stakater
+    repository: https://stakater.github.io/stakater-charts
+    charts:
+      - name: reloader
+        condition: reloader.enabled # opts: disabled | enabled
+        specific_name: "reloader" # For example istio/base install documentation shows istio-base when installing
+        namespace_name: "default" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 1.0.41
+        namespaced: false # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: true
+        platform_repo: true
+        engine: helm
+  - name: vmware-tanzu
+    repository: https://vmware-tanzu.github.io/helm-charts
+    charts:
+      - name: velero
+        condition: velero.enabled # opts: disabled | enabled
+        specific_name: "velero" # For example istio/base install documentation shows istio-base when installing
+        namespace_name: "default" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 5.0.2
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: true
+        platform_repo: true
+        engine: helm
+  # This is NOT a helm-chart. but to prevent alot of code in main.sh following consistency of how other `Real` helm charts are installed.
+  - name: knative
+    repository: https://github.com/knative
+    charts:
+      - name: knative-operator
+        condition: knative-operator.disabled # opts: disabled | enabled
+        specific_name: "knative-operator" # For example istio/base install documentation shows istio-base when installing
+        namespace_name: "default" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 1.10.0
+        namespaced: false # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: false
+        platform_repo: true
+        engine: helm
+      - name: knative-serving
+        condition: knative-serving.disabled # opts: disabled | enabled
+        specific_name: "knative-serving" # For example istio/base install documentation shows istio-base when installing
+        namespace_name: "knative-serving" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 1.10.1 # TODO: Find out which version does the operator uses.
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: false
+        platform_repo: true
+        engine: helm
+      - name: knative-eventing
+        condition: knative-eventing.disabled # opts: disabled | enabled
+        specific_name: "knative-eventing" # For example istio/base install documentation shows istio-base when installing
+        namespace_name: "knative-eventing" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 1.10.1 # TODO: Find out which version does the operator uses.
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: false
+        platform_repo: true
+        engine: helm
+  - name: platform # Snitch charts, for now main.sh has been modified ignore the domain because it does not exist.
+    repository: https://chartmuseum.snitzh.com/charts
+    charts:
+      - name: apis-fastify
+        condition: apis-fastify.disabled # opts: disabled | enabled
+        specific_name: "apis-fastify" # For example istio/base install documentation shows istio-base when installing
+        namespace_name: "apis-fastify" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 1.0.0
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: false
+        platform_repo: true
+        engine: helm
+      - name: apis-rust
+        condition: apis-rust.disabled # opts: disabled | enabled
+        specific_name: "apis-rust" # For example istio/base install documentation shows istio-base when installing
+        namespace_name: "apis-rust" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 1.0.0
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: false
+        platform_repo: true
+        engine: helm
+      - name: website-vue
+        condition: website-vue.disabled # opts: disabled | enabled
+        specific_name: "website-vue" # For example istio/base install documentation shows istio-base when installing
+        namespace_name: "website-vue" # if the name of the chart has a different namespace
+        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        version: 1.0.0
+        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        has_repo: false
+        platform_repo: true
+        engine: helm
