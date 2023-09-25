@@ -33,7 +33,7 @@ createHelmChartInExistingRepository () {
           rm ./templates/*.yaml
           rm -rf ./"${chart}"
           git add .
-          git commit -m "Initial commit of chart ${dependency}/${chart}."
+          git commit --no-edit -m "Initial commit of chart ${dependency}/${chart}."
         )
         exit 1
         if ! [ -f "$chart/Chart.yaml" ]; then
@@ -49,7 +49,7 @@ createHelmChartInExistingRepository () {
 }
 
 main () {
-  createHelmChartInExistingRepository
+  createHelmChartInExistingRepository 
 }
 
 main
