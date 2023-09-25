@@ -49,7 +49,7 @@ createHelmChartInExistingRepository () {
 }
 
 main () {
-  createHelmChartInExistingRepository 
+  createHelmChartInExistingRepository
 }
 
 main
