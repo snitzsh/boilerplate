@@ -23,20 +23,27 @@ createHelmChartInExistingRepository () {
   local -r func_name="${FUNCNAME[0]}"
   (
     cd "$SNITZSH_PATH/helm-charts" &&
-    for repository in *; do
-      if ! [ -f "$repository/Chart.yaml" ]; then
-        logger "INFO"  "Creating helm-chart for ${repository} repo." "${func_name}"
+    for dependency in *; do
+      for chart in  "${dependency}/"*; do
+        echo "${chart}"
         (
-          cd "./${repository}" &&
-          helm create "${repository}" &&
-          mv ./"${repository}"/{.,}* ./
+          cd "./${dependency}/${chart}" &&
+          helm create "${chart}" &&
+          mv ./"${chart}"/{.,}* ./
           rm ./templates/*.yaml
-          rm -rf ./"${repository}"
+          rm -rf ./"${chart}"
+          git add .
+          git commit -m "Initial commit of chart ${dependency}/${chart}."
         )
-      else
-        logger "WARN" "Chart.yaml already exist for ${repository} repo." "${func_name}"
-      fi
-      exit 1
+        exit 1
+        if ! [ -f "$chart/Chart.yaml" ]; then
+          logger "INFO"  "Creating helm-chart for ${dependency}/${chart} repo." "${func_name}"
+        # else
+        #   logger "WARN" "Chart.yaml already exist for ${repository} repo." "${func_name}"
+        fi
+        # exit 1
+      done
+
     done
   )
 }
