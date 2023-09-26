@@ -19,31 +19,49 @@ source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 # RETURN:
 #   - null
 #
+moveFileToTmp () {
+  local -r file_name=$1
+  mv ./"${file_name}" /tmp/
+}
+
+moveTmpToDir () {
+  local -r file_name=$1
+  mv /tmp/"${file_name}" ./
+}
+
 createHelmChartInExistingRepository () {
   local -r func_name="${FUNCNAME[0]}"
   (
     cd "$SNITZSH_PATH/helm-charts" &&
     for dependency in *; do
+      local chart_name=""
       for chart in  "${dependency}/"*; do
-        echo "${chart}"
+        chart_name=$(echo "${chart}" | yq -r 'split("/") | .[1]')
         (
-          cd "./${dependency}/${chart}" &&
-          helm create "${chart}" &&
-          mv ./"${chart}"/{.,}* ./
-          rm ./templates/*.yaml
-          rm -rf ./"${chart}"
-          git add .
-          git commit --no-edit -m "Initial commit of chart ${dependency}/${chart}."
+          cd "./${dependency}/${chart_name}" &&
+          if ! [ -f "./Chart.yaml" ]; then
+            # Initial files when creating the repo manually. Don't touch them
+            moveFileToTmp .gitignore
+            moveFileToTmp LICENSE
+            moveFileToTmp README.md
+            rm -rf ./*
+            moveTmpToDir .gitignore
+            moveTmpToDir LICENSE
+            moveTmpToDir README.md
+            logger "INFO" "Creating helm chart ${chart_name} for dependency: '${dependency}'" "${func_name}"
+            helm create "${chart_name}" > /dev/null
+            mv ./"${chart_name}"/{.,}* ./
+            rm ./templates/*.yaml
+            rm -rf ./"${chart_name}"
+            git add .
+            git commit --quiet -m "Initial commit of chart_name ${dependency}/${chart_name}." > /dev/null
+            git push --quiet
+            sleep 5 # neccesary to let the machine time to git to commit and push and handle files
+          else
+            logger "INFO" "helm chart '${chart_name}' already exist for dependency: '${dependency}'." "${func_name}"
+          fi
         )
-        exit 1
-        if ! [ -f "$chart/Chart.yaml" ]; then
-          logger "INFO"  "Creating helm-chart for ${dependency}/${chart} repo." "${func_name}"
-        # else
-        #   logger "WARN" "Chart.yaml already exist for ${repository} repo." "${func_name}"
-        fi
-        # exit 1
       done
-
     done
   )
 }
