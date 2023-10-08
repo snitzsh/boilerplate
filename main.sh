@@ -16,7 +16,7 @@ export GITHUB_DOMAIN="https://api.github.com"
 export SNITZSH_PATH=${PWD%/*}
 
 main () {
-  bash "${1}.sh"
+  bash "funcs/${1}.sh"
 }
 
 main "${1}"

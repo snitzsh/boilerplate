@@ -16,6 +16,6 @@
 # RETURN:
 #   - null
 #
-sleeper () {
+utilSleeper () {
   sleep 1
 }

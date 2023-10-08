@@ -17,7 +17,7 @@
 # RETURN:
 #   - null
 #
-createFolders () {
+utilCreateFolders () {
   local -r arr=(
     "apps"
     "helm-charts"

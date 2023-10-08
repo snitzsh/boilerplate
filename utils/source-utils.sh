@@ -16,7 +16,7 @@
 # RETURN:
 #   - null
 #
-sourceUtils () {
+utilSourceUtils () {
   for util in "${SNITZSH_PATH}"/boilerplate/utils/*; do
     if [ "${util}" == "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh" ]; then
       continue
@@ -25,4 +25,4 @@ sourceUtils () {
   done
 }
 
-sourceUtils
+utilSourceUtils
