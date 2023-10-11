@@ -1,0 +1,5 @@
+users:
+  - name: "Juan Ordaz"
+    emal: "juan.ordaz@snitzsh.com"
+    team: "system administraitor"
+    groups: [] # for permissions

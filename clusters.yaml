@@ -1,0 +1,4 @@
+clusters:
+  - name: "dev"
+    active: true
+    cloud: "aws" # aws, azure, gcp (google cloud platform)

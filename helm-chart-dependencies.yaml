@@ -53,7 +53,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
-  - name: cetic
+  - name:
     repository: https://cetic.github.io/helm-charts
     charts:
       - name: adminer

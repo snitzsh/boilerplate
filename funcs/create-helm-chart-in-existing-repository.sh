@@ -5,7 +5,7 @@ source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 
 #
 # TODO:
-#   - null
+#   - add ARGS docs
 #
 # NOTE:
 #   - null
@@ -24,13 +24,46 @@ moveFileToTmp () {
   mv ./"${file_name}" /tmp/
 }
 
+#
+# TODO:
+#   - add notes, description, args
+#
+# NOTE:
+#   - null
+#
+# DESCRIPTION:
+#   - null
+#
+# ARGS:
+#   - null
+#
+# RETURN:
+#   - null
+#
 moveTmpToDir () {
   local -r file_name=$1
   mv /tmp/"${file_name}" ./
 }
 
+#
+# TODO:
+#   - add notes, description, args
+#
+# NOTE:
+#   - null
+#
+# DESCRIPTION:
+#   - null
+#
+# ARGS:
+#   - null
+#
+# RETURN:
+#   - null
+#
 createHelmChartInExistingRepository () {
   local -r func_name="${FUNCNAME[0]}"
+
   (
     cd "$SNITZSH_PATH/helm-charts" &&
     for dependency in *; do
@@ -65,7 +98,22 @@ createHelmChartInExistingRepository () {
     done
   )
 }
-
+#
+# TODO:
+#   - add notes, description, args
+#
+# NOTE:
+#   - null
+#
+# DESCRIPTION:
+#   - null
+#
+# ARGS:
+#   - null
+#
+# RETURN:
+#   - null
+#
 main () {
   createHelmChartInExistingRepository
 }
