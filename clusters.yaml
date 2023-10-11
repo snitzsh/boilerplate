@@ -1,4 +1,32 @@
-clusters:
-  - name: "dev"
-    active: true
-    cloud: "aws" # aws, azure, gcp (google cloud platform)
+regions:
+  north-america:
+    clusters:
+      # dev, sit, uat, prod
+      dev:
+        active: true
+        account: null # if null it will create the cluester in the global account
+        cloud: "aws"
+      sit: {}
+      uat: {}
+      prod: {}
+  south-america: {}
+  europe: {}
+  africa: {}
+  asia: {}
+  australia: {}
+
+  # uat:
+  #   active: false
+  #   account: null # if null it will create the cluester in the global account
+  #   cloud: "aws"
+  # prod:
+  #   active: false
+  #   account: null # if null it will create the cluester in the global account
+  #   cloud: "aws"
+
+  # - name: "dev"
+  #   active: true
+  #   cloud: "aws" # aws, azure, gcp (google cloud platform)
+  # - name: "black"
+  #   active: true
+  #   cloud: "aws" # aws, azure, gcp (google cloud platform)
