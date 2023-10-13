@@ -77,7 +77,7 @@ createHelmChartInExistingRepository () {
 #   - null
 #
 # DESCRIPTION:
-#   - exectues the function(s)
+#   - Exectues the function(s)
 #
 # ARGS:
 #   - null
