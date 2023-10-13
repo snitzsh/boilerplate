@@ -71,9 +71,9 @@ patchHelmChartReposChartYamlFile () {
                   git add .
                   # this ensures only commit and push if there are changes.
                   git diff --staged --quiet || (
-                    logger "INFO" "Updated chart ${chart_name}'s dependencies for dependency: '${dependency_name}'." "${func_name}"
                     git commit --quiet -m "Updated chart's dependencies for ${region_name}/${cluster_name}." > /dev/null &&
                     git push --quiet
+                    logger "INFO" "Updated chart ${chart_name}'s dependencies for dependency: '${dependency_name}'." "${func_name}"
                     sleep 5
                   )
                 fi
