@@ -56,27 +56,53 @@ utilGetHelmChartDependecies () {
 #     *   '{...}'
 #
 #
-utilGetHelmChartDependecy () {
+utilGetHelmChartDependency () {
   local -r helm_charts_dependcies_path="${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml"
-  local dependency_name="${1}"
-  local chart_name="${2}"
+  local -r dependency_name="${1}"
+  local -r chart_name="${2}"
   local dependency=""
   dependency=$( \
     # shellcheck disable=SC2016
-    dependency_name="${dependency_name}" \
-    chart_name="${chart_name}" \
+    _dependency_name="${dependency_name}" \
+    _chart_name="${chart_name}" \
     yq '
-      env(dependency_name) as $dependency_name
-      | env(chart_name) as $chart_name
+      env(_dependency_name) as $_dependency_name
+      | env(_chart_name) as $_chart_name
       | .dependencies[]
-      | select(.name == $dependency_name)
+      | select(.name == $_dependency_name)
       | .repository as $repository
       | .charts[]
-      | select(.name == $chart_name)
-      | .dependency_name |= $dependency_name
+      | select(.name == $_chart_name)
+      | .dependency_name |= $_dependency_name
       | .repository |= $repository
       | .
     ' "${helm_charts_dependcies_path}" \
   )
   echo "${dependency}"
+}
+
+utilQueryHelmChartDependenciesFile () {
+  local -r helm_charts_dependcies_path="${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml"
+  local -r query_name="${1}"
+
+  case "${query_name}" in
+    "update-{dependency}-version")
+      local -r dependency_name="${2}"
+      local -r chart_name="${3}"
+      local -r latest_version="${4}"
+      # shellcheck disable=SC2016
+      _dependency_name="${dependency_name}" \
+      _chart_name="${chart_name}" \
+      _latest_version="${latest_version}" \
+      yq '
+        env(_dependency_name) as $_dependency_name
+        | env(_chart_name) as $_chart_name
+        | env(_latest_version) as $_latest_version
+        | (..)
+      ' "${helm_charts_dependcies_path}"
+      ;;
+    *)
+      echo ""
+      ;;
+  esac
 }

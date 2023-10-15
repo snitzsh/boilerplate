@@ -64,6 +64,7 @@ export PLATFORM_HELM_CHART_DEPENDENCIES_YAML
 #   - null
 #
 main () {
+  echo "Func name: ${1}"
   bash "funcs/${1}.sh"
 }
 
