@@ -23,6 +23,23 @@ export GITHUB_DOMAIN="https://api.github.com"
 #
 export SNITZSH_PATH=${PWD%/*}
 #
+# TODO:
+#   - null
+#
+# NOTE:
+#   - For more reex info: https://semver.org
+#   - SemVer version that is use to validate
+#   - Checks for v0.0.0 or 0.0.0
+#     -> it cannot have leading 0s like: 01.01.01
+#   - if not match check version manually
+#
+# semver. Ex: https://regex101.com/r/vkijKf/1/
+# export PLATFORM_REGEX_VERSION=("^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?" "^(v[0-9]|v[1-9]\d*|0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)")
+# non-semver. Ex: v0.0.0 and 0.0.0
+export PLATFORM_REGEX_SEMVER="^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?"
+export PLATFORM_REGEX_NON_SEMVER="^(v[0-9]|v[1-9]\d*|0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)"
+export PLATFORM_REGEX_ONLY_NUMBERS="^[0-9]*$"
+#
 # NOTE
 #   - set as global to prevent getting the same file data in each funcs/utils
 #

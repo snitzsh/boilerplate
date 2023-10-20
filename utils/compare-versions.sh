@@ -2,30 +2,45 @@
 
 #
 # TODO:
-#   - regex should check white-spaces between dots.
+#   - null
 #
 # NOTE:
-#   - null
+#   - A version like `v0.0.0` aren't semantic, but is common to used 'v'
+#     for versioning. Ex: `git` uses `v0.0.0` versioning.
+#   - Read PLATFORM_REGEX_SEMVER notes in ../main.sh
+#   - The second if-statement checks for v0.0.0-blah.
 #
 # DESCRIPTION:
-#   - Compare version for helm-charts
+#   - Validates a version, it can be use for helm chart or other software
 #
 # ARGS:
-#   - null
+#   - $1 : version : 0.0.0 | v0.0.0 | 3.1.0-beta.2 (rare) | chart version
 #
 # RETURN:
-#   - null
+#   - BOOLEAN : true | false
 #
-utilVersionHasLetter () {
+utilIsSemVerValid () {
   local -r version="${1}"
-  # shellcheck disable=SC2016
-  _version="${version}" \
-  yq -n '
-    env(_version) as $_version
-    | ($_version | match("[^(\d+(\.\d+)+)]", "g"))
-    | (.string | length > 0)
-    | .
-  '
+  jq \
+    -nr \
+    --arg regex_semver "${PLATFORM_REGEX_SEMVER}" \
+    --arg regex_non_semver "${PLATFORM_REGEX_NON_SEMVER}" \
+    --arg regex_only_numbers "${PLATFORM_REGEX_ONLY_NUMBERS}" \
+    --arg version "${version}" \
+    '
+      $version | test($regex_semver) as $is_valid_semver
+      | {"is_valid": false} as $obj
+      | $obj
+      | if ($is_valid_semver) then
+          .is_valid |= $is_valid_semver
+        else
+          .is_valid |= ($version | test($regex_non_semver))
+          | if .is_valid then
+            .is_valid |= ($version | split(".") | .[2] | test($regex_only_numbers))
+          end
+        end
+      | .
+    '
 }
 
 #
