@@ -32,12 +32,20 @@ export SNITZSH_PATH=${PWD%/*}
 #   - Checks for v0.0.0 or 0.0.0
 #     -> it cannot have leading 0s like: 01.01.01
 #   - if not match check version manually
+#   - other useful regex
+#     v0.0.0 or 0.0.0
+#     ^(v[0-9]|v[1-9]\d*|0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$
 #
 # semver. Ex: https://regex101.com/r/vkijKf/1/
-# export PLATFORM_REGEX_VERSION=("^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?" "^(v[0-9]|v[1-9]\d*|0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)")
-# non-semver. Ex: v0.0.0 and 0.0.0
-export PLATFORM_REGEX_SEMVER="^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?"
-export PLATFORM_REGEX_NON_SEMVER="^(v[0-9]|v[1-9]\d*|0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)"
+#   Ex: 0.0.0 | 0.0.0-beta-1
+export PLATFORM_REGEX_SEMVER="^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$"
+# v0.0.0
+export PLATFORM_REGEX_V_X_X_X="^(v[0-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$"
+# 0.0.0
+export PLATFORM_REGEX_X_X_X="^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$"
+#
+export PLATFORM_REGEX_EXTRACT_X_X_X="([0-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)"
+# 0
 export PLATFORM_REGEX_ONLY_NUMBERS="^[0-9]*$"
 #
 # NOTE
