@@ -16,7 +16,7 @@ dependencies:
     charts:
       - name: argo-cd
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: argo-cd.disabled # opts: disabled | enabled
         specific_name: argo-cd # For example istio/base install documentation shows istio-base when installing
         namespace_name: "argo-cd" # if the name of the chart has a different namespace
@@ -31,7 +31,7 @@ dependencies:
         software_type: open-source
       - name: argo-workflows
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: argo-workflows.disabled # opts: disabled | enabled
         specific_name: argo-workflows # For example istio/base install documentation shows istio-base when installing
         namespace_name: argo-workflows # if the name of the chart has a different namespace
@@ -49,7 +49,7 @@ dependencies:
     charts:
       - name: cert-manager
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: cert-manager.disabled # opts: disabled | enabled
         specific_name: cert-manager # For example istio/base install documentation shows istio-base when installing
         namespace_name: cert-manager # if the name of the chart has a different namespace
@@ -67,7 +67,7 @@ dependencies:
     charts:
       - name: adminer
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: adminer.disabled # opts: disabled | enabled
         specific_name: adminer # For example istio/base install documentation shows istio-base when installing
         namespace_name: adminer # if the name of the chart has a different namespace
@@ -85,7 +85,7 @@ dependencies:
     charts:
       - name: chartmuseum
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: chartmuseum.disabled # opts: disabled | enabled
         specific_name: chartmuseum # For example istio/base install documentation shows istio-base when installing
         namespace_name: chartmuseum # if the name of the chart has a different namespace
@@ -103,7 +103,7 @@ dependencies:
     charts:
       - name: external-secrets
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: external-secrets.disabled # opts: disabled | enabled
         specific_name: external-secrets # For example istio/base install documentation shows istio-base when installing
         namespace_name: default # if the name of the chart has a different namespace
@@ -121,7 +121,7 @@ dependencies:
     charts:
       - name: fluent-bit
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: fluent-bit.disabled # opts: disabled | enabled
         specific_name: fluent-bit # For example istio/base install documentation shows istio-base when installing
         namespace_name: fluent-bit # if the name of the chart has a different namespace
@@ -139,7 +139,7 @@ dependencies:
     charts:
       - name: grafana
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: grafana.disabled # opts: disabled | enabled
         specific_name: grafana # For example istio/base install documentation shows istio-base when installing
         namespace_name: grafana # if the name of the chart has a different namespace
@@ -158,7 +158,7 @@ dependencies:
       # Charts must be install in this order
       - name: base
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: base.disabled # opts: disabled | enabled
         specific_name: istio-base # For example istio/base install documentation shows istio-base when installing
         namespace_name: istio-system # if the name of the chart has a different namespace
@@ -173,7 +173,7 @@ dependencies:
         software_type: open-source
       - name: istiod
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: istiod.disabled # opts: disabled | enabled
         specific_name: istiod # For example istio/base install documentation shows istio-base when installing
         namespace_name: istio-system # if the name of the chart has a different namespace
@@ -188,7 +188,7 @@ dependencies:
         software_type: open-source
       - name: gateway
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: gateway.disabled # opts: disabled | enabled"
         specific_name: istio-ingressgateway # For example istio/base install documentation shows istio-base when installing
         namespace_name: istio-system # if the name of the chart has a different namespace
@@ -206,7 +206,7 @@ dependencies:
     charts:
       - name: jaeger # Consumes too much cpu in minikube
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: jaeger.disabled # opts: disabled | enabled
         specific_name: jaeger # Consumes too much cpu in minikube
         namespace_name: jaeger # if the name of the chart has a different namespace
@@ -224,7 +224,7 @@ dependencies:
     charts:
       - name: kiali-operator
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: kiali-operator.disabled # opts: disabled | enabled
         specific_name: kiali-operator # For example istio/base install documentation shows istio-base when installing
         namespace_name: kiali-operator # if the name of the chart has a different namespace
@@ -242,7 +242,7 @@ dependencies:
     charts:
       - name: kyverno
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: kyverno.disabled # opts: disabled | enabled
         specific_name: kyverno # For example istio/base install documentation shows istio-base when installing
         namespace_name: kyverno # if the name of the chart has a different namespace
@@ -260,7 +260,7 @@ dependencies:
     charts:
       - name: linkerd-crds
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: linkerd-crds.disabled # opts: disabled | enabled
         specific_name: linkerd-crds
         namespace_name: linkerd # if the name of the chart has a different namespace
@@ -275,7 +275,7 @@ dependencies:
         software_type: open-source
       - name: linkerd-control-plane
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: linkerd-control-plane.disabled # opts: disabled | enabled
         specific_name: linkerd-control-plane
         namespace_name: linkerd # if the name of the chart has a different namespace
@@ -290,7 +290,7 @@ dependencies:
         software_type: open-source
       - name: linkerd2-cni
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: linkerd2-cni.disabled # opts: disabled | enabled
         specific_name: linkerd2-cni
         namespace_name: linkerd-cni # if the name of the chart has a different namespace
@@ -308,7 +308,7 @@ dependencies:
     charts:
       - name: metrics-server
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: metrics-server.disabled # opts: disabled | enabled
         specific_name: metrics-server # For example istio/base install documentation shows istio-base when installing
         namespace_name: metrics-server # if the name of the chart has a different namespace
@@ -326,7 +326,7 @@ dependencies:
     charts:
       - name: prometheus
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: prometheus.disabled # opts: disabled | enabled
         specific_name: prometheus
         namespace_name: prometheus
@@ -344,7 +344,7 @@ dependencies:
     charts:
       - name: reloader
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: reloader.enabled # opts: disabled | enabled
         specific_name: reloader # For example istio/base install documentation shows istio-base when installing
         namespace_name: default # if the name of the chart has a different namespace
@@ -362,7 +362,7 @@ dependencies:
     charts:
       - name: velero
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: velero.enabled # opts: disabled | enabled
         specific_name: velero # For example istio/base install documentation shows istio-base when installing
         namespace_name: default # if the name of the chart has a different namespace
@@ -381,7 +381,7 @@ dependencies:
     charts:
       - name: knative-operator
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: knative-operator.disabled # opts: disabled | enabled
         specific_name: knative-operator # For example istio/base install documentation shows istio-base when installing
         namespace_name: default # if the name of the chart has a different namespace
@@ -396,7 +396,7 @@ dependencies:
         software_type: open-source
       - name: knative-serving
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: knative-serving.disabled # opts: disabled | enabled
         specific_name: knative-serving # For example istio/base install documentation shows istio-base when installing
         namespace_name: knative-serving # if the name of the chart has a different namespace
@@ -411,7 +411,7 @@ dependencies:
         software_type: open-source
       - name: knative-eventing
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: knative-eventing.disabled # opts: disabled | enabled
         specific_name: knative-eventing # For example istio/base install documentation shows istio-base when installing
         namespace_name: knative-eventing # if the name of the chart has a different namespace
@@ -429,7 +429,7 @@ dependencies:
     charts:
       - name: apis-fastify
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: apis-fastify.disabled # opts: disabled | enabled
         specific_name: apis-fastify # For example istio/base install documentation shows istio-base when installing
         namespace_name: apis-fastify # if the name of the chart has a different namespace
@@ -444,7 +444,7 @@ dependencies:
         software_type: proprietary
       - name: apis-rust
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: apis-rust.disabled # opts: disabled | enabled
         specific_name: apis-rust # For example istio/base install documentation shows istio-base when installing
         namespace_name: apis-rust # if the name of the chart has a different namespace
@@ -459,7 +459,7 @@ dependencies:
         software_type: proprietary
       - name: website-vue
         latest_version: null # latest version of chart.
-        clusters_versions:  {}
+        clusters_versions:  {} # everytime it boilerplate gets executed, it will place the new releases here. Old Releases versions will get remove repo version gets updated
         condition: website-vue.disabled # opts: disabled | enabled
         specific_name: website-vue # For example istio/base install documentation shows istio-base when installing
         namespace_name: website-vue # if the name of the chart has a different namespace

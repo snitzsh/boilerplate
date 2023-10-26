@@ -44,7 +44,8 @@ utilGetVersionAsObj () {
       | {
           "is_valid": false,
           "type": null,
-          "x_x_x_str": null
+          "x_x_x_str": null,
+          "x_x_x_num": null
         } as $obj
       | $obj
       | .
@@ -65,7 +66,13 @@ utilGetVersionAsObj () {
             end
           end
         end
-      | if (.x_x_x_str==null) then .x_x_x_str |= [] end
+      | if (.x_x_x_str==null) then
+          .x_x_x_str |= []
+        else
+          .x_x_x_num |= (
+            $x_x_x[] | [(.[0] | tonumber), (.[1] | tonumber), (.[2] | tonumber)]
+          )
+        end
       | .
     '
 }
@@ -75,37 +82,108 @@ utilGetVersionAsObj () {
 #   - null
 #
 # NOTE:
-#   - null
+#   - Only handles flat json, not deep json
 #
 # DESCRIPTION:
-#   - Compare version for helm-charts
+#   - Return key's value based, where `query` is the name of the key
 #
 # ARGS:
-#   - null
+#   - $1 : STRING : <[any key name of the object returned by function utilGetVersionAsObj]>
+#   - $2 : OBJECT : <[object returned by function utilGetVersionAsObj]>
 #
 # RETURN:
+#   - ANY : <[key's value of the object returned by function utilGetVersionAsObj]> : true | false | []
+#
+utilIsVersionObjQuery () {
+  local -r query="${1}"
+  local -r obj="${2}"
+  jq \
+    -nr \
+    --arg query "${query}" \
+    --argjson obj "${obj}" \
+    '
+      $obj
+      | .[$query]
+    '
+}
+
+#
+# TODO:
 #   - null
 #
+# NOTE:
+#   - It assumes the ${2} and ${3} argument values already were validated
+#     by utilGetVersionAsObj.
+#   - It assumes ${2} could be greater than ${3}.
+#   - returns error if query is unknown.
+#
+# DESCRIPTION:
+#   - Compare version for helm-charts.
+#
+# ARGS:
+#   - ${1} : STRING : "greater_than" | "less_than" | "equals"
+#   - ${2} : ARRAY  : [0, 0, 0]
+#   - ${3} : ARRAY  : [0, 0, 0]
+#
+# RETURN:
+#   - BOOLEAN : true | false
+#
 utilCompareVersions () {
-  local -r dependency_name="${1}"
-  local -r chart_name="${2}"
-  local -r current_version_obj="${3}"
-  local -r latest_version_obj="${4}"
-  echo "$chart_name"
-  # shellcheck disable=SC2016
-  _dependency_name="${dependency_name}" \
-  _chart_name="${chart_name}" \
-  _current_version_obj="${current_version_obj}" \
-  _latest_version_obj="${latest_version_obj}" \
-  yq -n '
-    env(_dependency_name) as $_dependency_name
-    | env(_chart_name) as $_chart_name
-    | env(_current_version_obj) as $_current_version_obj
-    | env(_latest_version_obj) as $_latest_version_obj
-    | {
-        "current_version": $_current_version_obj,
-        "latest_version": $_latest_version_obj
-      } as $obj
-    | $obj
-  '
+  local -r query="${1}"
+  local -r a_version_x_x_x_num="${2}"
+  local -r b_version_x_x_x_num="${3}"
+
+  jq \
+    -nr \
+    --arg query "${query}" \
+    --argjson a_version_x_x_x_num "${a_version_x_x_x_num}" \
+    --argjson b_version_x_x_x_num "${b_version_x_x_x_num}" \
+    '
+      $a_version_x_x_x_num[0] as $a_version_major
+      | $a_version_x_x_x_num[1] as $a_version_minor
+      | $a_version_x_x_x_num[2] as $a_version_patch
+      | $b_version_x_x_x_num[0] as $b_version_major
+      | $b_version_x_x_x_num[1] as $b_version_minor
+      | $b_version_x_x_x_num[2] as $b_version_patch
+      | {
+          output: false
+        } as $obj
+      | $obj
+      | if ($query == "greater_than") then
+          if ($a_version_major > $b_version_major) then
+            .output |= true
+          else
+            if ($a_version_minor > $b_version_minor) then
+              .output |= true
+            else
+              if ($a_version_patch > $b_version_patch) then
+                .output |= true
+              end
+            end
+          end
+        elif ($query == "less_than") then
+          if ($a_version_major < $b_version_major) then
+            .output |= true
+          else
+            if ($a_version_minor < $b_version_minor) then
+              .output |= true
+            else
+              if ($a_version_patch < $b_version_patch) then
+                .output |= true
+              end
+            end
+          end
+        elif ($query == "equals") then
+          if (
+            ($a_version_major == $b_version_major) and
+            ($a_version_minor == $b_version_minor) and
+            ($a_version_patch == $b_version_patch)
+          ) then
+            .output |= "true"
+          end
+        else
+          error("Unknown query [" + $query + "]")
+        end
+      | .output
+    '
 }

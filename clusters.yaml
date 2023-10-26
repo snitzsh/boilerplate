@@ -6,6 +6,7 @@ regions:
         active: true
         account: null # if null it will create the cluester in the global account
         cloud: "aws"
+        helm-charts: []
       sit: {}
       uat: {}
       prod: {}

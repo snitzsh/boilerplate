@@ -64,11 +64,12 @@ utilHelmChartRepositoryLooper () {
                     "create-chart")
                       utilHelmChartCreateChart "${args[@]}"
                       ;;
+                    # repo/Chart.yaml
                     "patch-chart-yaml-file")
                       utilHelmChartPatchChartYamlFile "${args[@]}"
                       ;;
-                    "update-helm-repositories")
-                      utilHelmChartUpdateHelmRepositories "${args[@]}"
+                    "helm-update-repositories")
+                      utilHelmUpdateRepositories "${args[@]}"
                       ;;
                     "get-values")
                       utilHelmChartGetValues "${args[@]}"

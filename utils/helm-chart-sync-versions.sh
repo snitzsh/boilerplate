@@ -26,24 +26,22 @@ utilSyncHelmChartVersions () {
   local -r chart_name="${args[3]}"
   local -r file_dependency="${args[4]}"
 
-
   if [ -f "./Chart.yaml" ]; then
-    # `helm` repo version
     local -r latest_version=$( \
+      # `helm` repo version
       helm show chart "${dependency_name}/${chart_name}" \
         | yq '.version' \
     )
-    # ./Chart repo version
-    local current_version=$( \
+    local -r current_version=$( \
+      # ./Chart repo version
       yq '.dependencies[0].version' "./Chart.yaml" \
     )
-    # ../helm-charts-dependencies.yaml dependency
-    local -r file_dependency_version=$(echo "${file_dependency}" | yq '.version')
+    local -r file_dependency_version=$( \
+      # ../helm-charts-dependencies.yaml -> dependency
+      echo "${file_dependency}" | yq '.version' \
+    )
 
-    # if [ "${chart_name}" == "argo-cd" ]; then
-    #   current_version="0.1.-1"
-    # fi
-
+    # Obj
     local -r latest_version_obj=$( \
       utilGetVersionAsObj "${latest_version}" \
     )
@@ -53,39 +51,38 @@ utilSyncHelmChartVersions () {
     local -r file_dependency_version_obj=$( \
       utilGetVersionAsObj "${file_dependency_version}" \
     )
-
-    local -r latest_version_valid=$( \
-      echo "${latest_version_obj}" \
-        | jq \
-            -r \
-            '
-              .is_valid
-            '
+    # is_valid
+    local -r is_latest_version_valid=$( \
+      utilIsVersionObjQuery "is_valid" "${latest_version_obj}"
     )
-    local -r current_version_valid=$( \
-      echo "${current_version_obj}" \
-        | jq \
-            -r \
-            '
-              .is_valid
-            '
+    local -r is_current_version_valid=$( \
+      utilIsVersionObjQuery "is_valid" "${current_version_obj}"
     )
-    local -r file_dependency_version_valid=$( \
-      echo "${file_dependency_version_obj}" \
-        | jq \
-            -r \
-            '
-              .is_valid
-            '
+    local -r is_file_dependency_version_valid=$( \
+      utilIsVersionObjQuery "is_valid" "${file_dependency_version_obj}" \
     )
 
-    if [[ "${latest_version_valid}" == "false" ]] ||
-      [[ "${current_version_valid}" == "false" ]] ||
-      [[ "${file_dependency_version_valid}" == "false" ]]; then
+    if [[ "${is_latest_version_valid}" == "false" ]] ||
+      [[ "${is_current_version_valid}" == "false" ]] ||
+      [[ "${is_file_dependency_version_valid}" == "false" ]]; then
       logger "WARN" "'helm show chart --devel ${dependency_name}/${chart_name}'s version '${latest_version}' and/or '${region_name}/${cluster_name}/${dependency_name}/${chart_name}/Chart.yaml's version '${current_version}', and/or '../helm-charts-dependencies.yaml's version '${file_dependency_version}' does not follow the version convention (0.0.0). It may need manual update from ${current_version} to ${latest_version}" "${func_name}"
       exit 1 # skips loop
     fi
-
-    utilCompareVersions "${dependency_name}" "${chart_name}" "${current_version_obj}" "${latest_version_obj}"
+    # x_x_x_num
+    local -r latest_version_x_x_x_num=$( \
+      utilIsVersionObjQuery "x_x_x_num" "${latest_version_obj}"
+    )
+    local -r current_version_x_x_x_num=$( \
+      utilIsVersionObjQuery "x_x_x_num" "${current_version_obj}"
+    )
+    # local -r file_dependency_version_x_x_x_num=$( \
+    #   utilIsVersionObjQuery "x_x_x_num" "${file_dependency_version_obj}" \
+    # )
+    local -r latest_is_greater_than_current_version=$( \
+      utilCompareVersions \
+        "greater_than" \
+        "${latest_version_x_x_x_num}" \
+        "${current_version_x_x_x_num}" \
+    )
   fi
 }

@@ -20,7 +20,7 @@ source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 #   - null
 #
 main () {
-  utilHelmChartRepositoryLooper "update-helm-repositories"
+  utilHelmChartRepositoryLooper "helm-update-repositories"
 }
 
 main
