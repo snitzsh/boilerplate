@@ -61,19 +61,23 @@ utilHelmChartRepositoryLooper () {
                   && [[ "${chart_name}" == "${file_dependency_chart_name}" ]] \
                   && [[ "${file_dependency_chart_lenguage}" == "helm" ]]; then
                   case "${query_name}" in
-                    "create-chart")
+                    # Global
+                    "global-helm-update-repositories")
+                      utilGlobalHelmUpdateRepositories "${args[@]}"
+                      ;;
+                    # <[repo]>/*
+                    "create-helm-chart")
                       utilHelmChartCreateChart "${args[@]}"
                       ;;
                     # repo/Chart.yaml
                     "patch-chart-yaml-file")
                       utilHelmChartPatchChartYamlFile "${args[@]}"
                       ;;
-                    "helm-update-repositories")
-                      utilHelmUpdateRepositories "${args[@]}"
-                      ;;
+                    # <[repo]>/*
                     "get-values")
                       utilHelmChartGetValues "${args[@]}"
                       ;;
+                    # <[repo]>/*
                     "sync-versions")
                       utilSyncHelmChartVersions "${args[@]}"
                       ;;

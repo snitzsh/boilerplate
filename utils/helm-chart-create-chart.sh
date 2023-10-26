@@ -5,6 +5,11 @@
 #   - add args
 #
 # NOTE:
+#   - Repository must be cloned first.
+#
+#   - When it's a new repository, it does not contain a chart.
+#     this function ensures it creates the helm-chart inside the repo.
+#
 #   - it loops throught the repositories cloned. ../helm-charts/ directory.
 #
 # DESCRIPTION:
