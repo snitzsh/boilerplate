@@ -254,7 +254,7 @@ utilQueryHelmChartDependenciesFilePUT () {
           | .latest_version |= env(_latest_version)
           | .latest_version line_comment="DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version."
           | .releases |= env(_releases)
-          | (.releases | key) line_comment="DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases."
+          | (.releases | key) line_comment="DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases."
           | .is_up_to_date |= env(_is_up_to_date)
           | .is_up_to_date line_comment="DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value."
           | .

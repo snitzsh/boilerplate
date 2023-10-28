@@ -5,6 +5,7 @@
 # TODO:
 #   - create another function that installs the helm-repo first. this function
 #     assumes that it has already been installed...
+#   - may be commit the file ./helm-chart-dependencies.yaml?
 #
 # NOTE:
 #   - It does NOT modify the .version (deployed version).

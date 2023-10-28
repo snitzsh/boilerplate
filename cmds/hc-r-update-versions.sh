@@ -22,7 +22,7 @@ source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 #
 main () {
   # utilLooperHelmChartRepositories "update-helm-repositories"
-  utilLooperHelmChartRepositories "sync-versions"
+  utilLooperHelmChartRepositories "update-versions"
 }
 
 main

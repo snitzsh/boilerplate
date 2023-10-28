@@ -81,8 +81,8 @@ utilLooperHelmChartRepositories () {
                       utilHelmChartGetValues "${args[@]}"
                       ;;
                     # <[repo]>/*
-                    "sync-versions")
-                      utilSyncHelmChartVersions "${args[@]}"
+                    "update-versions")
+                      funcHelmChartUpdateVersions "${args[@]}"
                       ;;
                     *)
                       echo "Function query does not exist."

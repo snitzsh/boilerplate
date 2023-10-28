@@ -48,10 +48,10 @@ utilLooperHelmChartDependecies () {
       #     own. This function executes only locally, without
       #     affecting the repo.
       "global-helm-update-repositories")
-        utilGlobalHelmUpdateRepositories "${args[@]}"
+        funcGlobalHelmUpdateRepositories "${args[@]}"
         ;;
       "global-update-to-latest-version")
-        utilGlobalHelmUpdateRepositories "${args[@]}"
+        funcGlobalHelmUpdateRepositories "${args[@]}"
         funcHelmChartDependenciesFileUpdateToLatestVersion "${args[@]}"
         ;;
       *)
