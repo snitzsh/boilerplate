@@ -15,9 +15,10 @@ dependencies:
     repository: https://argoproj.github.io/argo-helm
     charts:
       - name: argo-cd
-        latest_version: 5.46.8 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+        latest_version: 5.48.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 5.46.8
+          - 5.48.0
         condition: argo-cd.disabled # opts: disabled | enabled
         specific_name: argo-cd # For example istio/base install documentation shows istio-base when installing
         namespace_name: argo-cd # if the name of the chart has a different namespace
@@ -71,7 +72,7 @@ dependencies:
       - name: adminer
         latest_version: 0.2.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
-          - ""
+          - 0.2.1
         condition: adminer.disabled # opts: disabled | enabled
         specific_name: adminer # For example istio/base install documentation shows istio-base when installing
         namespace_name: adminer # if the name of the chart has a different namespace
@@ -80,7 +81,7 @@ dependencies:
         is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
-        platform_repository: true
+        platform_repository: true # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
         language: helm
         service: third-party
         software_type: open-source
@@ -90,7 +91,7 @@ dependencies:
       - name: chartmuseum
         latest_version: 3.10.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
-          - ""
+          - 3.10.1
         condition: chartmuseum.disabled # opts: disabled | enabled
         specific_name: chartmuseum # For example istio/base install documentation shows istio-base when installing
         namespace_name: chartmuseum # if the name of the chart has a different namespace
@@ -99,7 +100,7 @@ dependencies:
         is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
-        platform_repository: true
+        platform_repository: true # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
         language: helm
         service: third-party
         software_type: open-source
@@ -165,6 +166,7 @@ dependencies:
     charts:
       # Charts must be install in this order
       - # Charts must be install in this order
+        # Charts must be install in this order
         name: base
         latest_version: 1.19.3 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
@@ -276,7 +278,7 @@ dependencies:
       - name: linkerd-crds
         latest_version: 1.8.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
-          - ""
+          - 1.8.0
         condition: linkerd-crds.disabled # opts: disabled | enabled
         specific_name: linkerd-crds # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         namespace_name: linkerd # if the name of the chart has a different namespace
@@ -284,15 +286,16 @@ dependencies:
         version: 1.8.0 # current version
         is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
-        has_repo: true
+        has_repo: true # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
         platform_repository: true
         language: helm
         service: third-party
         software_type: open-source
       - name: linkerd-control-plane
-        latest_version: 1.16.2 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+        latest_version: 1.16.3 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 1.16.2
+          - 1.16.3
         condition: linkerd-control-plane.disabled # opts: disabled | enabled
         specific_name: linkerd-control-plane # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         namespace_name: linkerd # if the name of the chart has a different namespace
@@ -327,7 +330,7 @@ dependencies:
       - name: metrics-server
         latest_version: 3.11.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
-          - ""
+          - 3.11.0
         condition: metrics-server.disabled # opts: disabled | enabled
         specific_name: metrics-server # For example istio/base install documentation shows istio-base when installing
         namespace_name: metrics-server # if the name of the chart has a different namespace
@@ -336,7 +339,7 @@ dependencies:
         is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
-        platform_repository: true
+        platform_repository: true # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
         language: helm
         service: third-party
         software_type: open-source
@@ -382,9 +385,10 @@ dependencies:
     repository: https://vmware-tanzu.github.io/helm-charts
     charts:
       - name: velero
-        latest_version: 5.1.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+        latest_version: 5.1.2 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 5.1.0
+          - 5.1.2
         condition: velero.enabled # opts: disabled | enabled
         specific_name: velero # For example istio/base install documentation shows istio-base when installing
         namespace_name: default # if the name of the chart has a different namespace

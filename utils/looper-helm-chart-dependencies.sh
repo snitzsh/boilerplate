@@ -51,6 +51,7 @@ utilLooperHelmChartDependecies () {
         utilGlobalHelmUpdateRepositories "${args[@]}"
         ;;
       "global-update-to-latest-version")
+        utilGlobalHelmUpdateRepositories "${args[@]}"
         funcHelmChartDependenciesFileUpdateToLatestVersion "${args[@]}"
         ;;
       *)

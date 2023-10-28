@@ -245,6 +245,7 @@ utilCleanUpReleasesProp () {
   local item_version_is_valid=""
   local item_version_x_x_x_num=""
   local is_item_version_greater_than_version=""
+  local is_item_version_equals_to_version=""
   for i in "${arr[@]}"; do
     # Obj
     item_version_obj=$( \
@@ -270,10 +271,22 @@ utilCleanUpReleasesProp () {
         "${item_version_x_x_x_num}" \
         "${version_x_x_x_num}" \
     )
-    if [ "${is_item_version_greater_than_version}" == "true" ]; then
+
+    is_item_version_equals_to_version=$( \
+      utilCompareVersions \
+        "equals" \
+        "${item_version_x_x_x_num}" \
+        "${version_x_x_x_num}" \
+    )
+
+    if [ "${is_item_version_greater_than_version}" == "true" ] || [ "${is_item_version_equals_to_version}" == "true" ]; then
       cleaned_releases+=("${i}")
     fi
   done
+
+  if [ "${#arr[@]}" -eq 0 ]; then
+    arr+=()
+  fi
 
   # It's hard to make jq accept a bash array. so this a work around.
   printf '%s\n' "${cleaned_releases[@]}" \

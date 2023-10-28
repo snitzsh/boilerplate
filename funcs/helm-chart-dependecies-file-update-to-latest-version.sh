@@ -84,7 +84,6 @@ funcHelmChartDependenciesFileUpdateToLatestVersion () {
       clean_new_releases=$( \
         utilCleanUpReleasesProp "${new_releases}" "${version}" \
       )
-
       # Compare Repository vs Current Version
       repository_version_x_x_x_num=$( \
         utilIsVersionObjQuery "x_x_x_num" "${repository_version_obj}"
@@ -92,7 +91,6 @@ funcHelmChartDependenciesFileUpdateToLatestVersion () {
       current_version_x_x_x_num=$( \
         utilIsVersionObjQuery "x_x_x_num" "${current_version_obj}"
       )
-
       repository_version_equals_to_current_version=$( \
         utilCompareVersions \
           "equals" \
@@ -119,6 +117,7 @@ funcHelmChartDependenciesFileUpdateToLatestVersion () {
         "${chart_name}" \
         "${new_dependency_chart_obj}" \
       )
+
       utilQueryHelmChartDependenciesFilePUT "${args_2[@]}"
       logger "INFO" "Dependencies file for dependency '${dependency_name}/${chart_name}' has been updated." "${func_name}"
       sleep 1 # mainly for I/O fs. If not it will not update the file property.
