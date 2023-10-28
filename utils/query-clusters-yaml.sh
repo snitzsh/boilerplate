@@ -41,6 +41,9 @@ utilQueryClustersYaml () {
       )
       echo "${arr[@]}"
       ;;
+    "get-dependency")
+      echo "true"
+      ;;
     # Get clusters name.
     # NOTE:
     #   - return names ONLY if a region has data and clusters data.

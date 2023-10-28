@@ -16,6 +16,7 @@
 #
 # ------------------------------------------------------------------------------
 
+source "${SNITZSH_PATH}/boilerplate/funcs/source-funcs.sh"
 source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 
 #

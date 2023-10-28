@@ -81,6 +81,22 @@ utilGetHelmChartDependency () {
   echo "${dependency}"
 }
 
+#
+# TODO:
+#   - add desc, args, return
+#
+# NOTE:
+#   - null
+#
+# DESCRIPTION:
+#   - null
+#
+# ARGS:
+#   - null
+#
+# RETURN:
+#   - null
+#
 utilQueryHelmChartDependenciesFile () {
   local -r helm_charts_dependcies_path="${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml"
   local -r query_name="${1}"
@@ -103,6 +119,171 @@ utilQueryHelmChartDependenciesFile () {
       ;;
     *)
       echo ""
+      ;;
+  esac
+}
+
+#
+# TODO:
+#   - add desc, args, return
+#   - maybe add a argument that can return comments if true.
+#
+# NOTE:
+#   - when using output with jq, it will not work because it contains comments
+#     that why comments are removed in the last line.
+#
+# DESCRIPTION:
+#   - null
+#
+# ARGS:
+#   - null
+#
+# RETURN:
+#   - null
+#
+utilQueryHelmChartDependenciesFileObjGET () {
+  local -r obj="${1}"
+  local -r prop="${2}"
+  local output_type="${3}" # use incase we need to use jq with the output
+  if [ "${output_type}" == "" ]; then
+    output_type="yaml"
+  fi
+
+  # shellcheck disable=SC2016
+  _obj="${obj}" \
+  _prop="${prop}" \
+  yq \
+    -nr \
+    -o "${output_type}" \
+    '
+      env(_obj) as $_obj
+      | env(_prop) as $_prop
+      | $_obj
+      | .
+      | .[$_prop]
+      | ... comments=""
+    '
+}
+
+#
+# TODO:
+#   - add desc, args, return
+#
+# NOTE:
+#   - null
+#
+# DESCRIPTION:
+#   - null
+#
+# ARGS:
+#   - null
+#
+# RETURN:
+#   - null
+#
+utilQueryHelmChartDependenciesFileGET () {
+  local -r helm_charts_dependcies_path="${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml"
+  local -ar args=("$@")
+  local -r query_name="${args[0]}"
+  case "${query_name}" in
+    "get-{dependency}-{chart}-prop")
+      local -r dependency_name="${args[1]}"
+      local -r chart_name="${args[2]}"
+      local -r prop="${args[3]}"
+        _dependency_name="${dependency_name}" \
+        _chart_name="${chart_name}" \
+        _prop="${prop}" \
+        yq \
+          -r \
+          '
+            .dependencies[]
+            | select(.name == env(_dependency_name))
+            | .charts[]
+            | select(.name == env(_chart_name))
+            | .[env(_prop)]
+          ' "${helm_charts_dependcies_path}" \
+      ;;
+    *)
+      echo ""
+      ;;
+  esac
+}
+
+#
+# TODO:
+#   - add desc, args, return
+#
+# NOTE:
+#   - null
+#
+# DESCRIPTION:
+#   - null
+#
+# ARGS:
+#   - null
+#
+# RETURN:
+#   - null
+#
+utilQueryHelmChartDependenciesFilePUT () {
+  local -r helm_charts_dependcies_path="${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml"
+  local -ar args=("$@")
+  local -r query_name="${args[0]}"
+
+  case "${query_name}" in
+    "{dependency}-{chart_name}-update-to-latest-version")
+      local -r dependency_name="${args[1]}"
+      local -r chart_name="${args[2]}"
+      local -r latest_version="${args[3]}"
+      local -r releases="${args[4]}"
+      local -r is_up_to_date="${args[5]}"
+      # shellcheck disable=SC2016
+      _dependency_name="${dependency_name}" \
+      _chart_name="${chart_name}" \
+      _latest_version="${latest_version}" \
+      _releases="${releases}" \
+      _is_up_to_date="${is_up_to_date}" \
+      yq \
+        -r \
+        -P \
+        '
+          .dependencies[]
+          | select(.name == env(_dependency_name))
+          | .charts[]
+          | select(.name == env(_chart_name))
+          | .latest_version |= env(_latest_version)
+          | .latest_version line_comment="DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version."
+          | .releases |= env(_releases)
+          | (.releases | key) line_comment="DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases."
+          | .is_up_to_date |= env(_is_up_to_date)
+          | .is_up_to_date line_comment="DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value."
+          | .
+        ' "${helm_charts_dependcies_path}"
+      ;;
+    # TODO:
+    #   - Consider this to be a function, since this updates the file it doesn't return output.
+    "{dependency}-{chart_name}-new-object")
+      local -r dependency_name="${args[1]}"
+      local -r chart_name="${args[2]}"
+      local -r new_obj="${args[3]}"
+      # shellcheck disable=SC2016
+      _dependency_name="${dependency_name}" \
+      _chart_name="${chart_name}" \
+      _new_obj="${new_obj}" \
+      yq \
+        -ri \
+        '
+          (
+            .dependencies[]
+            | select(.name == env(_dependency_name))
+            | .charts[]
+            | select(.name == env(_chart_name))
+          ) = env(_new_obj)
+          | .
+        ' "${helm_charts_dependcies_path}"
+      ;;
+    *)
+      return 1
       ;;
   esac
 }

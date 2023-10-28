@@ -17,10 +17,10 @@
 # RETURN:
 #   - null
 #
-utilHelmChartRepositoryLooper () {
+utilLooperHelmChartRepositories () {
   local -r func_name="${FUNCNAME[0]}"
   local -a regions_name_arr=()
-  local -a query_name="${1}"
+  local -r query_name="${1}"
   # Get region names
   while IFS= read -r value; do
     regions_name_arr+=("${value}")
@@ -46,6 +46,13 @@ utilHelmChartRepositoryLooper () {
               (
                 cd "./${region_name}/${cluster_name}" &&
                 # ../helm-charts-dependencies.yaml dependency
+                # TODO:
+                # - Onces the global-helm-update-repositories is on its own
+                #   this should query the dependecies cluster dependencies, instead of the global dependecies.
+                #   global dependeices will always have the latest, and cluster dependencies will have what's currently running.
+                #   crete a new function targetitng the global dependecies.
+                # - Dev on each region by default should put the latest.
+                #   sit -> uat -> prod should get in steps. Ex. sit should get the dev dependencies by default (if doesn't exist)
                 local -r file_dependency=$(utilGetHelmChartDependency "${dependency_name}" "${chart_name}")
                 local -r file_dependency_chart_name=$(echo "${file_dependency}" | yq '.name')
                 local -r file_dependency_dependency_name=$(echo "${file_dependency}" | yq '.dependency_name')
@@ -61,10 +68,6 @@ utilHelmChartRepositoryLooper () {
                   && [[ "${chart_name}" == "${file_dependency_chart_name}" ]] \
                   && [[ "${file_dependency_chart_lenguage}" == "helm" ]]; then
                   case "${query_name}" in
-                    # Global
-                    "global-helm-update-repositories")
-                      utilGlobalHelmUpdateRepositories "${args[@]}"
-                      ;;
                     # <[repo]>/*
                     "create-helm-chart")
                       utilHelmChartCreateChart "${args[@]}"
@@ -82,7 +85,7 @@ utilHelmChartRepositoryLooper () {
                       utilSyncHelmChartVersions "${args[@]}"
                       ;;
                     *)
-                      echo ""
+                      echo "Function query does not exist."
                       ;;
                   esac
                 else

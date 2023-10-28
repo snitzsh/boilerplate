@@ -1,6 +1,7 @@
 #!/bin/bash
 # shellcheck source=/dev/null
 
+source "${SNITZSH_PATH}/boilerplate/funcs/source-funcs.sh"
 source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 
 #
@@ -20,8 +21,8 @@ source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 #   - null
 #
 main () {
-  # utilHelmChartRepositoryLooper "update-helm-repositories"
-  utilHelmChartRepositoryLooper "sync-versions"
+  # utilLooperHelmChartRepositories "update-helm-repositories"
+  utilLooperHelmChartRepositories "sync-versions"
 }
 
 main

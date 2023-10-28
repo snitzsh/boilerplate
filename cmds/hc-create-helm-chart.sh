@@ -1,6 +1,7 @@
 #!/bin/bash
 # shellcheck source=/dev/null
 
+source "${SNITZSH_PATH}/boilerplate/funcs/source-funcs.sh"
 source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 
 #
@@ -21,7 +22,7 @@ source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 #
 main () {
   # utilGetRepositories
-  utilHelmChartRepositoryLooper "create-helm-chart"
+  utilLooperHelmChartRepositories "create-helm-chart"
 }
 
 main

@@ -1,17 +1,18 @@
 #!/bin/bash
 # shellcheck source=/dev/null
 
+source "${SNITZSH_PATH}/boilerplate/funcs/source-funcs.sh"
 source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 
 #
 # TODO:
-#   - maybe we much create a function to sync our helm-charts/ and respositories in git.
+#   - null
 #
 # NOTE:
 #   - null
 #
 # DESCRIPTION:
-#   - Exectues the function(s)
+#   - null
 #
 # ARGS:
 #   - null
@@ -20,8 +21,7 @@ source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 #   - null
 #
 main () {
-  # utilGetRepositories
-  utilHelmChartRepositoryLooper "patch-chart-yaml-file"
+  utilLooperHelmChartDependecies "global-update-to-latest-version"
 }
 
 main
