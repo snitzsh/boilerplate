@@ -44,9 +44,6 @@ utilQueryClustersYaml () {
       )
       echo "${arr[@]}"
       ;;
-    "get-dependency")
-      echo "true"
-      ;;
     # Get clusters name.
     # NOTE:
     #   - return names ONLY if a region has data and clusters data.
@@ -71,16 +68,34 @@ utilQueryClustersYaml () {
       )
       echo "${arr[@]}"
       ;;
-    "get-{region_name}-{cluster-name}-helm-charts")
-        yq \
-          '
-            .regions
-          ' "${clusters_path}"
+    "get-{region_name}-{cluster-name}-helm-charts-{dependency_name}-{chart_name}")
+      local -r region_name="${args[1]}"
+      local -r cluster_name="${args[2]}"
+      local -r dependency_name="${args[3]}"
+      local -r chart_name="${args[4]}"
+      # shellcheck disable=SC2016
+      _region_name="${region_name}" \
+      _cluster_name="${cluster_name}" \
+      _dependency_name="${dependency_name}" \
+      _chart_name="${chart_name}" \
+      yq \
+        '
+          .regions[env(_region_name)]
+          | .clusters[env(_cluster_name)]
+          | .helm_charts.dependencies[]
+          | select(.name == env(_dependency_name))
+          | .repository as $repository
+          | .charts[]
+          | select(.name == env(_chart_name))
+          | .dependency_name |= env(_dependency_name)
+          | .repository |= $repository
+          | .
+        ' "${clusters_path}"
       ;;
     "post-{region_name}-{cluster-name}-helm-charts-dependencies")
       local -r region_name="${args[1]}"
       local -r cluster_name="${args[2]}"
-      helm_chart_dependencies_yaml_to_json=$( \
+      local -r helm_chart_dependencies_yaml_to_json=$( \
         yq \
           -o "json" \
           '
@@ -88,44 +103,48 @@ utilQueryClustersYaml () {
           ' "${helm_chart_dependencies_path}" \
       )
 
-      clusters_yaml_to_json=$( \
+      local -r clusters_yaml_to_json=$( \
         yq \
           -o "json" \
           '
             .
           ' "${clusters_path}" \
       )
+      # TODO
+      # - Maybe only add the missing charts. from dependencies to clusters.yaml
+      local -r new_clusters_yaml=$(\
+        echo "${clusters_yaml_to_json}" |
+          jq \
+            --argjson obj "${helm_chart_dependencies_yaml_to_json}" \
+            --arg region_name "${region_name}" \
+            --arg cluster_name "${cluster_name}" \
+            '
+              (
 
-      echo "${clusters_yaml_to_json}" |
-        jq \
-          --argjson obj "${helm_chart_dependencies_yaml_to_json}" \
-          --arg region_name "${region_name}" \
-          --arg cluster_name "${cluster_name}" \
-          '
-            (
-
-              .regions[$region_name]
-              | .clusters[$cluster_name]
-              | .helm_charts
-            ) |= (
-              if ((. | type) != "object") then
-                . = {}
-              end
-              | . |= $obj
-            )
-            | .
-          ' | yq -P '.'
-
-      # _region_name="${region_name}" \
-      # _cluster_name="${cluster_name}" \
-      # yq \
-      #   '
-      #     env(_region_name) as $_region_name
-      #     | env(_cluster_name) as $_cluster_name
-      #     | .regions[$_region_name]
-      #     | .clusters[$_cluster_name]
-      #     | .
-      #   ' "${clusters_path}"
+                .regions[$region_name]
+                | .clusters[$cluster_name]
+                | .helm_charts
+              ) |= (
+                if ((. | type) != "object") then
+                  . = $obj
+                end
+              )
+              | .
+            ' | yq -P '.' \
+      )
+      # shellcheck disable=SC2016
+      _new_cluster_yaml="${new_clusters_yaml}" \
+      _region_name="${region_name}" \
+      _cluster_name="${cluster_name}" \
+      yq -i '
+        env(_new_cluster_yaml)
+        | .
+        | (
+          .regions[env(_region_name)]
+          | .clusters[env(_cluster_name)]
+          | (.helm_charts | key ) line_comment="Do NOT edit manually. User boilerplace to update .helm_charts value."
+        ) |= .
+      ' "${clusters_path}"
       ;;
     *)
       echo "false"

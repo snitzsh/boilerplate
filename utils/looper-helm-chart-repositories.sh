@@ -53,24 +53,27 @@ utilLooperHelmChartRepositories () {
               "${cluster_name}" \
             )
             utilQueryClustersYaml "${args_3[@]}"
-            exit 1
+            sleep 1 # I/O Issues, needs timeout.
             # sub-shell
             (
               cd "./${dependency_name}/${chart_name}" &&
               mkdir -p ./"${region_name}/${cluster_name}"
               (
                 cd "./${region_name}/${cluster_name}" &&
-                # ../helm-charts-dependencies.yaml dependency
                 # TODO:
-                # - Onces the global-helm-update-repositories is on its own
-                #   this should query the dependecies cluster dependencies, instead of the global dependecies.
-                #   global dependeices will always have the latest, and cluster dependencies will have what's currently running.
-                #   crete a new function targetitng the global dependecies.
                 # - Update cluster file and before updating the chart.
-                # - make sure other cmds calls the cluster.yaml instead of the helm-chart-dependencies-file
                 # - Dev on each region by default should put the latest.
                 #   sit -> uat -> prod should get in steps. Ex. sit should get the dev dependencies by default (if doesn't exist)
-                local -r file_dependency=$(utilGetHelmChartDependency "${dependency_name}" "${chart_name}")
+                local -a args_4=( \
+                  "get-{region_name}-{cluster-name}-helm-charts-{dependency_name}-{chart_name}" \
+                  "${region_name}" \
+                  "${cluster_name}" \
+                  "${dependency_name}" \
+                  "${chart_name}" \
+                )
+                local -r file_dependency=$( \
+                  utilQueryClustersYaml "${args_4[@]}" \
+                )
                 local -r file_dependency_chart_name=$(echo "${file_dependency}" | yq '.name')
                 local -r file_dependency_dependency_name=$(echo "${file_dependency}" | yq '.dependency_name')
                 local -r file_dependency_chart_lenguage=$(echo "${file_dependency}" | yq '.language')
