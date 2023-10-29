@@ -6,7 +6,7 @@ regions:
         active: true
         account: null # if null it will create the cluester in the global account
         cloud: "aws"
-        helm-charts: []
+        # helm_charts: {}
       sit: {}
       uat: {}
       prod: {}
@@ -15,19 +15,3 @@ regions:
   africa: {}
   asia: {}
   australia: {}
-
-  # uat:
-  #   active: false
-  #   account: null # if null it will create the cluester in the global account
-  #   cloud: "aws"
-  # prod:
-  #   active: false
-  #   account: null # if null it will create the cluester in the global account
-  #   cloud: "aws"
-
-  # - name: "dev"
-  #   active: true
-  #   cloud: "aws" # aws, azure, gcp (google cloud platform)
-  # - name: "black"
-  #   active: true
-  #   cloud: "aws" # aws, azure, gcp (google cloud platform)

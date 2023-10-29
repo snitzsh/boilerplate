@@ -21,10 +21,13 @@ utilLooperHelmChartRepositories () {
   local -r func_name="${FUNCNAME[0]}"
   local -a regions_name_arr=()
   local -r query_name="${1}"
+  local -a args_1=( \
+    "get-regions-name" \
+  )
   # Get region names
   while IFS= read -r value; do
     regions_name_arr+=("${value}")
-  done < <(utilQueryClustersYaml "get-regions-name")
+  done < <(utilQueryClustersYaml "${args_1[@]}")
 
   (
     cd "$SNITZSH_PATH/helm-charts" &&
@@ -35,11 +38,23 @@ utilLooperHelmChartRepositories () {
         for region_name in "${regions_name_arr[@]}"; do
           # Get cluster names
           local -a clusters_name_arr=()
+          local -a args_2=( \
+            "get-{region_name}-clusters-name" \
+            "${region_name}"
+          )
           while IFS= read -r value; do
             clusters_name_arr+=("${value}")
-          done < <(utilQueryClustersYaml "get-{region_name}-clusters-name" "${region_name}")
+          done < <(utilQueryClustersYaml "${args_2[@]}")
 
           for cluster_name in "${clusters_name_arr[@]}"; do
+            local -a args_3=( \
+              "post-{region_name}-{cluster-name}-helm-charts-dependencies" \
+              "${region_name}" \
+              "${cluster_name}" \
+            )
+            utilQueryClustersYaml "${args_3[@]}"
+            exit 1
+            # sub-shell
             (
               cd "./${dependency_name}/${chart_name}" &&
               mkdir -p ./"${region_name}/${cluster_name}"
@@ -51,6 +66,8 @@ utilLooperHelmChartRepositories () {
                 #   this should query the dependecies cluster dependencies, instead of the global dependecies.
                 #   global dependeices will always have the latest, and cluster dependencies will have what's currently running.
                 #   crete a new function targetitng the global dependecies.
+                # - Update cluster file and before updating the chart.
+                # - make sure other cmds calls the cluster.yaml instead of the helm-chart-dependencies-file
                 # - Dev on each region by default should put the latest.
                 #   sit -> uat -> prod should get in steps. Ex. sit should get the dev dependencies by default (if doesn't exist)
                 local -r file_dependency=$(utilGetHelmChartDependency "${dependency_name}" "${chart_name}")
@@ -82,6 +99,7 @@ utilLooperHelmChartRepositories () {
                       ;;
                     # <[repo]>/*
                     "update-versions")
+                      # TODO: This should never be allow beyond dev clusters.
                       funcHelmChartUpdateVersions "${args[@]}"
                       ;;
                     *)

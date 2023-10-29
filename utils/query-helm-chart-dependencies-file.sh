@@ -21,7 +21,7 @@
 #
 utilGetHelmChartDependecies () {
   local -a arr=()
-  local -r helm_charts_dependcies_path="${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml"
+  local -r helm_chart_dependencies_path="${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml"
   while IFS='' read -r line; do arr+=("$line"); done < <(
     # yq doesn't have an easy way to return a bash array. So using jq is the
     # easiest way.
@@ -31,7 +31,7 @@ utilGetHelmChartDependecies () {
         | {"dependency": .name, "chart": (.charts[].name)}
         | .dependency + "|" + .chart
       ]
-    ' "${helm_charts_dependcies_path}" | jq -r '.[]'
+    ' "${helm_chart_dependencies_path}" | jq -r '.[]'
   )
   echo "${arr[@]}"
 }
@@ -57,7 +57,7 @@ utilGetHelmChartDependecies () {
 #
 #
 utilGetHelmChartDependency () {
-  local -r helm_charts_dependcies_path="${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml"
+  local -r helm_chart_dependencies_path="${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml"
   local -r dependency_name="${1}"
   local -r chart_name="${2}"
   local dependency=""
@@ -76,7 +76,7 @@ utilGetHelmChartDependency () {
       | .dependency_name |= $_dependency_name
       | .repository |= $repository
       | .
-    ' "${helm_charts_dependcies_path}" \
+    ' "${helm_chart_dependencies_path}" \
   )
   echo "${dependency}"
 }
@@ -98,7 +98,7 @@ utilGetHelmChartDependency () {
 #   - null
 #
 utilQueryHelmChartDependenciesFile () {
-  local -r helm_charts_dependcies_path="${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml"
+  local -r helm_chart_dependencies_path="${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml"
   local -r query_name="${1}"
 
   case "${query_name}" in
@@ -115,7 +115,7 @@ utilQueryHelmChartDependenciesFile () {
         | env(_chart_name) as $_chart_name
         | env(_latest_version) as $_latest_version
         | (..)
-      ' "${helm_charts_dependcies_path}"
+      ' "${helm_chart_dependencies_path}"
       ;;
     *)
       echo ""
@@ -182,7 +182,7 @@ utilQueryHelmChartDependenciesFileObjGET () {
 #   - null
 #
 utilQueryHelmChartDependenciesFileGET () {
-  local -r helm_charts_dependcies_path="${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml"
+  local -r helm_chart_dependencies_path="${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml"
   local -ar args=("$@")
   local -r query_name="${args[0]}"
   case "${query_name}" in
@@ -201,7 +201,7 @@ utilQueryHelmChartDependenciesFileGET () {
             | .charts[]
             | select(.name == env(_chart_name))
             | .[env(_prop)]
-          ' "${helm_charts_dependcies_path}" \
+          ' "${helm_chart_dependencies_path}" \
       ;;
     *)
       echo ""
@@ -226,7 +226,7 @@ utilQueryHelmChartDependenciesFileGET () {
 #   - null
 #
 utilQueryHelmChartDependenciesFilePUT () {
-  local -r helm_charts_dependcies_path="${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml"
+  local -r helm_chart_dependencies_path="${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml"
   local -ar args=("$@")
   local -r query_name="${args[0]}"
 
@@ -258,7 +258,7 @@ utilQueryHelmChartDependenciesFilePUT () {
           | .is_up_to_date |= env(_is_up_to_date)
           | .is_up_to_date line_comment="DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value."
           | .
-        ' "${helm_charts_dependcies_path}"
+        ' "${helm_chart_dependencies_path}"
       ;;
     # TODO:
     #   - Consider this to be a function, since this updates the file it doesn't return output.
@@ -280,7 +280,7 @@ utilQueryHelmChartDependenciesFilePUT () {
             | select(.name == env(_chart_name))
           ) = env(_new_obj)
           | .
-        ' "${helm_charts_dependcies_path}"
+        ' "${helm_chart_dependencies_path}"
       ;;
     *)
       return 1
