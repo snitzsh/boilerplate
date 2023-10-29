@@ -9,7 +9,7 @@
 #   - null
 #
 # DESCRIPTION:
-#   - it loops throught ../helm-chart-dependencies.yaml.
+#   - it loops throught ../clusters.yaml.
 #
 # ARGS:
 #   - null
@@ -79,7 +79,6 @@ utilLooperClustersHelmCharts () {
           )
           file_dependency_chart_name=$(echo "${file_dependency}" | yq '.name')
           file_dependency_dependency_name=$(echo "${file_dependency}" | yq '.dependency_name')
-          file_dependency_chart_lenguage=$(echo "${file_dependency}" | yq '.language')
           args_5=(
             "${region_name}"
             "${cluster_name}"
@@ -88,10 +87,15 @@ utilLooperClustersHelmCharts () {
             "${file_dependency}"
           )
           if [[ "${dependency_name}" == "${file_dependency_dependency_name}" ]] \
-          && [[ "${chart_name}" == "${file_dependency_chart_name}" ]] \
-          && [[ "${file_dependency_chart_lenguage}" == "helm" ]]; then
+            && [[ "${chart_name}" == "${file_dependency_chart_name}" ]]; then
+            local -a args_6=( \
+              "${dependency_name}" \
+              "${chart_name}" \
+              "${file_dependency}" \
+            )
             case "${query_name}" in
               "g-clusters-put-{dependency_name}-{chart_name}-to-latest-version")
+                funcGlobalHelmUpdateRepositories "${args_6[@]}"
                 funcClustersYamlPutDependencyChartToLatestVersion "${args_5[@]}"
                 ;;
               *)

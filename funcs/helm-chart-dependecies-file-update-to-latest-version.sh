@@ -81,6 +81,7 @@ funcHelmChartDependenciesFileUpdateToLatestVersion () {
       clean_new_releases=$( \
         utilVersionerCleanUpReleasesProp "${new_releases}" "${current_version}" \
       )
+
       # Compare Repository vs Current Version
       repository_version_x_x_x_num=$( \
         utilIsVersionObjQuery "x_x_x_num" "${repository_version_obj}"
@@ -117,6 +118,7 @@ funcHelmChartDependenciesFileUpdateToLatestVersion () {
 
       utilQueryHelmChartDependenciesFilePUT "${args_2[@]}"
       logger "INFO" "Dependencies file for dependency '${dependency_name}/${chart_name}' has been updated." "${func_name}"
+      # exit 1
       sleep 1 # mainly for I/O fs. If not it will not update the file property.
     else
       logger "ERROR" "Dependency '${dependency_name}/${chart_name}' latest version '${repository_version}' is not valid." "${func_name}"

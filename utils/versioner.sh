@@ -272,24 +272,21 @@ utilVersionerCleanUpReleasesProp () {
         "${version_x_x_x_num}" \
     )
 
-    is_item_version_equals_to_version=$( \
-      utilVersionerCompareVersions \
-        "equals" \
-        "${item_version_x_x_x_num}" \
-        "${version_x_x_x_num}" \
-    )
-
-    if [ "${is_item_version_greater_than_version}" == "true" ] || [ "${is_item_version_equals_to_version}" == "true" ]; then
+    if [ "${is_item_version_greater_than_version}" == "true" ]; then
       cleaned_releases+=("${i}")
     fi
   done
 
-  if [ "${#arr[@]}" -eq 0 ]; then
-    arr+=()
-  fi
-
   # It's hard to make jq accept a bash array. so this a work around.
   printf '%s\n' "${cleaned_releases[@]}" \
     | jq -R '.' \
-    | jq -s '.'
+      | jq \
+          -s \
+          '
+            .
+            | if ( (. | type) != "array" ) then
+                . = []
+              end
+            | map(select(length > 0))
+          '
 }

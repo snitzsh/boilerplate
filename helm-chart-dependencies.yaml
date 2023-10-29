@@ -17,7 +17,6 @@ dependencies:
       - name: argo-cd
         latest_version: 5.48.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
-          - 5.46.8
           - 5.48.0
         condition: argo-cd.disabled # opts: disabled | enabled
         specific_name: argo-cd # For example istio/base install documentation shows istio-base when installing
@@ -27,7 +26,7 @@ dependencies:
         is_up_to_date: false # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
-        platform_repository: true
+        platform_repository: true # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
         language: helm
         service: third-party
         software_type: open-source
@@ -71,8 +70,7 @@ dependencies:
     charts:
       - name: adminer
         latest_version: 0.2.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
-          - 0.2.1
+        releases: [] # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
         condition: adminer.disabled # opts: disabled | enabled
         specific_name: adminer # For example istio/base install documentation shows istio-base when installing
         namespace_name: adminer # if the name of the chart has a different namespace
@@ -164,12 +162,8 @@ dependencies:
         software_type: open-source
   - name: istio
     repository: https://istio-release.storage.googleapis.com/charts
-    charts:
-      # Charts must be install in this order
-      - # Charts must be install in this order
-        # Charts must be install in this order
-        # Charts must be install in this order
-        name: base
+    charts: # Charts must be install in this order
+      - name: base
         latest_version: 1.19.3 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 1.19.3
