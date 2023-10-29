@@ -231,7 +231,7 @@ utilQueryHelmChartDependenciesFilePUT () {
   local -r query_name="${args[0]}"
 
   case "${query_name}" in
-    "{dependency}-{chart_name}-update-to-latest-version")
+    "{dependency}-{chart_name}-put-to-latest-version")
       local -r dependency_name="${args[1]}"
       local -r chart_name="${args[2]}"
       local -r latest_version="${args[3]}"

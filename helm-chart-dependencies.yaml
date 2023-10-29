@@ -16,7 +16,7 @@ dependencies:
     charts:
       - name: argo-cd
         latest_version: 5.48.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 5.46.8
           - 5.48.0
         condition: argo-cd.disabled # opts: disabled | enabled
@@ -33,7 +33,7 @@ dependencies:
         software_type: open-source
       - name: argo-workflows
         latest_version: 0.37.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 0.37.0
         condition: argo-workflows.disabled # opts: disabled | enabled
         specific_name: argo-workflows # For example istio/base install documentation shows istio-base when installing
@@ -52,7 +52,7 @@ dependencies:
     charts:
       - name: cert-manager
         latest_version: v1.13.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - v1.13.1
         condition: cert-manager.disabled # opts: disabled | enabled
         specific_name: cert-manager # For example istio/base install documentation shows istio-base when installing
@@ -71,7 +71,7 @@ dependencies:
     charts:
       - name: adminer
         latest_version: 0.2.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 0.2.1
         condition: adminer.disabled # opts: disabled | enabled
         specific_name: adminer # For example istio/base install documentation shows istio-base when installing
@@ -90,7 +90,7 @@ dependencies:
     charts:
       - name: chartmuseum
         latest_version: 3.10.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 3.10.1
         condition: chartmuseum.disabled # opts: disabled | enabled
         specific_name: chartmuseum # For example istio/base install documentation shows istio-base when installing
@@ -109,7 +109,7 @@ dependencies:
     charts:
       - name: external-secrets
         latest_version: 0.9.7 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 0.9.7
         condition: external-secrets.disabled # opts: disabled | enabled
         specific_name: external-secrets # For example istio/base install documentation shows istio-base when installing
@@ -128,7 +128,7 @@ dependencies:
     charts:
       - name: fluent-bit
         latest_version: 0.39.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 0.39.0
         condition: fluent-bit.disabled # opts: disabled | enabled
         specific_name: fluent-bit # For example istio/base install documentation shows istio-base when installing
@@ -146,9 +146,10 @@ dependencies:
     repository: https://grafana.github.io/helm-charts
     charts:
       - name: grafana
-        latest_version: 6.61.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        latest_version: 7.0.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 6.61.1
+          - 7.0.1
         condition: grafana.disabled # opts: disabled | enabled
         specific_name: grafana # For example istio/base install documentation shows istio-base when installing
         namespace_name: grafana # if the name of the chart has a different namespace
@@ -167,9 +168,10 @@ dependencies:
       # Charts must be install in this order
       - # Charts must be install in this order
         # Charts must be install in this order
+        # Charts must be install in this order
         name: base
         latest_version: 1.19.3 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 1.19.3
         condition: base.disabled # opts: disabled | enabled
         specific_name: istio-base # For example istio/base install documentation shows istio-base when installing
@@ -185,7 +187,7 @@ dependencies:
         software_type: open-source
       - name: istiod
         latest_version: 1.19.3 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 1.19.3
         condition: istiod.disabled # opts: disabled | enabled
         specific_name: istiod # For example istio/base install documentation shows istio-base when installing
@@ -201,7 +203,7 @@ dependencies:
         software_type: open-source
       - name: gateway
         latest_version: 1.19.3 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 1.19.3
         condition: gateway.disabled # opts: disabled | enabled"
         specific_name: istio-ingressgateway # For example istio/base install documentation shows istio-base when installing
@@ -220,7 +222,7 @@ dependencies:
     charts:
       - name: jaeger # Consumes too much cpu in minikube
         latest_version: 0.71.17 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 0.71.17
         condition: jaeger.disabled # opts: disabled | enabled
         specific_name: jaeger # Consumes too much cpu in minikube
@@ -239,7 +241,7 @@ dependencies:
     charts:
       - name: kiali-operator
         latest_version: 1.75.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 1.75.0
         condition: kiali-operator.disabled # opts: disabled | enabled
         specific_name: kiali-operator # For example istio/base install documentation shows istio-base when installing
@@ -258,7 +260,7 @@ dependencies:
     charts:
       - name: kyverno
         latest_version: 3.0.5 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 3.0.5
         condition: kyverno.disabled # opts: disabled | enabled
         specific_name: kyverno # For example istio/base install documentation shows istio-base when installing
@@ -277,7 +279,7 @@ dependencies:
     charts:
       - name: linkerd-crds
         latest_version: 1.8.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 1.8.0
         condition: linkerd-crds.disabled # opts: disabled | enabled
         specific_name: linkerd-crds # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
@@ -293,7 +295,7 @@ dependencies:
         software_type: open-source
       - name: linkerd-control-plane
         latest_version: 1.16.3 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 1.16.2
           - 1.16.3
         condition: linkerd-control-plane.disabled # opts: disabled | enabled
@@ -310,7 +312,7 @@ dependencies:
         software_type: open-source
       - name: linkerd2-cni
         latest_version: 30.12.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 30.12.1
         condition: linkerd2-cni.disabled # opts: disabled | enabled
         specific_name: linkerd2-cni # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
@@ -329,7 +331,7 @@ dependencies:
     charts:
       - name: metrics-server
         latest_version: 3.11.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 3.11.0
         condition: metrics-server.disabled # opts: disabled | enabled
         specific_name: metrics-server # For example istio/base install documentation shows istio-base when installing
@@ -347,9 +349,10 @@ dependencies:
     repository: https://prometheus-community.github.io/helm-charts
     charts:
       - name: prometheus
-        latest_version: 25.3.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        latest_version: 25.4.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 25.3.1
+          - 25.4.0
         condition: prometheus.disabled # opts: disabled | enabled
         specific_name: prometheus # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         namespace_name: prometheus
@@ -367,7 +370,7 @@ dependencies:
     charts:
       - name: reloader
         latest_version: 1.0.48 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 1.0.48
         condition: reloader.enabled # opts: disabled | enabled
         specific_name: reloader # For example istio/base install documentation shows istio-base when installing
@@ -386,7 +389,7 @@ dependencies:
     charts:
       - name: velero
         latest_version: 5.1.2 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-        releases: # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
+        releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 5.1.0
           - 5.1.2
         condition: velero.enabled # opts: disabled | enabled

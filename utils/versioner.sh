@@ -128,7 +128,7 @@ utilIsVersionObjQuery () {
 # RETURN:
 #   - BOOLEAN : true | false
 #
-utilCompareVersions () {
+utilVersionerCompareVersions () {
   local -r query="${1}"
   local -r a_version_x_x_x_num="${2}"
   local -r b_version_x_x_x_num="${3}"
@@ -204,7 +204,7 @@ utilCompareVersions () {
 # RETURN:
 #   - null
 #
-utilCleanUpReleasesProp () {
+utilVersionerCleanUpReleasesProp () {
   local -r func_name="${FUNCNAME[0]}"
   local -r releases="${1}"
   local -r version="${2}"
@@ -266,14 +266,14 @@ utilCleanUpReleasesProp () {
     )
     # compare
     is_item_version_greater_than_version=$( \
-      utilCompareVersions \
+      utilVersionerCompareVersions \
         "greater_than" \
         "${item_version_x_x_x_num}" \
         "${version_x_x_x_num}" \
     )
 
     is_item_version_equals_to_version=$( \
-      utilCompareVersions \
+      utilVersionerCompareVersions \
         "equals" \
         "${item_version_x_x_x_num}" \
         "${version_x_x_x_num}" \

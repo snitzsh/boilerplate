@@ -19,8 +19,8 @@
 #
 utilLooperHelmChartRepositories () {
   local -r func_name="${FUNCNAME[0]}"
-  local -a regions_name_arr=()
   local -r query_name="${1}"
+  local -a regions_name_arr=()
   local -a args_1=( \
     "get-regions-name" \
   )
@@ -47,6 +47,10 @@ utilLooperHelmChartRepositories () {
           done < <(utilQueryClustersYaml "${args_2[@]}")
 
           for cluster_name in "${clusters_name_arr[@]}"; do
+            # TODO:
+            #   - should only run for north-america dev
+            # NOTE:
+            #   - Just runs if .helm_clusters is null.
             local -a args_3=( \
               "post-{region_name}-{cluster-name}-helm-charts-dependencies" \
               "${region_name}" \

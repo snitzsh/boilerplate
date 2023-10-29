@@ -68,6 +68,71 @@ utilQueryClustersYaml () {
       )
       echo "${arr[@]}"
       ;;
+    "get-{region_name}-{cluster_name}-dependencies-name")
+      local -r region_name="${args[1]}"
+      local -r cluster_name="${args[2]}"
+      local -r dependencies=$( \
+        # shellcheck disable=SC2016
+        _region_name="${region_name}" \
+        _cluster_name="${cluster_name}" \
+        yq '
+          env(_region_name) as $region_name
+          | env(_cluster_name) as $cluster_name
+          | .regions[$region_name]
+          | .clusters[$cluster_name].helm_charts
+          | .dependencies[].name
+        ' "${clusters_path}" \
+      )
+      local -a arr=("${dependencies[@]}")
+      echo "${arr[@]}"
+      ;;
+    "get-{region_name}-{cluster_name}-{dependencies_name}-charts-name")
+      local -r region_name="${args[1]}"
+      local -r cluster_name="${args[2]}"
+      local -r dependency_name="${args[3]}"
+      local -r charts=$( \
+        # shellcheck disable=SC2016
+        _region_name="${region_name}" \
+        _cluster_name="${cluster_name}" \
+        _dependency_name="${dependency_name}" \
+        yq '
+          env(_region_name) as $region_name
+          | env(_cluster_name) as $cluster_name
+          | env(_dependency_name) as $dependency_name
+          | .regions[$region_name]
+          | .clusters[$cluster_name].helm_charts
+          | .dependencies[]
+          | select(.name == $dependency_name)
+          | .charts[].name
+        ' "${clusters_path}" \
+      )
+      local -a arr=("${charts[@]}")
+      echo "${arr[@]}"
+      ;;
+    "get-{region_name}-{cluster_name}-{dependency_name}-{chart_name}-prop")
+      local -r obj="${args[1]}"
+      local -r prop="${args[2]}"
+      local output_type="${args[3]}" # use incase we need to use jq with the output
+      # default
+      if [ -z "${output_type}" ]; then
+        output_type="yaml"
+      fi
+
+      # shellcheck disable=SC2016
+      _obj="${obj}" \
+      _prop="${prop}" \
+      yq \
+        -nr \
+        -o "${output_type}" \
+        '
+          env(_obj) as $_obj
+          | env(_prop) as $_prop
+          | $_obj
+          | .
+          | .[$_prop]
+          | ... comments=""
+        '
+      ;;
     "get-{region_name}-{cluster-name}-helm-charts-{dependency_name}-{chart_name}")
       local -r region_name="${args[1]}"
       local -r cluster_name="${args[2]}"
@@ -112,6 +177,10 @@ utilQueryClustersYaml () {
       )
       # TODO
       # - Maybe only add the missing charts. from dependencies to clusters.yaml
+      # - must update the object except the version of clusters.yaml. that version
+      #   should be the repo chart.yaml version.
+      #   only allow the obj so be set in North America dev.
+      #   for other region dev Copy from North America.
       local -r new_clusters_yaml=$(\
         echo "${clusters_yaml_to_json}" |
           jq \
@@ -146,9 +215,79 @@ utilQueryClustersYaml () {
         ) |= .
       ' "${clusters_path}"
       ;;
+    "put-{region_name}-{cluster_name}-{dependency_name}-{chart_name}-to-latest-version")
+      local -r region_name="${args[1]}"
+      local -r cluster_name="${args[2]}"
+      local -r dependency_name="${args[3]}"
+      local -r chart_name="${args[4]}"
+      local -r latest_version="${args[5]}"
+      local -r releases="${args[6]}"
+      local -r is_up_to_date="${args[7]}"
+
+      # shellcheck disable=SC2016
+      _region_name="${region_name}" \
+      _cluster_name="${cluster_name}" \
+      _dependency_name="${dependency_name}" \
+      _chart_name="${chart_name}" \
+      _latest_version="${latest_version}" \
+      _releases="${releases}" \
+      _is_up_to_date="${is_up_to_date}" \
+      yq \
+        -r \
+        -P \
+        '
+          env(_region_name) as $_region_name
+          | env(_cluster_name) as $_cluster_name
+          | .regions[$_region_name]
+          | .clusters[$_cluster_name]
+          | .helm_charts
+          | .dependencies[]
+          | select(.name == env(_dependency_name))
+          | .charts[]
+          | select(.name == env(_chart_name))
+          | .latest_version |= env(_latest_version)
+          | .latest_version line_comment="DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version."
+          | .releases |= env(_releases)
+          | (.releases | key) line_comment="DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases."
+          | .is_up_to_date |= env(_is_up_to_date)
+          | .is_up_to_date line_comment="DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value."
+          | .
+        ' "${clusters_path}"
+      ;;
+    # TODO:
+    #   - Consider creating a function since functions doesn't return an output.
+    "put-{region_name}-{cluster_name}-{dependency_name}-{chart_name}-object")
+      local -r region_name="${args[1]}"
+      local -r cluster_name="${args[2]}"
+      local -r dependency_name="${args[3]}"
+      local -r chart_name="${args[4]}"
+      local -r obj="${args[5]}"
+      # shellcheck disable=SC2016
+      _region_name="${region_name}" \
+      _cluster_name="${cluster_name}" \
+      _dependency_name="${dependency_name}" \
+      _chart_name="${chart_name}" \
+      _obj="${obj}" \
+      yq \
+        -P \
+        -ri \
+        '
+          env(_region_name) as $_region_name
+          | env(_cluster_name) as $_cluster_name
+          | (
+            .regions[$_region_name]
+            | .clusters[$_cluster_name]
+            | .helm_charts
+            | .dependencies[]
+            | select(.name == env(_dependency_name))
+            | .charts[]
+            | select(.name == env(_chart_name))
+          ) = env(_obj)
+          | .
+        ' "${clusters_path}"
+      ;;
     *)
       echo "false"
       ;;
   esac
 }
-

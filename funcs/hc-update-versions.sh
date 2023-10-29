@@ -27,6 +27,6 @@ funcHelmChartUpdateVersions () {
   local -r file_dependency="${args[4]}"
 
   if [ -f "./Chart.yaml" ]; then
-    echo ""
+    echo "${region_name}"
   fi
 }
