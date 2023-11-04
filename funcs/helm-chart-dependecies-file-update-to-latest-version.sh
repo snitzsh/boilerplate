@@ -6,6 +6,7 @@
 #   - create another function that installs the helm-repo first. this function
 #     assumes that it has already been installed...
 #   - may be commit the file ./helm-chart-dependencies.yaml?
+#   - there are some variable that aren't set for local use (fix it.).
 #
 # NOTE:
 #   - It does NOT modify the .version (deployed version).
@@ -81,7 +82,6 @@ funcHelmChartDependenciesFileUpdateToLatestVersion () {
       clean_new_releases=$( \
         utilVersionerCleanUpReleasesProp "${new_releases}" "${current_version}" \
       )
-
       # Compare Repository vs Current Version
       repository_version_x_x_x_num=$( \
         utilIsVersionObjQuery "x_x_x_num" "${repository_version_obj}"
@@ -95,7 +95,6 @@ funcHelmChartDependenciesFileUpdateToLatestVersion () {
           "${repository_version_x_x_x_num}" \
           "${current_version_x_x_x_num}" \
       )
-
       local -ar args=( \
         "{dependency}-{chart_name}-put-to-latest-version" \
         "${dependency_name}" \
@@ -104,7 +103,6 @@ funcHelmChartDependenciesFileUpdateToLatestVersion () {
         "${clean_new_releases}" \
         "${repository_version_equals_to_current_version}" \
       )
-
       new_dependency_chart_obj=$( \
         utilQueryHelmChartDependenciesFilePUT "${args[@]}" \
       )
@@ -115,7 +113,6 @@ funcHelmChartDependenciesFileUpdateToLatestVersion () {
         "${chart_name}" \
         "${new_dependency_chart_obj}" \
       )
-
       utilQueryHelmChartDependenciesFilePUT "${args_2[@]}"
       logger "INFO" "Dependencies file for dependency '${dependency_name}/${chart_name}' has been updated." "${func_name}"
       # exit 1
