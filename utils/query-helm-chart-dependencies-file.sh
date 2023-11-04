@@ -241,7 +241,6 @@ utilQueryHelmChartDependenciesFilePUT () {
       local -r releases="${args[4]}"
       local -r is_up_to_date="${args[5]}"
       # | (.releases | key) line_comment="DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases."
-      # | ((.releases | length) > 0)
       # shellcheck disable=SC2016
       _dependency_name="${dependency_name}" \
       _chart_name="${chart_name}" \
