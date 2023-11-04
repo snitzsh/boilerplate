@@ -98,12 +98,13 @@ utilLooperHelmChartRepositories () {
                       funcHelmChartPostChart "${args[@]}"
                       ;;
                     # ./Chart.yaml
-                    "put-chart-yaml-file")
-                      funcHelmChartPutChartYamlFile "${args[@]}"
+                    "update-chart-yaml-file")
+                      funcHelmChartUpdateChartYamlFile "${args[@]}"
                       ;;
+                    # TODO: currently function does nothing.
                     # ./values.yaml
                     "get-values")
-                      utilHelmChartGetValues "${args[@]}"
+                      funcHelmChartGetValues "${args[@]}"
                       ;;
                     # <[repo]>/*
                     "update-versions")
