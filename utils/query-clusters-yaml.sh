@@ -215,6 +215,11 @@ utilQueryClustersYaml () {
         ) |= .
       ' "${clusters_path}"
       ;;
+    # TODO:
+    #   - Commented the line that adds a comment to .release, when array is
+    #     empty, it puts the comment before `[]`, causing yq to fail with
+    #     error. Find out how to fix it where we can add a comment after the
+    #     bracket.
     "put-{region_name}-{cluster_name}-{dependency_name}-{chart_name}-to-latest-version")
       local -r region_name="${args[1]}"
       local -r cluster_name="${args[2]}"
@@ -224,6 +229,7 @@ utilQueryClustersYaml () {
       local -r releases="${args[6]}"
       local -r is_up_to_date="${args[7]}"
 
+      # | (.releases | key) line_comment="DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases."
       # shellcheck disable=SC2016
       _region_name="${region_name}" \
       _cluster_name="${cluster_name}" \
@@ -248,7 +254,6 @@ utilQueryClustersYaml () {
           | .latest_version |= env(_latest_version)
           | .latest_version line_comment="DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version."
           | .releases |= env(_releases)
-          | (.releases | key) line_comment="DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases."
           | .is_up_to_date |= env(_is_up_to_date)
           | .is_up_to_date line_comment="DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value."
           | .
