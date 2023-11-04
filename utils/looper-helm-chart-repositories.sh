@@ -94,7 +94,7 @@ utilLooperHelmChartRepositories () {
                   case "${query_name}" in
                     # <[repo]>/*
                     "create-helm-chart")
-                      utilHelmChartCreateChart "${args[@]}"
+                      funcHelmChartPostChart "${args[@]}"
                       ;;
                     # repo/Chart.yaml
                     "patch-chart-yaml-file")

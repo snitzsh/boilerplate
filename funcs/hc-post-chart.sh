@@ -3,6 +3,7 @@
 #
 # TODO:
 #   - add args
+#   - Make git commands executions optional to prevent issues.
 #
 # NOTE:
 #   - Repository must be cloned first.
@@ -21,7 +22,7 @@
 # RETURN:
 #   - null
 #
-utilHelmChartCreateChart () {
+funcHelmChartPostChart () {
   local -r func_name="${FUNCNAME[0]}"
   local -r args=("$@")
   local -r region_name="${args[0]}"

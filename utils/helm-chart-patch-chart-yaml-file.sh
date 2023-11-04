@@ -3,6 +3,8 @@
 #
 # TODO:
 #   - add args
+#   - There is an issuer when adding a comment to the porperty for empty array.
+#     Some other function in boilerplate have this issue.
 #
 # NOTE:
 #   - it loops throught the repositories cloned. ../helm-charts/ directory.
