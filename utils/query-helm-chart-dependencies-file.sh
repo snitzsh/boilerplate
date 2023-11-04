@@ -1,4 +1,6 @@
 #!/bin/bash
+# TODO:
+# - Merge the function into one, just like in ./query-cluster-yaml.sh
 
 #
 # TODO:

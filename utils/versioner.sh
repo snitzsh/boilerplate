@@ -27,7 +27,7 @@
 # RETURN:
 #   - OBJECT : {}
 #
-utilGetVersionAsObj () {
+utilVersionerGetVersionAsObj () {
   local -r version="${1}"
   jq \
     -nr \
@@ -88,13 +88,13 @@ utilGetVersionAsObj () {
 #   - Return key's value based, where `query` is the name of the key
 #
 # ARGS:
-#   - $1 : STRING : <[any key name of the object returned by function utilGetVersionAsObj]>
-#   - $2 : OBJECT : <[object returned by function utilGetVersionAsObj]>
+#   - $1 : STRING : <[any key name of the object returned by function utilVersionerGetVersionAsObj]>
+#   - $2 : OBJECT : <[object returned by function utilVersionerGetVersionAsObj]>
 #
 # RETURN:
-#   - ANY : <[key's value of the object returned by function utilGetVersionAsObj]> : true | false | []
+#   - ANY : <[key's value of the object returned by function utilVersionerGetVersionAsObj]> : true | false | []
 #
-utilIsVersionObjQuery () {
+utilVersionerIsVersionObjQuery () {
   local -r query="${1}"
   local -r obj="${2}"
   jq \
@@ -113,7 +113,7 @@ utilIsVersionObjQuery () {
 #
 # NOTE:
 #   - It assumes the ${2} and ${3} argument values already were validated
-#     by utilGetVersionAsObj.
+#     by utilVersionerGetVersionAsObj.
 #   - It assumes ${2} could be greater than ${3}.
 #   - returns error if query is unknown.
 #
@@ -213,11 +213,11 @@ utilVersionerCleanUpReleasesProp () {
 
   # obj
   local -r version_obj=$( \
-    utilGetVersionAsObj "${version}" \
+    utilVersionerGetVersionAsObj "${version}" \
   )
   # is_valid
   local -r version_is_valid=$( \
-    utilIsVersionObjQuery "is_valid" "${version_obj}"
+    utilVersionerIsVersionObjQuery "is_valid" "${version_obj}"
   )
   # validates
   if [ "${version_is_valid}" == "false" ]; then
@@ -226,7 +226,7 @@ utilVersionerCleanUpReleasesProp () {
   fi
 
   local -r version_x_x_x_num=$( \
-    utilIsVersionObjQuery "x_x_x_num" "${version_obj}"
+    utilVersionerIsVersionObjQuery "x_x_x_num" "${version_obj}"
   )
 
   while IFS= read -r value; do
@@ -249,11 +249,11 @@ utilVersionerCleanUpReleasesProp () {
   for i in "${arr[@]}"; do
     # Obj
     item_version_obj=$( \
-      utilGetVersionAsObj "${i}" \
+      utilVersionerGetVersionAsObj "${i}" \
     )
     # is_valid
     item_version_is_valid=$( \
-      utilIsVersionObjQuery "is_valid" "${item_version_obj}"
+      utilVersionerIsVersionObjQuery "is_valid" "${item_version_obj}"
     )
     # validates
     if [ "${item_version_is_valid}" == "false" ]; then
@@ -262,7 +262,7 @@ utilVersionerCleanUpReleasesProp () {
     fi
     # formatted
     item_version_x_x_x_num=$( \
-      utilIsVersionObjQuery "x_x_x_num" "${item_version_obj}"
+      utilVersionerIsVersionObjQuery "x_x_x_num" "${item_version_obj}"
     )
     # compare
     is_item_version_greater_than_version=$( \

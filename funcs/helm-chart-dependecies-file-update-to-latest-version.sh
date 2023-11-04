@@ -30,7 +30,7 @@ funcHelmChartDependenciesFileUpdateToLatestVersion () {
   local repository_version=""
 
   repository_version=$( \
-    utilGlobalGetRepositoryChartVersion "$dependency_name" "${chart_name}" \
+    utilGlobalHelmGetRepositoryChartVersion "$dependency_name" "${chart_name}" \
   )
 
   if [ "${repository_version}" == "false" ]; then
@@ -38,10 +38,10 @@ funcHelmChartDependenciesFileUpdateToLatestVersion () {
   else
     # Here update the file...
     local -r repository_version_obj=$( \
-      utilGetVersionAsObj "${repository_version}" \
+      utilVersionerGetVersionAsObj "${repository_version}" \
     )
     local -r repository_version_is_valid=$( \
-      utilIsVersionObjQuery "is_valid" "${repository_version_obj}" \
+      utilVersionerIsVersionObjQuery "is_valid" "${repository_version_obj}" \
     )
 
     # Current Version
@@ -49,11 +49,11 @@ funcHelmChartDependenciesFileUpdateToLatestVersion () {
       utilQueryHelmChartDependenciesFileObjGET "${dependency}" "version" "yaml" \
     )
     local -r current_version_obj=$( \
-      utilGetVersionAsObj "${current_version}" \
+      utilVersionerGetVersionAsObj "${current_version}" \
     )
 
     local -r current_version_is_valid=$( \
-      utilIsVersionObjQuery "is_valid" "${current_version_obj}" \
+      utilVersionerIsVersionObjQuery "is_valid" "${current_version_obj}" \
     )
 
     if [ "${repository_version_is_valid}" == "true" ] && [ "${current_version_is_valid}" == "true" ]; then
@@ -84,10 +84,10 @@ funcHelmChartDependenciesFileUpdateToLatestVersion () {
       )
       # Compare Repository vs Current Version
       repository_version_x_x_x_num=$( \
-        utilIsVersionObjQuery "x_x_x_num" "${repository_version_obj}"
+        utilVersionerIsVersionObjQuery "x_x_x_num" "${repository_version_obj}"
       )
       current_version_x_x_x_num=$( \
-        utilIsVersionObjQuery "x_x_x_num" "${current_version_obj}"
+        utilVersionerIsVersionObjQuery "x_x_x_num" "${current_version_obj}"
       )
       repository_version_equals_to_current_version=$( \
         utilVersionerCompareVersions \
