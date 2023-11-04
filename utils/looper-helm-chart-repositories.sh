@@ -93,14 +93,14 @@ utilLooperHelmChartRepositories () {
                   && [[ "${file_dependency_chart_lenguage}" == "helm" ]]; then
                   # /snitzsh/helm-charts/<dependency-name>/<[chart-name]>/<[region-name]>/<[cluster-name]>/*
                   case "${query_name}" in
-                    # /*
-                    "post-helm-chart")
-                      funcHelmChartPostChart "${args[@]}"
-                      ;;
                     # TODO: currently function does nothing.
                     # ./values.yaml
                     "get-values")
                       funcHelmChartGetValues "${args[@]}"
+                      ;;
+                    # /*
+                    "post-helm-chart")
+                      funcHelmChartPostChart "${args[@]}"
                       ;;
                     # ./Chart.yaml
                     "update-chart-yaml-file")
