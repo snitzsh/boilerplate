@@ -91,16 +91,17 @@ utilLooperHelmChartRepositories () {
                 if [[ "${dependency_name}" == "${file_dependency_dependency_name}" ]] \
                   && [[ "${chart_name}" == "${file_dependency_chart_name}" ]] \
                   && [[ "${file_dependency_chart_lenguage}" == "helm" ]]; then
+                  # /snitzsh/helm-charts/<dependency-name>/<[chart-name]>/<[region-name]>/<[cluster-name]>/*
                   case "${query_name}" in
-                    # <[repo]>/*
-                    "create-helm-chart")
+                    # /*
+                    "post-helm-chart")
                       funcHelmChartPostChart "${args[@]}"
                       ;;
-                    # repo/Chart.yaml
-                    "patch-chart-yaml-file")
-                      utilHelmChartPatchChartYamlFile "${args[@]}"
+                    # ./Chart.yaml
+                    "put-chart-yaml-file")
+                      funcHelmChartPutChartYamlFile "${args[@]}"
                       ;;
-                    # <[repo]>/*
+                    # ./values.yaml
                     "get-values")
                       utilHelmChartGetValues "${args[@]}"
                       ;;

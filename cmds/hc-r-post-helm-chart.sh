@@ -22,7 +22,7 @@ source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 #
 main () {
   # utilGetRepositories
-  utilLooperHelmChartRepositories "create-helm-chart"
+  utilLooperHelmChartRepositories "post-helm-chart"
 }
 
 main
