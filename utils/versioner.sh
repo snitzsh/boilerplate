@@ -245,7 +245,7 @@ utilVersionerCleanUpReleasesProp () {
   local item_version_is_valid=""
   local item_version_x_x_x_num=""
   local is_item_version_greater_than_version=""
-  local is_item_version_equals_to_version=""
+
   for i in "${arr[@]}"; do
     # Obj
     item_version_obj=$( \
