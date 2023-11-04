@@ -97,19 +97,19 @@ utilLooperHelmChartRepositories () {
                     "post-helm-chart")
                       funcHelmChartPostChart "${args[@]}"
                       ;;
-                    # ./Chart.yaml
-                    "update-chart-yaml-file")
-                      funcHelmChartUpdateChartYamlFile "${args[@]}"
-                      ;;
                     # TODO: currently function does nothing.
                     # ./values.yaml
                     "get-values")
                       funcHelmChartGetValues "${args[@]}"
                       ;;
-                    # <[repo]>/*
-                    "update-versions")
+                    # ./Chart.yaml
+                    "update-chart-yaml-file")
+                      funcHelmChartUpdateChartYamlFile "${args[@]}"
+                      ;;
+                    # ./
+                    "update-version")
                       # TODO: This should never be allow beyond dev clusters.
-                      funcHelmChartUpdateVersions "${args[@]}"
+                      funcHelmChartUpdateVersion "${args[@]}"
                       ;;
                     *)
                       echo "Function query does not exist."

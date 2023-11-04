@@ -18,7 +18,7 @@
 # RETURN:
 #   - null
 #
-funcHelmChartPutChartYamlFile () {
+funcHelmChartUpdateChartYamlFile () {
   local -r func_name="${FUNCNAME[0]}"
   local -r args=("$@")
   local -r region_name="${args[0]}"

@@ -8,8 +8,7 @@
 #   - null
 #
 # DESCRIPTION:
-#   - Updates ./helm-chart-dependencies.yaml with what the ./helm-chart
-#     repos ./helm-chart/<[repo]>.Chart.yaml version.
+#   - Update the helm-chart version if it meets the necessary criteria.
 #
 # ARGS:
 #   - null
@@ -17,7 +16,7 @@
 # RETURN:
 #   - null
 #
-funcHelmChartUpdateVersions () {
+funcHelmChartUpdateVersion () {
   local -r func_name="${FUNCNAME[0]}"
   local -r args=("$@")
   local -r region_name="${args[0]}"
