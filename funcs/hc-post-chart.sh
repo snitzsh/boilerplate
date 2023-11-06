@@ -42,6 +42,17 @@ funcHelmChartPostChart () {
     git push --quiet
     sleep 5 # neccesary to let the machine time to git to commit and push and handle files
   else
+    # (
+    #   cd ../../ &&
+    #   rm -rf ./templates
+    #   rm .helmignore
+    #   rm Chart.yaml
+    #   rm values.yaml
+    #   git add .
+    #   git commit --quiet -m "Removed the chart files that are not needed for ${dependency_name}/${chart_name} " > /dev/null
+    #   git push --quiet
+    #   sleep 5 # neccesary to let the machine time to git to commit and push and handle files
+    # )
     logger "INFO" "helm chart '${chart_name}' already exist for dependency: '${dependency_name}' in '${region_name}/${cluster_name}/' directory." "${func_name}"
   fi
 }
