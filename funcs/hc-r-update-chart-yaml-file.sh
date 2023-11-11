@@ -21,10 +21,10 @@
 funcHelmChartUpdateChartYamlFile () {
   local -r func_name="${FUNCNAME[0]}"
   local -ar args=("$@")
-  local -r region_name="${args[0]}"
-  local -r cluster_name="${args[1]}"
-  local -r dependency_name="${args[2]}"
-  local -r chart_name="${args[3]}"
+  local -r dependency_name="${args[0]}"
+  local -r chart_name="${args[1]}"
+  local -r region_name="${args[2]}"
+  local -r cluster_name="${args[3]}"
 
   if [ -f "./Chart.yaml" ]; then
     local dependency_obj=""
@@ -60,7 +60,7 @@ funcHelmChartUpdateChartYamlFile () {
     git add .
     # this ensures only commit and push if there are changes.
     git diff --staged --quiet || (
-      git commit --quiet -m "Updated chart's dependencies for ${region_name}/${cluster_name}." > /dev/null &&
+      git commit --quiet -m "Updated chart's dependencies for ${dependency_name}/${chart_name}/${region_name}/${cluster_name}." > /dev/null &&
       git push --quiet
       logger "INFO" "Updated chart ${chart_name}'s dependencies for dependency: '${dependency_name}'." "${func_name}"
       sleep 5

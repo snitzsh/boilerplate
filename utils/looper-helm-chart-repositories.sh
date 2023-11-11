@@ -95,10 +95,10 @@ utilLooperHelmChartRepositories () {
                   local -r file_dependency_dependency_name=$(echo "${file_dependency}" | yq '.dependency_name')
                   local -r file_dependency_chart_lenguage=$(echo "${file_dependency}" | yq '.language')
                   local -a args=( \
-                    "${region_name}" \
-                    "${cluster_name}" \
                     "${dependency_name}" \
                     "${chart_name}" \
+                    "${region_name}" \
+                    "${cluster_name}" \
                     "${file_dependency}" \
                   )
                   if [[ "${dependency_name}" == "${file_dependency_dependency_name}" ]] \
