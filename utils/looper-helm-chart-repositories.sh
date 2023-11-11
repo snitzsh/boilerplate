@@ -77,6 +77,7 @@ utilLooperHelmChartRepositories () {
                 (
                   cd "./${region_name}/${cluster_name}" &&
                   # TODO:
+                  # - reorganize the arguments. dependency_name and chart_name should go first.
                   # - Update cluster file and before updating the chart.
                   # - Dev on each region by default should put the latest.
                   #   sit -> uat -> prod should get in steps. Ex. sit should get the dev dependencies by default (if doesn't exist)
@@ -139,10 +140,10 @@ utilLooperHelmChartRepositories () {
               done
             done
           )
-          break
+          # break
         done
       )
-      break
+      # break
     done
   )
 }
