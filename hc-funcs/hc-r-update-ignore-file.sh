@@ -3,6 +3,7 @@
 
 #
 # TODO:
+#   - make sure to add a emty line if it does NOT exist. Else it will return error.
 #   - install sed gnu if compatible for linux/macOS, instead using macOS's
 #     `poxis sed`
 #     https://gist.github.com/andre3k1/e3a1a7133fded5de5a9ee99c87c6fa0d
@@ -36,14 +37,14 @@ utilHelmChartUpdateIgnoreFile () {
   local -r query_name="${args[0]}"
   local -r dependency_name="${args[1]}"
   local -r chart_name="${args[2]}"
+  local -r region_name="${args[3]}"
+  local -r cluster_name="${args[4]}"
   # local -r file_dependency="${args[5]}"
 
   if [ -f "${query_name}" ]; then
-    
     local proceed="true"
     local -a args_2=( \
       "${func_name}" \
-      "Updated ${dependency_name}/${chart_name} ${query_name} file."
     )
     local -a files=( \
       "# --- START AUTOMATED ---" \
@@ -51,6 +52,9 @@ utilHelmChartUpdateIgnoreFile () {
     )
     case "${query_name}" in
       ".helmignore")
+        args_2+=(
+          "Updated ${dependency_name}/${chart_name}/${region_name}/${cluster_name}'s ${query_name} file."
+        )
         # TODO:
         #   - helmignore should not track any k8s object that is a secret.
         local -a files_to_ignore=()
@@ -63,6 +67,9 @@ utilHelmChartUpdateIgnoreFile () {
         )
         ;;
       ".gitignore")
+        args_2+=(
+          "Updated ${dependency_name}/${chart_name} ${query_name} file."
+        )
         # IMPORTANT:
         # - Always make sure to check the file directly to make sure nothing has changed.
         # Add more files here...
@@ -125,7 +132,7 @@ utilHelmChartUpdateIgnoreFile () {
 
 #
 # TODO:
-#   - null
+#   - fix issue: with line 157: arr: bad array subscript
 #
 # NOTE:
 #   - null

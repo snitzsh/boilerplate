@@ -140,10 +140,10 @@ utilLooperHelmChartRepositories () {
               done
             done
           )
-          # break
+          break
         done
       )
-      # break
+      break
     done
   )
 }

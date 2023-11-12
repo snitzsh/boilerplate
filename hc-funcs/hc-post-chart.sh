@@ -37,13 +37,15 @@ funcHelmChartPostChart () {
     mv ./"${chart_name}"/{.,}* ./
     rm ./templates/*.yaml
     rm -rf ./"${chart_name}"
-    git add .
-    git commit --quiet -m "Initial commit of chart_name ${dependency_name}/${chart_name} for ${region_name}/${cluster_name}." > /dev/null
-    git push --quiet
-    sleep 5 # neccesary to let the machine time to git to commit and push and handle files
+    local -a args_2=( \
+      "${func_name}" \
+      "Create ${dependency_name}/${chart_name}/${region_name}/${cluster_name} helm chart." \
+    )
+    utilGitter "${args_2[@]}"
   else
     # (
-    #   cd ../../ &&
+      # cd ../../ &&
+      # cat .git/hooks/prepare-commit-msg.sample
     #   rm -rf ./templates
     #   rm .helmignore
     #   rm Chart.yaml
