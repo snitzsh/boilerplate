@@ -15,10 +15,11 @@ dependencies:
     repository: https://argoproj.github.io/argo-helm
     charts:
       - name: argo-cd
-        latest_version: 5.50.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+        latest_version: 5.51.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 5.48.0
           - 5.50.1
+          - 5.51.1
         condition: argo-cd.disabled # opts: disabled | enabled
         specific_name: argo-cd # For example istio/base install documentation shows istio-base when installing
         namespace_name: argo-cd # if the name of the chart has a different namespace
@@ -32,10 +33,11 @@ dependencies:
         service: third-party
         software_type: open-source
       - name: argo-workflows
-        latest_version: 0.38.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+        latest_version: 0.39.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 0.37.0
           - 0.38.0
+          - 0.39.0
         condition: argo-workflows.disabled # opts: disabled | enabled
         specific_name: argo-workflows # For example istio/base install documentation shows istio-base when installing
         namespace_name: argo-workflows # if the name of the chart has a different namespace
@@ -129,9 +131,10 @@ dependencies:
     repository: https://fluent.github.io/helm-charts
     charts:
       - name: fluent-bit
-        latest_version: 0.39.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+        latest_version: 0.39.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 0.39.0
+          - 0.39.1
         condition: fluent-bit.disabled # opts: disabled | enabled
         specific_name: fluent-bit # For example istio/base install documentation shows istio-base when installing
         namespace_name: fluent-bit # if the name of the chart has a different namespace
@@ -260,7 +263,7 @@ dependencies:
     repository: https://kyverno.github.io/kyverno
     charts:
       - name: kyverno
-        latest_version: 3.0.6 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+        latest_version: 3.1.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 3.0.5
           - 3.0.6
@@ -269,7 +272,7 @@ dependencies:
         namespace_name: kyverno # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
         version: 3.1.0-beta.2 # current version
-        is_up_to_date: false # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
+        is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         platform_repository: true
@@ -296,10 +299,11 @@ dependencies:
         service: third-party
         software_type: open-source
       - name: linkerd-control-plane
-        latest_version: 1.16.3 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+        latest_version: 1.16.4 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 1.16.2
           - 1.16.3
+          - 1.16.4
         condition: linkerd-control-plane.disabled # opts: disabled | enabled
         specific_name: linkerd-control-plane # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         namespace_name: linkerd # if the name of the chart has a different namespace
@@ -371,10 +375,11 @@ dependencies:
     repository: https://stakater.github.io/stakater-charts
     charts:
       - name: reloader
-        latest_version: 1.0.50 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+        latest_version: 1.0.51 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 1.0.48
           - 1.0.50
+          - 1.0.51
         condition: reloader.enabled # opts: disabled | enabled
         specific_name: reloader # For example istio/base install documentation shows istio-base when installing
         namespace_name: default # if the name of the chart has a different namespace
