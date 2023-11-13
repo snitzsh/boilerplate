@@ -2,9 +2,8 @@
 # shellcheck source=/dev/null
 
 source "${SNITZSH_PATH}/boilerplate/funcs-g/source-funcs.sh"
-source "${SNITZSH_PATH}/boilerplate/funcs-hc/source-funcs.sh"
-source "${SNITZSH_PATH}/boilerplate/funcs-r/source-funcs.sh"
 source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
+
 
 #
 # TODO:
@@ -23,7 +22,7 @@ source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 #   - null
 #
 main () {
-  utilLooperClustersHelmCharts "g-clusters-put-{dependency_name}-{chart_name}-to-latest-version"
+  utilLooperHelmChartDependecies "global-helm-install-repositories"
 }
 
 main

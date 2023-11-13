@@ -89,8 +89,39 @@ export PLATFORM_HELM_CHART_DEPENDENCIES_YAML
 #   - null
 #
 main () {
-  echo "Func name: ${1}"
-  bash "cmds-hc/${1}.sh"
+  local -r func_name="${FUNCNAME[0]}"
+  local -r command_name="${1}"
+  local starts_with=""
+  local proceed="true"
+  starts_with=$(\
+    jq \
+      -n \
+      -r \
+      --arg command_name "${command_name}" \
+      '
+        $command_name | split("-")
+        | .[0]
+      '
+  )
+
+  case "${starts_with}" in
+    "g")
+      ;;
+    "hc")
+      ;;
+    "t")
+      ;;
+    *)
+      proceed="false"
+      logger "ERROR" "cmds-${starts_with} folder does not exits" "${func_name}"
+      ;;
+  esac
+
+  if [ "${proceed}" == "false" ]; then
+    exit 1
+  fi
+
+  bash "cmds-${starts_with}/${1}.sh"
 }
 
 main "${1}"

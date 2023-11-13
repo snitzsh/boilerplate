@@ -2,8 +2,6 @@
 # shellcheck source=/dev/null
 
 source "${SNITZSH_PATH}/boilerplate/funcs-g/source-funcs.sh"
-source "${SNITZSH_PATH}/boilerplate/funcs-hc/source-funcs.sh"
-source "${SNITZSH_PATH}/boilerplate/funcs-r/source-funcs.sh"
 source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 
 #
@@ -23,7 +21,7 @@ source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 #   - null
 #
 main () {
-  utilLooperHelmChartDependecies "global-update-to-latest-version"
+  utilLooperHelmChartDependecies "global-helm-update-repositories"
 }
 
 main
