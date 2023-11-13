@@ -90,7 +90,7 @@ export PLATFORM_HELM_CHART_DEPENDENCIES_YAML
 #
 main () {
   echo "Func name: ${1}"
-  bash "cmds/${1}.sh"
+  bash "cmds-hc/${1}.sh"
 }
 
 main "${1}"

@@ -111,10 +111,11 @@ dependencies:
     repository: https://charts.external-secrets.io
     charts:
       - name: external-secrets
-        latest_version: 0.9.8 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+        latest_version: 0.9.9 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 0.9.7
           - 0.9.8
+          - 0.9.9
         condition: external-secrets.disabled # opts: disabled | enabled
         specific_name: external-secrets # For example istio/base install documentation shows istio-base when installing
         namespace_name: default # if the name of the chart has a different namespace
@@ -131,10 +132,11 @@ dependencies:
     repository: https://fluent.github.io/helm-charts
     charts:
       - name: fluent-bit
-        latest_version: 0.39.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+        latest_version: 0.40.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 0.39.0
           - 0.39.1
+          - 0.40.0
         condition: fluent-bit.disabled # opts: disabled | enabled
         specific_name: fluent-bit # For example istio/base install documentation shows istio-base when installing
         namespace_name: fluent-bit # if the name of the chart has a different namespace
@@ -355,10 +357,11 @@ dependencies:
     repository: https://prometheus-community.github.io/helm-charts
     charts:
       - name: prometheus
-        latest_version: 25.4.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+        latest_version: 25.6.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 25.3.1
           - 25.4.0
+          - 25.6.0
         condition: prometheus.disabled # opts: disabled | enabled
         specific_name: prometheus # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         namespace_name: prometheus
