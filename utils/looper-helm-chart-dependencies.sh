@@ -35,6 +35,7 @@ utilLooperHelmChartDependecies () {
     chart_name=$(echo "${dependency}" | yq -r 'split("|") | .[1]')
 
     file_dependency=$(utilGetHelmChartDependency "${dependency_name}" "${chart_name}")
+
     args=(
       "${dependency_name}"
       "${chart_name}"
@@ -49,6 +50,9 @@ utilLooperHelmChartDependecies () {
       #     affecting the repo.
       "global-helm-update-repositories")
         funcGlobalHelmUpdateRepositories "${args[@]}"
+        ;;
+      "global-helm-install-repositories")
+        funcGlobalHelmInstallRepositories "${args[@]}"
         ;;
       "global-update-to-latest-version")
         funcGlobalHelmUpdateRepositories "${args[@]}"
