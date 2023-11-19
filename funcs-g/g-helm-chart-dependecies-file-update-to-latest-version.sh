@@ -21,7 +21,7 @@
 # RETURN:
 #   - null
 #
-funcHelmChartDependenciesFileUpdateToLatestVersion () {
+funcGlobalHelmChartDependenciesFileUpdateToLatestVersion () {
   local -r func_name="${FUNCNAME[0]}"
   local -a args=("$@")
   local -r dependency_name="${args[0]}"

@@ -43,7 +43,9 @@ utilLooperHelmChartDependecies () {
     )
 
     case "${query_name}" in
-      # Global
+      "global-helm-install-repositories")
+        funcGlobalHelmInstallRepositories "${args[@]}"
+        ;;
       # TODO:
       #   - take this function out of this loop, make it on its
       #     own. This function executes only locally, without
@@ -51,12 +53,9 @@ utilLooperHelmChartDependecies () {
       "global-helm-update-repositories")
         funcGlobalHelmUpdateRepositories "${args[@]}"
         ;;
-      "global-helm-install-repositories")
-        funcGlobalHelmInstallRepositories "${args[@]}"
-        ;;
       "global-update-to-latest-version")
         funcGlobalHelmUpdateRepositories "${args[@]}"
-        funcHelmChartDependenciesFileUpdateToLatestVersion "${args[@]}"
+        funcGlobalHelmChartDependenciesFileUpdateToLatestVersion "${args[@]}"
         ;;
       *)
         logger "ERROR" "'${query_name}' is not supported." "${func_name}"
