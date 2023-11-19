@@ -20,7 +20,7 @@
 #          version.
 #
 # NOTE:
-#   - null
+#   - takes care of repository level, and helm-chart level.
 #
 # DESCRIPTION:
 #   - null
@@ -31,7 +31,7 @@
 # RETURN:
 #   - null
 #
-utilHelmChartUpdateIgnoreFile () {
+utilHelmChartUpdateIgnoreFiles () {
   local -r func_name="${FUNCNAME[0]}"
   local -r args=("$@")
   local -r query_name="${args[0]}"

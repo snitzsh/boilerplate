@@ -38,6 +38,7 @@ utilLooperHelmChartRepositories () {
           (
             cd "./${chart_name}" &&
             case "${query_name}" in
+              # TODO: move this to another looper.
               "update-ignore-file-gitignore")
                 local -a args_6=( \
                   '.gitignore' \
@@ -122,7 +123,7 @@ utilLooperHelmChartRepositories () {
                       # .<[ignore-file-name]>
                       "update-ignore-file-helmignore")
                         local -a args_5=('.helmignore' "${args[@]}")
-                        utilHelmChartUpdateIgnoreFile "${args_5[@]}"
+                        utilHelmChartUpdateIgnoreFiles "${args_5[@]}"
                         ;;
                       # ./
                       "update-version")
@@ -140,10 +141,10 @@ utilLooperHelmChartRepositories () {
               done
             done
           )
-          break
+          # break
         done
       )
-      break
+      # break
     done
   )
 }
