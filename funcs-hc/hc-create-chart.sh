@@ -6,6 +6,8 @@
 #   - Make git commands executions optional to prevent issues.
 #   - make sure when a new region is created, it copies what is in dev
 #     instead of creating the chart by scratch.
+#   - make sure to execute `bash main.sh hc-update-helmignore-file`
+#     so helm ignores undersired folders.
 #
 # NOTE:
 #   - Repository must be cloned first.
