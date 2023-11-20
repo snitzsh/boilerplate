@@ -40,13 +40,19 @@ utilLooperHelmChartRepositories () {
             cd "./${chart_name}" &&
             case "${query_name}" in
               # TODO: move this to another looper.
-              "update-ignore-file-gitignore")
+              "r-update-ignore-file-gitignore")
                 local -a args_6=( \
                   '.gitignore' \
                   "${dependency_name}" \
                   "${chart_name}" \
                 )
                 utilHelmChartUpdateIgnoreFile "${args_6[@]}"
+                ;;
+              "r-create-git-hooks")
+                # TODO:
+                # - make sure you run `bash main.sh hc-update-helmignore-file`
+                #   after it executes this function.
+                echo ""
                 ;;
               *)
                 ;;
