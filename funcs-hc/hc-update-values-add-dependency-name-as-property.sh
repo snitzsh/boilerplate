@@ -2,10 +2,11 @@
 
 #
 # TODO:
-#   - null
+#   - place the property on the very top.
 #
 # NOTE:
 #   - Must be executed after creating a helm-chart.
+#     and after `funcHelmChartUpdateChartYamlFile`
 #
 # DESCRIPTION:
 #   - Adds ./Chart.yaml dependencies[].name as properties in

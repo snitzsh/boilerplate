@@ -3,7 +3,7 @@
 
 #
 # TODO:
-#   - null
+#   - create a lint helm function to lint before committing.
 #
 # NOTE:
 #   - it loops throught the repositories cloned. ../helm-charts/ directory.
@@ -108,7 +108,8 @@ utilLooperHelmChartRepositories () {
                     && [[ "${file_dependency_chart_lenguage}" == "helm" ]]; then
                     # /snitzsh/helm-charts/<dependency-name>/<[chart-name]>/<[region-name]>/<[cluster-name]>/*
                     case "${query_name}" in
-                      # TODO: currently function does nothing.
+                      # TODO:
+                      #   - currently function does nothing.
                       # ./values.yaml
                       "get-values")
                         funcHelmChartGetValues "${args[@]}"
@@ -122,10 +123,13 @@ utilLooperHelmChartRepositories () {
                       # /*
                       "post-helm-chart")
                         funcHelmChartPostChart "${args[@]}"
+                        funcHelmChartUpdateChartYamlFile "${args[@]}"
+                        funcHelmChartUpdateValuesAddDependencyNameAsProperty "${args[@]}"
                         ;;
                       # ./Chart.yaml
                       "update-chart-yaml-file")
                         funcHelmChartUpdateChartYamlFile "${args[@]}"
+                        funcHelmChartUpdateValuesAddDependencyNameAsProperty "${args[@]}"
                         ;;
                       "add-dependency-name-as-property")
                         funcHelmChartUpdateValuesAddDependencyNameAsProperty "${args[@]}"
@@ -151,10 +155,10 @@ utilLooperHelmChartRepositories () {
               done
             done
           )
-          # break
+          break
         done
       )
-      # break
+      break
     done
   )
 }
