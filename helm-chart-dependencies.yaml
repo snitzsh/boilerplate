@@ -15,12 +15,13 @@ dependencies:
     repository: https://argoproj.github.io/argo-helm
     charts:
       - name: argo-cd
-        latest_version: 5.51.2 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+        latest_version: 5.51.3 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 5.48.0
           - 5.50.1
           - 5.51.1
           - 5.51.2
+          - 5.51.3
         condition: argo-cd.disabled # opts: disabled | enabled
         specific_name: argo-cd # For example istio/base install documentation shows istio-base when installing
         namespace_name: argo-cd # if the name of the chart has a different namespace
@@ -155,13 +156,14 @@ dependencies:
     repository: https://grafana.github.io/helm-charts
     charts:
       - name: grafana
-        latest_version: 7.0.6 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+        latest_version: 7.0.8 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 6.61.1
           - 7.0.1
           - 7.0.3
           - 7.0.4
           - 7.0.6
+          - 7.0.8
         condition: grafana.disabled # opts: disabled | enabled
         specific_name: grafana # For example istio/base install documentation shows istio-base when installing
         namespace_name: grafana # if the name of the chart has a different namespace
@@ -232,10 +234,11 @@ dependencies:
     repository: https://jaegertracing.github.io/helm-charts
     charts:
       - name: jaeger # Consumes too much cpu in minikube
-        latest_version: 0.72.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+        latest_version: 0.72.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 0.71.17
           - 0.72.0
+          - 0.72.1
         condition: jaeger.disabled # opts: disabled | enabled
         specific_name: jaeger # Consumes too much cpu in minikube
         namespace_name: jaeger # if the name of the chart has a different namespace
@@ -252,10 +255,11 @@ dependencies:
     repository: https://kiali.org/helm-charts
     charts:
       - name: kiali-operator
-        latest_version: 1.76.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+        latest_version: 1.77.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
           - 1.75.0
           - 1.76.0
+          - 1.77.0
         condition: kiali-operator.disabled # opts: disabled | enabled
         specific_name: kiali-operator # For example istio/base install documentation shows istio-base when installing
         namespace_name: kiali-operator # if the name of the chart has a different namespace
