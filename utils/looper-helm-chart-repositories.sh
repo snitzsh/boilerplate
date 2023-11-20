@@ -121,7 +121,7 @@ utilLooperHelmChartRepositories () {
                         funcHelmChartUpdateVersionsFolder "${args[@]}"
                         ;;
                       # /*
-                      "post-helm-chart")
+                      "create-helm-chart")
                         funcHelmChartPostChart "${args[@]}"
                         funcHelmChartUpdateChartYamlFile "${args[@]}"
                         funcHelmChartUpdateValuesAddDependencyNameAsProperty "${args[@]}"
