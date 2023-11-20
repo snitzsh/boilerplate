@@ -49,45 +49,6 @@ funcHelmChartPostChart () {
     )
     utilGitter "${args_2[@]}"
   else
-    # local -a args_2=( \
-    #   "${func_name}" \
-    #   "Update ${dependency_name}/${chart_name}/${region_name}/${cluster_name} helm chart." \
-    # )
-    (
-      ls
-      # cat .git/hooks/prepare-commit-msg.sample
-      # rm -rf ./templates
-      # rm .helmignore
-      # rm Chart.yaml
-      # rm values.yaml
-      # git add .
-      # git commit --quiet -m "Removed the chart files that are not needed for ${dependency_name}/${chart_name} " > /dev/null
-      # git push --quiet
-      # sleep 5 # neccesary to let the machine time to git to commit and push and handle files
-    )
     logger "INFO" "helm chart '${chart_name}' already exist for dependency: '${dependency_name}' in '${region_name}/${cluster_name}/' directory." "${func_name}"
   fi
-}
-
-utilCreateHelmChartVersionsFolder () {
-  local -a folders=( \
-    "tgzs" \
-    "manifests" \
-    "values" \
-    "diff-current-to-latest-version-values" \
-    "diff-current-to-per-newer-version-values" \
-  )
-  for folder in "${folders[@]}"; do
-    mkdir -p "versions/${folder}"
-    (
-      cd "versions/${folder}" &&
-      # Creating a dummy file to force git to track the folders,
-      # otherwise git will not push empty folder.
-      if [ "${folder}" == "tgzs" ]; then
-        touch _test.tgz
-      else
-        touch _test.yaml
-      fi
-    )
-  done
 }
