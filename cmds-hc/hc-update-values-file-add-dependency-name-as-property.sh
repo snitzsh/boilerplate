@@ -22,7 +22,7 @@ source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 #
 main () {
   # utilLooperHelmChartRepositories "update-helm-repositories"
-  utilLooperHelmChartRepositories "add-dependency-name-as-property"
+  utilLooperHelmChartRepositories "update-values-file-add-dependency-name-as-property"
 }
 
 main

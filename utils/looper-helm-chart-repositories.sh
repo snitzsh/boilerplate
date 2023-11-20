@@ -131,7 +131,7 @@ utilLooperHelmChartRepositories () {
                         funcHelmChartUpdateChartYamlFile "${args[@]}"
                         funcHelmChartUpdateValuesAddDependencyNameAsProperty "${args[@]}"
                         ;;
-                      "add-dependency-name-as-property")
+                      "update-values-file-add-dependency-name-as-property")
                         funcHelmChartUpdateValuesAddDependencyNameAsProperty "${args[@]}"
                         ;;
                       # .<[ignore-file-name]>
