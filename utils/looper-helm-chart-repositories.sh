@@ -52,7 +52,7 @@ utilLooperHelmChartRepositories () {
                 # TODO:
                 # - make sure you run `bash main.sh hc-update-helmignore-file`
                 #   after it executes this function.
-                echo ""
+                funcRepositoryCreateGitHooks "${args_6[@]}"
                 ;;
               *)
                 ;;
