@@ -32,6 +32,7 @@ utilLooperHelmChartRepositories () {
   (
     cd "$SNITZSH_PATH/helm-charts" &&
     for dependency_name in *; do
+      echo "${dependency_name}"
       (
         cd "./${dependency_name}" &&
         for chart_name in *; do
@@ -112,6 +113,12 @@ utilLooperHelmChartRepositories () {
                       "get-values")
                         funcHelmChartGetValues "${args[@]}"
                         ;;
+                      "update-versions-folder")
+                        # TODO:
+                        # - make sure the `bash main.sh g-clusters-file-put-to-latest-version`
+                        #   is always executed first.`
+                        funcHelmChartUpdateVersionsFolder "${args[@]}"
+                        ;;
                       # /*
                       "post-helm-chart")
                         funcHelmChartPostChart "${args[@]}"
@@ -119,6 +126,9 @@ utilLooperHelmChartRepositories () {
                       # ./Chart.yaml
                       "update-chart-yaml-file")
                         funcHelmChartUpdateChartYamlFile "${args[@]}"
+                        ;;
+                      "add-dependency-name-as-property")
+                        funcHelmChartUpdateValuesAddDependencyNameAsProperty "${args[@]}"
                         ;;
                       # .<[ignore-file-name]>
                       "update-ignore-file-helmignore")
