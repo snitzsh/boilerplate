@@ -142,9 +142,11 @@ funcHelmChartUpdateVersionsFolder () {
         if [ "${sub_folder}" == "diff-current-to-per-newer-version-values" ]; then
           rm "./${sub_folder}/${chart_name}-${release}.yaml"
         fi
+        # If exist, it will skips.
         if ls ./versions/"${sub_folder}"/"${chart_name}-${release}"* 1> /dev/null 2>&1; then
           continue
         fi
+        # diff current version is not needed.
         if [ "${sub_folder}" == "diff-current-to-per-newer-version-values" ] && [ "${current_version}" == "${release}" ]; then
           continue
         fi
