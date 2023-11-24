@@ -3,6 +3,9 @@
 #
 # TODO:
 #   - consider adding charts to s3?
+#   - fix log_msg for git. currenlty is using the same log msg.
+#   - make sure the version of tgz file is not longer use in other clusters.
+#     before deleting the tgz file.
 #
 # NOTE:
 #   - null
@@ -65,6 +68,8 @@ funcHelmChartUpdateVersionsFolder () {
     done < <( \
       ls "./versions"
     )
+
+    # rm -rf "./versions/manifests"
 
     sub_folders=("tgzs" "values" "${sub_folders[@]}")
 
@@ -137,10 +142,13 @@ funcHelmChartUpdateVersionsFolder () {
         echo "Remove: ${version_to_remove}"
       done
 
+      local last_release="${releases[${#releases[@]}-1]}"
+
       for release in "${releases[@]}"; do
         # To be safe... to always have the diff of current version and newer versions.
-        if [ "${sub_folder}" == "diff-current-to-per-newer-version-values" ]; then
-          rm "./${sub_folder}/${chart_name}-${release}.yaml"
+        if [ "${sub_folder}" == "diff-current-to-per-newer-version-values" ] && [ "${current_version}" != "${release}" ]; then
+          # It may fail when excuting this cmd for the first time.
+          rm "./versions/${sub_folder}/${chart_name}-${release}.yaml"
         fi
         # If exist, it will skips.
         if ls ./versions/"${sub_folder}"/"${chart_name}-${release}"* 1> /dev/null 2>&1; then
@@ -150,29 +158,34 @@ funcHelmChartUpdateVersionsFolder () {
         if [ "${sub_folder}" == "diff-current-to-per-newer-version-values" ] && [ "${current_version}" == "${release}" ]; then
           continue
         fi
+        if [ "${sub_folder}" == "diff-current-to-latest-version-values" ] && [ "${release}" != "${last_release}" ]; then
+          continue
+        fi
+        # Only will match current and last-release
+        if [ "${sub_folder}" == "diff-current-to-latest-version-values" ] && [ "${release}" == "${last_release}" ]; then
+          # It may fail when excuting this cmd for the first time.
+          rm "./versions/${sub_folder}/${chart_name}-${release}.yaml"
+        fi
         (
           cd ./versions/"${sub_folder}" &&
+          local log_msg=""
           case "${sub_folder}" in
             "tgzs")
-              logger "INFO" "Pulling ${dependency_name}/${chart_name}/${region_name}/${cluster_name} helm-chart's '${sub_folder}' @ '${release}'" "${func_name}"
+              log_msg="Pulling ${dependency_name}/${chart_name}/${region_name}/${cluster_name} helm-chart's '${sub_folder}' @ '${release}'."
+              logger "INFO" "${log_msg}" "${func_name}"
               helm pull "${dependency_name}/${chart_name}" \
                 --version "${release}"
-              sleep 1
               ;;
             "values")
-              logger "INFO" "Getting ${dependency_name}/${chart_name}/${region_name}/${cluster_name} helm-chart's '${sub_folder}' @ '${release}'" "${func_name}"
+              log_msg="Getting ${dependency_name}/${chart_name}/${region_name}/${cluster_name} helm-chart's '${sub_folder}' @ '${release}'."
+              logger "INFO" "${log_msg}" "${func_name}"
               helm show values "../tgzs/${chart_name}-${release}.tgz" > "${chart_name}-${release}.yaml"
-              sleep 1
-              ;;
-            "manifests")
-              echo "Manifester..."
-              ;;
-            "diff-current-to-latest-version-values")
-              echo "diff-current-to-latest-version-values"
               ;;
             # Make sure to sync the diff when updating from .version
             # otherwise it will contain the differances of the old version and release.
-            "diff-current-to-per-newer-version-values")
+            "diff-current-to-per-newer-version-values" | "diff-current-to-latest-version-values")
+              log_msg="Getting ${dependency_name}/${chart_name}/${region_name}/${cluster_name} helm-chart's '${sub_folder}' diff from '${current_version}' to '${release}'."
+              logger "INFO" "${log_msg}" "${func_name}"
               git \
                 diff \
                   --no-index \
@@ -183,6 +196,11 @@ funcHelmChartUpdateVersionsFolder () {
             *)
               ;;
           esac
+          local -a args_2=( \
+            "${func_name}" \
+            "${log_msg}. Executed by '${func_name}'." \
+          )
+          utilGitter "${args_2[@]}"
         )
       done
     done

@@ -2,7 +2,7 @@
 
 #
 # TODO:
-#   - null
+#   - remove manifests folders in all repositories.
 #
 # NOTE:
 #   - null
@@ -20,7 +20,6 @@
 utilCreateHelmChartVersionsFolder () {
   local -a folders=( \
     "tgzs" \
-    "manifests" \
     "values" \
     "diff-current-to-latest-version-values" \
     "diff-current-to-per-newer-version-values" \
