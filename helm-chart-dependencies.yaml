@@ -111,24 +111,24 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
-  # - name: external-dns
-  #   repository: https://kubernetes-sigs.github.io
-  #   charts:
-  #     - name: external-dns
-  #       latest_version: null
-  #       releases: []
-  #       condition: external-dns.disabled
-  #       specific_name: external-dns
-  #       namespace_name: external-dns
-  #       is_deployed: false
-  #       version: 1.13.1
-  #       is_up_to_date: false
-  #       namespaced: true
-  #       has_repo: true
-  #       platform_repository: true
-  #       language: helm
-  #       service: third-party
-  #       software_type: open-source
+  - name: external-dns
+    repository: https://kubernetes-sigs.github.io/external-dns/
+    charts:
+      - name: external-dns
+        latest_version: null
+        releases: []
+        condition: external-dns.disabled
+        specific_name: external-dns
+        namespace_name: external-dns
+        is_deployed: false
+        version: 1.13.1
+        is_up_to_date: false
+        namespaced: true
+        has_repo: true
+        platform_repository: true
+        language: helm
+        service: third-party
+        software_type: open-source
   - name: external-secrets
     repository: https://charts.external-secrets.io
     charts:

@@ -46,7 +46,7 @@ utilLooperHelmChartRepositories () {
                   "${dependency_name}" \
                   "${chart_name}" \
                 )
-                utilHelmChartUpdateIgnoreFile "${args_6[@]}"
+                utilHelmChartUpdateIgnoreFiles "${args_6[@]}"
                 ;;
               "r-create-git-hooks")
                 # TODO:

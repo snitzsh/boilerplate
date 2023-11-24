@@ -51,6 +51,19 @@ utilHelmChartUpdateIgnoreFiles () {
       "# --- note: Do NOT add manually! If you want to add more files to ignore, use boilerplate function ${func_name}. ---" \
     )
     case "${query_name}" in
+      ".gitignore")
+        args_2+=(
+          "Updated ${dependency_name}/${chart_name} ${query_name} file."
+        )
+        # IMPORTANT:
+        # - Always make sure to check the file directly to make sure nothing has changed.
+        # Add more files here...
+        files=(
+          "${files[@]}"
+          "charts"
+          "Chart.lock"
+        )
+        ;;
       ".helmignore")
         args_2+=(
           "Updated ${dependency_name}/${chart_name}/${region_name}/${cluster_name}'s ${query_name} file."
@@ -64,19 +77,6 @@ utilHelmChartUpdateIgnoreFiles () {
         files=(
           "${files[@]}"
           "${files_to_ignore[@]}"
-        )
-        ;;
-      ".gitignore")
-        args_2+=(
-          "Updated ${dependency_name}/${chart_name} ${query_name} file."
-        )
-        # IMPORTANT:
-        # - Always make sure to check the file directly to make sure nothing has changed.
-        # Add more files here...
-        files=(
-          "${files[@]}"
-          "charts"
-          "Chart.lock"
         )
         ;;
       *)
@@ -104,6 +104,7 @@ utilHelmChartUpdateIgnoreFiles () {
       rm "${query_name}.bak"
 
       local file_found=""
+      local file_path=""
       for _file in "${files[@]}"; do
         file_found=$( \
           find . \
@@ -116,11 +117,18 @@ utilHelmChartUpdateIgnoreFiles () {
           echo "${_file}" >> "${query_name}"
         fi
         # In case git is tracking the file already. It removes it as a fallback.
-        # if [ "${query_name}" == ".gitignore" ]; then
-          # if [[ "${_file}" != \#* ]]; then
-            # git rm -q -r --cached ./*/*/"${_file}"
-          # fi
-        # fi
+        if [ "${query_name}" == ".gitignore" ]; then
+          if [[ "${_file}" != \#* ]]; then
+            # NOTE:
+            #   - Since repository looper does not have scope to region_name and cluster_name
+            #     variabls, the work around is to use find cmd to find the names directory
+            #     `region_name/cluster_name`
+            file_path=$(find . -name 'charts' | yq '. | split("/") | .[1] + "/" + .[2]')
+            if git ls-files --error-unmatch "./${file_path}/${_file}" &> /dev/null; then
+              git rm -q -r --cached "./${file_path}/${_file}"
+            fi
+          fi
+        fi
       done
       # Git
       utilGitter "${args_2[@]}"

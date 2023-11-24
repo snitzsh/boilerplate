@@ -6,6 +6,8 @@
 #   - fix log_msg for git. currenlty is using the same log msg.
 #   - make sure the version of tgz file is not longer use in other clusters.
 #     before deleting the tgz file.
+#   - `diff-current-to-latest-version-manifests and`
+#     `diff-current-to-per-newer-version-manifests`
 #
 # NOTE:
 #   - null

@@ -29,8 +29,8 @@ funcGlobalHelmInstallRepositories () {
         .repository
       ' \
   )
-
-  if ! helm repo install "${dependency_name}" "${repository_name}" &> /dev/null ; then
+  echo "${repository_name}"
+  if ! helm repo add "${dependency_name}" "${repository_name}" &> /dev/null ; then
     logger "ERROR" "Helm repo '${dependency_name}' cannot be install. Check if repository 'name' and 'url' is valid." "${func_name}"
   else
     logger "INFO" "Helm repo '${dependency_name}' is installed." "${func_name}"

@@ -39,7 +39,7 @@ utilGetRepositories () {
   else
     allow_api_request="true"
   fi
-
+  echo "${GITHUB_API_TOKEN}"
   if [ "${allow_api_request}" == true ]; then
     curl \
       --silent \

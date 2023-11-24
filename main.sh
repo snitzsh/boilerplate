@@ -2,8 +2,9 @@
 #
 # TODO:
 # - Save in secrets.
+#   - Repo/project
 #
-export GITHUB_API_TOKEN="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"
+export GITHUB_API_TOKEN="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"
 #
 # TODO:
 # - Save in secrets.
@@ -109,7 +110,7 @@ main () {
       ;;
     "hc")
       ;;
-    "t")
+    "r")
       ;;
     *)
       proceed="false"
