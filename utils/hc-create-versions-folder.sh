@@ -23,7 +23,10 @@ utilCreateHelmChartVersionsFolder () {
     "values" \
     "diff-current-to-latest-version-values" \
     "diff-current-to-per-newer-version-values" \
+    "diff-current-to-latest-version-manifests" \
+    "diff-current-to-per-newer-version-manifests" \
   )
+
   for folder in "${folders[@]}"; do
     mkdir -p "versions/${folder}"
     (
