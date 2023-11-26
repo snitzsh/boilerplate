@@ -150,6 +150,9 @@ utilLooperHelmChartRepositories () {
                         # TODO: This should never be allow beyond dev clusters.
                         funcHelmChartUpdateVersion "${args[@]}"
                         ;;
+                      "linter")
+                        echo ""
+                        ;;
                       *)
                         # echo "Function query does not exist."
                         ;;

@@ -107,10 +107,63 @@ main () {
 
   case "${starts_with}" in
     "g")
-      ;;
-    "hc")
+      #
+      # Global funcions
+      #
+      # - Functions interacts will local machine and local filesystem.
+      #   For example create folder, pull repos, etc.
+      #
       ;;
     "r")
+      #
+      # Repository functions
+      #
+      # - Functions that interacts with './snitzsh/helm-charts/<repository>'
+      #   files.
+      #
+      # NOTE:
+      #   - some 'g' commands must be execute fist before executing any of these
+      #     commands.
+      #
+      ;;
+    "hc")
+      #
+      # Repository helm-chart functions
+      #
+      # - Functions that intereact with
+      #   './snitzsh/helm-charts/<repository>/<[helm-chart]>/<[region_name]>/<[cluster_name]>'
+      #   files.
+      #
+      # NOTE:
+      #   some 'g' and 'r' commands must be execute fist before executing any of these
+      #   commands.
+      #
+      ;;
+    "t")
+      #
+      # Terraform functions
+      #
+      # - Functions that interact with terraform -> aws account.
+      #
+      #   >>> In the works... <<<
+      ;;
+    "c")
+      #
+      # Cluster functions
+      #
+      # - Functions that executes commands to interact with the cluster using
+      #   directly. Some commands are: kubectl eksctl, argo, argocd, etc.
+      #
+      # NOTE:
+      #   - Some 'g' 'r' `hc` commands must be executed first,
+      #     for example:
+      #       - ensure that cluster exist in cluster.yaml.
+      #       - './snitzsh/helm-charts/<repository>/<[helm-chart]>/<[region_name]>/<[cluster_name]>'
+      #         exits.
+      #       - chart is updated.
+      #       - chart is linted.
+      #       - etc.
+      #
       ;;
     *)
       proceed="false"

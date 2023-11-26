@@ -3,7 +3,9 @@ regions:
     clusters:
       dev:
         active: true
-        account: null
+        account: "2464-6891-1511"
+        profile: "k8s-admin"
+        region: "us-east-1"
         cloud: aws
         helm_charts: # Do NOT edit manually. User boilerplace to update .helm_charts value.
           dependencies:

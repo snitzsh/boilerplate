@@ -24,6 +24,57 @@ utilQueryClustersYaml () {
   local -r args=("$@")
   local -r query_name="${args[0]}"
   case "${query_name}" in
+    "read-{region_name}-{cluster_name}-helm-charts-{dependency_name}-object")
+      local -r region_name="${args[1]}"
+      local -r cluster_name="${args[2]}"
+      local -r dependency_name="${args[3]}"
+      local -r dependency_obj=$( \
+        # shellcheck disable=SC2016
+        _region_name="${region_name}" \
+        _cluster_name="${cluster_name}" \
+        _dependency_name="${dependency_name}" \
+        _chart_name="${chart_name}" \
+        yq '
+          env(_region_name) as $region_name
+          | env(_cluster_name) as $cluster_name
+          | env(_dependency_name) as $dependency_name
+          | env(_chart_name) as $chart_name
+          | .regions[$region_name]
+          | .clusters[$cluster_name].helm_charts
+          | .dependencies[]
+          | select(.name == $dependency_name)
+          | .
+        ' "${clusters_path}" \
+      )
+      echo "${dependency_obj}"
+      ;;
+    "read-{region_name}-{cluster_name}-helm-charts-{dependency_name}-{chart_name}-object")
+      local -r region_name="${args[1]}"
+      local -r cluster_name="${args[2]}"
+      local -r dependency_name="${args[3]}"
+      local -r chart_name="${args[4]}"
+      local -r chart_obj=$( \
+        # shellcheck disable=SC2016
+        _region_name="${region_name}" \
+        _cluster_name="${cluster_name}" \
+        _dependency_name="${dependency_name}" \
+        _chart_name="${chart_name}" \
+        yq '
+          env(_region_name) as $region_name
+          | env(_cluster_name) as $cluster_name
+          | env(_dependency_name) as $dependency_name
+          | env(_chart_name) as $chart_name
+          | .regions[$region_name]
+          | .clusters[$cluster_name].helm_charts
+          | .dependencies[]
+          | select(.name == $dependency_name)
+          | .charts[]
+          | select(.name == $chart_name)
+          | .
+        ' "${clusters_path}" \
+      )
+      echo "${chart_obj}"
+      ;;
     # Get regions name
     # NOTE:
     #   - return names ONLY if a region has data and clusters data.

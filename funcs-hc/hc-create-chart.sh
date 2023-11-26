@@ -66,6 +66,14 @@ funcHelmChartPostChart () {
     )
     utilGitter "${args_2[@]}"
   else
+
+    rm -rf './versions/versions'
+    local -a args_2=( \
+      "${func_name}" \
+      "Delete ${dependency_name}/${chart_name}/${region_name}/${cluster_name} helm chart versions/versions duplicate folder." \
+    )
+    utilGitter "${args_2[@]}"
+
     logger "INFO" "helm chart '${chart_name}' already exist for dependency: '${dependency_name}' in '${region_name}/${cluster_name}/' directory." "${func_name}"
   fi
 }
