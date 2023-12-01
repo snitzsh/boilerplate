@@ -139,19 +139,18 @@ funcHelmChartUpdateVersionsFolder () {
         fi
       done
 
-      # TODO: add rm command. or mabye on the if-statement above.
+      # TODO: add rm command. or mabye on the if-statement above. This will preven duplicate files.
       for version_to_remove in "${versions_to_remove[@]}"; do
         echo "Remove: ${version_to_remove}"
       done
 
       local last_release="${releases[${#releases[@]}-1]}"
 
+      rm -rf ./versions/"${sub_folder}"/*
+      sleep 1
+
       for release in "${releases[@]}"; do
         # To be safe... to always have the diff of current version and newer versions.
-        if [ "${sub_folder}" == "diff-current-to-per-newer-version-values" ] && [ "${current_version}" != "${release}" ]; then
-          # It may fail when excuting this cmd for the first time.
-          rm "./versions/${sub_folder}/${chart_name}-${release}.yaml"
-        fi
         # If exist, it will skips.
         if ls ./versions/"${sub_folder}"/"${chart_name}-${release}"* 1> /dev/null 2>&1; then
           continue
@@ -163,11 +162,7 @@ funcHelmChartUpdateVersionsFolder () {
         if [ "${sub_folder}" == "diff-current-to-latest-version-values" ] && [ "${release}" != "${last_release}" ]; then
           continue
         fi
-        # Only will match current and last-release
-        if [ "${sub_folder}" == "diff-current-to-latest-version-values" ] && [ "${release}" == "${last_release}" ]; then
-          # It may fail when excuting this cmd for the first time.
-          rm "./versions/${sub_folder}/${chart_name}-${release}.yaml"
-        fi
+
         (
           cd ./versions/"${sub_folder}" &&
           local log_msg=""
@@ -177,11 +172,13 @@ funcHelmChartUpdateVersionsFolder () {
               logger "INFO" "${log_msg}" "${func_name}"
               helm pull "${dependency_name}/${chart_name}" \
                 --version "${release}"
+              sleep 1
               ;;
             "values")
               log_msg="Getting ${dependency_name}/${chart_name}/${region_name}/${cluster_name} helm-chart's '${sub_folder}' @ '${release}'."
               logger "INFO" "${log_msg}" "${func_name}"
               helm show values "../tgzs/${chart_name}-${release}.tgz" > "${chart_name}-${release}.yaml"
+              sleep 1
               ;;
             # Make sure to sync the diff when updating from .version
             # otherwise it will contain the differances of the old version and release.
@@ -194,6 +191,7 @@ funcHelmChartUpdateVersionsFolder () {
                   --unified=0 \
                   "../values/${chart_name}-${current_version}.yaml" "../values/${chart_name}-${release}.yaml" \
                     > "${chart_name}-${release}.yaml"
+              sleep 1
               ;;
             *)
               ;;

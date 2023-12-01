@@ -17,11 +17,17 @@
 # RETURN:
 #   - null
 #
-clusterGetKubeconfig () {
+clusterReadKubeconfig () {
+  local -r func_name="${FUNCNAME[0]}"
+  local -ar args=("$@")
+  # Region Name is not the region of aws!
+  local -r region_name="${args[0]}"
+  local -r cluster_name="${args[1]}"
+
   eksctl \
     utils \
       write-kubeconfig \
-        --cluster dev \
         --region us-east-1 \
+        --cluster "${cluster_name}" \
         --profile k8s-admin
 }
