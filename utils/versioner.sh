@@ -153,10 +153,17 @@ utilVersionerCompareVersions () {
           if ($a_version_major > $b_version_major) then
             .output |= true
           else
-            if ($a_version_minor > $b_version_minor) then
+            if (
+              ($a_version_major == $b_version_major) and
+              ($a_version_minor > $b_version_minor)
+            ) then
               .output |= true
             else
-              if ($a_version_patch > $b_version_patch) then
+              if (
+                ($a_version_major == $b_version_major) and
+                ($a_version_minor == $b_version_minor) and
+                ($a_version_patch > $b_version_patch)
+              ) then
                 .output |= true
               end
             end
@@ -165,10 +172,17 @@ utilVersionerCompareVersions () {
           if ($a_version_major < $b_version_major) then
             .output |= true
           else
-            if ($a_version_minor < $b_version_minor) then
+            if (
+              ($a_version_major == $b_version_major) and
+              ($a_version_minor < $b_version_minor)
+            ) then
               .output |= true
             else
-              if ($a_version_patch < $b_version_patch) then
+              if (
+                ($a_version_major == $b_version_major) and
+                ($a_version_minor == $b_version_minor) and
+                ($a_version_patch < $b_version_patch)
+              ) then
                 .output |= true
               end
             end

@@ -271,6 +271,9 @@ utilQueryClustersYaml () {
     #     empty, it puts the comment before `[]`, causing yq to fail with
     #     error. Find out how to fix it where we can add a comment after the
     #     bracket.
+    # NOTE
+    #   - `releases` arg is stringified. should never be passed as empty string.
+    #     Other functions should send null.
     "put-{region_name}-{cluster_name}-{dependency_name}-{chart_name}-to-latest-version")
       local -r region_name="${args[1]}"
       local -r cluster_name="${args[2]}"
@@ -295,6 +298,7 @@ utilQueryClustersYaml () {
         '
           env(_region_name) as $_region_name
           | env(_cluster_name) as $_cluster_name
+          | (env(_releases) | type) as $_releases_type
           | .regions[$_region_name]
           | .clusters[$_cluster_name]
           | .helm_charts
@@ -304,11 +308,22 @@ utilQueryClustersYaml () {
           | select(.name == env(_chart_name))
           | .latest_version |= env(_latest_version)
           | .latest_version line_comment="DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version."
-          | .releases |= env(_releases)
+          | with(select($_releases_type == "!!str");
+              .releases = (env(_releases) | split(" ") | reverse)
+            )
+          | with(select($_releases_type == "!!null");
+              .releases = []
+            )
           | .is_up_to_date |= env(_is_up_to_date)
           | .is_up_to_date line_comment="DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value."
           | .
         ' "${clusters_path}"
+          # | .releases = env(_releases) == null
+        # | with(env(_releases) == null;
+        #   )
+        #   | with(env(_releases) != null;
+        #     .releases = (env(_releases) | split(" "))
+        #   )
       ;;
     # TODO:
     #   - Consider creating a function since functions doesn't return an output.

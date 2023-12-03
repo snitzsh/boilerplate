@@ -10,7 +10,7 @@ source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 #   - null
 #
 # NOTE:
-#   - null
+#   - Gets kubeconfig from aws eks.
 #
 # DESCRIPTION:
 #   - null
