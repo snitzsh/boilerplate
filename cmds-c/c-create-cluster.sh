@@ -10,7 +10,9 @@ source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 #   - null
 #
 # NOTE:
-#   - null
+#   - Excution ex:
+#     bash main.sh c-create-cluster minikubes north-america dev
+#     bash main.sh c-create-cluster aws north-america dev
 #
 # DESCRIPTION:
 #   - null
@@ -22,7 +24,8 @@ source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 #   - null
 #
 main () {
-  utilLooperClusters "create-cluster"
+  local -ar args=("$@")
+  utilLooperClusters "${args[@]}"
 }
 
-main
+main "$@"

@@ -43,3 +43,9 @@ bash main.sh patch-helm-chart-repos-chart-yaml-file.sh
     * execute command: `bash main.sh hc-create-chart`
     * execute command: `bash main.sh hc-update-helmignore-file`
     * execute command: `bash main.sh r-update-gitignore-file`
+
+
+### ARGO CD get set up ssh key (only for local deployment)
+- create folder base on the cluster.yaml: ~/.ssh/snitzsh/north-america/dev/argo/argo-cd
+- Create an ssh-key in github.
+- paste it in the file (script with fetch it.)

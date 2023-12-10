@@ -91,9 +91,29 @@ export PLATFORM_HELM_CHART_DEPENDENCIES_YAML
 #
 main () {
   local -r func_name="${FUNCNAME[0]}"
-  local -r command_name="${1}"
+  local -r args=("$@")
+  local -r command_name="${args[0]}"
   local starts_with=""
   local proceed="true"
+
+  # # Removes the first argument.
+  # local -a cmd_args=()
+  # while IFS= read -r cmd_arg; do
+  #   cmd_args+=("${cmd_arg}")
+  # done < <( \
+  #   # shellcheck disable=SC2016
+  #   _args="${args[*]}" \
+  #   yq \
+  #     -nr \
+  #     '
+  #       env(_args) as $_args
+  #       | $_args
+  #       | . | split(" ")
+  #       | del(.[0])
+  #       | .[]
+  #     '
+  # )
+  # Gets the first character.
   starts_with=$(\
     jq \
       -n \
@@ -175,7 +195,7 @@ main () {
     exit 1
   fi
 
-  bash "cmds-${starts_with}/${1}.sh"
+  bash "cmds-${starts_with}/${1}.sh" "${args[@]}"
 }
 
-main "${1}"
+main "$@"

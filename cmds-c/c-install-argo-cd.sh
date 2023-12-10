@@ -22,7 +22,8 @@ source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 #   - null
 #
 main () {
-  utilLooperClusters "install-argo-cd"
+  local -ar args=("$@")
+  utilLooperClusters "${args[@]}"
 }
 
-main
+main "$@"
