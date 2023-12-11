@@ -4,7 +4,7 @@
 # - Save in secrets.
 #   - Repo/project
 #
-export GITHUB_API_TOKEN="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"
+export GITHUB_API_TOKEN=""
 #
 # TODO:
 # - Save in secrets.
@@ -96,23 +96,6 @@ main () {
   local starts_with=""
   local proceed="true"
 
-  # # Removes the first argument.
-  # local -a cmd_args=()
-  # while IFS= read -r cmd_arg; do
-  #   cmd_args+=("${cmd_arg}")
-  # done < <( \
-  #   # shellcheck disable=SC2016
-  #   _args="${args[*]}" \
-  #   yq \
-  #     -nr \
-  #     '
-  #       env(_args) as $_args
-  #       | $_args
-  #       | . | split(" ")
-  #       | del(.[0])
-  #       | .[]
-  #     '
-  # )
   # Gets the first character.
   starts_with=$(\
     jq \

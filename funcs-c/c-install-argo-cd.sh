@@ -86,7 +86,6 @@ clusterInstallArgoCD () {
             .
           ' \
   )
-
   # shellcheck disable=SC2016
   # _chart_name="${chart_name}" \
   # _argo_cd_repositories="${argo_cd_repositories}" \
