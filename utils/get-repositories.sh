@@ -3,10 +3,15 @@
 
 #
 # TODO:
-#   - null
+#   - Add ARGS.
+#   - Maybe output a log if api resturn 0 data.
+#   - Findout if api request returns error if token is invalid.
+#   - Only cache the useful data, currently all info is cached most of it
+#     useless for this purpose.
 #
 # NOTE:
-#   - null
+#   - It caches the response to save API request allowed by
+#     Github per-day/per-minute.
 #
 # DESCRIPTION:
 #   - makes a curl request to get all the repos, places them in `../.cache`
@@ -33,13 +38,14 @@ utilGetRepositories () {
         --arg current_timestamp "${utc_timestamp}" \
         --arg trottle_interval "${GITHUB_API_THROTTLE_INTEVAL}" \
         '
-          (($current_timestamp | tonumber) - .timestamp) > ($trottle_interval | tonumber)
+          (($current_timestamp | tonumber) - .timestamp) > ($trottle_interval | tonumber) as $allow_api_request
+          | $allow_api_request
         ' "${file_name}" \
     )
   else
     allow_api_request="true"
   fi
-  echo "${GITHUB_API_TOKEN}"
+
   if [ "${allow_api_request}" == true ]; then
     curl \
       --silent \

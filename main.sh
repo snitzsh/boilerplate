@@ -4,7 +4,7 @@
 # - Save in secrets.
 #   - Repo/project
 #
-export GITHUB_API_TOKEN=""
+export GITHUB_API_TOKEN="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"
 #
 # TODO:
 # - Save in secrets.

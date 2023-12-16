@@ -25,6 +25,20 @@ bash main.sh create-helm-chart-in-exisiting-dependencies.sh
 bash main.sh patch-helm-chart-repos-chart-yaml-file.sh
 ```
 
+### Set up Github API key (Beta)
+```bash
+# On snitzsh github account do the following:
+# - Visit Link: "https://github.com/settings/tokens?type=beta"
+# - Click [Create New Token] button
+# - Fill the form with the following values:
+#   - Name: "boilerplate-repository"
+#   - Expire: "30 Days"
+#   - Description: "This key only gives read-only permission to all repositories: public and private.""
+#   - Repository access: "All repositories"
+#   - Permissions: "Contents" -> Read-Only
+#   - Click [Create]
+#   - Copy the token and pasted it as the value for "GITHUB_API_TOKEN" variable located in ""./main.sh".
+```
 
 ### Steps to add a new helm-chart
 - 1) Create a repository in `snitzsh` account
