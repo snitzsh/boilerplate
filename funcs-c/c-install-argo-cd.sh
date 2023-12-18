@@ -3,10 +3,16 @@
 
 #
 # TODO:
-#   - null
+#   - findout if adding repo with project can be access by other projects.
+#     else make sure the repos are global and only let the AppProject handle
+#     which project has access to what repos.
 #
 # NOTE:
-#   - null
+#   - when accessing argo web, you must click [refresh] so the repos connect.
+#     there is a issue when applying the values, it shows in the
+#     web that repos are not connect.
+#   - Useful commands:
+#       - helm -n argo-cd template . -s templates/app-project.yaml
 #
 # DESCRIPTION:
 #   - null
@@ -58,7 +64,19 @@ clusterInstallArgoCD () {
   cert=$(
     cat ~/.ssh/snitzsh/"${region_name}"/"${cluster_name}"/"${dependency_name}"/"${chart_name}"
   )
-  # TODO: Find out which type are supported in argo
+  # TODO:
+  #   - Find out which '.type' are supported in argo
+  #   - Find out if `.project` can be pass in the object
+  #   - Create a project based on the name of the 'cluster name'
+  #   - instead of using the same cred for each repo, do this: https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repository-credentials
+  #   - depricate how it adds creds to all repos, instead
+  #     create '.ssh-cred' if doesn't exist.
+  #     pass dynamically the '.ssh-cred.url' value.
+  # NOTE:
+  #   - No need to add .type in `argo-cd.config.repositories`
+  # "type": "helm",
+  # "project": "default"
+                  # "sshPrivateKey": $cert
   argo_cd_repositories=$(\
     jq \
       -nr \
@@ -73,9 +91,7 @@ clusterInstallArgoCD () {
             | ("helm-chart-" + .) as $repository_posfix
             | {
                   "url": ("git@github.com:snitzsh/" + $repository_posfix  + ".git"),
-                  "type": "helm",
-                  "name": $repository_posfix,
-                  "sshPrivateKey": $cert
+                  "name": $repository_posfix
               }
           )
         ]
@@ -86,135 +102,85 @@ clusterInstallArgoCD () {
             .
           ' \
   )
+  # TODO:
+  #   - for non-helm repos, instead to using type: helm, use type: git.
   # shellcheck disable=SC2016
-  # _chart_name="${chart_name}" \
-  # _argo_cd_repositories="${argo_cd_repositories}" \
-  # yq \
-  #   -ri \
-  #   '
-  #     . as $init
-  #     | env(_chart_name) as $_chart_name
-  #     | env(_argo_cd_repositories) as $_argo_cd_repositories
-  #     | with(.[$_chart_name].configs.repositories;
-  #         .[$_argo_cd_repositories[].name] = {}
-  #       )
-  #     | .[$_chart_name].configs.repositories as $repositories_obj
-  #     | $_argo_cd_repositories[]
-  #     | $repositories_obj[.name] = .
-  #     | $init[$_chart_name].configs.repositories = $repositories_obj
-  #     | $init
-  #   ' 'values.yaml'
-      # | .[].name
-      # | $r_type
+  _chart_name="${chart_name}" \
+  _argo_cd_repositories="${argo_cd_repositories}" \
+  yq \
+    -ri \
+    '
+      . as $init
+      | env(_chart_name) as $_chart_name
+      | env(_argo_cd_repositories) as $_argo_cd_repositories
+      | with(.[$_chart_name].configs.repositories;
+          .[$_argo_cd_repositories[].name] = {}
+        )
+      | .[$_chart_name].configs.repositories as $repositories_obj
+      | $_argo_cd_repositories[]
+      | $repositories_obj[.name] = .
+      | $init[$_chart_name].configs.repositories = $repositories_obj
+      | $init
+    ' 'values.yaml'
 
-  # helm \
-  #   install \
-  #   argo-cd argo/argo-cd \
-  #   --namespace "${chart_name}" \
-  #   --create-namespace \
-  #   --version "5.46.6"
-  # helm template .
+  # TODO:
+  #   - find a way to pass the .namespace from the object because it ensure
+  #     we apply the argo-cd in the proper namespace, even if its in the
+  #     default. Currenlty is using the $chart_name
+  local argo_cd_installed
+  argo_cd_installed=$( \
+    # shellcheck disable=SC2016
+    helm \
+      -n "${chart_name}" \
+        list \
+          -o yaml \
+          | \
+            _chart_name="${chart_name}" \
+            yq \
+              '
+                env(_chart_name) as $_chart_name
+                | (select(.[].name == $_chart_name)) as $arr
+                | $arr != null
+              ' \
+  )
 
-  # helm \
-  #   install \
-  #   argo-cd \
-  #   . \
-  #   --namespace "${chart_name}" \
-  #   --create-namespace
+  if [ "${argo_cd_installed}" == "false" ]; then
+    # Installs the chart of helm-repo, using the repository values
+    # helm \
+    #   install \
+    #   argo-cd argo/argo-cd \
+    #   -f ./values.yaml \
+    #   --namespace "${chart_name}" \
+    #   --create-namespace \
+    #   --version "5.51.6"
 
-  helm \
-    --namespace "${chart_name}" \
-    upgrade \
-    argo-cd \
-    . \
-  # kubectl -n argo-cd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+    helm dependency build
+    # Install the chart of the repository, using the repository values.
+    helm \
+      install \
+      argo-cd \
+      . \
+      --namespace "${chart_name}" \
+      --create-namespace
+  else
+    helm \
+      --namespace "${chart_name}" \
+      upgrade \
+      argo-cd \
+      -f values.yaml \
+      .
+  fi
+  # TODO:
+  #   - this one fails because it doesn't initial installation is not
+  #     synchronous so when this executes the password is not yet created.
+  #
+  local argo_cd_password
+  argo_cd_password=$(\
+    kubectl \
+      -n "${chart_name}" \
+        get secret argocd-initial-admin-secret \
+          -o jsonpath="{.data.password}" \
+          | base64 -d
+  )
+  echo "ArgoCd: Password: ${argo_cd_password}"
 }
-
-# # Default values for argo-cd.
-# # This is a YAML-formatted file.
-# # Declare variables to be passed into your templates.
-
-# replicaCount: 1
-# image:
-#   repository: nginx
-#   pullPolicy: IfNotPresent
-#   # Overrides the image tag whose default is the chart appVersion.
-#   tag: ""
-# imagePullSecrets: []
-# nameOverride: ""
-# fullnameOverride: ""
-# serviceAccount:
-#   # Specifies whether a service account should be created
-#   create: true
-#   # Automatically mount a ServiceAccount's API credentials?
-#   automount: true
-#   # Annotations to add to the service account
-#   annotations: {}
-#   # The name of the service account to use.
-#   # If not set and create is true, a name is generated using the fullname template
-#   name: ""
-# podAnnotations: {}
-# podLabels: {}
-# podSecurityContext: {}
-# # fsGroup: 2000
-
-# securityContext: {}
-# # capabilities:
-# #   drop:
-# #   - ALL
-# # readOnlyRootFilesystem: true
-# # runAsNonRoot: true
-# # runAsUser: 1000
-
-# service:
-#   type: ClusterIP
-#   port: 80
-# ingress:
-#   enabled: false
-#   className: ""
-#   annotations: {}
-#   # kubernetes.io/ingress.class: nginx
-#   # kubernetes.io/tls-acme: "true"
-#   hosts:
-#     - host: chart-example.local
-#       paths:
-#         - path: /
-#           pathType: ImplementationSpecific
-#   tls: []
-#   #  - secretName: chart-example-tls
-#   #    hosts:
-#   #      - chart-example.local
-# resources: {}
-# # We usually recommend not to specify default resources and to leave this as a conscious
-# # choice for the user. This also increases chances charts run on environments with little
-# # resources, such as Minikube. If you do want to specify resources, uncomment the following
-# # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-# # limits:
-# #   cpu: 100m
-# #   memory: 128Mi
-# # requests:
-# #   cpu: 100m
-# #   memory: 128Mi
-
-# autoscaling:
-#   enabled: false
-#   minReplicas: 1
-#   maxReplicas: 100
-#   targetCPUUtilizationPercentage: 80
-#   # targetMemoryUtilizationPercentage: 80
-# # Additional volumes on the output Deployment definition.
-# volumes: []
-# # - name: foo
-# #   secret:
-# #     secretName: mysecret
-# #     optional: false
-
-# # Additional volumeMounts on the output Deployment definition.
-# volumeMounts: []
-# # - name: foo
-# #   mountPath: "/etc/foo"
-# #   readOnly: true
-
-# nodeSelector: {}
-# tolerations: []
-# affinity: {}
