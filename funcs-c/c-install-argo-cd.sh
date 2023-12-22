@@ -60,9 +60,11 @@ clusterInstallArgoCD () {
 
   # echo "${repository_names[@]}"
   local argo_cd_repositories=""
+  # TODO:
+  #   - findout how the cert was created and make it as automated as possible.
   local cert=""
   cert=$(
-    cat ~/.ssh/snitzsh/"${region_name}"/"${cluster_name}"/"${dependency_name}"/"${chart_name}"
+    cat ~/.ssh/"${PLATFORM}"/"${region_name}"/"${cluster_name}"/"${dependency_name}"/"${chart_name}"
   )
   # TODO:
   #   - Find out which '.type' are supported in argo
@@ -80,6 +82,7 @@ clusterInstallArgoCD () {
   argo_cd_repositories=$(\
     jq \
       -nr \
+      --arg ssh_repository_endpoint "${SSH_REPOSITORY_ENDPOINT}" \
       --arg repository_names "${repository_names[*]}" \
       --arg cert "${cert}" \
       '
@@ -88,10 +91,10 @@ clusterInstallArgoCD () {
             ($repository_names | split (" ")) as $repository_names_arr
             | $repository_names_arr
             | .[]
-            | ("helm-chart-" + .) as $repository_posfix
+            | ("helm-chart-" + .) as $repository_name
             | {
-                  "url": ("git@github.com:snitzsh/" + $repository_posfix  + ".git"),
-                  "name": $repository_posfix
+                  "url": ($ssh_repository_endpoint + "/" + $repository_name  + ".git"),
+                  "name": $repository_name
               }
           )
         ]
@@ -104,6 +107,7 @@ clusterInstallArgoCD () {
   )
   # TODO:
   #   - for non-helm repos, instead to using type: helm, use type: git.
+  #     findout if we even need it.
   # shellcheck disable=SC2016
   _chart_name="${chart_name}" \
   _argo_cd_repositories="${argo_cd_repositories}" \
@@ -122,6 +126,17 @@ clusterInstallArgoCD () {
       | $init[$_chart_name].configs.repositories = $repositories_obj
       | $init
     ' 'values.yaml'
+  sleep 1
+
+  # shellcheck disable=SC2016
+  _chart_name="${chart_name}" \
+  yq \
+    -r \
+    '
+      .
+    ' 'values.yaml'
+
+
 
   # TODO:
   #   - find a way to pass the .namespace from the object because it ensure
@@ -145,7 +160,9 @@ clusterInstallArgoCD () {
   )
 
   if [ "${argo_cd_installed}" == "false" ]; then
-    # Installs the chart of helm-repo, using the repository values
+    # NOTE:
+    #   - Installs the chart from `helm` repository list, using the our
+    #     repository values.
     # helm \
     #   install \
     #   argo-cd argo/argo-cd \
@@ -155,7 +172,8 @@ clusterInstallArgoCD () {
     #   --version "5.51.6"
 
     helm dependency build
-    # Install the chart of the repository, using the repository values.
+    # NOTE:
+    #  - Install the chart of the repository, using the repository values.
     helm \
       install \
       argo-cd \
@@ -174,6 +192,8 @@ clusterInstallArgoCD () {
   #   - this one fails because it doesn't initial installation is not
   #     synchronous so when this executes the password is not yet created.
   #
+  #   - Add this command as part of notes in chart, create a command to handle
+  #     this.
   local argo_cd_password
   argo_cd_password=$(\
     kubectl \
@@ -182,5 +202,5 @@ clusterInstallArgoCD () {
           -o jsonpath="{.data.password}" \
           | base64 -d
   )
-  echo "ArgoCd: Password: ${argo_cd_password}"
+  echo "ArgoCD: Password: ${argo_cd_password}"
 }

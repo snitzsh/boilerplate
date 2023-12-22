@@ -23,7 +23,7 @@
 #
 utilGetHelmChartDependecies () {
   local -a arr=()
-  local -r helm_chart_dependencies_path="${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml"
+  local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/helm-chart-dependencies.yaml"
   while IFS='' read -r line; do arr+=("$line"); done < <(
     # yq doesn't have an easy way to return a bash array. So using jq is the
     # easiest way.
@@ -59,7 +59,7 @@ utilGetHelmChartDependecies () {
 #
 #
 utilGetHelmChartDependency () {
-  local -r helm_chart_dependencies_path="${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml"
+  local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/helm-chart-dependencies.yaml"
   local -r dependency_name="${1}"
   local -r chart_name="${2}"
   local dependency=""
@@ -100,7 +100,7 @@ utilGetHelmChartDependency () {
 #   - null
 #
 utilQueryHelmChartDependenciesFile () {
-  local -r helm_chart_dependencies_path="${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml"
+  local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/helm-chart-dependencies.yaml"
   local -r query_name="${1}"
 
   case "${query_name}" in
@@ -184,7 +184,7 @@ utilQueryHelmChartDependenciesFileObjGET () {
 #   - null
 #
 utilQueryHelmChartDependenciesFileGET () {
-  local -r helm_chart_dependencies_path="${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml"
+  local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/helm-chart-dependencies.yaml"
   local -ar args=("$@")
   local -r query_name="${args[0]}"
   case "${query_name}" in
@@ -231,7 +231,7 @@ utilQueryHelmChartDependenciesFileGET () {
 #   - null
 #
 utilQueryHelmChartDependenciesFilePUT () {
-  local -r helm_chart_dependencies_path="${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml"
+  local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/helm-chart-dependencies.yaml"
   local -ar args=("$@")
   local -r query_name="${args[0]}"
 

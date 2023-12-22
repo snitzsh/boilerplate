@@ -17,8 +17,8 @@
 #   - null
 #
 utilSourceUtils () {
-  for util in "${SNITZSH_PATH}"/boilerplate/utils/*; do
-    if [ "${util}" == "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh" ]; then
+  for util in "${PLATFORM_PATH}"/boilerplate/utils/*; do
+    if [ "${util}" == "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh" ]; then
       continue
     fi
     source "${util}"

@@ -70,8 +70,8 @@ clusterCreate () {
       else
         logger "WARN" "Cluster '${profile}' already exist. Execute: 'minikube profile list' in the cli." "${func_name}"
       fi
-      # echo "${SNITZSH_PATH}/boilerplate/main.sh"
-      bash "${SNITZSH_PATH}/boilerplate/main.sh" c-install-argo-cd "${cluster_type}" "${region_name}" "${cluster_name}"
+      # echo "${PLATFORM_PATH}/boilerplate/main.sh"
+      bash "${PLATFORM_PATH}/boilerplate/main.sh" c-install-argo-cd "${cluster_type}" "${region_name}" "${cluster_name}"
       # minikube profile list
       # minikube stop --profile north-america.dev
       # minikube start --profile north-america.dev # for re-starting an existing cluster.

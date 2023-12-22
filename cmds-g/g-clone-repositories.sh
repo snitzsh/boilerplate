@@ -16,8 +16,8 @@
 #
 # ------------------------------------------------------------------------------
 
-source "${SNITZSH_PATH}/boilerplate/funcs-r/source-funcs.sh"
-source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
+source "${PLATFORM_PATH}/boilerplate/funcs-r/source-funcs.sh"
+source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 
 #
 # TODO:
@@ -38,7 +38,7 @@ source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
 cloneRepositories() {
   local -r func_name="${FUNCNAME[0]}"
   local -r endpoint="user/repos"
-  local -r file_name="${SNITZSH_PATH}/boilerplate/.cache/$(echo "${endpoint}" | tr '/' '-').json"
+  local -r file_name="${PLATFORM_PATH}/boilerplate/.cache/$(echo "${endpoint}" | tr '/' '-').json"
   local -a repositories=()
   local -a helm_chart_dependencies=()
   local -r prefix_one="helm-chart"
@@ -63,7 +63,7 @@ cloneRepositories() {
       local dependency_name=""
       local chart_name=""
       local found="false"
-      repository_dir="${SNITZSH_PATH}/${prefix_one}s"
+      repository_dir="${PLATFORM_PATH}/${prefix_one}s"
       for dependency in "${helm_chart_dependencies[@]}"; do
         chart_name=$(echo "${dependency}" | yq -r 'split("|") | .[1]')
         if [[ "${repository}" == *"${chart_name}" ]]; then
@@ -84,7 +84,7 @@ cloneRepositories() {
           if git -C "${dependency_folder_name}" \
               clone \
                 --quiet \
-                "git@github.com:snitzsh/${repository}.git" "${repository_nickname}" > /dev/null; then
+                "${SSH_REPOSITORY_ENDPOINT}/${repository}.git" "${repository_nickname}" > /dev/null; then
             # Fetch
             ( \
               cd "${chart_name_folder_name}" \
@@ -100,11 +100,11 @@ cloneRepositories() {
           logger "WARN" "Repository already exist in path: ${chart_name_folder_name}." "${func_name}"
         fi
       else
-        logger "ERROR" "Repository '${repository}' is not found in '${SNITZSH_PATH}/boilerplate/helm-chart-dependencies.yaml' file." "${func_name}"
+        logger "ERROR" "Repository '${repository}' is not found in '${PLATFORM_PATH}/boilerplate/helm-chart-dependencies.yaml' file." "${func_name}"
       fi
     # APP Repos
     elif [[ "${repository}" == "${prefix_two}-"* ]]; then
-      local repository_dir="${SNITZSH_PATH}/${prefix_two}s"
+      local repository_dir="${PLATFORM_PATH}/${prefix_two}s"
       if [ ! -d "${repository_dir}/${dependency_name}/${repository_nickname}" ]; then
         logger "INFO" "Cloning repository ${repository}..." "${func_name}"
       fi

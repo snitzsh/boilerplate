@@ -4,6 +4,12 @@
 # - Save in secrets.
 #   - Repo/project
 #
+export PLATFORM="snitzsh"
+#
+# TODO:
+# - Save in secrets.
+#   - Repo/project
+#
 export GITHUB_API_TOKEN="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"
 #
 # TODO:
@@ -17,12 +23,17 @@ export GITHUB_API_THROTTLE_INTEVAL=30000 # in seconds
 export GITHUB_DOMAIN="https://api.github.com"
 #
 # TODO:
+# - Save in secrets.
+#
+export SSH_REPOSITORY_ENDPOINT="git@github.com:snitzsh"
+#
+# TODO:
 #   - Save in secrets.
 #
 # NOTE:
 #   - Gets the parent directory: ../../../snitzh, not ../../../snitzh/boilerplate
 #
-export SNITZSH_PATH=${PWD%/*}
+export PLATFORM_PATH=${PWD%/*}
 #
 # TODO:
 #   - null
@@ -53,7 +64,7 @@ export PLATFORM_REGEX_ONLY_NUMBERS="^[0-9]*$"
 #   - set as global to prevent getting the same file data in each funcs/utils
 #
 PLATFORM_USERS=$( \
-  yq '.' "$SNITZSH_PATH/boilerplate/users.yaml" \
+  yq '.' "$PLATFORM_PATH/boilerplate/users.yaml" \
 )
 export PLATFORM_USERS
 #
@@ -61,7 +72,7 @@ export PLATFORM_USERS
 #   - set as global to prevent getting the same file data in each funcs/utils
 #
 PLATFORM_CLUSTERS_YAML=$( \
-  yq '.' "$SNITZSH_PATH/boilerplate/clusters.yaml" \
+  yq '.' "$PLATFORM_PATH/boilerplate/clusters.yaml" \
 )
 export PLATFORM_CLUSTERS_YAML
 #
@@ -69,7 +80,7 @@ export PLATFORM_CLUSTERS_YAML
 #   - set as global to prevent getting the same file data in each funcs/utils
 #
 PLATFORM_HELM_CHART_DEPENDENCIES_YAML=$( \
-  yq '.' "$SNITZSH_PATH/boilerplate/helm-chart-dependencies.yaml" \
+  yq '.' "$PLATFORM_PATH/boilerplate/helm-chart-dependencies.yaml" \
 )
 export PLATFORM_HELM_CHART_DEPENDENCIES_YAML
 
@@ -121,7 +132,7 @@ main () {
       #
       # Repository functions
       #
-      # - Functions that interacts with './snitzsh/helm-charts/<repository>'
+      # - Functions that interacts with './$PLATFORM/helm-charts/<repository>'
       #   files.
       #
       # NOTE:
@@ -134,7 +145,7 @@ main () {
       # Repository helm-chart functions
       #
       # - Functions that intereact with
-      #   './snitzsh/helm-charts/<repository>/<[helm-chart]>/<[region_name]>/<[cluster_name]>'
+      #   './$PLATFORM/helm-charts/<repository>/<[helm-chart]>/<[region_name]>/<[cluster_name]>'
       #   files.
       #
       # NOTE:
@@ -161,7 +172,7 @@ main () {
       #   - Some 'g' 'r' `hc` commands must be executed first,
       #     for example:
       #       - ensure that cluster exist in cluster.yaml.
-      #       - './snitzsh/helm-charts/<repository>/<[helm-chart]>/<[region_name]>/<[cluster_name]>'
+      #       - './$PLATFORM/helm-charts/<repository>/<[helm-chart]>/<[region_name]>/<[cluster_name]>'
       #         exits.
       #       - chart is updated.
       #       - chart is linted.

@@ -23,6 +23,6 @@ utilCreateFolders () {
     "helm-charts"
   )
   for folder in "${arr[@]}"; do
-    mkdir -p "${SNITZSH_PATH}/$folder"
+    mkdir -p "${PLATFORM_PATH}/$folder"
   done
 }

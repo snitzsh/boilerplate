@@ -29,7 +29,7 @@ utilGetRepositories () {
   # local -r query_string="?per_page=1"
   local -r query_string=""
   local -r endpoint="user/repos"
-  local -r file_name="${SNITZSH_PATH}/boilerplate/.cache/$(echo "${endpoint}" | tr '/' '-').json"
+  local -r file_name="${PLATFORM_PATH}/boilerplate/.cache/$(echo "${endpoint}" | tr '/' '-').json"
   local allow_api_request="false"
 
   if [ -f "$file_name" ]; then

@@ -17,8 +17,8 @@
 #   - null
 #
 funcSourceRepositoryFuncs () {
-  for func in "${SNITZSH_PATH}"/boilerplate/funcs-r/*; do
-    if [ "${func}" == "${SNITZSH_PATH}/boilerplate/funcs-r/source-funcs.sh" ]; then
+  for func in "${PLATFORM_PATH}"/boilerplate/funcs-r/*; do
+    if [ "${func}" == "${PLATFORM_PATH}/boilerplate/funcs-r/source-funcs.sh" ]; then
       continue
     fi
     source "${func}"

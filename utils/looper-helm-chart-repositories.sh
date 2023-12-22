@@ -30,7 +30,7 @@ utilLooperHelmChartRepositories () {
   done < <(utilQueryClustersYaml "${args_1[@]}")
 
   (
-    cd "$SNITZSH_PATH/helm-charts" &&
+    cd "$PLATFORM_PATH/helm-charts" &&
     for dependency_name in *; do
       echo "${dependency_name}"
       (
@@ -112,7 +112,7 @@ utilLooperHelmChartRepositories () {
                   if [[ "${dependency_name}" == "${file_dependency_dependency_name}" ]] \
                     && [[ "${chart_name}" == "${file_dependency_chart_name}" ]] \
                     && [[ "${file_dependency_chart_lenguage}" == "helm" ]]; then
-                    # /snitzsh/helm-charts/<dependency-name>/<[chart-name]>/<[region-name]>/<[cluster-name]>/*
+                    # /$PLATFORM/helm-charts/<dependency-name>/<[chart-name]>/<[region-name]>/<[cluster-name]>/*
                     case "${query_name}" in
                       # TODO:
                       #   - currently function does nothing.

@@ -1,5 +1,5 @@
 users:
   - name: "Juan Ordaz"
-    emal: "juan.ordaz@snitzsh.com"
+    emal: "juan.ordaz@{{PLATFORM}}.com"
     team: "system administraitor"
     groups: [] # for permissions

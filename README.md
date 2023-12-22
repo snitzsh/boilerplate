@@ -27,7 +27,7 @@ bash main.sh patch-helm-chart-repos-chart-yaml-file.sh
 
 ### Set up Github API key (Beta)
 ```bash
-# On snitzsh github account do the following:
+# On ${PLATFORM} github account do the following:
 # - Visit Link: "https://github.com/settings/tokens?type=beta"
 # - Click [Create New Token] button
 # - Fill the form with the following values:
@@ -41,7 +41,7 @@ bash main.sh patch-helm-chart-repos-chart-yaml-file.sh
 ```
 
 ### Steps to add a new helm-chart
-- 1) Create a repository in `snitzsh` account
+- 1) Create a repository in `${PLATFORM}` account
 - 2) Share the repo to a user.
 - 3) crete a X-AUTH in git
   * In https://github.com/settings/tokens
@@ -60,6 +60,6 @@ bash main.sh patch-helm-chart-repos-chart-yaml-file.sh
 
 
 ### ARGO CD get set up ssh key (only for local deployment)
-- create folder base on the cluster.yaml: ~/.ssh/snitzsh/north-america/dev/argo/argo-cd
+- create folder base on the cluster.yaml: ~/.ssh/${PLATFORM}/north-america/dev/argo/argo-cd
 - Create an ssh-key in github.
 - paste it in the file (script with fetch it.)

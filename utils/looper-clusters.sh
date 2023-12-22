@@ -90,7 +90,7 @@ utilLooperClusters () {
                     "${chart_name}" \
                   )
                   (
-                    cd "${SNITZSH_PATH}/helm-charts/${dependency_name}/${chart_name}/${region_name}/${cluster_name}" &&
+                    cd "${PLATFORM_PATH}/helm-charts/${dependency_name}/${chart_name}/${region_name}/${cluster_name}" &&
                     case "${query_name}" in
                       "c-install-argo-cd")
                         clusterInstallArgoCD "${args_6[@]}"

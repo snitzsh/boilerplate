@@ -1,8 +1,8 @@
 #!/bin/bash
 # shellcheck source=/dev/null
 
-source "${SNITZSH_PATH}/boilerplate/funcs-c/source-funcs.sh"
-source "${SNITZSH_PATH}/boilerplate/utils/source-utils.sh"
+source "${PLATFORM_PATH}/boilerplate/funcs-c/source-funcs.sh"
+source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 
 
 #
