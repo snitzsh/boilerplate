@@ -119,6 +119,20 @@ utilQueryClustersYaml () {
       )
       echo "${arr[@]}"
       ;;
+    "get-{region_name}-{cluster_name}-helm-charts-dependencies")
+      local -r region_name="${args[1]}"
+      local -r cluster_name="${args[2]}"
+      # shellcheck disable=SC2016
+      _region_name="${region_name}" \
+      _cluster_name="${cluster_name}" \
+      yq \
+        '
+          .regions[env(_region_name)]
+          | .clusters[env(_cluster_name)]
+          | .helm_charts.dependencies
+          | .
+        ' "${clusters_path}"
+      ;;
     "get-{region_name}-{cluster_name}-dependencies-name")
       local -r region_name="${args[1]}"
       local -r cluster_name="${args[2]}"

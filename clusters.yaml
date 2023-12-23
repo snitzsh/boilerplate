@@ -42,6 +42,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
                 - name: argo-workflows
                   latest_version: 0.39.5
                   releases:
@@ -71,6 +72,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
             - name: cert-manager
               repository: https://charts.jetstack.io
               charts:
@@ -91,6 +93,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
             - name: cetic
               repository: https://cetic.github.io/helm-charts
               charts:
@@ -109,6 +112,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
             - name: chartmuseum
               repository: https://chartmuseum.github.io/charts
               charts:
@@ -127,6 +131,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
             - name: external-dns
               repository: https://kubernetes-sigs.github.io/external-dns/
               charts:
@@ -145,6 +150,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
             - name: external-secrets
               repository: https://charts.external-secrets.io
               charts:
@@ -167,6 +173,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
             - name: fluent
               repository: https://fluent.github.io/helm-charts
               charts:
@@ -188,6 +195,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
             - name: grafana
               repository: https://grafana.github.io/helm-charts
               charts:
@@ -225,6 +233,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
             - name: istio
               repository: https://istio-release.storage.googleapis.com/charts
               charts:
@@ -248,6 +257,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
                 - name: istiod
                   latest_version: 1.20.0
                   releases:
@@ -268,6 +278,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
                 - name: gateway
                   latest_version: 1.20.0
                   releases:
@@ -288,6 +299,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
             - name: jaegertracing
               repository: https://jaegertracing.github.io/helm-charts
               charts:
@@ -311,6 +323,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
             - name: kiali
               repository: https://kiali.org/helm-charts
               charts:
@@ -332,6 +345,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
             - name: kyverno
               repository: https://kyverno.github.io/kyverno
               charts:
@@ -359,6 +373,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
             - name: linkerd
               repository: https://helm.linkerd.io/stable
               charts:
@@ -377,6 +392,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
                 - name: linkerd-control-plane
                   latest_version: 1.16.6
                   releases:
@@ -397,6 +413,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
                 - name: linkerd2-cni
                   latest_version: 30.12.1
                   releases:
@@ -413,6 +430,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
             - name: metrics-server
               repository: https://kubernetes-sigs.github.io/metrics-server/
               charts:
@@ -431,6 +449,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
             - name: prometheus-community
               repository: https://prometheus-community.github.io/helm-charts
               charts:
@@ -458,6 +477,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
             - name: stakater
               repository: https://stakater.github.io/stakater-charts
               charts:
@@ -487,6 +507,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
             - name: vmware-tanzu
               repository: https://vmware-tanzu.github.io/helm-charts
               charts:
@@ -511,6 +532,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
             - name: knative
               repository: https://github.com/knative
               charts:
@@ -529,6 +551,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
                 - name: knative-serving
                   latest_version: null
                   releases: []
@@ -544,6 +567,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
                 - name: knative-eventing
                   latest_version: null
                   releases: []
@@ -559,6 +583,7 @@ regions:
                   language: helm
                   service: third-party
                   software_type: open-source
+                  configs_repository: ""
             - name: platform
               repository: https://chartmuseum.snitzh.com/charts
               charts:
@@ -577,6 +602,7 @@ regions:
                   language: fastify
                   service: tenant
                   software_type: proprietary
+                  configs_repository: ""
                 - name: apis-rust
                   latest_version: null
                   releases: []
@@ -592,6 +618,7 @@ regions:
                   language: rust
                   service: tenant
                   software_type: proprietary
+                  configs_repository: ""
                 - name: website-vue
                   latest_version: null
                   releases: []
@@ -607,6 +634,7 @@ regions:
                   language: vue
                   service: tenant
                   software_type: proprietary
+                  configs_repository: ""
       sit: {}
       uat: {}
       prod: {}

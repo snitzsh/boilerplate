@@ -35,6 +35,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
       - name: argo-workflows
         latest_version: 0.39.3 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
@@ -54,6 +55,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
   - name: cert-manager
     repository: https://charts.jetstack.io
     charts:
@@ -74,6 +76,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
   - name: cetic
     repository: https://cetic.github.io/helm-charts
     charts:
@@ -92,6 +95,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
   - name: chartmuseum
     repository: https://chartmuseum.github.io/charts
     charts:
@@ -111,6 +115,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
   - name: external-dns
     repository: https://kubernetes-sigs.github.io/external-dns/
     charts:
@@ -129,6 +134,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
   - name: external-secrets
     repository: https://charts.external-secrets.io
     charts:
@@ -150,6 +156,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
   - name: fluent
     repository: https://fluent.github.io/helm-charts
     charts:
@@ -171,6 +178,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
   - name: grafana
     repository: https://grafana.github.io/helm-charts
     charts:
@@ -195,6 +203,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
   - name: istio
     repository: https://istio-release.storage.googleapis.com/charts
     charts: # Charts must be install in this order
@@ -215,6 +224,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
       - name: istiod
         latest_version: 1.20.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
@@ -232,6 +242,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
       - name: gateway
         latest_version: 1.20.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
@@ -249,6 +260,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
   - name: jaegertracing
     repository: https://jaegertracing.github.io/helm-charts
     charts:
@@ -270,6 +282,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
   - name: kiali # Consumes too much cpu in minikube
     repository: https://kiali.org/helm-charts
     charts:
@@ -291,6 +304,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
   - name: kyverno
     repository: https://kyverno.github.io/kyverno
     charts:
@@ -311,6 +325,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
   - name: linkerd
     repository: https://helm.linkerd.io/stable
     charts:
@@ -330,6 +345,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
       - name: linkerd-control-plane
         latest_version: 1.16.6 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
@@ -350,6 +366,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
       - name: linkerd2-cni
         latest_version: 30.12.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
         releases: # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
@@ -366,6 +383,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
   - name: metrics-server
     repository: https://kubernetes-sigs.github.io/metrics-server/
     charts:
@@ -385,6 +403,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
   - name: prometheus-community
     repository: https://prometheus-community.github.io/helm-charts
     charts:
@@ -407,6 +426,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
   - name: stakater
     repository: https://stakater.github.io/stakater-charts
     charts:
@@ -429,6 +449,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
   - name: vmware-tanzu
     repository: https://vmware-tanzu.github.io/helm-charts
     charts:
@@ -451,6 +472,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
   # This is NOT a helm-chart. but to prevent alot of code in main.sh following consistency of how other `Real` helm charts are installed.
   - name: knative
     repository: https://github.com/knative
@@ -470,6 +492,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
       - name: knative-serving
         latest_version: null # latest version of chart.
         releases: [] # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
@@ -485,6 +508,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
       - name: knative-eventing
         latest_version: null # latest version of chart.
         releases: [] # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
@@ -500,6 +524,7 @@ dependencies:
         language: helm
         service: third-party
         software_type: open-source
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
   - name: platform # Snitch charts, for now main.sh has been modified ignore the domain because it does not exist.
     repository: https://chartmuseum.snitzh.com/charts
     charts:
@@ -518,6 +543,7 @@ dependencies:
         language: fastify
         service: tenant
         software_type: proprietary
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
       - name: apis-rust
         latest_version: null # latest version of chart.
         releases: [] # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
@@ -533,6 +559,7 @@ dependencies:
         language: rust
         service: tenant
         software_type: proprietary
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
       - name: website-vue
         latest_version: null # latest version of chart.
         releases: [] # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
@@ -548,3 +575,4 @@ dependencies:
         language: vue
         service: tenant
         software_type: proprietary
+        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
