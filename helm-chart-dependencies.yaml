@@ -32,7 +32,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         platform_repository: true # DESCRIPTION: Releases history. Must be >= .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -52,7 +52,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -73,7 +73,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -92,7 +92,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         platform_repository: true # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -112,7 +112,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         platform_repository: true # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -131,7 +131,7 @@ dependencies:
         namespaced: true
         has_repo: true
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -153,7 +153,7 @@ dependencies:
         namespaced: false # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -175,7 +175,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -200,7 +200,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -221,7 +221,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -239,7 +239,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -257,7 +257,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -279,7 +279,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -301,7 +301,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -322,7 +322,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -342,7 +342,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -363,7 +363,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -380,7 +380,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -400,7 +400,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         platform_repository: true # DESCRIPTION: Releases history. Must be > .version. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get new releases.
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -423,7 +423,7 @@ dependencies:
         namespaced: true
         has_repo: true
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -446,7 +446,7 @@ dependencies:
         namespaced: false # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -469,7 +469,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: true # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -489,7 +489,7 @@ dependencies:
         namespaced: false # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: false
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -505,7 +505,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: false
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -521,7 +521,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: false
         platform_repository: true
-        language: helm
+        language: helm # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -540,7 +540,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: false
         platform_repository: true
-        language: fastify
+        language: fastify # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: tenant
         software_type: proprietary
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -556,7 +556,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: false
         platform_repository: true
-        language: rust
+        language: rust # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: tenant
         software_type: proprietary
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -572,7 +572,7 @@ dependencies:
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
         has_repo: false
         platform_repository: true
-        language: vue
+        language: vue # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
         service: tenant
         software_type: proprietary
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.

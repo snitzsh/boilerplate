@@ -67,7 +67,6 @@ clusterInstallArgoCD () {
   dependencies=$( \
     utilQueryClustersYaml "${args_4[@]}" \
   )
-  echo "${dependencies}"
 
   local argo_cd_repositories=""
   #

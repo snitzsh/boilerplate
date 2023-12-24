@@ -23,7 +23,10 @@ export GITHUB_API_THROTTLE_INTEVAL=30000 # in seconds
 export GITHUB_DOMAIN="https://api.github.com"
 #
 # TODO:
-# - Save in secrets.
+#   - Save in secrets.
+#
+# NOTE:
+#   - ArgoCD only allows this repo.
 #
 export SSH_REPOSITORY_ENDPOINT="git@github.com:snitzsh"
 #
