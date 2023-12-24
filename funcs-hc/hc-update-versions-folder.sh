@@ -10,11 +10,12 @@
 #     `diff-current-to-per-newer-version-manifests`
 #
 # NOTE:
-#   - null
-#
-# DESCRIPTION:
 #   - main.sh hc-create-chart must be executed first to create the ./versions
 #     folder.
+#
+# DESCRIPTION:
+#   - Creates a file for each version in `.releases` from `clusters.yaml`
+#     in ./versions/${sub_folder}/xxx.<[ext]>
 #
 # ARGS:
 #   - null
