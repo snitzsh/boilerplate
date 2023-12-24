@@ -32,7 +32,6 @@ funcHelmChartUpdateVersionsFolder () {
   local -r cluster_name="${args[3]}"
   local -r dependency_obj="${args[4]}"
 
-  # shellcheck disable=SC2016
   if [ -f "./Chart.yaml" ]; then
     # Resets ./versions folder to prevent writing code to handle duplicates.
     rm -rf ./versions
@@ -204,6 +203,15 @@ funcHelmChartUpdateVersionsFolder () {
         )
       done
     done
+    # Do not push per file (inside the loop above). It will mess up with .git
+    # history. it will throw an error like: `fatal: unable to read tree cdf6288f99da433f9b56d6d0eadb30e0239a4577`
+    # If it does mess it up, do:
+    #   - `rm -rf .git/`
+    #   - `git init`
+    #   - `git remote add <repo>`
+    #   - `git checkout -b main`
+    #   - `git rebase origin/main`
+    #   - `git push --set-upstream orgin main
     local -a args_2=( \
       "${func_name}" \
       "Updated ./versions folder. Executed by '${func_name}'." \

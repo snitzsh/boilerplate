@@ -10,6 +10,8 @@
 #     so helm ignores undersired folders.
 #   - Only support one dependency per Chart.yaml. Probably may need to support
 #     multi dependency support.
+#   - find out if its neccesary to keep default test-connection, helpers.tpl, NOTES.txt,
+#     currently it gets cleaned up.
 #
 # NOTE:
 #   - Repository must be cloned first.
@@ -46,6 +48,10 @@ funcHelmChartPostChart () {
     rm -rf ./"${chart_name}"
     touch "${chart_name}-values.yaml"
     utilCreateHelmChartVersionsFolder
+    # Clean up files.
+    : > templates/tests/test-connection.yaml
+    : > templates/_helpers.tpl
+    : > templates/NOTES.txt
     # shellcheck disable=SC2016
     _func_name="${func_name}" \
     _chart_name="${chart_name}" \
