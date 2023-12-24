@@ -12,6 +12,7 @@
 #     multi dependency support.
 #   - find out if its neccesary to keep default test-connection, helpers.tpl, NOTES.txt,
 #     currently it gets cleaned up.
+#   - findout if we need key/values in values.yaml.
 #
 # NOTE:
 #   - Repository must be cloned first.
