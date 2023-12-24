@@ -14,28 +14,13 @@ regions:
               charts:
                 - name: argo-cd
                   latest_version: 5.51.6
-                  releases:
-                    - 5.46.7
-                    - 5.46.8
-                    - 5.47.0
-                    - 5.48.0
-                    - 5.48.1
-                    - 5.49.0
-                    - 5.50.0
-                    - 5.50.1
-                    - 5.51.0
-                    - 5.51.1
-                    - 5.51.2
-                    - 5.51.3
-                    - 5.51.4
-                    - 5.51.5
-                    - 5.51.6
+                  releases: []
                   condition: argo-cd.disabled
                   specific_name: argo-cd
                   namespace_name: argo-cd
                   is_deployed: false
-                  version: 5.46.6
-                  is_up_to_date: false
+                  version: 5.51.6
+                  is_up_to_date: true
                   namespaced: true
                   has_repo: true
                   platform_repository: true
@@ -44,7 +29,7 @@ regions:
                   software_type: open-source
                   configs_repository: ""
                 - name: argo-workflows
-                  latest_version: 0.39.5
+                  latest_version: 0.40.2
                   releases:
                     - 0.34.0
                     - 0.35.0
@@ -60,6 +45,13 @@ regions:
                     - 0.39.3
                     - 0.39.4
                     - 0.39.5
+                    - 0.39.6
+                    - 0.39.7
+                    - 0.39.8
+                    - 0.39.9
+                    - 0.40.0
+                    - 0.40.1
+                    - 0.40.2
                   condition: argo-workflows.disabled
                   specific_name: argo-workflows
                   namespace_name: argo-workflows
@@ -77,10 +69,11 @@ regions:
               repository: https://charts.jetstack.io
               charts:
                 - name: cert-manager
-                  latest_version: v1.13.2
+                  latest_version: v1.13.3
                   releases:
                     - v1.13.1
                     - v1.13.2
+                    - v1.13.3
                   condition: cert-manager.disabled
                   specific_name: cert-manager
                   namespace_name: cert-manager
@@ -155,12 +148,13 @@ regions:
               repository: https://charts.external-secrets.io
               charts:
                 - name: external-secrets
-                  latest_version: 0.9.9
+                  latest_version: 0.9.10
                   releases:
                     - 0.9.6
                     - 0.9.7
                     - 0.9.8
                     - 0.9.9
+                    - 0.9.10
                   condition: external-secrets.disabled
                   specific_name: external-secrets
                   namespace_name: default
@@ -200,7 +194,7 @@ regions:
               repository: https://grafana.github.io/helm-charts
               charts:
                 - name: grafana
-                  latest_version: 7.0.11
+                  latest_version: 7.0.19
                   releases:
                     - 6.60.2
                     - 6.60.3
@@ -221,6 +215,12 @@ regions:
                     - 7.0.9
                     - 7.0.10
                     - 7.0.11
+                    - 7.0.14
+                    - 7.0.15
+                    - 7.0.16
+                    - 7.0.17
+                    - 7.0.18
+                    - 7.0.19
                   condition: grafana.disabled
                   specific_name: grafana
                   namespace_name: grafana
@@ -238,13 +238,15 @@ regions:
               repository: https://istio-release.storage.googleapis.com/charts
               charts:
                 - name: base
-                  latest_version: 1.20.0
+                  latest_version: 1.20.1
                   releases:
                     - 1.19.1
                     - 1.19.2
                     - 1.19.3
                     - 1.19.4
+                    - 1.19.5
                     - 1.20.0
+                    - 1.20.1
                   condition: base.disabled
                   specific_name: istio-base
                   namespace_name: istio-system
@@ -259,13 +261,15 @@ regions:
                   software_type: open-source
                   configs_repository: ""
                 - name: istiod
-                  latest_version: 1.20.0
+                  latest_version: 1.20.1
                   releases:
                     - 1.19.1
                     - 1.19.2
                     - 1.19.3
                     - 1.19.4
+                    - 1.19.5
                     - 1.20.0
+                    - 1.20.1
                   condition: istiod.disabled
                   specific_name: istiod
                   namespace_name: istio-system
@@ -280,13 +284,15 @@ regions:
                   software_type: open-source
                   configs_repository: ""
                 - name: gateway
-                  latest_version: 1.20.0
+                  latest_version: 1.20.1
                   releases:
                     - 1.19.1
                     - 1.19.2
                     - 1.19.3
                     - 1.19.4
+                    - 1.19.5
                     - 1.20.0
+                    - 1.20.1
                   condition: gateway.disabled
                   specific_name: istio-ingressgateway
                   namespace_name: istio-system
@@ -304,13 +310,14 @@ regions:
               repository: https://jaegertracing.github.io/helm-charts
               charts:
                 - name: jaeger
-                  latest_version: 0.72.1
+                  latest_version: 0.73.1
                   releases:
                     - 0.71.15
                     - 0.71.17
                     - 0.71.18
                     - 0.72.0
                     - 0.72.1
+                    - 0.73.1
                   condition: jaeger.disabled
                   specific_name: jaeger
                   namespace_name: jaeger
@@ -328,11 +335,12 @@ regions:
               repository: https://kiali.org/helm-charts
               charts:
                 - name: kiali-operator
-                  latest_version: 1.77.0
+                  latest_version: 1.78.0
                   releases:
                     - 1.75.0
                     - 1.76.0
                     - 1.77.0
+                    - 1.78.0
                   condition: kiali-operator.disabled
                   specific_name: kiali-operator
                   namespace_name: kiali-operator
@@ -359,6 +367,7 @@ regions:
                     - 3.0.6
                     - 3.0.7
                     - 3.0.8
+                    - 3.0.9
                     - 3.1.0
                     - 3.1.1
                   condition: kyverno.disabled
@@ -394,13 +403,15 @@ regions:
                   software_type: open-source
                   configs_repository: ""
                 - name: linkerd-control-plane
-                  latest_version: 1.16.6
+                  latest_version: 1.16.8
                   releases:
                     - 1.16.2
                     - 1.16.3
                     - 1.16.4
                     - 1.16.5
                     - 1.16.6
+                    - 1.16.7
+                    - 1.16.8
                   condition: linkerd-control-plane.disabled
                   specific_name: linkerd-control-plane
                   namespace_name: linkerd
@@ -454,7 +465,7 @@ regions:
               repository: https://prometheus-community.github.io/helm-charts
               charts:
                 - name: prometheus
-                  latest_version: 25.8.0
+                  latest_version: 25.8.2
                   releases:
                     - 25.1.0
                     - 25.2.0
@@ -465,6 +476,8 @@ regions:
                     - 25.6.0
                     - 25.7.0
                     - 25.8.0
+                    - 25.8.1
+                    - 25.8.2
                   condition: prometheus.disabled
                   specific_name: prometheus
                   namespace_name: prometheus
@@ -482,7 +495,7 @@ regions:
               repository: https://stakater.github.io/stakater-charts
               charts:
                 - name: reloader
-                  latest_version: 1.0.52
+                  latest_version: 1.0.56
                   releases:
                     - 1.0.42
                     - 1.0.43
@@ -495,6 +508,10 @@ regions:
                     - 1.0.50
                     - 1.0.51
                     - 1.0.52
+                    - 1.0.53
+                    - 1.0.54
+                    - 1.0.55
+                    - 1.0.56
                   condition: reloader.enabled
                   specific_name: reloader
                   namespace_name: default
@@ -512,7 +529,7 @@ regions:
               repository: https://vmware-tanzu.github.io/helm-charts
               charts:
                 - name: velero
-                  latest_version: 5.1.5
+                  latest_version: 5.2.0
                   releases:
                     - 5.1.0
                     - 5.1.1
@@ -520,6 +537,9 @@ regions:
                     - 5.1.3
                     - 5.1.4
                     - 5.1.5
+                    - 5.1.6
+                    - 5.1.7
+                    - 5.2.0
                   condition: velero.enabled
                   specific_name: velero
                   namespace_name: default

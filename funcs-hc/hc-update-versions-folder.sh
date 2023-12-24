@@ -13,7 +13,8 @@
 #   - null
 #
 # DESCRIPTION:
-#   - null
+#   - main.sh hc-create-chart must be executed first to create the ./versions
+#     folder.
 #
 # ARGS:
 #   - null
@@ -30,7 +31,11 @@ funcHelmChartUpdateVersionsFolder () {
   local -r cluster_name="${args[3]}"
   local -r dependency_obj="${args[4]}"
 
+  # shellcheck disable=SC2016
   if [ -f "./Chart.yaml" ]; then
+    # Resets ./versions folder to prevent writing code to handle duplicates.
+    rm -rf ./versions
+    utilCreateHelmChartVersionsFolder
     local current_version=""
     current_version=$( \
       # shellcheck disable=SC2016
@@ -146,7 +151,6 @@ funcHelmChartUpdateVersionsFolder () {
 
       local last_release="${releases[${#releases[@]}-1]}"
 
-      rm -rf ./versions/"${sub_folder}"/*
       sleep 1
 
       for release in "${releases[@]}"; do
@@ -196,13 +200,13 @@ funcHelmChartUpdateVersionsFolder () {
             *)
               ;;
           esac
-          local -a args_2=( \
-            "${func_name}" \
-            "${log_msg}. Executed by '${func_name}'." \
-          )
-          utilGitter "${args_2[@]}"
         )
       done
     done
+    local -a args_2=( \
+      "${func_name}" \
+      "Updated ./versions folder. Executed by '${func_name}'." \
+    )
+    utilGitter "${args_2[@]}"
   fi
 }
