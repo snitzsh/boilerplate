@@ -29,6 +29,7 @@ utilLooperClusters () {
   local -a args_1=( \
     "get-regions-name" \
   )
+  local case_executed="false"
 
   # Get region names
   while IFS= read -r region_name; do
@@ -58,12 +59,15 @@ utilLooperClusters () {
           case "${query_name}" in
             "c-create-cluster")
               clusterCreate "${args_4[@]}"
+              case_executed="true"
               ;;
             "c-delete-cluster")
               clusterDelete "${args_4[@]}"
+              case_executed="true"
               ;;
             "c-read-kubeconfig")
               clusterReadKubeconfig "${args_4[@]}"
+              case_executed="true"
               ;;
             *)
               ;;
@@ -96,7 +100,9 @@ utilLooperClusters () {
                         clusterInstallArgoCD "${args_6[@]}"
                         ;;
                       *)
-                        logger "ERROR" "Query name '${query_name}' does not exist." "${func_name}"
+                        if [ "${case_executed}" == "false" ]; then
+                          logger "ERROR" "Query name '${query_name}' does not exist." "${func_name}"
+                        fi
                         ;;
                     esac
                   )

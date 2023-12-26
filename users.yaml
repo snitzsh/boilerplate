@@ -1,5 +1,27 @@
+# Steps to Create infra:
+#   - Create AWS account
+#   - In AWS IAM
+#       - Create Group: `SuperAdministrator`
+#       - Create User and place it under the `SuperAdministartor` Group
+#         - user name should follow this standard: first_name.last_name
+#         - In Groups Section: Select SuperAdministartor
+#         - Tags:
+#           TYPE: user
+#           REGION: global
+#           POSITION: infrastructure
+#       - After this user is created,
+#         - click the user then click "Create access key"
+#         - Use case: Select `Command Line Interface (CLI)`
+#         - Confirmation: Check the box
+#         - Set description tag: Initial infrastructure
+#         - copy and pasted the key in ~/.aws.
+#         - name the profile snitzsh-super-administrator
+#       - This user will be able to create other users using terraform.
+#
 users:
-  - name: "Juan Ordaz"
-    emal: "juan.ordaz@{{PLATFORM}}.com"
+  - first_name: "Juan"
+    last_name: "Ordaz"
+    email: "{{first_name}}.{{last_name}}@{{PLATFORM}}.com"
     team: "system administraitor"
-    groups: [] # for permissions
+    groups: # for permissions
+      - SuperAdministartor

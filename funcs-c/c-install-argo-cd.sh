@@ -31,12 +31,22 @@ clusterInstallArgoCD () {
   local -r dependency_name="${args[2]}"
   local -r chart_name="${args[3]}"
 
-  # helm dependency build
-
   local -a args_2=( \
     "get-{region_name}-{cluster_name}-dependencies-name" \
     "${region_name}" \
     "${cluster_name}" \
+  )
+  local chart_version_number=""
+  chart_version_number=$(
+    # shellcheck disable=SC2016
+    _chart_name="${chart_name}" \
+    yq \
+      '
+        env(_chart_name) as $_chart_name
+        | .dependencies[]
+        | select(.name == $_chart_name)
+        | .version
+      ' Chart.yaml
   )
 
   local -a repository_names=()
@@ -117,6 +127,8 @@ clusterInstallArgoCD () {
             .
           ' \
   )
+  local managed_by="argo-cd"
+  local use_helm_hooks="false" # yq will treat it as boolean.
   #
   # TODO:
   #   - for non-helm repos, instead to using type: helm, use type: git.
@@ -153,6 +165,8 @@ clusterInstallArgoCD () {
   _region_name="${region_name}" \
   _cluster_name="${cluster_name}" \
   _chart_name="${chart_name}" \
+  _managed_by="${managed_by}" \
+  _use_helm_hooks="${use_helm_hooks}" \
   _dependencies="${dependencies}" \
   _cert="${cert}" \
   _argo_cd_repositories="${argo_cd_repositories}" \
@@ -165,6 +179,8 @@ clusterInstallArgoCD () {
       | env(_region_name) as $_region_name
       | env(_cluster_name) as $_cluster_name
       | env(_chart_name) as $_chart_name
+      | env(_managed_by) as $_managed_by
+      | env(_use_helm_hooks) as $_use_helm_hooks
       | env(_dependencies) as $_dependencies
       | strenv(_cert) as $_cert
       | env(_argo_cd_repositories) as $_argo_cd_repositories
@@ -193,6 +209,8 @@ clusterInstallArgoCD () {
           .region_name = $_region_name
           | .cluster_name = $_cluster_name
           | .ssh_repository_endpoint = $_ssh_repository_endpoint
+          | .managed_by = $_managed_by
+          | .use_helm_hooks = $_use_helm_hooks
           | .dependencies = $_dependencies
         )
       | {$_chart_name: .[$_chart_name]} as $chart_values
@@ -205,6 +223,8 @@ clusterInstallArgoCD () {
       | (.region_name | key) linecomment=$key_comment
       | (.cluster_name | key) linecomment=$key_comment
       | (.ssh_repository_endpoint | key) linecomment=$key_comment
+      | (.managed_by | key) linecomment=$key_comment
+      | (.use_helm_hooks | key) linecomment=$key_comment
       | (.[$_chart_name] | key) headComment=$chart_comment
       | .
     ' 'values.yaml'
@@ -232,7 +252,21 @@ clusterInstallArgoCD () {
                 | $arr != null
               ' \
   )
+  #
+  # TODO:
+  #   - Find out if we can make argo-cd point to itself for minikube.
+  #     else it will failed to deploy itself with no error, it just the
+  #     applications will not show. Check if we need to re-start localhost.
+  #     find a way if we can pass a new property, to check if we need to
+  #     push changes if `managed-by: argo-cd` or `manage-by: helm`
+  #
+  # NOTE:
+  #   - Pulls chart for ./charts. This is useful for initial local deployment.
 
+  # Pulls dependencies for local execution.
+  if ! [ -f "./charts/argo-cd-${chart_version_number}.tgz" ]; then
+    helm dependency build
+  fi
   if [ "${argo_cd_installed}" == "false" ]; then
     #
     # NOTE:
@@ -246,14 +280,15 @@ clusterInstallArgoCD () {
     #   --namespace "${chart_name}" \
     #   --create-namespace \
     #   --version "5.51.6"
-
-    helm dependency build
+    # helm dependency build
     #
     # NOTE:
     #  - Install the chart of the repository, using the repository values.
     #
     helm \
       install \
+      --set  managed_by=helm \
+      --set use_helm_hooks="true" \
       argo-cd \
       . \
       --namespace "${chart_name}" \
