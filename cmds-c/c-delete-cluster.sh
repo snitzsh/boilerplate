@@ -22,7 +22,8 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #   - null
 #
 main () {
-  utilLooperClusters "delete-cluster"
+  local -ar args=("$@")
+  utilLooperClusters "${args[@]}"
 }
 
-main
+main "$@"

@@ -117,7 +117,11 @@ clusterCreate () {
           utilQueryContext "${context}" "name"
         )
         kubectl config rename-context "${context_name}" "${cluster_type}-${region_name}-${cluster_name}"
+        kubectl config use-context "${cluster_type}-${region_name}-${cluster_name}"
       fi
+      # TODO
+      #   - check if we need to check if cluster truly exit
+      bash "${PLATFORM_PATH}/boilerplate/main.sh" c-install-argo-cd "${cluster_type}" "${region_name}" "${cluster_name}"
       ;;
     "minikube")
       profile="${cluster_type}-${region_name}-${cluster_name}"
@@ -133,6 +137,10 @@ clusterCreate () {
                 | .
               ' \
       )
+      # minikube profile list
+      # minikube stop --profile north-america.dev
+      # minikube start --profile north-america.dev # for re-starting an existing cluster.
+      # minikube delete --profile north-america.qa
 
       # Creates cluster only if it does NOT exist.
       if [ "${cluster_exist}" != "true" ]; then
@@ -145,18 +153,15 @@ clusterCreate () {
             --addons="metrics-server"
         # TODO:
         #   - execute command even if the cluster is created
-        kubectl \
-          config \
-            rename-context "${region_name}-${cluster_name}" "${cluster_type}-${region_name}-${cluster_name}"
+        # kubectl \
+        #   config \
+        #     rename-context "${region_name}-${cluster_name}" "${cluster_type}-${region_name}-${cluster_name}"
       else
         logger "WARN" "Cluster '${profile}' already exist. Execute: 'minikube profile list' in the cli." "${func_name}"
       fi
-      # echo "${PLATFORM_PATH}/boilerplate/main.sh"
-      # bash "${PLATFORM_PATH}/boilerplate/main.sh" c-install-argo-cd "${cluster_type}" "${region_name}" "${cluster_name}"
-      # minikube profile list
-      # minikube stop --profile north-america.dev
-      # minikube start --profile north-america.dev # for re-starting an existing cluster.
-      # minikube delete --profile north-america.qa
+      # TODO
+      #   - check if we need to check if cluster truly exit
+      bash "${PLATFORM_PATH}/boilerplate/main.sh" c-install-argo-cd "${cluster_type}" "${region_name}" "${cluster_name}"
       ;;
     *)
       logger "ERROR" "Cluster type '${cluster_type}' does not exist. Check the arguments you passing when calling the command function in the cli." "${func_name}"
