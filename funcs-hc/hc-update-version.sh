@@ -31,20 +31,7 @@ funcHelmChartUpdateVersion () {
   local -r file_dependency="${args[4]}"
 
   if [ -f "./Chart.yaml" ] && [ -f "./values.yaml" ]; then
-    echo "${chart_name}"
-    # echo "${file_dependency}" | yq '.'
-    # ls
-    # cat .helmignore
-    # grep -qxF 'NoDisplay=true' '.helmignore'
-    # sed -i '/NoDisplay=true/!s/$/\nNoDisplay=true/' .helmignore
-
-    # grep -Fx will match the exact text per line.
-    found=$(find . \
-      -name ".helmignore" \
-      -type f \
-      -exec grep \
-      -iFx ".vscode/" {} \;
-    )
-    echo "Found: ${found}"
+    echo "PASS"
+    echo "${file_dependency}"
   fi
 }

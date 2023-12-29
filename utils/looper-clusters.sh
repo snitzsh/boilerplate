@@ -88,6 +88,7 @@ utilLooperClusters () {
                 if [ "${chart_name}" == "argo-cd" ]; then
                   chart_found="true"
                   local -a args_6=( \
+                    "${cluster_type}" \
                     "${region_name}" \
                     "${cluster_name}" \
                     "${dependency_name}" \

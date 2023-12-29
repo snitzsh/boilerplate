@@ -151,11 +151,6 @@ clusterCreate () {
             --driver docker \
             --profile "${profile}" \
             --addons="metrics-server"
-        # TODO:
-        #   - execute command even if the cluster is created
-        # kubectl \
-        #   config \
-        #     rename-context "${region_name}-${cluster_name}" "${cluster_type}-${region_name}-${cluster_name}"
       else
         logger "WARN" "Cluster '${profile}' already exist. Execute: 'minikube profile list' in the cli." "${func_name}"
       fi

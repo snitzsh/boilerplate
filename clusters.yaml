@@ -29,7 +29,7 @@ regions:
                   software_type: open-source
                   configs_repository: ""
                 - name: argo-workflows
-                  latest_version: 0.40.2
+                  latest_version: 0.40.3
                   releases:
                     - 0.34.0
                     - 0.35.0
@@ -52,6 +52,7 @@ regions:
                     - 0.40.0
                     - 0.40.1
                     - 0.40.2
+                    - 0.40.3
                   condition: argo-workflows.disabled
                   specific_name: argo-workflows
                   namespace_name: argo-workflows
@@ -148,13 +149,14 @@ regions:
               repository: https://charts.external-secrets.io
               charts:
                 - name: external-secrets
-                  latest_version: 0.9.10
+                  latest_version: 0.9.11
                   releases:
                     - 0.9.6
                     - 0.9.7
                     - 0.9.8
                     - 0.9.9
                     - 0.9.10
+                    - 0.9.11
                   condition: external-secrets.disabled
                   specific_name: external-secrets
                   namespace_name: default
@@ -358,7 +360,7 @@ regions:
               repository: https://kyverno.github.io/kyverno
               charts:
                 - name: kyverno
-                  latest_version: 3.1.1
+                  latest_version: 3.1.2
                   releases:
                     - 3.0.2
                     - 3.0.3
@@ -370,6 +372,7 @@ regions:
                     - 3.0.9
                     - 3.1.0
                     - 3.1.1
+                    - 3.1.2
                   condition: kyverno.disabled
                   specific_name: kyverno
                   namespace_name: kyverno
@@ -383,65 +386,6 @@ regions:
                   service: third-party
                   software_type: open-source
                   configs_repository: ""
-            # - name: linkerd
-            #   repository: https://helm.linkerd.io/stable
-            #   charts:
-            #     - name: linkerd-crds
-            #       latest_version: 1.8.0
-            #       releases: []
-            #       condition: linkerd-crds.disabled
-            #       specific_name: linkerd-crds
-            #       namespace_name: linkerd
-            #       is_deployed: false
-            #       version: 1.8.0
-            #       is_up_to_date: true
-            #       namespaced: true
-            #       has_repo: true
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
-            #     - name: linkerd-control-plane
-            #       latest_version: 1.16.8
-            #       releases:
-            #         - 1.16.2
-            #         - 1.16.3
-            #         - 1.16.4
-            #         - 1.16.5
-            #         - 1.16.6
-            #         - 1.16.7
-            #         - 1.16.8
-            #       condition: linkerd-control-plane.disabled
-            #       specific_name: linkerd-control-plane
-            #       namespace_name: linkerd
-            #       is_deployed: false
-            #       version: 1.15.0
-            #       is_up_to_date: false
-            #       namespaced: true
-            #       has_repo: true
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
-            #     - name: linkerd2-cni
-            #       latest_version: 30.12.1
-            #       releases:
-            #         - 30.12.1
-            #       condition: linkerd2-cni.disabled
-            #       specific_name: linkerd2-cni
-            #       namespace_name: linkerd-cni
-            #       is_deployed: false
-            #       version: 30.11.0
-            #       is_up_to_date: false
-            #       namespaced: true
-            #       has_repo: true
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
             - name: metrics-server
               repository: https://kubernetes-sigs.github.io/metrics-server/
               charts:
@@ -495,7 +439,7 @@ regions:
               repository: https://stakater.github.io/stakater-charts
               charts:
                 - name: reloader
-                  latest_version: 1.0.56
+                  latest_version: 1.0.58
                   releases:
                     - 1.0.42
                     - 1.0.43
@@ -512,6 +456,8 @@ regions:
                     - 1.0.54
                     - 1.0.55
                     - 1.0.56
+                    - 1.0.57
+                    - 1.0.58
                   condition: reloader.enabled
                   specific_name: reloader
                   namespace_name: default

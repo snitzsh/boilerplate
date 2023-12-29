@@ -26,11 +26,11 @@
 clusterInstallArgoCD () {
   local -r func_name="${FUNCNAME[0]}"
   local -ar args=("$@")
-  local -r region_name="${args[0]}"
-  local -r cluster_name="${args[1]}"
-  local -r dependency_name="${args[2]}"
-  local -r chart_name="${args[3]}"
-
+  local -r cluster_type="${args[0]}"
+  local -r region_name="${args[1]}"
+  local -r cluster_name="${args[2]}"
+  local -r dependency_name="${args[3]}"
+  local -r chart_name="${args[4]}"
   local -a args_2=( \
     "get-{region_name}-{cluster_name}-dependencies-name" \
     "${region_name}" \
@@ -162,6 +162,7 @@ clusterInstallArgoCD () {
   _func_name="${func_name}" \
   _platform="${PLATFORM}" \
   _ssh_repository_endpoint="${SSH_REPOSITORY_ENDPOINT}" \
+  _cluster_type="${cluster_type}" \
   _region_name="${region_name}" \
   _cluster_name="${cluster_name}" \
   _chart_name="${chart_name}" \
@@ -176,6 +177,7 @@ clusterInstallArgoCD () {
       env(_func_name) as $_func_name
       | env(_platform) as $_platform
       | env(_ssh_repository_endpoint) as $_ssh_repository_endpoint
+      | env(_cluster_type) as $_cluster_type
       | env(_region_name) as $_region_name
       | env(_cluster_name) as $_cluster_name
       | env(_chart_name) as $_chart_name
@@ -206,7 +208,8 @@ clusterInstallArgoCD () {
           | (.[$new_key] | key) linecomment=$key_comment
         )
       | with(.;
-          .region_name = $_region_name
+          .cluster_type = $_cluster_type
+          | .region_name = $_region_name
           | .cluster_name = $_cluster_name
           | .ssh_repository_endpoint = $_ssh_repository_endpoint
           | .managed_by = $_managed_by
@@ -227,8 +230,8 @@ clusterInstallArgoCD () {
       | (.use_helm_hooks | key) linecomment=$key_comment
       | (.[$_chart_name] | key) headComment=$chart_comment
       | .
-    ' 'values.yaml'
-  sleep 3
+    ' "values.yaml"
+  sleep 1
   #
   # TODO:
   #   - find a way to pass the .namespace from the

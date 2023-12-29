@@ -63,3 +63,14 @@ bash main.sh patch-helm-chart-repos-chart-yaml-file.sh
 - create folder base on the cluster.yaml: ~/.ssh/${PLATFORM}/north-america/dev/argo/argo-cd
 - Create an ssh-key in github.
 - paste it in the file (script with fetch it.)
+
+# RUN MINIKUBE with istio
+```bash
+# https://istio.io/latest/docs/setup/getting-started/#determining-the-ingress-ip-and-ports
+minikube tunnel
+export INGRESS_HOST=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].port}')
+export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].port}')
+export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
+echo "$GATEWAY_URL"
+```
