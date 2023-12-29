@@ -223,6 +223,7 @@ clusterInstallArgoCD () {
           . |= . *+ $chart_values
         )
       | $root
+      | (.cluster_type | key) linecomment=$key_comment
       | (.region_name | key) linecomment=$key_comment
       | (.cluster_name | key) linecomment=$key_comment
       | (.ssh_repository_endpoint | key) linecomment=$key_comment
