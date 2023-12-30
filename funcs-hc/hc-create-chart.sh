@@ -13,6 +13,7 @@
 #   - find out if its neccesary to keep default test-connection, helpers.tpl, NOTES.txt,
 #     currently it gets cleaned up.
 #   - findout if we need key/values in values.yaml.
+#   - add funcHelmChart_HelpersFile
 #
 # NOTE:
 #   - Repository must be cloned first.
@@ -46,16 +47,17 @@ funcHelmChartPostChart () {
   if ! [ -f "./Chart.yaml" ]; then
     # Initial files when creating the repo manually. Don't touch them
     logger "INFO" "Creating helm chart ${chart_name} for dependency: '${dependency_name}' in '${region_name}/${cluster_name}/' directory." "${func_name}"
-    helm create "${chart_name}" > /dev/null
-    mv ./"${chart_name}"/{.,}* ./
+    helm create "${dependency_name}-${chart_name}" > /dev/null
+    mv ./"${dependency_name}-${chart_name}"/{.,}* ./
     rm ./templates/*.yaml
-    rm -rf ./"${chart_name}"
+    rm -rf ./"${dependency_name}-${chart_name}"
     # touch "${chart_name}-values.yaml"
     utilCreateHelmChartVersionsFolder
     # Clean up files.
     : > templates/tests/test-connection.yaml
     : > templates/_helpers.tpl
     : > templates/NOTES.txt
+    funcHelmChart_HelpersFile "${args[@]}"
     # shellcheck disable=SC2016
     # _func_name="${func_name}" \
     # _chart_name="${chart_name}" \

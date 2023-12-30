@@ -2,6 +2,8 @@
 
 #
 # TODO:
+#   - make sure not to override the current file. Currently it remove existing
+#     code that was already made on the chart.
 #   - cp NOTES.txt from each chart and place it in out own chart
 #   - finish up the the function.
 #
@@ -36,7 +38,7 @@ NOTE
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "${chart_name}.name" -}}
+{{- define "${dependency_name}-${chart_name}.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -45,7 +47,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "${chart_name}.fullname" -}}
+{{- define "${dependency_name}-${chart_name}.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -61,16 +63,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "${chart_name}.chart" -}}
+{{- define "${dependency_name}-${chart_name}.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "${chart_name}.labels" -}}
-helm.sh/chart: {{ include "${chart_name}.chart" . }}
-{{ include "${chart_name}.selectorLabels" . }}
+{{- define "${dependency_name}-${chart_name}.labels" -}}
+helm.sh/chart: {{ include "${dependency_name}-${chart_name}.chart" . }}
+{{ include "${dependency_name}-${chart_name}.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -80,18 +82,40 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "${chart_name}.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "${chart_name}.name" . }}
+{{- define "${dependency_name}-${chart_name}.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "${dependency_name}-${chart_name}.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+{{/*
+Create Annotations
+*/}}
+{{- define "${dependency_name}-${chart_name}.annotations" -}}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+  {{- if eq .Release.Service "Helm" }}
+meta.helm.sh/release-name: {{ .Release.Namespace }}
+meta.helm.sh/release-namespace: {{ .Release.Namespace }}
+    {{- /*
+      NOTE:
+        - This hook is important because it waits from
+          "${dependency_name}-${chart_name}"'s crds
+          to be deployed/created before it applies this yaml(s). Without the hook
+          "${dependency_name}-${chart_name}" fails when deploying, because it tries
+          to apply  CRDs that don't exit yet.
+    */}}
+    {{- if .Values.use_helm_hooks }}
+helm.sh/hook: post-install
+    {{- end }}
+  {{- end }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
 {{- /*
-{{- define "${chart_name}.serviceAccountName" -}}
+{{- define "${dependency_name}-${chart_name}.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "${chart_name}.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "${dependency_name}-${chart_name}.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
@@ -99,10 +123,10 @@ Create the name of the service account to use
 */}}
 
 EOF
-sleep 1
-  local -a args_2=( \
-    "${func_name}" \
-    "hc created _helpers.tpl file." \
-  )
-  utilGitter "${args_2[@]}"
+# sleep 1
+#   local -a args_2=( \
+#     "${func_name}" \
+#     "hc created _helpers.tpl file." \
+#   )
+#   utilGitter "${args_2[@]}"
 }

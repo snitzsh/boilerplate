@@ -50,6 +50,20 @@ clusterInstallArgoCD () {
   )
 
   local -a repository_names=()
+  local -a ignore_repositories=( \
+    "jaeger" \
+    "kyverno" \
+    "linkerd-crds" \
+    "linkerd-control-plane" \
+    "linkerd2-cni" \
+    "metrics-server" \
+    "knative-operator" \
+    "knative-serving" \
+    "knative-eventing" \
+    "apis-fastify" \
+    "apis-rust" \
+    "website-vue" \
+  )
 
   while IFS= read -r dependency_name_2; do
     local -a args_3=( \
@@ -58,7 +72,11 @@ clusterInstallArgoCD () {
       "${cluster_name}" \
       "${dependency_name_2}" \
     )
+
     while IFS= read -r chart_name_2; do
+      if [[ " ${ignore_repositories[*]} " =~ [[:space:]]${chart_name_2}[[:space:]] ]]; then
+        continue
+      fi
       repository_names+=("${dependency_name_2}-${chart_name_2}")
     done < <( \
       utilQueryClustersYaml "${args_3[@]}" \
@@ -294,7 +312,7 @@ clusterInstallArgoCD () {
     #
     helm \
       install \
-      --set  managed_by=helm \
+      --set  managed_by=Helm \
       --set use_helm_hooks="true" \
       argo-cd \
       . \
