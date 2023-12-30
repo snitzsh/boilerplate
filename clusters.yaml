@@ -13,14 +13,15 @@ regions:
               repository: https://argoproj.github.io/argo-helm
               charts:
                 - name: argo-cd
-                  latest_version: 5.51.6 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
-                  releases: []
+                  latest_version: 5.52.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+                  releases:
+                    - 5.52.0
                   condition: argo-cd.disabled
                   specific_name: argo-cd
                   namespace_name: argo-cd
                   is_deployed: false
                   version: 5.51.6
-                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
+                  is_up_to_date: false # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: true
                   has_repo: true
                   platform_repository: true
@@ -277,6 +278,57 @@ regions:
                   namespace_name: kyverno
                   is_deployed: false
                   version: 3.1.2
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
+                  namespaced: true
+                  has_repo: true
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
+            - name: linkerd
+              repository: https://helm.linkerd.io/stable
+              charts:
+                - name: linkerd-crds
+                  latest_version: 1.8.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+                  releases: []
+                  condition: linkerd-crds.disabled
+                  specific_name: linkerd-crds
+                  namespace_name: linkerd
+                  is_deployed: false
+                  version: 1.8.0
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
+                  namespaced: true
+                  has_repo: true
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
+                - name: linkerd-control-plane
+                  latest_version: 1.16.8 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+                  releases: []
+                  condition: linkerd-control-plane.disabled
+                  specific_name: linkerd-control-plane
+                  namespace_name: linkerd
+                  is_deployed: false
+                  version: 1.16.8
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
+                  namespaced: true
+                  has_repo: true
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
+                - name: linkerd2-cni
+                  latest_version: 30.12.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+                  releases: []
+                  condition: linkerd2-cni.disabled
+                  specific_name: linkerd2-cni
+                  namespace_name: linkerd-cni
+                  is_deployed: false
+                  version: 30.12.1
                   is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: true
                   has_repo: true

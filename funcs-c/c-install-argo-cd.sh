@@ -208,7 +208,9 @@ clusterInstallArgoCD () {
           | (.[$new_key] | key) linecomment=$key_comment
         )
       | with(.;
-          .cluster_type = $_cluster_type
+          .nameOverride = ""
+          | .fullnameOverride = ""
+          | .cluster_type = $_cluster_type
           | .region_name = $_region_name
           | .cluster_name = $_cluster_name
           | .ssh_repository_endpoint = $_ssh_repository_endpoint
@@ -232,7 +234,6 @@ clusterInstallArgoCD () {
       | (.[$_chart_name] | key) headComment=$chart_comment
       | .
     ' "values.yaml"
-
   sleep 1
 
   #
