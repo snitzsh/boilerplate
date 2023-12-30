@@ -13,14 +13,14 @@ regions:
               repository: https://argoproj.github.io/argo-helm
               charts:
                 - name: argo-cd
-                  latest_version: 5.51.6
+                  latest_version: 5.51.6 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
                   releases: []
                   condition: argo-cd.disabled
                   specific_name: argo-cd
                   namespace_name: argo-cd
                   is_deployed: false
                   version: 5.51.6
-                  is_up_to_date: true
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: true
                   has_repo: true
                   platform_repository: true
@@ -29,36 +29,14 @@ regions:
                   software_type: open-source
                   configs_repository: ""
                 - name: argo-workflows
-                  latest_version: 0.40.3
-                  releases:
-                    - 0.34.0
-                    - 0.35.0
-                    - 0.36.0
-                    - 0.36.1
-                    - 0.36.2
-                    - 0.37.0
-                    - 0.37.1
-                    - 0.38.0
-                    - 0.39.0
-                    - 0.39.1
-                    - 0.39.2
-                    - 0.39.3
-                    - 0.39.4
-                    - 0.39.5
-                    - 0.39.6
-                    - 0.39.7
-                    - 0.39.8
-                    - 0.39.9
-                    - 0.40.0
-                    - 0.40.1
-                    - 0.40.2
-                    - 0.40.3
+                  latest_version: 0.40.3 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+                  releases: []
                   condition: argo-workflows.disabled
                   specific_name: argo-workflows
                   namespace_name: argo-workflows
                   is_deployed: false
-                  version: 0.33.3
-                  is_up_to_date: false
+                  version: 0.40.3
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: true
                   has_repo: true
                   platform_repository: true
@@ -70,17 +48,14 @@ regions:
               repository: https://charts.jetstack.io
               charts:
                 - name: cert-manager
-                  latest_version: v1.13.3
-                  releases:
-                    - v1.13.1
-                    - v1.13.2
-                    - v1.13.3
+                  latest_version: v1.13.3 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+                  releases: []
                   condition: cert-manager.disabled
                   specific_name: cert-manager
                   namespace_name: cert-manager
                   is_deployed: false
-                  version: v1.13.0
-                  is_up_to_date: false
+                  version: v1.13.3
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: true
                   has_repo: true
                   platform_repository: true
@@ -92,14 +67,14 @@ regions:
               repository: https://cetic.github.io/helm-charts
               charts:
                 - name: adminer
-                  latest_version: 0.2.1
+                  latest_version: 0.2.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
                   releases: []
                   condition: adminer.disabled
                   specific_name: adminer
                   namespace_name: adminer
                   is_deployed: false
                   version: 0.2.1
-                  is_up_to_date: true
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: true
                   has_repo: true
                   platform_repository: true
@@ -111,14 +86,14 @@ regions:
               repository: https://chartmuseum.github.io/charts
               charts:
                 - name: chartmuseum
-                  latest_version: 3.10.1
+                  latest_version: 3.10.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
                   releases: []
                   condition: chartmuseum.disabled
                   specific_name: chartmuseum
                   namespace_name: chartmuseum
                   is_deployed: false
                   version: 3.10.1
-                  is_up_to_date: true
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: true
                   has_repo: true
                   platform_repository: true
@@ -130,14 +105,14 @@ regions:
               repository: https://kubernetes-sigs.github.io/external-dns/
               charts:
                 - name: external-dns
-                  latest_version: 1.13.1
+                  latest_version: 1.13.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
                   releases: []
                   condition: external-dns.disabled
                   specific_name: external-dns
                   namespace_name: external-dns
                   is_deployed: false
                   version: 1.13.1
-                  is_up_to_date: true
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: true
                   has_repo: true
                   platform_repository: true
@@ -149,20 +124,14 @@ regions:
               repository: https://charts.external-secrets.io
               charts:
                 - name: external-secrets
-                  latest_version: 0.9.11
-                  releases:
-                    - 0.9.6
-                    - 0.9.7
-                    - 0.9.8
-                    - 0.9.9
-                    - 0.9.10
-                    - 0.9.11
+                  latest_version: 0.9.11 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+                  releases: []
                   condition: external-secrets.disabled
                   specific_name: external-secrets
                   namespace_name: default
                   is_deployed: false
-                  version: 0.9.5
-                  is_up_to_date: false
+                  version: 0.9.11
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: false
                   has_repo: true
                   platform_repository: true
@@ -174,17 +143,14 @@ regions:
               repository: https://fluent.github.io/helm-charts
               charts:
                 - name: fluent-bit
-                  latest_version: 0.40.0
-                  releases:
-                    - 0.39.0
-                    - 0.39.1
-                    - 0.40.0
+                  latest_version: 0.40.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+                  releases: []
                   condition: fluent-bit.disabled
                   specific_name: fluent-bit
                   namespace_name: fluent-bit
                   is_deployed: false
-                  version: 0.38.0
-                  is_up_to_date: false
+                  version: 0.40.0
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: true
                   has_repo: true
                   platform_repository: true
@@ -196,39 +162,14 @@ regions:
               repository: https://grafana.github.io/helm-charts
               charts:
                 - name: grafana
-                  latest_version: 7.0.19
-                  releases:
-                    - 6.60.2
-                    - 6.60.3
-                    - 6.60.4
-                    - 6.60.5
-                    - 6.60.6
-                    - 6.61.0
-                    - 6.61.1
-                    - 6.61.2
-                    - 7.0.0
-                    - 7.0.1
-                    - 7.0.2
-                    - 7.0.3
-                    - 7.0.4
-                    - 7.0.5
-                    - 7.0.6
-                    - 7.0.8
-                    - 7.0.9
-                    - 7.0.10
-                    - 7.0.11
-                    - 7.0.14
-                    - 7.0.15
-                    - 7.0.16
-                    - 7.0.17
-                    - 7.0.18
-                    - 7.0.19
+                  latest_version: 7.0.19 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+                  releases: []
                   condition: grafana.disabled
                   specific_name: grafana
                   namespace_name: grafana
                   is_deployed: false
-                  version: 6.60.1
-                  is_up_to_date: false
+                  version: 7.0.19
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: true
                   has_repo: true
                   platform_repository: true
@@ -240,21 +181,14 @@ regions:
               repository: https://istio-release.storage.googleapis.com/charts
               charts:
                 - name: base
-                  latest_version: 1.20.1
-                  releases:
-                    - 1.19.1
-                    - 1.19.2
-                    - 1.19.3
-                    - 1.19.4
-                    - 1.19.5
-                    - 1.20.0
-                    - 1.20.1
+                  latest_version: 1.20.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+                  releases: []
                   condition: base.disabled
                   specific_name: istio-base
                   namespace_name: istio-system
                   is_deployed: false
-                  version: 1.19.0
-                  is_up_to_date: false
+                  version: 1.20.1
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: true
                   has_repo: true
                   platform_repository: true
@@ -263,21 +197,14 @@ regions:
                   software_type: open-source
                   configs_repository: ""
                 - name: istiod
-                  latest_version: 1.20.1
-                  releases:
-                    - 1.19.1
-                    - 1.19.2
-                    - 1.19.3
-                    - 1.19.4
-                    - 1.19.5
-                    - 1.20.0
-                    - 1.20.1
+                  latest_version: 1.20.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+                  releases: []
                   condition: istiod.disabled
                   specific_name: istiod
                   namespace_name: istio-system
                   is_deployed: false
-                  version: 1.19.0
-                  is_up_to_date: false
+                  version: 1.20.1
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: true
                   has_repo: true
                   platform_repository: true
@@ -286,21 +213,14 @@ regions:
                   software_type: open-source
                   configs_repository: ""
                 - name: gateway
-                  latest_version: 1.20.1
-                  releases:
-                    - 1.19.1
-                    - 1.19.2
-                    - 1.19.3
-                    - 1.19.4
-                    - 1.19.5
-                    - 1.20.0
-                    - 1.20.1
+                  latest_version: 1.20.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+                  releases: []
                   condition: gateway.disabled
                   specific_name: istio-ingressgateway
                   namespace_name: istio-system
                   is_deployed: false
-                  version: 1.19.0
-                  is_up_to_date: false
+                  version: 1.20.1
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: true
                   has_repo: true
                   platform_repository: true
@@ -312,20 +232,14 @@ regions:
               repository: https://jaegertracing.github.io/helm-charts
               charts:
                 - name: jaeger
-                  latest_version: 0.73.1
-                  releases:
-                    - 0.71.15
-                    - 0.71.17
-                    - 0.71.18
-                    - 0.72.0
-                    - 0.72.1
-                    - 0.73.1
+                  latest_version: 0.73.1 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+                  releases: []
                   condition: jaeger.disabled
                   specific_name: jaeger
                   namespace_name: jaeger
                   is_deployed: false
-                  version: 0.71.14
-                  is_up_to_date: false
+                  version: 0.73.1
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: true
                   has_repo: true
                   platform_repository: true
@@ -337,18 +251,14 @@ regions:
               repository: https://kiali.org/helm-charts
               charts:
                 - name: kiali-operator
-                  latest_version: 1.78.0
-                  releases:
-                    - 1.75.0
-                    - 1.76.0
-                    - 1.77.0
-                    - 1.78.0
+                  latest_version: 1.78.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+                  releases: []
                   condition: kiali-operator.disabled
                   specific_name: kiali-operator
                   namespace_name: kiali-operator
                   is_deployed: false
-                  version: 1.74.0
-                  is_up_to_date: false
+                  version: 1.78.0
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: true
                   has_repo: true
                   platform_repository: true
@@ -360,25 +270,14 @@ regions:
               repository: https://kyverno.github.io/kyverno
               charts:
                 - name: kyverno
-                  latest_version: 3.1.2
-                  releases:
-                    - 3.0.2
-                    - 3.0.3
-                    - 3.0.4
-                    - 3.0.5
-                    - 3.0.6
-                    - 3.0.7
-                    - 3.0.8
-                    - 3.0.9
-                    - 3.1.0
-                    - 3.1.1
-                    - 3.1.2
+                  latest_version: 3.1.2 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+                  releases: []
                   condition: kyverno.disabled
                   specific_name: kyverno
                   namespace_name: kyverno
                   is_deployed: false
-                  version: 3.0.1
-                  is_up_to_date: false
+                  version: 3.1.2
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: true
                   has_repo: true
                   platform_repository: true
@@ -390,14 +289,14 @@ regions:
               repository: https://kubernetes-sigs.github.io/metrics-server/
               charts:
                 - name: metrics-server
-                  latest_version: 3.11.0
+                  latest_version: 3.11.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
                   releases: []
                   condition: metrics-server.disabled
                   specific_name: metrics-server
                   namespace_name: metrics-server
                   is_deployed: false
                   version: 3.11.0
-                  is_up_to_date: true
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: true
                   has_repo: true
                   platform_repository: true
@@ -409,25 +308,14 @@ regions:
               repository: https://prometheus-community.github.io/helm-charts
               charts:
                 - name: prometheus
-                  latest_version: 25.8.2
-                  releases:
-                    - 25.1.0
-                    - 25.2.0
-                    - 25.3.0
-                    - 25.3.1
-                    - 25.4.0
-                    - 25.5.0
-                    - 25.6.0
-                    - 25.7.0
-                    - 25.8.0
-                    - 25.8.1
-                    - 25.8.2
+                  latest_version: 25.8.2 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+                  releases: []
                   condition: prometheus.disabled
                   specific_name: prometheus
                   namespace_name: prometheus
                   is_deployed: false
-                  version: 25.0.0
-                  is_up_to_date: false
+                  version: 25.8.2
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: true
                   has_repo: true
                   platform_repository: true
@@ -439,31 +327,14 @@ regions:
               repository: https://stakater.github.io/stakater-charts
               charts:
                 - name: reloader
-                  latest_version: 1.0.58
-                  releases:
-                    - 1.0.42
-                    - 1.0.43
-                    - 1.0.44
-                    - 1.0.45
-                    - 1.0.46
-                    - 1.0.47
-                    - 1.0.48
-                    - 1.0.49
-                    - 1.0.50
-                    - 1.0.51
-                    - 1.0.52
-                    - 1.0.53
-                    - 1.0.54
-                    - 1.0.55
-                    - 1.0.56
-                    - 1.0.57
-                    - 1.0.58
+                  latest_version: 1.0.58 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+                  releases: []
                   condition: reloader.enabled
                   specific_name: reloader
                   namespace_name: default
                   is_deployed: false
-                  version: 1.0.41
-                  is_up_to_date: false
+                  version: 1.0.58
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: false
                   has_repo: true
                   platform_repository: true
@@ -475,23 +346,14 @@ regions:
               repository: https://vmware-tanzu.github.io/helm-charts
               charts:
                 - name: velero
-                  latest_version: 5.2.0
-                  releases:
-                    - 5.1.0
-                    - 5.1.1
-                    - 5.1.2
-                    - 5.1.3
-                    - 5.1.4
-                    - 5.1.5
-                    - 5.1.6
-                    - 5.1.7
-                    - 5.2.0
+                  latest_version: 5.2.0 # DESCRIPTION: Latest version of the helm-chart. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to get the latest version.
+                  releases: []
                   condition: velero.enabled
                   specific_name: velero
                   namespace_name: default
                   is_deployed: false
-                  version: 5.0.2
-                  is_up_to_date: false
+                  version: 5.2.0
+                  is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
                   namespaced: true
                   has_repo: true
                   platform_repository: true

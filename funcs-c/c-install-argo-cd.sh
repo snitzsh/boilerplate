@@ -232,7 +232,9 @@ clusterInstallArgoCD () {
       | (.[$_chart_name] | key) headComment=$chart_comment
       | .
     ' "values.yaml"
+
   sleep 1
+
   #
   # TODO:
   #   - find a way to pass the .namespace from the
