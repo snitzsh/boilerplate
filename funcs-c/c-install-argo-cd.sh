@@ -225,7 +225,7 @@ clusterInstallArgoCD () {
           }
           | (.[$new_key] | key) linecomment=$key_comment
         )
-      | with(.;
+      | with(.main;
           .nameOverride = ""
           | .fullnameOverride = ""
           | .cluster_type = $_cluster_type
@@ -243,17 +243,31 @@ clusterInstallArgoCD () {
           . |= . *+ $chart_values
         )
       | $root
-      | (.cluster_type | key) linecomment=$key_comment
-      | (.region_name | key) linecomment=$key_comment
-      | (.cluster_name | key) linecomment=$key_comment
-      | (.ssh_repository_endpoint | key) linecomment=$key_comment
-      | (.managed_by | key) linecomment=$key_comment
-      | (.use_helm_hooks | key) linecomment=$key_comment
+      | (.["main"].cluster_type | key) linecomment=$key_comment
+      | (.["main"].region_name | key) linecomment=$key_comment
+      | (.["main"].cluster_name | key) linecomment=$key_comment
+      | (.["main"].ssh_repository_endpoint | key) linecomment=$key_comment
+      | (.["main"].managed_by | key) linecomment=$key_comment
+      | (.["main"].use_helm_hooks | key) linecomment=$key_comment
       | (.[$_chart_name] | key) headComment=$chart_comment
       | .
     ' "values.yaml"
-  sleep 1
 
+  sleep 1
+  # local -a args_5=( \
+  #   "create-common-props" \
+  #   "${dependency_name}" \
+  #   "${chart_name}" \
+  #   "${region_name}" \
+  #   "${cluster_name}" \
+  #   "${func_name}" \
+  #   "${cluster_type}" \
+  #   "${managed_by}" \
+  #   "${use_helm_hooks}" \
+  #   "${dependencies}" \
+  # )
+  # utilQueryHelmChartValuesYaml "${args_5[@]}"
+  # exit 1
   #
   # TODO:
   #   - find a way to pass the .namespace from the
