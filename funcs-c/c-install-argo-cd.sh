@@ -6,6 +6,12 @@
 #   - findout if adding repo with project can be access by other projects.
 #     else make sure the repos are global and only let the AppProject handle
 #     which project has access to what repos.
+#   - Figure out why istio-base fails to deploy in the first attempt causing
+#     istio-istiod and istio-gateway to fail too. ArgoCd will retry after
+#     few seconds, however, I needed to moved the templates from istio/base
+#     istio/gateway, otherwise even the retry would failed (even if I added
+#     hooks). Also figure out if we should pass retry in `spec.syncPolicy.
+#     automated` or is okay to wait.
 #
 # NOTE:
 #   - when accessing argo web, you must click [refresh] so the repos connect.
@@ -96,6 +102,31 @@ clusterInstallArgoCD () {
     utilQueryClustersYaml "${args_4[@]}" \
   )
 
+  local -a disable_dependencies=( \
+    "cert-manager" \
+    "external-dns" \
+    "grafana" \
+    "jaeger" \
+    "kiali-operator" \
+    "kyverno" \
+    "linkerd-crds" \
+    "linkerd-control-plane" \
+    "linkerd2-cni" \
+    "metrics-server" \
+  )
+  # shellcheck disable=SC2016
+  # _dependencies="${dependencies}" \
+  # yq \
+  #   -n \
+  #   '
+  #     env(_dependencies) as $_dependencies
+  #     | $_dependencies
+  #     | (.[].charts.[] | select(.name != "argo-cd"))
+  #     | .
+  #   '
+
+  #     # | (.[].charts[] | select(.name != "argo-cd"))
+  # exit 1
   local argo_cd_repositories=""
   #
   # TODO:

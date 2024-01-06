@@ -27,6 +27,7 @@ dependencies:
         specific_name: argo-cd # For example istio/base install documentation shows istio-base when installing
         namespace_name: argo-cd # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "1"
         version: 5.46.6 # current version
         is_up_to_date: false # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -47,6 +48,7 @@ dependencies:
         specific_name: argo-workflows # For example istio/base install documentation shows istio-base when installing
         namespace_name: argo-workflows # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 0.33.3 # current version
         is_up_to_date: false # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -68,6 +70,7 @@ dependencies:
         specific_name: cert-manager # For example istio/base install documentation shows istio-base when installing
         namespace_name: cert-manager # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: v1.13.0 # current version
         is_up_to_date: false # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -87,6 +90,7 @@ dependencies:
         specific_name: adminer # For example istio/base install documentation shows istio-base when installing
         namespace_name: adminer # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 0.2.1 # current version
         is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -107,6 +111,7 @@ dependencies:
         specific_name: chartmuseum # For example istio/base install documentation shows istio-base when installing
         namespace_name: chartmuseum # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 3.10.1 # current version
         is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -126,6 +131,7 @@ dependencies:
         specific_name: external-dns
         namespace_name: external-dns
         is_deployed: false
+        weight: "5"
         version: 1.13.1
         is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true
@@ -148,6 +154,7 @@ dependencies:
         specific_name: external-secrets # For example istio/base install documentation shows istio-base when installing
         namespace_name: default # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 0.9.5 # current version
         is_up_to_date: false # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: false # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -170,6 +177,7 @@ dependencies:
         specific_name: fluent-bit # For example istio/base install documentation shows istio-base when installing
         namespace_name: fluent-bit # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 0.38.0 # current version
         is_up_to_date: false # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -195,6 +203,7 @@ dependencies:
         specific_name: grafana # For example istio/base install documentation shows istio-base when installing
         namespace_name: grafana # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 6.60.1 # current version
         is_up_to_date: false # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -216,6 +225,7 @@ dependencies:
         specific_name: istio-base # For example istio/base install documentation shows istio-base when installing
         namespace_name: istio-system # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "2"
         version: 1.19.0 # current version
         is_up_to_date: false # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -234,6 +244,7 @@ dependencies:
         specific_name: istiod # For example istio/base install documentation shows istio-base when installing
         namespace_name: istio-system # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "3"
         version: 1.19.0 # current version
         is_up_to_date: false # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -252,6 +263,7 @@ dependencies:
         specific_name: istio-ingressgateway # For example istio/base install documentation shows istio-base when installing
         namespace_name: istio-system # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "4"
         version: 1.19.0 # current version
         is_up_to_date: false # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -274,6 +286,7 @@ dependencies:
         specific_name: jaeger # Consumes too much cpu in minikube
         namespace_name: jaeger # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 0.71.14 # current version
         is_up_to_date: false # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -296,6 +309,7 @@ dependencies:
         specific_name: kiali-operator # For example istio/base install documentation shows istio-base when installing
         namespace_name: kiali-operator # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 1.74.0 # current version
         is_up_to_date: false # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -317,6 +331,7 @@ dependencies:
         specific_name: kyverno # For example istio/base install documentation shows istio-base when installing
         namespace_name: kyverno # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 3.1.0-beta.2 # current version
         is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -337,6 +352,7 @@ dependencies:
         specific_name: linkerd-crds # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         namespace_name: linkerd # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 1.8.0 # current version
         is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -358,6 +374,7 @@ dependencies:
         specific_name: linkerd-control-plane # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         namespace_name: linkerd # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 1.15.0 # current version
         is_up_to_date: false # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -375,6 +392,7 @@ dependencies:
         specific_name: linkerd2-cni # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         namespace_name: linkerd-cni # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 30.11.0 # current version
         is_up_to_date: false # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -395,6 +413,7 @@ dependencies:
         specific_name: metrics-server # For example istio/base install documentation shows istio-base when installing
         namespace_name: metrics-server # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 3.11.0 # current version
         is_up_to_date: true # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -418,6 +437,7 @@ dependencies:
         specific_name: prometheus # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
         namespace_name: prometheus
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 25.0.0 # current version
         is_up_to_date: false # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true
@@ -441,6 +461,7 @@ dependencies:
         specific_name: reloader # For example istio/base install documentation shows istio-base when installing
         namespace_name: default # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 1.0.41 # current version
         is_up_to_date: false # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: false # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -464,6 +485,7 @@ dependencies:
         specific_name: velero # For example istio/base install documentation shows istio-base when installing
         namespace_name: default # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 5.0.2 # current version
         is_up_to_date: false # DESCRIPTION: Check if chart is up-to-date. IMPORTANT: Do NOT edit this property (key/values) manually. Use boilerplate repo to update the value.
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -484,6 +506,7 @@ dependencies:
         specific_name: knative-operator # For example istio/base install documentation shows istio-base when installing
         namespace_name: default # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 1.10.0 # current version
         is_up_to_date: false
         namespaced: false # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -500,6 +523,7 @@ dependencies:
         specific_name: knative-serving # For example istio/base install documentation shows istio-base when installing
         namespace_name: knative-serving # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 1.10.1 # current version
         is_up_to_date: false
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -516,6 +540,7 @@ dependencies:
         specific_name: knative-eventing # For example istio/base install documentation shows istio-base when installing
         namespace_name: knative-eventing # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 1.10.1 # current version
         is_up_to_date: false
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -535,6 +560,7 @@ dependencies:
         specific_name: apis-fastify # For example istio/base install documentation shows istio-base when installing
         namespace_name: apis-fastify # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 1.0.0 # current version
         is_up_to_date: false
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -551,6 +577,7 @@ dependencies:
         specific_name: apis-rust # For example istio/base install documentation shows istio-base when installing
         namespace_name: apis-rust # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 1.0.0 # current version
         is_up_to_date: false
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
@@ -567,6 +594,7 @@ dependencies:
         specific_name: website-vue # For example istio/base install documentation shows istio-base when installing
         namespace_name: website-vue # if the name of the chart has a different namespace
         is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
+        weight: "5"
         version: 1.0.0 # current version
         is_up_to_date: false
         namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace

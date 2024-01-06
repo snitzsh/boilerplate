@@ -74,3 +74,15 @@ export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressga
 export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
 echo "$GATEWAY_URL"
 ```
+
+## Slack Setup
+
+```bash
+# 1) Download Slack, Create a workspace. I created (snitzsh)
+# 2) Create a channel for each region_name per cluster_name
+#    - ex: minikube-north-america-dev
+# 3) https://api.slack.com/apps ,
+#    - Click [Create an App]
+#    - Give it a name and select the workspace (snitzsh)
+# 4) Follow this example to create OAUTH https://argo-cd.readthedocs.io/en/stable/operator-manual/notifications/services/slack/
+```

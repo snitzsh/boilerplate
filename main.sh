@@ -14,6 +14,12 @@ export GITHUB_API_TOKEN="github_pat_11A5IDNQA0NSWYR119kp5O_8rMRTF6xPFxmEiawGBfVv
 #
 # TODO:
 # - Save in secrets.
+#   - Repo/project
+#
+export MINIKUBE_NORTH_AMERICA_DEV_SLACK_BOT_OAUTH_TOKEN="xoxb-6406684014950-6398852771255-RSPwrGnOlD1JYZ8r0HLRmzF3"
+#
+# TODO:
+# - Save in secrets.
 #
 export GITHUB_API_THROTTLE_INTEVAL=30000 # in seconds
 #
