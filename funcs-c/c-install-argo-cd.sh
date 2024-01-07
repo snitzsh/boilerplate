@@ -6,12 +6,11 @@
 #   - findout if adding repo with project can be access by other projects.
 #     else make sure the repos are global and only let the AppProject handle
 #     which project has access to what repos.
-#   - Figure out why istio-base fails to deploy in the first attempt causing
-#     istio-istiod and istio-gateway to fail too. ArgoCd will retry after
-#     few seconds, however, I needed to moved the templates from istio/base
-#     istio/gateway, otherwise even the retry would failed (even if I added
-#     hooks). Also figure out if we should pass retry in `spec.syncPolicy.
-#     automated` or is okay to wait.
+#   - Figure out why istio-base, istio-istid and istio-gateway, must
+#     be refresh when it gets deployed for the first time.
+#   - figure out why argo-cd continue send notification when
+#     annotations in application.yaml is removed. Findout which turns
+#     the notificiations values.yaml or annotations.
 #
 # NOTE:
 #   - when accessing argo web, you must click [refresh] so the repos connect.
@@ -337,6 +336,7 @@ clusterInstallArgoCD () {
   if ! [ -f "./charts/argo-cd-${chart_version_number}.tgz" ]; then
     helm dependency build
   fi
+
   if [ "${argo_cd_installed}" == "false" ]; then
     #
     # NOTE:

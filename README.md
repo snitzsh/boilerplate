@@ -85,4 +85,21 @@ echo "$GATEWAY_URL"
 #    - Click [Create an App]
 #    - Give it a name and select the workspace (snitzsh)
 # 4) Follow this example to create OAUTH https://argo-cd.readthedocs.io/en/stable/operator-manual/notifications/services/slack/
+# 5) Cleate a channel and add the app (created above)
+# 6) add annotations to each applications/edit `values.yaml`
+```
+
+# Fetch new version for clusters.yaml and hc-helm-charts
+```bash
+# 1) run `bash main.sh g-clusters-file-put-to-latest-version`
+#    - check .releases[]
+# 2) run `bash main.sh hc-update-versions-folder`
+# 3) Check the versons/diff** folder to check if any of the prop you
+#    currently using has change/depricated
+# 4) if nothing has changes do, update cluster.yaml .version to the
+#     the version you want to be.
+# 5) after .version has been updated, do `bash main.sh hc-update-version`
+# 6) then run again `bash main.sh g-clusters-file-put-to-latest-version` to clean up releases
+# 7 run bash main.sh hc-update-versions-folder to clean up /versions a   gain
+#
 ```

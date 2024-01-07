@@ -13,16 +13,15 @@ regions:
               repository: https://argoproj.github.io/argo-helm
               charts:
                 - name: argo-cd
-                  latest_version: 5.52.0
-                  releases:
-                    - 5.52.0
+                  latest_version: 5.52.1
+                  releases: []
                   condition: argo-cd.disabled
                   specific_name: argo-cd
                   namespace_name: argo-cd
                   is_deployed: false
                   weight: "1"
-                  version: 5.51.6
-                  is_up_to_date: false
+                  version: 5.52.1
+                  is_up_to_date: true
                   namespaced: true
                   has_repo: true
                   platform_repository: true
@@ -30,23 +29,23 @@ regions:
                   service: third-party
                   software_type: open-source
                   configs_repository: ""
-                # - name: argo-workflows
-                #   latest_version: 0.40.3
-                #   releases: []
-                #   condition: argo-workflows.disabled
-                #   specific_name: argo-workflows
-                #   namespace_name: argo-workflows
-                #   is_deployed: false
-                #   weight: "5"
-                #   version: 0.40.3
-                #   is_up_to_date: true
-                #   namespaced: true
-                #   has_repo: true
-                #   platform_repository: true
-                #   language: helm
-                #   service: third-party
-                #   software_type: open-source
-                #   configs_repository: ""
+                - name: argo-workflows
+                  latest_version: 0.40.4
+                  releases: []
+                  condition: argo-workflows.disabled
+                  specific_name: argo-workflows
+                  namespace_name: argo-workflows
+                  is_deployed: false
+                  weight: "7"
+                  version: 0.40.4
+                  is_up_to_date: true
+                  namespaced: true
+                  has_repo: true
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
             # - name: cert-manager
             #   repository: https://charts.jetstack.io
             #   charts:
@@ -57,7 +56,7 @@ regions:
             #       specific_name: cert-manager
             #       namespace_name: cert-manager
             #       is_deployed: false
-            #       weight: "5"
+            #       weight: "7"
             #       version: v1.13.3
             #       is_up_to_date: true
             #       namespaced: true
@@ -77,7 +76,7 @@ regions:
             #       specific_name: adminer
             #       namespace_name: adminer
             #       is_deployed: false
-            #       weight: "5"
+            #       weight: "7"
             #       version: 0.2.1
             #       is_up_to_date: true
             #       namespaced: true
@@ -117,7 +116,7 @@ regions:
             #       specific_name: external-dns
             #       namespace_name: external-dns
             #       is_deployed: false
-            #       weight: "5"
+            #       weight: "7"
             #       version: 1.13.1
             #       is_up_to_date: true
             #       namespaced: true
@@ -127,38 +126,38 @@ regions:
             #       service: third-party
             #       software_type: open-source
             #       configs_repository: ""
-            # - name: external-secrets
-            #   repository: https://charts.external-secrets.io
-            #   charts:
-            #     - name: external-secrets
-            #       latest_version: 0.9.11
-            #       releases: []
-            #       condition: external-secrets.disabled
-            #       specific_name: external-secrets
-            #       namespace_name: default
-            #       is_deployed: false
-            #       weight: "5"
-            #       version: 0.9.11
-            #       is_up_to_date: true
-            #       namespaced: false
-            #       has_repo: true
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
+            - name: external-secrets
+              repository: https://charts.external-secrets.io
+              charts:
+                - name: external-secrets
+                  latest_version: 0.9.11
+                  releases: []
+                  condition: external-secrets.disabled
+                  specific_name: external-secrets
+                  namespace_name: default
+                  is_deployed: false
+                  weight: "6"
+                  version: 0.9.11
+                  is_up_to_date: true
+                  namespaced: false
+                  has_repo: true
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
             # - name: fluent
             #   repository: https://fluent.github.io/helm-charts
             #   charts:
             #     - name: fluent-bit
-            #       latest_version: 0.40.0
+            #       latest_version: 0.42.0
             #       releases: []
             #       condition: fluent-bit.disabled
             #       specific_name: fluent-bit
             #       namespace_name: fluent-bit
             #       is_deployed: false
-            #       weight: "5"
-            #       version: 0.40.0
+            #       weight: "7"
+            #       version: 0.42.0
             #       is_up_to_date: true
             #       namespaced: true
             #       has_repo: true
@@ -177,7 +176,7 @@ regions:
             #       specific_name: grafana
             #       namespace_name: grafana
             #       is_deployed: false
-            #       weight: "5"
+            #       weight: "7"
             #       version: 7.0.19
             #       is_up_to_date: true
             #       namespaced: true
@@ -251,7 +250,7 @@ regions:
             #       specific_name: jaeger
             #       namespace_name: jaeger
             #       is_deployed: false
-            #       weight: "5"
+            #       weight: "7"
             #       version: 0.73.1
             #       is_up_to_date: true
             #       namespaced: true
@@ -271,7 +270,7 @@ regions:
             #       specific_name: kiali-operator
             #       namespace_name: kiali-operator
             #       is_deployed: false
-            #       weight: "5"
+            #       weight: "7"
             #       version: 1.78.0
             #       is_up_to_date: true
             #       namespaced: true
@@ -285,14 +284,14 @@ regions:
             #   repository: https://kyverno.github.io/kyverno
             #   charts:
             #     - name: kyverno
-            #       latest_version: 3.1.2
+            #       latest_version: 3.1.3
             #       releases: []
             #       condition: kyverno.disabled
             #       specific_name: kyverno
             #       namespace_name: kyverno
             #       is_deployed: false
-            #       weight: "5"
-            #       version: 3.1.2
+            #       weight: "7"
+            #       version: 3.1.3
             #       is_up_to_date: true
             #       namespaced: true
             #       has_repo: true
@@ -311,7 +310,7 @@ regions:
             #       specific_name: linkerd-crds
             #       namespace_name: linkerd
             #       is_deployed: false
-            #       weight: "5"
+            #       weight: "7"
             #       version: 1.8.0
             #       is_up_to_date: true
             #       namespaced: true
@@ -322,14 +321,14 @@ regions:
             #       software_type: open-source
             #       configs_repository: ""
             #     - name: linkerd-control-plane
-            #       latest_version: 1.16.8
+            #       latest_version: 1.16.9
             #       releases: []
             #       condition: linkerd-control-plane.disabled
             #       specific_name: linkerd-control-plane
             #       namespace_name: linkerd
             #       is_deployed: false
-            #       weight: "5"
-            #       version: 1.16.8
+            #       weight: "7"
+            #       version: 1.16.9
             #       is_up_to_date: true
             #       namespaced: true
             #       has_repo: true
@@ -345,7 +344,7 @@ regions:
             #       specific_name: linkerd2-cni
             #       namespace_name: linkerd-cni
             #       is_deployed: false
-            #       weight: "5"
+            #       weight: "7"
             #       version: 30.12.1
             #       is_up_to_date: true
             #       namespaced: true
@@ -365,7 +364,7 @@ regions:
             #       specific_name: metrics-server
             #       namespace_name: metrics-server
             #       is_deployed: false
-            #       weight: "5"
+            #       weight: "7"
             #       version: 3.11.0
             #       is_up_to_date: true
             #       namespaced: true
@@ -385,7 +384,7 @@ regions:
             #       specific_name: prometheus
             #       namespace_name: prometheus
             #       is_deployed: false
-            #       weight: "5"
+            #       weight: "7"
             #       version: 25.8.2
             #       is_up_to_date: true
             #       namespaced: true
@@ -395,26 +394,26 @@ regions:
             #       service: third-party
             #       software_type: open-source
             #       configs_repository: ""
-            # - name: stakater
-            #   repository: https://stakater.github.io/stakater-charts
-            #   charts:
-            #     - name: reloader
-            #       latest_version: 1.0.58
-            #       releases: []
-            #       condition: reloader.enabled
-            #       specific_name: reloader
-            #       namespace_name: default
-            #       is_deployed: false
-            #       weight: "5"
-            #       version: 1.0.58
-            #       is_up_to_date: true
-            #       namespaced: false
-            #       has_repo: true
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
+            - name: stakater
+              repository: https://stakater.github.io/stakater-charts
+              charts:
+                - name: reloader
+                  latest_version: 1.0.60
+                  releases: []
+                  condition: reloader.enabled
+                  specific_name: reloader
+                  namespace_name: default
+                  is_deployed: false
+                  weight: "7"
+                  version: 1.0.60
+                  is_up_to_date: true
+                  namespaced: false
+                  has_repo: true
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
             # - name: vmware-tanzu
             #   repository: https://vmware-tanzu.github.io/helm-charts
             #   charts:
@@ -425,7 +424,7 @@ regions:
             #       specific_name: velero
             #       namespace_name: default
             #       is_deployed: false
-            #       weight: "5"
+            #       weight: "7"
             #       version: 5.2.0
             #       is_up_to_date: true
             #       namespaced: true
@@ -445,7 +444,7 @@ regions:
             #       specific_name: knative-operator
             #       namespace_name: default
             #       is_deployed: false
-            #       weight: "5"
+            #       weight: "7"
             #       version: 1.10.0
             #       is_up_to_date: false
             #       namespaced: false
@@ -462,7 +461,7 @@ regions:
             #       specific_name: knative-serving
             #       namespace_name: knative-serving
             #       is_deployed: false
-            #       weight: "5"
+            #       weight: "7"
             #       version: 1.10.1
             #       is_up_to_date: false
             #       namespaced: true
@@ -479,7 +478,7 @@ regions:
             #       specific_name: knative-eventing
             #       namespace_name: knative-eventing
             #       is_deployed: false
-            #       weight: "5"
+            #       weight: "7"
             #       version: 1.10.1
             #       is_up_to_date: false
             #       namespaced: true
@@ -499,7 +498,7 @@ regions:
             #       specific_name: apis-fastify
             #       namespace_name: apis-fastify
             #       is_deployed: false
-            #       weight: "5"
+            #       weight: "7"
             #       version: 1.0.0
             #       is_up_to_date: false
             #       namespaced: true
@@ -516,7 +515,7 @@ regions:
             #       specific_name: apis-rust
             #       namespace_name: apis-rust
             #       is_deployed: false
-            #       weight: "5"
+            #       weight: "7"
             #       version: 1.0.0
             #       is_up_to_date: false
             #       namespaced: true
@@ -533,7 +532,7 @@ regions:
             #       specific_name: website-vue
             #       namespace_name: website-vue
             #       is_deployed: false
-            #       weight: "5"
+            #       weight: "7"
             #       version: 1.0.0
             #       is_up_to_date: false
             #       namespaced: true

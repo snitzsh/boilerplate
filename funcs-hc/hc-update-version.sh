@@ -80,6 +80,8 @@ funcHelmChartUpdateVersion () {
             )
           | .
         ' "Chart.yaml"
+      # Update Chart.lock
+      helm dependency update
       local -a args_2=( \
         "${func_name}" \
         "helm chart ${dependency_name}/${chart_name}/${region_name}/${cluster_name} .dependencies[<[chart_name]>].version has been updated." \
