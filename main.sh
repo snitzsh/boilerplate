@@ -9,8 +9,10 @@ export PLATFORM="snitzsh"
 # TODO:
 # - Save in secrets.
 #   - Repo/project
+# - findout which permission would allow clone-only, currrenlty all optiosn are
+#   selected when creating a token
 #
-export GITHUB_API_TOKEN="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"
+export GITHUB_API_TOKEN="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"
 #
 # TODO:
 # - Save in secrets.
@@ -21,7 +23,7 @@ export MINIKUBE_NORTH_AMERICA_DEV_SLACK_BOT_OAUTH_TOKEN="xoxb-6406684014950-6398
 # TODO:
 # - Save in secrets.
 #
-export GITHUB_API_THROTTLE_INTEVAL=30000 # in seconds
+export GITHUB_API_THROTTLE_INTEVAL=0 # in seconds
 #
 # TODO:
 # - Save in secrets.
@@ -43,6 +45,39 @@ export SSH_REPOSITORY_ENDPOINT="git@github.com:snitzsh"
 #   - Gets the parent directory: ../../../snitzh, not ../../../snitzh/boilerplate
 #
 export PLATFORM_PATH=${PWD%/*}
+#
+# TODO:
+#   - Save in secrets.
+#
+# NOTE:
+#   - identifiers for how the repo name should be name. helm--chart...configs
+#     is special case. We may change it later to helm-chart-configs...
+#
+export REPOSITORY_NAME_IDS="api,helm-chart,script,mobile,ui,process"
+#
+# TODO:
+#   - Save in secrets.
+#
+# NOTE:
+#   - list of app the platform supports. Mainly use to clone the repo and place
+#     it in the right directory.
+#   - Name repo rules:
+#       converntion <[identifier]>-<[app_name]>-<[unique_name]>-<[programming_language]>
+#       for each section "<[]>", if string has multiple words,
+#         then string must be snake_cased!
+
+#   - for repo names (that are not 3rd-party helm-chart-...-configs) must follow
+#     this convention:
+#     conv: <[identifier]>-<[app_name]>-<[unique_name]>-<[programming_language]>
+#     Ex: `<[api|ui|script|process|mobile|db|rds|etc.]>-<[global|snitzsh|lottery|etc.]>-<[main|for_multiple_word_use_snake_case]>-<[vue|rust|nodejs|etc.]>`
+#   - for proprietary helm-chart...configs should follow this convention
+#     conv: helm-chart-<[app_name]>-<[identifier]>-<[unique_name]-configs
+#     Ex: helm-chart-<[global|snitzsh|lottery|etc.]>-[api|ui|script|process|mobile|db|rds|etc.]-<[main|for_multiple_word_use_snake_case]>-configs
+#   - for proprietary helm-chart-... follow this convention
+#     conv:  helm-chart-<[app_name]>-<[identifier_in_plural. ex: uis, apis]
+#
+export APPS="global,snitzsh"
+
 #
 # TODO:
 #   - null
@@ -150,6 +185,19 @@ main () {
       #
       ;;
     "hc")
+      #
+      # Repository helm-chart functions
+      #
+      # - Functions that intereact with
+      #   './$PLATFORM/helm-charts/<repository>/<[helm-chart]>/<[region_name]>/<[cluster_name]>'
+      #   files.
+      #
+      # NOTE:
+      #   some 'g' and 'r' commands must be execute fist before executing any of these
+      #   commands.
+      #
+      ;;
+    "hc-c")
       #
       # Repository helm-chart functions
       #

@@ -550,57 +550,40 @@ dependencies:
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
-  - name: platform # Snitch charts, for now main.sh has been modified ignore the domain because it does not exist.
+  - name: snitzsh
     repository: https://chartmuseum.snitzh.com/charts
     charts:
-      - name: apis-fastify
-        latest_version: null # latest version of chart.
-        releases: [] # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
-        condition: apis-fastify.disabled # opts: disabled | enabled
-        specific_name: apis-fastify # For example istio/base install documentation shows istio-base when installing
-        namespace_name: apis-fastify # if the name of the chart has a different namespace
-        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
-        weight: "5"
-        version: 1.0.0 # current version
+      - name: api-main
+        latest_version: null
+        releases: []
+        condition: api-main.disabled
+        specific_name: api-main
+        namespace_name: api-main
+        is_deployed: false
+        weight: "7"
+        version: 1.0.0
         is_up_to_date: false
-        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        namespaced: true
         has_repo: false
         platform_repository: true
-        language: fastify # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
+        language: helm
         service: tenant
         software_type: proprietary
-        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
-      - name: apis-rust
-        latest_version: null # latest version of chart.
-        releases: [] # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
-        condition: apis-rust.disabled # opts: disabled | enabled
-        specific_name: apis-rust # For example istio/base install documentation shows istio-base when installing
-        namespace_name: apis-rust # if the name of the chart has a different namespace
-        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
-        weight: "5"
-        version: 1.0.0 # current version
+        configs_repository: ""
+      - name: ui-main
+        latest_version: null
+        releases: []
+        condition: ui-main.disabled
+        specific_name: ui-main
+        namespace_name: ui-main
+        is_deployed: false
+        weight: "7"
+        version: 1.0.0
         is_up_to_date: false
-        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
+        namespaced: true
         has_repo: false
         platform_repository: true
-        language: rust # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
+        language: helm
         service: tenant
         software_type: proprietary
-        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
-      - name: website-vue
-        latest_version: null # latest version of chart.
-        releases: [] # there will be a job running every day to fetch new release. This only contain anything > version, everything else will be removed from the array.
-        condition: website-vue.disabled # opts: disabled | enabled
-        specific_name: website-vue # For example istio/base install documentation shows istio-base when installing
-        namespace_name: website-vue # if the name of the chart has a different namespace
-        is_deployed: false # "null | true | false". Value changes dynamically by ./main.sh
-        weight: "5"
-        version: 1.0.0 # current version
-        is_up_to_date: false
-        namespaced: true # if namespaced is false and namespace_name is null, it will place it in `default` namespace
-        has_repo: false
-        platform_repository: true
-        language: vue # TODO: revise this, we should use the image language, not chart language. Create a new key for helm or other yaml
-        service: tenant
-        software_type: proprietary
-        configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
+        configs_repository: ""

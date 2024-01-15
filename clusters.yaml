@@ -46,46 +46,46 @@ regions:
                   service: third-party
                   software_type: open-source
                   configs_repository: ""
-            # - name: cert-manager
-            #   repository: https://charts.jetstack.io
-            #   charts:
-            #     - name: cert-manager
-            #       latest_version: v1.13.3
-            #       releases: []
-            #       condition: cert-manager.disabled
-            #       specific_name: cert-manager
-            #       namespace_name: cert-manager
-            #       is_deployed: false
-            #       weight: "7"
-            #       version: v1.13.3
-            #       is_up_to_date: true
-            #       namespaced: true
-            #       has_repo: true
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
-            # - name: cetic
-            #   repository: https://cetic.github.io/helm-charts
-            #   charts:
-            #     - name: adminer
-            #       latest_version: 0.2.1
-            #       releases: []
-            #       condition: adminer.disabled
-            #       specific_name: adminer
-            #       namespace_name: adminer
-            #       is_deployed: false
-            #       weight: "7"
-            #       version: 0.2.1
-            #       is_up_to_date: true
-            #       namespaced: true
-            #       has_repo: true
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
+            - name: cert-manager
+              repository: https://charts.jetstack.io
+              charts:
+                - name: cert-manager
+                  latest_version: v1.13.3
+                  releases: []
+                  condition: cert-manager.disabled
+                  specific_name: cert-manager
+                  namespace_name: cert-manager
+                  is_deployed: false
+                  weight: "7"
+                  version: v1.13.3
+                  is_up_to_date: true
+                  namespaced: true
+                  has_repo: true
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
+            - name: cetic
+              repository: https://cetic.github.io/helm-charts
+              charts:
+                - name: adminer
+                  latest_version: 0.2.1
+                  releases: []
+                  condition: adminer.disabled
+                  specific_name: adminer
+                  namespace_name: adminer
+                  is_deployed: false
+                  weight: "7"
+                  version: 0.2.1
+                  is_up_to_date: true
+                  namespaced: true
+                  has_repo: true
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
             - name: chartmuseum
               repository: https://chartmuseum.github.io/charts
               charts:
@@ -106,26 +106,26 @@ regions:
                   service: third-party
                   software_type: open-source
                   configs_repository: ""
-            # - name: external-dns
-            #   repository: https://kubernetes-sigs.github.io/external-dns/
-            #   charts:
-            #     - name: external-dns
-            #       latest_version: 1.13.1
-            #       releases: []
-            #       condition: external-dns.disabled
-            #       specific_name: external-dns
-            #       namespace_name: external-dns
-            #       is_deployed: false
-            #       weight: "7"
-            #       version: 1.13.1
-            #       is_up_to_date: true
-            #       namespaced: true
-            #       has_repo: true
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
+            - name: external-dns
+              repository: https://kubernetes-sigs.github.io/external-dns/
+              charts:
+                - name: external-dns
+                  latest_version: 1.13.1
+                  releases: []
+                  condition: external-dns.disabled
+                  specific_name: external-dns
+                  namespace_name: external-dns
+                  is_deployed: false
+                  weight: "7"
+                  version: 1.13.1
+                  is_up_to_date: true
+                  namespaced: true
+                  has_repo: true
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
             - name: external-secrets
               repository: https://charts.external-secrets.io
               charts:
@@ -146,46 +146,46 @@ regions:
                   service: third-party
                   software_type: open-source
                   configs_repository: ""
-            # - name: fluent
-            #   repository: https://fluent.github.io/helm-charts
-            #   charts:
-            #     - name: fluent-bit
-            #       latest_version: 0.42.0
-            #       releases: []
-            #       condition: fluent-bit.disabled
-            #       specific_name: fluent-bit
-            #       namespace_name: fluent-bit
-            #       is_deployed: false
-            #       weight: "7"
-            #       version: 0.42.0
-            #       is_up_to_date: true
-            #       namespaced: true
-            #       has_repo: true
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
-            # - name: grafana
-            #   repository: https://grafana.github.io/helm-charts
-            #   charts:
-            #     - name: grafana
-            #       latest_version: 7.0.19
-            #       releases: []
-            #       condition: grafana.disabled
-            #       specific_name: grafana
-            #       namespace_name: grafana
-            #       is_deployed: false
-            #       weight: "7"
-            #       version: 7.0.19
-            #       is_up_to_date: true
-            #       namespaced: true
-            #       has_repo: true
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
+            - name: fluent
+              repository: https://fluent.github.io/helm-charts
+              charts:
+                - name: fluent-bit
+                  latest_version: 0.42.0
+                  releases: []
+                  condition: fluent-bit.disabled
+                  specific_name: fluent-bit
+                  namespace_name: fluent-bit
+                  is_deployed: false
+                  weight: "7"
+                  version: 0.42.0
+                  is_up_to_date: true
+                  namespaced: true
+                  has_repo: true
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
+            - name: grafana
+              repository: https://grafana.github.io/helm-charts
+              charts:
+                - name: grafana
+                  latest_version: 7.0.19
+                  releases: []
+                  condition: grafana.disabled
+                  specific_name: grafana
+                  namespace_name: grafana
+                  is_deployed: false
+                  weight: "7"
+                  version: 7.0.19
+                  is_up_to_date: true
+                  namespaced: true
+                  has_repo: true
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
             - name: istio
               repository: https://istio-release.storage.googleapis.com/charts
               charts:
@@ -240,160 +240,160 @@ regions:
                   service: third-party
                   software_type: open-source
                   configs_repository: ""
-            # - name: jaegertracing
-            #   repository: https://jaegertracing.github.io/helm-charts
-            #   charts:
-            #     - name: jaeger
-            #       latest_version: 0.73.1
-            #       releases: []
-            #       condition: jaeger.disabled
-            #       specific_name: jaeger
-            #       namespace_name: jaeger
-            #       is_deployed: false
-            #       weight: "7"
-            #       version: 0.73.1
-            #       is_up_to_date: true
-            #       namespaced: true
-            #       has_repo: true
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
-            # - name: kiali
-            #   repository: https://kiali.org/helm-charts
-            #   charts:
-            #     - name: kiali-operator
-            #       latest_version: 1.78.0
-            #       releases: []
-            #       condition: kiali-operator.disabled
-            #       specific_name: kiali-operator
-            #       namespace_name: kiali-operator
-            #       is_deployed: false
-            #       weight: "7"
-            #       version: 1.78.0
-            #       is_up_to_date: true
-            #       namespaced: true
-            #       has_repo: true
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
-            # - name: kyverno
-            #   repository: https://kyverno.github.io/kyverno
-            #   charts:
-            #     - name: kyverno
-            #       latest_version: 3.1.3
-            #       releases: []
-            #       condition: kyverno.disabled
-            #       specific_name: kyverno
-            #       namespace_name: kyverno
-            #       is_deployed: false
-            #       weight: "7"
-            #       version: 3.1.3
-            #       is_up_to_date: true
-            #       namespaced: true
-            #       has_repo: true
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
-            # - name: linkerd
-            #   repository: https://helm.linkerd.io/stable
-            #   charts:
-            #     - name: linkerd-crds
-            #       latest_version: 1.8.0
-            #       releases: []
-            #       condition: linkerd-crds.disabled
-            #       specific_name: linkerd-crds
-            #       namespace_name: linkerd
-            #       is_deployed: false
-            #       weight: "7"
-            #       version: 1.8.0
-            #       is_up_to_date: true
-            #       namespaced: true
-            #       has_repo: true
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
-            #     - name: linkerd-control-plane
-            #       latest_version: 1.16.9
-            #       releases: []
-            #       condition: linkerd-control-plane.disabled
-            #       specific_name: linkerd-control-plane
-            #       namespace_name: linkerd
-            #       is_deployed: false
-            #       weight: "7"
-            #       version: 1.16.9
-            #       is_up_to_date: true
-            #       namespaced: true
-            #       has_repo: true
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
-            #     - name: linkerd2-cni
-            #       latest_version: 30.12.1
-            #       releases: []
-            #       condition: linkerd2-cni.disabled
-            #       specific_name: linkerd2-cni
-            #       namespace_name: linkerd-cni
-            #       is_deployed: false
-            #       weight: "7"
-            #       version: 30.12.1
-            #       is_up_to_date: true
-            #       namespaced: true
-            #       has_repo: true
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
-            # - name: metrics-server
-            #   repository: https://kubernetes-sigs.github.io/metrics-server/
-            #   charts:
-            #     - name: metrics-server
-            #       latest_version: 3.11.0
-            #       releases: []
-            #       condition: metrics-server.disabled
-            #       specific_name: metrics-server
-            #       namespace_name: metrics-server
-            #       is_deployed: false
-            #       weight: "7"
-            #       version: 3.11.0
-            #       is_up_to_date: true
-            #       namespaced: true
-            #       has_repo: true
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
-            # - name: prometheus-community
-            #   repository: https://prometheus-community.github.io/helm-charts
-            #   charts:
-            #     - name: prometheus
-            #       latest_version: 25.8.2
-            #       releases: []
-            #       condition: prometheus.disabled
-            #       specific_name: prometheus
-            #       namespace_name: prometheus
-            #       is_deployed: false
-            #       weight: "7"
-            #       version: 25.8.2
-            #       is_up_to_date: true
-            #       namespaced: true
-            #       has_repo: true
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
+            - name: jaegertracing
+              repository: https://jaegertracing.github.io/helm-charts
+              charts:
+                - name: jaeger
+                  latest_version: 0.73.1
+                  releases: []
+                  condition: jaeger.disabled
+                  specific_name: jaeger
+                  namespace_name: jaeger
+                  is_deployed: false
+                  weight: "7"
+                  version: 0.73.1
+                  is_up_to_date: true
+                  namespaced: true
+                  has_repo: true
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
+            - name: kiali
+              repository: https://kiali.org/helm-charts
+              charts:
+                - name: kiali-operator
+                  latest_version: 1.78.0
+                  releases: []
+                  condition: kiali-operator.disabled
+                  specific_name: kiali-operator
+                  namespace_name: kiali-operator
+                  is_deployed: false
+                  weight: "7"
+                  version: 1.78.0
+                  is_up_to_date: true
+                  namespaced: true
+                  has_repo: true
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
+            - name: kyverno
+              repository: https://kyverno.github.io/kyverno
+              charts:
+                - name: kyverno
+                  latest_version: 3.1.3
+                  releases: []
+                  condition: kyverno.disabled
+                  specific_name: kyverno
+                  namespace_name: kyverno
+                  is_deployed: false
+                  weight: "7"
+                  version: 3.1.3
+                  is_up_to_date: true
+                  namespaced: true
+                  has_repo: true
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
+            - name: linkerd
+              repository: https://helm.linkerd.io/stable
+              charts:
+                - name: linkerd-crds
+                  latest_version: 1.8.0
+                  releases: []
+                  condition: linkerd-crds.disabled
+                  specific_name: linkerd-crds
+                  namespace_name: linkerd
+                  is_deployed: false
+                  weight: "7"
+                  version: 1.8.0
+                  is_up_to_date: true
+                  namespaced: true
+                  has_repo: true
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
+                - name: linkerd-control-plane
+                  latest_version: 1.16.9
+                  releases: []
+                  condition: linkerd-control-plane.disabled
+                  specific_name: linkerd-control-plane
+                  namespace_name: linkerd
+                  is_deployed: false
+                  weight: "7"
+                  version: 1.16.9
+                  is_up_to_date: true
+                  namespaced: true
+                  has_repo: true
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
+                - name: linkerd2-cni
+                  latest_version: 30.12.1
+                  releases: []
+                  condition: linkerd2-cni.disabled
+                  specific_name: linkerd2-cni
+                  namespace_name: linkerd-cni
+                  is_deployed: false
+                  weight: "7"
+                  version: 30.12.1
+                  is_up_to_date: true
+                  namespaced: true
+                  has_repo: true
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
+            - name: metrics-server
+              repository: https://kubernetes-sigs.github.io/metrics-server/
+              charts:
+                - name: metrics-server
+                  latest_version: 3.11.0
+                  releases: []
+                  condition: metrics-server.disabled
+                  specific_name: metrics-server
+                  namespace_name: metrics-server
+                  is_deployed: false
+                  weight: "7"
+                  version: 3.11.0
+                  is_up_to_date: true
+                  namespaced: true
+                  has_repo: true
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
+            - name: prometheus-community
+              repository: https://prometheus-community.github.io/helm-charts
+              charts:
+                - name: prometheus
+                  latest_version: 25.8.2
+                  releases: []
+                  condition: prometheus.disabled
+                  specific_name: prometheus
+                  namespace_name: prometheus
+                  is_deployed: false
+                  weight: "7"
+                  version: 25.8.2
+                  is_up_to_date: true
+                  namespaced: true
+                  has_repo: true
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
             - name: stakater
               repository: https://stakater.github.io/stakater-charts
               charts:
@@ -414,134 +414,117 @@ regions:
                   service: third-party
                   software_type: open-source
                   configs_repository: ""
-            # - name: vmware-tanzu
-            #   repository: https://vmware-tanzu.github.io/helm-charts
-            #   charts:
-            #     - name: velero
-            #       latest_version: 5.2.0
-            #       releases: []
-            #       condition: velero.enabled
-            #       specific_name: velero
-            #       namespace_name: default
-            #       is_deployed: false
-            #       weight: "7"
-            #       version: 5.2.0
-            #       is_up_to_date: true
-            #       namespaced: true
-            #       has_repo: true
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
-            # - name: knative
-            #   repository: https://github.com/knative
-            #   charts:
-            #     - name: knative-operator
-            #       latest_version: null
-            #       releases: []
-            #       condition: knative-operator.disabled
-            #       specific_name: knative-operator
-            #       namespace_name: default
-            #       is_deployed: false
-            #       weight: "7"
-            #       version: 1.10.0
-            #       is_up_to_date: false
-            #       namespaced: false
-            #       has_repo: false
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
-            #     - name: knative-serving
-            #       latest_version: null
-            #       releases: []
-            #       condition: knative-serving.disabled
-            #       specific_name: knative-serving
-            #       namespace_name: knative-serving
-            #       is_deployed: false
-            #       weight: "7"
-            #       version: 1.10.1
-            #       is_up_to_date: false
-            #       namespaced: true
-            #       has_repo: false
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
-            #     - name: knative-eventing
-            #       latest_version: null
-            #       releases: []
-            #       condition: knative-eventing.disabled
-            #       specific_name: knative-eventing
-            #       namespace_name: knative-eventing
-            #       is_deployed: false
-            #       weight: "7"
-            #       version: 1.10.1
-            #       is_up_to_date: false
-            #       namespaced: true
-            #       has_repo: false
-            #       platform_repository: true
-            #       language: helm
-            #       service: third-party
-            #       software_type: open-source
-            #       configs_repository: ""
-            # - name: platform
-            #   repository: https://chartmuseum.snitzh.com/charts
-            #   charts:
-            #     - name: apis-fastify
-            #       latest_version: null
-            #       releases: []
-            #       condition: apis-fastify.disabled
-            #       specific_name: apis-fastify
-            #       namespace_name: apis-fastify
-            #       is_deployed: false
-            #       weight: "7"
-            #       version: 1.0.0
-            #       is_up_to_date: false
-            #       namespaced: true
-            #       has_repo: false
-            #       platform_repository: true
-            #       language: fastify
-            #       service: tenant
-            #       software_type: proprietary
-            #       configs_repository: ""
-            #     - name: apis-rust
-            #       latest_version: null
-            #       releases: []
-            #       condition: apis-rust.disabled
-            #       specific_name: apis-rust
-            #       namespace_name: apis-rust
-            #       is_deployed: false
-            #       weight: "7"
-            #       version: 1.0.0
-            #       is_up_to_date: false
-            #       namespaced: true
-            #       has_repo: false
-            #       platform_repository: true
-            #       language: rust
-            #       service: tenant
-            #       software_type: proprietary
-            #       configs_repository: ""
-            #     - name: website-vue
-            #       latest_version: null
-            #       releases: []
-            #       condition: website-vue.disabled
-            #       specific_name: website-vue
-            #       namespace_name: website-vue
-            #       is_deployed: false
-            #       weight: "7"
-            #       version: 1.0.0
-            #       is_up_to_date: false
-            #       namespaced: true
-            #       has_repo: false
-            #       platform_repository: true
-            #       language: vue
-            #       service: tenant
-            #       software_type: proprietary
-            #       configs_repository: ""
+            - name: vmware-tanzu
+              repository: https://vmware-tanzu.github.io/helm-charts
+              charts:
+                - name: velero
+                  latest_version: 5.2.0
+                  releases: []
+                  condition: velero.enabled
+                  specific_name: velero
+                  namespace_name: default
+                  is_deployed: false
+                  weight: "7"
+                  version: 5.2.0
+                  is_up_to_date: true
+                  namespaced: true
+                  has_repo: true
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
+            - name: knative
+              repository: https://github.com/knative
+              charts:
+                - name: knative-operator
+                  latest_version: null
+                  releases: []
+                  condition: knative-operator.disabled
+                  specific_name: knative-operator
+                  namespace_name: default
+                  is_deployed: false
+                  weight: "7"
+                  version: 1.10.0
+                  is_up_to_date: false
+                  namespaced: false
+                  has_repo: false
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
+                - name: knative-serving
+                  latest_version: null
+                  releases: []
+                  condition: knative-serving.disabled
+                  specific_name: knative-serving
+                  namespace_name: knative-serving
+                  is_deployed: false
+                  weight: "7"
+                  version: 1.10.1
+                  is_up_to_date: false
+                  namespaced: true
+                  has_repo: false
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
+                - name: knative-eventing
+                  latest_version: null
+                  releases: []
+                  condition: knative-eventing.disabled
+                  specific_name: knative-eventing
+                  namespace_name: knative-eventing
+                  is_deployed: false
+                  weight: "7"
+                  version: 1.10.1
+                  is_up_to_date: false
+                  namespaced: true
+                  has_repo: false
+                  platform_repository: true
+                  language: helm
+                  service: third-party
+                  software_type: open-source
+                  configs_repository: ""
+            - name: snitzsh
+              repository: https://chartmuseum.snitzh.com/charts
+              charts:
+                - name: apis
+                  latest_version: null
+                  releases: []
+                  condition: apis.disabled
+                  specific_name: apis
+                  namespace_name: apis
+                  is_deployed: false
+                  weight: "7"
+                  version: 1.0.0
+                  is_up_to_date: false
+                  namespaced: true
+                  has_repo: false
+                  platform_repository: true
+                  language: helm
+                  service: tenant
+                  software_type: proprietary
+                  configs_repository: ""
+                - name: uis
+                  latest_version: null
+                  releases: []
+                  condition: uis.disabled
+                  specific_name: uis
+                  namespace_name: uis
+                  is_deployed: false
+                  weight: "7"
+                  version: 1.0.0
+                  is_up_to_date: false
+                  namespaced: true
+                  has_repo: false
+                  platform_repository: true
+                  language: helm
+                  service: tenant
+                  software_type: proprietary
+                  configs_repository: ""
       sit: {}
       uat: {}
       prod: {}

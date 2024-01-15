@@ -46,9 +46,11 @@ bash main.sh patch-helm-chart-repos-chart-yaml-file.sh
 - 3) crete a X-AUTH in git
   * In https://github.com/settings/tokens
     -> Generate new token
-    -> `Note` should be 'CloneOnly For Boilerplate Repo'
-    -> `Expire` in 30 days.
-    -> `Do not` select any boxes.
+    - `Name` - type "boilerplate-repository"
+    -> `Expire` - Select "30 days".
+    -> `Note` - type "CloneOnly For Boilerplate Repository"
+    -> `Repository access` - Select "All Repositories"
+    -> `Permissions` select all boxes on both sections.
   4) Copy the token and pasted in main.sh -> GITHUB_API_TOKEN variable
 - 5) In in boilerplate repository.
     * Add the helm-chart information in `clusters.yaml` and `helm-chart-dependencies.yaml`.

@@ -41,9 +41,29 @@ cloneRepositories() {
   local -r file_name="${PLATFORM_PATH}/boilerplate/.cache/$(echo "${endpoint}" | tr '/' '-').json"
   local -a repositories=()
   local -a helm_chart_dependencies=()
-  local -r prefix_one="helm-chart"
-  local -r prefix_two="app"
-  local repository_dir=""
+  local -a apps="${APPS}"
+  # TODO:
+  #   - use REPOSITORY_NAME_IDS
+  #   - instead of doing a variable per prefix create an array
+  #   - auto generate regex when looping instead of manually adding...
+  #   - figure out a good pattern for different apps ex: ui-juan-rust.
+  #     (That would be cool)
+  # local -ar repos_prefixes=( \
+  #   '^helm-chart-.*$' \
+  #   '^helm-chart-.*-configs$' \
+  #   '^apis-.*$' \
+  #   '^ui-.*$' \
+  #   '^process-.*$' \
+  # )
+  local -r prefix_1='^helm-chart-.*$'
+  local -r prefix_2='^helm-chart-.*-configs$'
+  local -r prefix_3='^api-.*$'
+  local -r prefix_4='^ui-.*$'
+  local -r prefix_5='^process-.*$'
+  local -r prefix_6='^mobile-.*$'
+  local -r prefix_7='^script-.*$'
+
+  local folder_name_level_1=""
 
   while IFS='' read -r line; do repositories+=("$line"); done < <(
     jq -r '.data | .[] | .name' "${file_name}"
@@ -57,59 +77,184 @@ cloneRepositories() {
     if [ "${repository}" == "boilerplate" ] ; then
       continue
     fi
-    # Helm Chart Repos
-    if [[ "${repository}" == "${prefix_one}-"* ]]; then
-      local repository_nickname=""
-      local dependency_name=""
-      local chart_name=""
-      local found="false"
-      repository_dir="${PLATFORM_PATH}/${prefix_one}s"
-      for dependency in "${helm_chart_dependencies[@]}"; do
-        chart_name=$(echo "${dependency}" | yq -r 'split("|") | .[1]')
-        if [[ "${repository}" == *"${chart_name}" ]]; then
-          repository_nickname="${chart_name}"
-          dependency_name=$(echo "${dependency}" | yq -r 'split("|") | .[0]')
+    # echo "Repository: $repository"
+    local repository_nickname=""
+    local dependency_name=""
+    local chart_name=""
+    local found="false"
+    local folder_name_level_2=""
+    local chart_name_folder_name=""
+    local args_2=()
+    # helm-charts
+    if [[ "${repository}" =~ $prefix_1 && ! "${repository}" =~ -configs$ ]]; then
+      if [ "${repository}" == "helm-chart-example" ]; then
+        continue
+      fi
+      folder_name_level_1="${PLATFORM_PATH}/helm-charts"
+
+      IFS=',' read -ra apps_array <<< "${apps}"
+      for app_name in "${apps_array[@]}"; do
+        args_2=(
+          "g-clone-repositories-get-repository-last-word"
+          "${app_name}"
+          "${repository}"
+        )
+        repository_nickname=$(utilQueryRegexer "${args_2[@]}")
+        if [ "${repository_nickname}" != "false" ]; then
+          dependency_name="${app_name}"
           found="true"
+          folder_name_level_2="${folder_name_level_1}/${dependency_name}"
+          chart_name_folder_name="${folder_name_level_2}/${repository_nickname}"
           break
         fi
       done
-      if [ "${found}" == "true" ]; then
-        local dependency_folder_name="${repository_dir}/${dependency_name}"
-        # Creates folder for each dependency repository in ../../helm-charts folder
-        mkdir -p "${dependency_folder_name}"
-        local chart_name_folder_name="${dependency_folder_name}/${repository_nickname}"
-        # Folder doesn't exist
-        if [ ! -d "${chart_name_folder_name}" ]; then
-          logger "INFO" "Cloning repository ${repository}..." "${func_name}"
-          if git -C "${dependency_folder_name}" \
-              clone \
-                --quiet \
-                "${SSH_REPOSITORY_ENDPOINT}/${repository}.git" "${repository_nickname}" > /dev/null; then
-            # Fetch
-            ( \
-              cd "${chart_name_folder_name}" \
-              && logger "INFO" "Fetching repository data..." "${func_name}" \
-              && git fetch \
-                --quiet \
-                --all \
-            )
-          else
-            logger "ERROR" "Failed clonning ${chart_name_folder_name}." "${func_name}"
-          fi
+    # helm-chart-...-configs
+    elif [[ "${repository}" =~ $prefix_2 ]]; then
+      folder_name_level_1="${PLATFORM_PATH}/helm-charts-configs"
+      for dependency in "${helm_chart_dependencies[@]}"; do
+        chart_name=$(echo "${dependency}" | yq -r 'split("|") | .[1]')
+        if [[ "${repository}" == *"${chart_name}-configs" ]]; then
+          repository_nickname="${chart_name}"
+          dependency_name=$(echo "${dependency}" | yq -r 'split("|") | .[0]')
+          found="true"
+          folder_name_level_2="${folder_name_level_1}/${dependency_name}"
+          chart_name_folder_name="${folder_name_level_2}/${repository_nickname}"
+          break
+        fi
+      done
+
+      if [ "${found}" == "false" ]; then
+        logger "ERROR" "Repository '${repository}' is not found in '${PLATFORM_PATH}/boilerplate/helm-chart-dependencies.yaml' file. Make sure .name is properly align with repository name convention." "${func_name}"
+      fi
+    # apis
+    elif [[ "${repository}" =~ $prefix_3 ]]; then
+      folder_name_level_1="${PLATFORM_PATH}/apis"
+      IFS=',' read -ra apps_array <<< "${apps}"
+      for app_name in "${apps_array[@]}"; do
+        args_2=(
+          "g-clone-repositories-get-repository-last-word"
+          "${app_name}"
+          "${repository}"
+        )
+        repository_nickname=$(utilQueryRegexer "${args_2[@]}")
+        if [ "${repository_nickname}" != "false" ]; then
+          dependency_name="${app_name}"
+          found="true"
+          folder_name_level_2="${folder_name_level_1}/${dependency_name}"
+          chart_name_folder_name="${folder_name_level_2}/${repository_nickname}"
+          break
+        fi
+      done
+    # uis
+    elif [[ "${repository}" =~ $prefix_4 ]]; then
+      folder_name_level_1="${PLATFORM_PATH}/uis"
+      IFS=',' read -ra apps_array <<< "${apps}"
+      for app_name in "${apps_array[@]}"; do
+        args_2=(
+          "g-clone-repositories-get-repository-last-word"
+          "${app_name}"
+          "${repository}"
+        )
+        repository_nickname=$(utilQueryRegexer "${args_2[@]}")
+        if [ "${repository_nickname}" != "false" ]; then
+          dependency_name="${app_name}"
+          found="true"
+          folder_name_level_2="${folder_name_level_1}/${dependency_name}"
+          chart_name_folder_name="${folder_name_level_2}/${repository_nickname}"
+          break
+        fi
+      done
+    # processes
+    elif [[ "${repository}" =~ $prefix_5 ]]; then
+      folder_name_level_1="${PLATFORM_PATH}/processes"
+      IFS=',' read -ra apps_array <<< "${apps}"
+      for app_name in "${apps_array[@]}"; do
+        args_2=(
+          "g-clone-repositories-get-repository-last-word"
+          "${app_name}"
+          "${repository}"
+        )
+        repository_nickname=$(utilQueryRegexer "${args_2[@]}")
+        if [ "${repository_nickname}" != "false" ]; then
+          dependency_name="${app_name}"
+          found="true"
+          folder_name_level_2="${folder_name_level_1}/${dependency_name}"
+          chart_name_folder_name="${folder_name_level_2}/${repository_nickname}"
+          break
+        fi
+      done
+    # mobiles
+    elif [[ "${repository}" =~ $prefix_6 ]]; then
+      folder_name_level_1="${PLATFORM_PATH}/mobiles"
+      IFS=',' read -ra apps_array <<< "${apps}"
+      for app_name in "${apps_array[@]}"; do
+        args_2=(
+          "g-clone-repositories-get-repository-last-word"
+          "${app_name}"
+          "${repository}"
+        )
+        repository_nickname=$(utilQueryRegexer "${args_2[@]}")
+        if [ "${repository_nickname}" != "false" ]; then
+          dependency_name="${app_name}"
+          found="true"
+          folder_name_level_2="${folder_name_level_1}/${dependency_name}"
+          chart_name_folder_name="${folder_name_level_2}/${repository_nickname}"
+          break
+        fi
+      done
+    # scripts
+    elif [[ "${repository}" =~ $prefix_7 ]]; then
+      folder_name_level_1="${PLATFORM_PATH}/scripts"
+      IFS=',' read -ra apps_array <<< "${apps}"
+      for app_name in "${apps_array[@]}"; do
+        args_2=(
+          "g-clone-repositories-get-repository-last-word"
+          "${app_name}"
+          "${repository}"
+        )
+        repository_nickname=$(utilQueryRegexer "${args_2[@]}")
+        if [ "${repository_nickname}" != "false" ]; then
+          dependency_name="${app_name}"
+          found="true"
+          folder_name_level_2="${folder_name_level_1}/${dependency_name}"
+          chart_name_folder_name="${folder_name_level_2}/${repository_nickname}"
+          break
+        fi
+      done
+    # Unknown
+    else
+      # Other repos that with unknow prefix.
+      found="false"
+    fi
+
+    if [ "${found}" == "true" ]; then
+      # Creates folder for each dependency repository in ../../helm-charts folder
+      mkdir -p "${folder_name_level_2}"
+
+      # Folder doesn't exist
+      if [ ! -d "${chart_name_folder_name}" ]; then
+        logger "INFO" "Cloning repository ${repository}..." "${func_name}"
+        if git -C "${folder_name_level_2}" \
+            clone \
+              --quiet \
+              "${SSH_REPOSITORY_ENDPOINT}/${repository}.git" "${repository_nickname}" > /dev/null; then
+          # Fetch
+          (
+            cd "${chart_name_folder_name}" \
+            && logger "INFO" "Fetching repository data..." "${func_name}" \
+            && git fetch \
+              --quiet \
+              --all \
+            && sleep 1
+          )
         else
-          logger "WARN" "Repository already exist in path: ${chart_name_folder_name}." "${func_name}"
+          logger "ERROR" "Failed clonning ${chart_name_folder_name}." "${func_name}"
         fi
       else
-        logger "ERROR" "Repository '${repository}' is not found in '${PLATFORM_PATH}/boilerplate/helm-chart-dependencies.yaml' file." "${func_name}"
+        logger "WARN" "Repository already exist in path: ${chart_name_folder_name}." "${func_name}"
       fi
-    # APP Repos
-    elif [[ "${repository}" == "${prefix_two}-"* ]]; then
-      local repository_dir="${PLATFORM_PATH}/${prefix_two}s"
-      if [ ! -d "${repository_dir}/${dependency_name}/${repository_nickname}" ]; then
-        logger "INFO" "Cloning repository ${repository}..." "${func_name}"
-      fi
-      # TODO: do the APP Repos
     fi
+
   done
 }
 

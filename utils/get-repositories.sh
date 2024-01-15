@@ -27,7 +27,7 @@ utilGetRepositories () {
   local -r func_name="${FUNCNAME[0]}"
   local -r utc_timestamp=$(date -u +%s)
   # local -r query_string="?per_page=1"
-  local -r query_string=""
+  local -r query_string="?per_page=100"
   local -r endpoint="user/repos"
   local -r file_name="${PLATFORM_PATH}/boilerplate/.cache/$(echo "${endpoint}" | tr '/' '-').json"
   local allow_api_request="false"

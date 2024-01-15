@@ -2,7 +2,8 @@
 
 #
 # TODO:
-#   - null
+#   - integrate plural REPOSITORY_NAME_IDS
+#   - I don't think this is necessary since we are using mkdri -p ...
 #
 # NOTE:
 #   - null
@@ -19,8 +20,6 @@
 #
 utilCreateFolders () {
   local -r arr=(
-    "apps"
-    "helm-charts"
   )
   for folder in "${arr[@]}"; do
     mkdir -p "${PLATFORM_PATH}/$folder"

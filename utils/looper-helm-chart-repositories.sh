@@ -33,6 +33,9 @@ utilLooperHelmChartRepositories () {
     cd "$PLATFORM_PATH/helm-charts" &&
     for dependency_name in *; do
       echo "${dependency_name}"
+      if [ "${dependency_name}" != "platform" ]; then
+        continue
+      fi
       (
         cd "./${dependency_name}" &&
         for chart_name in *; do
@@ -71,6 +74,10 @@ utilLooperHelmChartRepositories () {
               for cluster_name in "${clusters_name_arr[@]}"; do
                 # TODO:
                 #   - should only run for north-america dev
+                #     when we are ready to update the qa, we do clone and
+                #     update each values.yaml for a higher environment.
+                #     make sure the funcionality includes update per chart.
+                #
                 # NOTE:
                 #   - Just runs if .helm_clusters is null.
                 local -a args_3=( \
