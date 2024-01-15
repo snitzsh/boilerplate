@@ -1,27 +1,25 @@
 #!/bin/bash
 # shellcheck source=/dev/null
 
-# ------------------------------------------------------------------------------
-# SCRIPT
-# ------------------------------------------------------------------------------
+#
+# TODO:
+#   - Create flags/options to pass in when executing this script through cli.
+#
 # NOTE
 #   - only the boilerplate repository MUST BE cloned manually!!!!
 #
-# TODO:
-#   - Create flags/options to pass in when executing this script through cli
-#   - Handle app* repositories
 #
 # DESCRIPTION:
 # - This script will only clone what exits. It will not create a repo
 #
-# ------------------------------------------------------------------------------
+#
 
 source "${PLATFORM_PATH}/boilerplate/funcs-r/source-funcs.sh"
 source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 
 #
 # TODO:
-#   - null
+#   - remove duplicate code.
 #
 # NOTE:
 #   - null
@@ -77,7 +75,7 @@ cloneRepositories() {
     if [ "${repository}" == "boilerplate" ] ; then
       continue
     fi
-    # echo "Repository: $repository"
+
     local repository_nickname=""
     local dependency_name=""
     local chart_name=""
@@ -87,9 +85,7 @@ cloneRepositories() {
     local args_2=()
     # helm-charts
     if [[ "${repository}" =~ $prefix_1 && ! "${repository}" =~ -configs$ ]]; then
-      if [ "${repository}" == "helm-chart-example" ]; then
-        continue
-      fi
+
       folder_name_level_1="${PLATFORM_PATH}/helm-charts"
 
       IFS=',' read -ra apps_array <<< "${apps}"
