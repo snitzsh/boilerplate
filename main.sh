@@ -176,7 +176,7 @@ main () {
       #
       # Repository functions
       #
-      # - Functions that interacts with './$PLATFORM/helm-charts/<repository>'
+      # - Functions that interacts with './$PLATFORM/<[REPOSITORY_NAME_IDS]>/<repository>'
       #   files.
       #
       # NOTE:
@@ -202,7 +202,7 @@ main () {
       # Repository helm-chart functions
       #
       # - Functions that intereact with
-      #   './$PLATFORM/helm-charts/<repository>/<[helm-chart]>/<[region_name]>/<[cluster_name]>'
+      #   './$PLATFORM/helm-charts-configs/<repository>/<[helm-chart]>/<[region_name]>/<[cluster_name]>'
       #   files.
       #
       # NOTE:
@@ -229,7 +229,7 @@ main () {
       #   - Some 'g' 'r' `hc` commands must be executed first,
       #     for example:
       #       - ensure that cluster exist in cluster.yaml.
-      #       - './$PLATFORM/helm-charts/<repository>/<[helm-chart]>/<[region_name]>/<[cluster_name]>'
+      #       - './$PLATFORM/helm-charts-configs/<repository>/<[helm-chart]>/<[region_name]>/<[cluster_name]>'
       #         exits.
       #       - chart is updated.
       #       - chart is linted.

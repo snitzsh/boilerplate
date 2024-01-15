@@ -20,7 +20,7 @@
 #   - When it's a new repository, it does not contain a chart.
 #     this function ensures it creates the helm-chart inside the repo.
 #
-#   - it loops throught the repositories cloned. ../helm-charts/ directory.
+#   - it loops throught the repositories cloned. ../helm-charts-configs/ directory.
 #
 # DESCRIPTION:
 #   - Creates helm chart in a repository per region per cluster.

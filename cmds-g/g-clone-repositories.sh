@@ -224,7 +224,7 @@ cloneRepositories() {
     fi
 
     if [ "${found}" == "true" ]; then
-      # Creates folder for each dependency repository in ../../helm-charts folder
+      # Creates folder for each dependency repository in ../../$REPOSITORY_NAME_IDS* folder
       mkdir -p "${folder_name_level_2}"
 
       # Folder doesn't exist

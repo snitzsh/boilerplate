@@ -6,7 +6,7 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 
 #
 # TODO:
-#   - maybe we much create a function to sync our helm-charts/ and respositories in git.
+#   - maybe we much create a function to sync our helm-charts-configs/ and respositories in git.
 #   - Create a different logic when is a proprietary chart, meaning that we don't
 #     need to loop per region_name, cluster_name
 #     We may need to do a different repo (ex: helm-chart-rust-apis-configs) that

@@ -7,7 +7,7 @@
 #     Some other function in boilerplate have this issue.
 #
 # NOTE:
-#   - it loops throught the repositories cloned. ../helm-charts/ directory.
+#   - it loops throught the repositories cloned. ../helm-charts-configs/ directory.
 #
 # DESCRIPTION:
 #   - Patches the dependencies on each helm-chart-repo's Chart.yaml file.

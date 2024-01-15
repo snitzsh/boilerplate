@@ -118,7 +118,7 @@ utilVersionerIsVersionObjQuery () {
 #   - returns error if query is unknown.
 #
 # DESCRIPTION:
-#   - Compare version for helm-charts.
+#   - Compare version for helm-charts-configs.
 #
 # ARGS:
 #   - ${1} : STRING : "greater_than" | "less_than" | "equals"

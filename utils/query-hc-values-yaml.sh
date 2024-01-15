@@ -8,7 +8,7 @@
 #   - null
 #
 # DESCRIPTION:
-#   - Querie file for CRUD properties on `helm-charts/<dependency_name>/<[chart_name]>/<[region_name]>/<[cluster_name]>/values.yaml`
+#   - Querie file for CRUD properties on `helm-charts-configs/<dependency_name>/<[chart_name]>/<[region_name]>/<[cluster_name]>/values.yaml`
 #
 # ARGS:
 #   - null
@@ -17,7 +17,7 @@
 #   - null
 #
 utilQueryHelmChartValuesYaml () {
-  local -r _path="${PLATFORM_PATH}/helm-charts/"
+  local -r _path="${PLATFORM_PATH}/helm-charts-configs/"
   local -r args=("$@")
   local -r query_name="${args[0]}"
   local -r dependency_name="${args[1]}"

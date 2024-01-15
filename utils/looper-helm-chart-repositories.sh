@@ -6,7 +6,7 @@
 #   - create a lint helm function to lint before committing.
 #
 # NOTE:
-#   - it loops throught the repositories cloned. ../helm-charts/ directory.
+#   - it loops throught the repositories cloned. ../helm-charts-configs/ directory.
 #
 # DESCRIPTION:
 #   - Creates values files
@@ -30,7 +30,7 @@ utilLooperHelmChartRepositories () {
   done < <(utilQueryClustersYaml "${args_1[@]}")
 
   (
-    cd "$PLATFORM_PATH/helm-charts" &&
+    cd "$PLATFORM_PATH/helm-charts-configs" &&
     for dependency_name in *; do
       echo "${dependency_name}"
       if [ "${dependency_name}" != "platform" ]; then
@@ -119,7 +119,7 @@ utilLooperHelmChartRepositories () {
                   if [[ "${dependency_name}" == "${file_dependency_dependency_name}" ]] \
                     && [[ "${chart_name}" == "${file_dependency_chart_name}" ]] \
                     && [[ "${file_dependency_chart_lenguage}" == "helm" ]]; then
-                    # /$PLATFORM/helm-charts/<dependency-name>/<[chart-name]>/<[region-name]>/<[cluster-name]>/*
+                    # /$PLATFORM/helm-charts-configs/<dependency-name>/<[chart-name]>/<[region-name]>/<[cluster-name]>/*
                     case "${query_name}" in
                       # TODO:
                       #   - currently function does nothing.

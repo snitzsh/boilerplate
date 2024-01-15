@@ -8,7 +8,7 @@
 #     using yq, that way no loop will be need it.
 #
 # NOTE:
-#   - it loops throught the repositories cloned. ../helm-charts/ directory.
+#   - it loops throught the repositories cloned. ../helm-charts-configs/ directory.
 #
 # DESCRIPTION:
 #   - Creates values files
@@ -95,7 +95,7 @@ utilLooperClusters () {
                     "${chart_name}" \
                   )
                   (
-                    cd "${PLATFORM_PATH}/helm-charts/${dependency_name}/${chart_name}/${region_name}/${cluster_name}" &&
+                    cd "${PLATFORM_PATH}/helm-charts-configs/${dependency_name}/${chart_name}/${region_name}/${cluster_name}" &&
                     case "${query_name}" in
                       "c-install-argo-cd")
                         clusterInstallArgoCD "${args_6[@]}"

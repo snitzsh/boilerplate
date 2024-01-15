@@ -6,7 +6,7 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 
 #
 # TODO:
-#   - maybe we much create a function to sync our helm-charts/ and respositories in git.
+#   - maybe we much create a function to sync our helm-charts-configs/ and respositories in git.
 #
 # NOTE:
 #   - null

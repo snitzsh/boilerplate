@@ -1,6 +1,6 @@
 # boilerplate
 
-Installs Repos, helm-charts, docker-compose
+Installs Repos: $REPOSITORY_NAME_IDS
 
 ## Steps to set up
 
@@ -91,7 +91,7 @@ echo "$GATEWAY_URL"
 # 6) add annotations to each applications/edit `values.yaml`
 ```
 
-# Fetch new version for clusters.yaml and hc-helm-charts
+# Fetch new version for clusters.yaml and hc-helm-charts-configs
 ```bash
 # 1) run `bash main.sh g-clusters-file-put-to-latest-version`
 #    - check .releases[]
