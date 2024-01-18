@@ -1,7 +1,7 @@
 #!/bin/bash
 # shellcheck source=/dev/null
 
-source "${PLATFORM_PATH}/boilerplate/funcs-hc/source-funcs.sh"
+source "${PLATFORM_PATH}/boilerplate/funcs-hc-c/source-funcs.sh"
 source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 
 #
@@ -21,8 +21,8 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #   - null
 #
 main () {
-  # utilLooperHelmChartRepositories "update-helm-repositories"
-  utilLooperHelmChartRepositories "update-version"
+  # utilLooperHelmChartConfigsRepositories "hc-c-update-helm-repositories"
+  utilLooperHelmChartConfigsRepositories "hc-c-update-ignore-file-helmignore"
 }
 
 main

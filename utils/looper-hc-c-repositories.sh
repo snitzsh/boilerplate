@@ -17,7 +17,7 @@
 # RETURN:
 #   - null
 #
-utilLooperHelmChartRepositories () {
+utilLooperHelmChartConfigsRepositories () {
   local -r func_name="${FUNCNAME[0]}"
   local -r query_name="${1}"
   local -a regions_name_arr=()
@@ -49,7 +49,7 @@ utilLooperHelmChartRepositories () {
                   "${dependency_name}" \
                   "${chart_name}" \
                 )
-                utilHelmChartUpdateIgnoreFiles "${args_6[@]}"
+                utilHelmChartConfigsUpdateIgnoreFiles "${args_6[@]}"
                 ;;
               "r-create-git-hooks")
                 # TODO:
@@ -124,43 +124,43 @@ utilLooperHelmChartRepositories () {
                       # TODO:
                       #   - currently function does nothing.
                       # ./values.yaml
-                      "get-values")
-                        funcHelmChartGetValues "${args[@]}"
+                      "hc-c-get-values")
+                        funcHelmChartConfigsGetValues "${args[@]}"
                         ;;
-                      "update-versions-folder")
+                      "hc-c-update-versions-folder")
                         # TODO:
                         # - make sure the `bash main.sh g-clusters-file-put-to-latest-version`
                         #   is always executed first.`
-                        funcHelmChartUpdateVersionsFolder "${args[@]}"
+                        funcHelmChartConfigsUpdateVersionsFolder "${args[@]}"
                         ;;
                       # /*
-                      "create-helm-chart")
-                        funcHelmChartPostChart "${args[@]}"
-                        funcHelmChartUpdateChartYamlFile "${args[@]}"
-                        funcHelmChartUpdateValuesAddDependencyNameAsProperty "${args[@]}"
+                      "hc-c-create-helm-chart")
+                        funcHelmChartConfigsCreateChart "${args[@]}"
+                        funcHelmChartConfigsUpdateChartYamlFile "${args[@]}"
+                        funcHelmChartConfigsUpdateValuesAddDependencyNameAsProperty "${args[@]}"
                         ;;
-                      "create-_helpers-file")
-                        funcHelmChart_HelpersFile "${args[@]}"
+                      "hc-c-create-_helpers-file")
+                        funcHelmChartConfigs_HelpersFile "${args[@]}"
                         ;;
                       # ./Chart.yaml
-                      "update-chart-yaml-file")
-                        funcHelmChartUpdateChartYamlFile "${args[@]}"
-                        funcHelmChartUpdateValuesAddDependencyNameAsProperty "${args[@]}"
+                      "hc-c-update-chart-yaml-file")
+                        funcHelmChartConfigsUpdateChartYamlFile "${args[@]}"
+                        funcHelmChartConfigsUpdateValuesAddDependencyNameAsProperty "${args[@]}"
                         ;;
-                      "update-values-file-add-dependency-name-as-property")
-                        funcHelmChartUpdateValuesAddDependencyNameAsProperty "${args[@]}"
+                      "hc-c-update-values-file-add-dependency-name-as-property")
+                        funcHelmChartConfigsUpdateValuesAddDependencyNameAsProperty "${args[@]}"
                         ;;
                       # .<[ignore-file-name]>
-                      "update-ignore-file-helmignore")
-                        local -a args_5=('.helmignore' "${args[@]}")
-                        utilHelmChartUpdateIgnoreFiles "${args_5[@]}"
+                      "hc-c-update-ignore-file-helmignore")
+                        local -a args_5=(".helmignore" "${args[@]}")
+                        utilHelmChartConfigsUpdateIgnoreFiles "${args_5[@]}"
                         ;;
                       # ./
-                      "update-version")
+                      "hc-c-update-version")
                         # TODO: This should never be allow beyond dev clusters.
-                        funcHelmChartUpdateVersion "${args[@]}"
+                        funcHelmChartConfigsUpdateVersion "${args[@]}"
                         ;;
-                      "linter")
+                      "hc-c-linter")
                         echo ""
                         ;;
                       *)

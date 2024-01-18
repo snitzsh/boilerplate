@@ -23,7 +23,7 @@
 # RETURN:
 #   - null
 #
-funcHelmChartUpdateVersionsFolder () {
+funcHelmChartConfigsUpdateVersionsFolder () {
   local -r func_name="${FUNCNAME[0]}"
   local -r args=("$@")
   local -r dependency_name="${args[0]}"

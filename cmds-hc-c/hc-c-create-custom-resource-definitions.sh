@@ -1,7 +1,7 @@
 #!/bin/bash
 # shellcheck source=/dev/null
 
-source "${PLATFORM_PATH}/boilerplate/funcs-hc/source-funcs.sh"
+source "${PLATFORM_PATH}/boilerplate/funcs-hc-c/source-funcs.sh"
 source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 
 #
@@ -23,7 +23,7 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #
 main () {
   # utilGetRepositories
-  utilLooperHelmChartRepositories "hc-create-custom-resoure-definitions"
+  utilLooperHelmChartConfigsRepositories "hc-c-create-custom-resource-definitions"
 }
 
 main

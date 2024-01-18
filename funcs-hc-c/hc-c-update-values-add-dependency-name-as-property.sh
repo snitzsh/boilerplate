@@ -6,7 +6,7 @@
 #
 # NOTE:
 #   - Must be executed after creating a helm-chart.
-#     and after `funcHelmChartUpdateChartYamlFile`
+#     and after `funcHelmChartConfigsUpdateChartYamlFile`
 #
 # DESCRIPTION:
 #   - Adds ./Chart.yaml dependencies[].name as properties in
@@ -19,7 +19,7 @@
 #   - null
 #
 
-funcHelmChartUpdateValuesAddDependencyNameAsProperty () {
+funcHelmChartConfigsUpdateValuesAddDependencyNameAsProperty () {
   local -r func_name="${FUNCNAME[0]}"
   local -ar args=("$@")
   local -r dependency_name="${args[0]}"

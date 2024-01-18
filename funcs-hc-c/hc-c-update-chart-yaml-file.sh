@@ -18,7 +18,7 @@
 # RETURN:
 #   - null
 #
-funcHelmChartUpdateChartYamlFile () {
+funcHelmChartConfigsUpdateChartYamlFile () {
   local -r func_name="${FUNCNAME[0]}"
   local -ar args=("$@")
   local -r dependency_name="${args[0]}"

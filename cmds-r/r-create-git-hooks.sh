@@ -21,8 +21,8 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #   - null
 #
 main () {
-  # utilLooperHelmChartRepositories "update-helm-repositories"
-  utilLooperHelmChartRepositories "r-create-git-hooks"
+  # utilLooperHelmChartConfigsRepositories "hc-c-update-helm-repositories"
+  utilLooperHelmChartConfigsRepositories "r-create-git-hooks"
 }
 
 main
