@@ -11,6 +11,7 @@
 #   - figure out why argo-cd continue send notification when
 #     annotations in application.yaml is removed. Findout which turns
 #     the notificiations values.yaml or annotations.
+#   - make sure to map the ssh-key based on the .config_repository
 #
 # NOTE:
 #   - when accessing argo web, you must click [refresh] so the repos connect.
@@ -296,7 +297,7 @@ clusterInstallArgoCD () {
   #   "${use_helm_hooks}" \
   #   "${dependencies}" \
   # )
-  # utilQueryHelmChartValuesYaml "${args_5[@]}"
+  # utilQueryHelmChartConfigsValuesYamlFile "${args_5[@]}"
   # exit 1
   #
   # TODO:

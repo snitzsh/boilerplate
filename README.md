@@ -1,6 +1,6 @@
 # boilerplate
 
-Installs Repos: $REPOSITORY_NAME_IDS
+Installs Repos:$REPOSITORY_NAME_IDS
 
 ## Steps to set up
 
@@ -53,7 +53,7 @@ bash main.sh patch-helm-chart-repos-chart-yaml-file.sh
     -> `Permissions` select all boxes on both sections.
   4) Copy the token and pasted in main.sh -> GITHUB_API_TOKEN variable
 - 5) In in boilerplate repository.
-    * Add the helm-chart information in `clusters.yaml` and `helm-chart-dependencies.yaml`.
+    * Add the helm-chart information in `clusters.yaml` and `hc-c-dependencies.yaml`.
       (Add it in A-Z ascending order)
     * execute command: `bash main.sh g-clone-repositories`
     * execute command: `bash main.sh hc-create-chart`

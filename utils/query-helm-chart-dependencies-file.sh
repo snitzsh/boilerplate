@@ -1,6 +1,7 @@
 #!/bin/bash
 # TODO:
 # - Merge the function into one, just like in ./query-cluster-yaml.sh
+# - name this functon and file to something like query-hc-c-dependencies.sh
 
 #
 # TODO:
@@ -10,7 +11,7 @@
 #   - null
 #
 # DESCRIPTION:
-#   - Get the all dependencies of the platform from ../helm-chart-dependencies.yaml
+#   - Get the all dependencies of the platform from ../hc-c-dependencies.yaml
 #
 # ARGS:
 #   - null
@@ -23,7 +24,7 @@
 #
 utilGetHelmChartDependecies () {
   local -a arr=()
-  local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/helm-chart-dependencies.yaml"
+  local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/hc-c-dependencies.yaml"
   while IFS='' read -r line; do arr+=("$line"); done < <(
     # yq doesn't have an easy way to return a bash array. So using jq is the
     # easiest way.
@@ -46,7 +47,7 @@ utilGetHelmChartDependecies () {
 #   - null
 #
 # DESCRIPTION:
-#   - Gets the specific dependency chart from ../helm-chart-dependencies.yaml
+#   - Gets the specific dependency chart from ../hc-c-dependencies.yaml
 #
 # ARGS:
 #   - dependency_name
@@ -59,7 +60,7 @@ utilGetHelmChartDependecies () {
 #
 #
 utilGetHelmChartDependency () {
-  local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/helm-chart-dependencies.yaml"
+  local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/hc-c-dependencies.yaml"
   local -r dependency_name="${1}"
   local -r chart_name="${2}"
   local dependency=""
@@ -99,8 +100,8 @@ utilGetHelmChartDependency () {
 # RETURN:
 #   - null
 #
-utilQueryHelmChartDependenciesFile () {
-  local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/helm-chart-dependencies.yaml"
+utilQueryHelmChartConfigsDependenciesFile () {
+  local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/hc-c-dependencies.yaml"
   local -r query_name="${1}"
 
   case "${query_name}" in
@@ -184,7 +185,7 @@ utilQueryHelmChartDependenciesFileObjGET () {
 #   - null
 #
 utilQueryHelmChartDependenciesFileGET () {
-  local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/helm-chart-dependencies.yaml"
+  local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/hc-c-dependencies.yaml"
   local -ar args=("$@")
   local -r query_name="${args[0]}"
   case "${query_name}" in
@@ -231,7 +232,7 @@ utilQueryHelmChartDependenciesFileGET () {
 #   - null
 #
 utilQueryHelmChartDependenciesFilePUT () {
-  local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/helm-chart-dependencies.yaml"
+  local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/hc-c-dependencies.yaml"
   local -ar args=("$@")
   local -r query_name="${args[0]}"
 

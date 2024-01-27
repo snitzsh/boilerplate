@@ -20,13 +20,11 @@
 #   - null
 #
 
-funcHelmChartConfigs_HelpersFile () {
+funcHelmChart_HelpersFile () {
   local -r func_name="${FUNCNAME[0]}"
   local -r args=("$@")
   local -r dependency_name="${args[0]}"
   local -r chart_name="${args[1]}"
-  local -r region_name="${args[2]}"
-  local -r cluster_name="${args[3]}"
 
 cat << EOF > ./templates/_helpers.tpl
 {{- /*
@@ -38,8 +36,8 @@ NOTE
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "${chart_name}-configs.name" -}}
-{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
+{{- define "${chart_name}.name" -}}
+{{- default .Chart.Name .Values.global.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
@@ -47,11 +45,11 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "${chart_name}-configs.fullname" -}}
-{{- if .Values.fullnameOverride }}
-{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
+{{- define "${chart_name}.fullname" -}}
+{{- if .Values.global.fullnameOverride }}
+{{- .Values.global.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
-{{- \$name := default .Chart.Name .Values.nameOverride }}
+{{- \$name := default .Chart.Name .Values.global.nameOverride }}
 {{- if contains \$name .Release.Name }}
 {{- .Release.Name | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -63,16 +61,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "${chart_name}-configs.chart" -}}
+{{- define "${chart_name}.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "${chart_name}-configs.labels" -}}
-helm.sh/chart: {{ include "${chart_name}-configs.chart" . }}
-{{ include "${chart_name}-configs.selectorLabels" . }}
+{{- define "${chart_name}.labels" -}}
+helm.sh/chart: {{ include "${chart_name}.chart" . }}
+{{ include "${chart_name}.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -82,15 +80,15 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "${chart_name}-configs.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "${chart_name}-configs.name" . }}
+{{- define "${chart_name}.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "${chart_name}.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create Annotations
 */}}
-{{- define "${chart_name}-configs.annotations" -}}
+{{- define "${chart_name}.annotations" -}}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
   {{- if eq .Release.Service "Helm" }}
 meta.helm.sh/release-name: {{ .Release.Namespace }}
@@ -98,14 +96,11 @@ meta.helm.sh/release-namespace: {{ .Release.Namespace }}
     {{- /*
       NOTE:
         - This hook is important because it waits from
-          "${chart_name}-configs"'s crds
+          "${chart_name}"'s crds
           to be deployed/created before it applies this yaml(s). Without the hook
-          "${chart_name}-configs" fails when deploying, because it tries
+          "${chart_name}" fails when deploying, because it tries
           to apply  CRDs that don't exit yet.
     */}}
-    {{- if .Values.use_helm_hooks }}
-helm.sh/hook: post-install
-    {{- end }}
   {{- end }}
 {{- end }}
 
@@ -113,11 +108,11 @@ helm.sh/hook: post-install
 Create the name of the service account to use
 */}}
 {{- /*
-{{- define "${chart_name}-configs.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "${chart_name}-configs.fullname" .) .Values.serviceAccount.name }}
+{{- define "${chart_name}.serviceAccountName" -}}
+{{- if .Values.global.service_account.enabled }}
+{{- default (include "${chart_name}.fullname" .) .Values.global.service_account.name }}
 {{- else }}
-{{- default "default" .Values.serviceAccount.name }}
+{{- default "default" .Values.global.service_account.name }}
 {{- end }}
 {{- end }}
 */}}

@@ -1,0 +1,12 @@
+dependencies:
+  - name: snitzsh
+    repository: "" # <[helm-chart hub]> url so we can push the repo to hub
+    charts:
+      - name: apis
+        latest_version: 0.1.0
+        releases: []
+        repository: "" # <[helm-chart hub]> url so we can push the repo to hub
+      - name: uis
+        latest_version: 0.1.0
+        releases: []
+        repository: "" # <[helm-chart hub]> url so we can push the repo to hub

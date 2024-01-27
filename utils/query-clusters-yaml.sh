@@ -20,7 +20,7 @@
 #
 utilQueryClustersYaml () {
   local -r clusters_path="${PLATFORM_PATH}/boilerplate/clusters.yaml"
-  local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/helm-chart-dependencies.yaml"
+  local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/hc-c-dependencies.yaml"
   local -r args=("$@")
   local -r query_name="${args[0]}"
   case "${query_name}" in

@@ -124,7 +124,7 @@ export PLATFORM_CLUSTERS_YAML
 #   - set as global to prevent getting the same file data in each funcs/utils
 #
 PLATFORM_HELM_CHART_DEPENDENCIES_YAML=$( \
-  yq '.' "$PLATFORM_PATH/boilerplate/helm-chart-dependencies.yaml" \
+  yq '.' "$PLATFORM_PATH/boilerplate/hc-c-dependencies.yaml" \
 )
 export PLATFORM_HELM_CHART_DEPENDENCIES_YAML
 
@@ -150,38 +150,70 @@ main () {
   local -r command_name="${args[0]}"
   local starts_with=""
   local proceed="true"
-
-  # Gets the first character.
-  starts_with=$(\
-    jq \
-      -n \
-      -r \
-      --arg command_name "${command_name}" \
-      '
-        $command_name | split("-")
-        | .[0]
-      '
-  )
+  local dir_name=""
+  local post_fix=""
+  for dir in ./*/; do
+    dir_name=$(basename "$dir")
+    if [[ "${dir_name}" == cmds-* ]]; then
+      post_fix=$(echo "${dir_name}" | sed -E 's/cmds-(.*)/\1/')
+      if [[ "${command_name}" =~ ^$post_fix.*$ ]]; then
+        #
+        # TODO:
+        #   - There must be a regex that is supported by bash to do this.
+        #
+        # NOTE:
+        #   - handles 'hc' 'hc-c', because there is not good way to match
+        #     if both starts with the same letters ('hc').
+        #
+        if [[ "${command_name}" =~ ^hc-c- ]]; then
+          starts_with=$( \
+            jq \
+              -n \
+              -r \
+              --arg post_fix "${post_fix}" \
+              --arg command_name "${command_name}" \
+              '
+                $post_fix
+                | $command_name | split($post_fix + "-")
+                | .[1]
+                | .
+              ' \
+          )
+          if [[ "${starts_with}" =~ ^c- ]]; then
+            starts_with="hc-c"
+          fi
+        else
+          starts_with="${post_fix}"
+        fi
+      fi
+    fi
+  done
 
   case "${starts_with}" in
+    "c")
+      #
+      # Cluster functions
+      #
+      # - Functions that executes commands to interact with the cluster using
+      #   directly. Some commands are: kubectl eksctl, argo, argocd, etc.
+      #
+      # NOTE:
+      #   - Some 'g' 'r' `hc` commands must be executed first,
+      #     for example:
+      #       - ensure that cluster exist in cluster.yaml.
+      #       - './$PLATFORM/helm-charts-configs/<repository>/<[helm-chart]>/<[region_name]>/<[cluster_name]>'
+      #         exits.
+      #       - chart is updated.
+      #       - chart is linted.
+      #       - etc.
+      #
+      ;;
     "g")
       #
       # Global funcions
       #
       # - Functions interacts will local machine and local filesystem.
       #   For example create folder, pull repos, etc.
-      #
-      ;;
-    "r")
-      #
-      # Repository functions
-      #
-      # - Functions that interacts with './$PLATFORM/<[REPOSITORY_NAME_IDS]>/<repository>'
-      #   files.
-      #
-      # NOTE:
-      #   - some 'g' commands must be execute fist before executing any of these
-      #     commands.
       #
       ;;
     "hc")
@@ -210,6 +242,18 @@ main () {
       #   commands.
       #
       ;;
+    "r")
+      #
+      # Repository functions
+      #
+      # - Functions that interacts with './$PLATFORM/<[REPOSITORY_NAME_IDS]>/<repository>'
+      #   files.
+      #
+      # NOTE:
+      #   - some 'g' commands must be execute fist before executing any of these
+      #     commands.
+      #
+      ;;
     "t")
       #
       # Terraform functions
@@ -217,24 +261,6 @@ main () {
       # - Functions that interact with terraform -> aws account.
       #
       #   >>> In the works... <<<
-      ;;
-    "c")
-      #
-      # Cluster functions
-      #
-      # - Functions that executes commands to interact with the cluster using
-      #   directly. Some commands are: kubectl eksctl, argo, argocd, etc.
-      #
-      # NOTE:
-      #   - Some 'g' 'r' `hc` commands must be executed first,
-      #     for example:
-      #       - ensure that cluster exist in cluster.yaml.
-      #       - './$PLATFORM/helm-charts-configs/<repository>/<[helm-chart]>/<[region_name]>/<[cluster_name]>'
-      #         exits.
-      #       - chart is updated.
-      #       - chart is linted.
-      #       - etc.
-      #
       ;;
     *)
       proceed="false"

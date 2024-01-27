@@ -28,7 +28,7 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #
 main () {
   # utilGetRepositories
-  utilLooperHelmChartConfigsRepositories "create-helm-chart"
+  utilLooperHelmChartDependeciesFile "hc-create-helm-chart"
 }
 
 main

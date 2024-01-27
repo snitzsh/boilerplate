@@ -569,7 +569,7 @@ dependencies:
         language: helm
         service: tenant
         software_type: proprietary
-        configs_repository: ""
+        configs_repository: "git@github.com:snitzsh/helm-chart-snitzsh-api-main-configs.git" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
       - name: ui-main
         latest_version: null
         releases: []
@@ -586,4 +586,5 @@ dependencies:
         language: helm
         service: tenant
         software_type: proprietary
-        configs_repository: ""
+        # This is useful to prevent being attack to a single repository.
+        configs_repository: "git@github.com:snitzsh/helm-chart-snitzsh-ui-main-configs.git" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.

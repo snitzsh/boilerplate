@@ -120,7 +120,7 @@ cloneRepositories() {
       done
 
       if [ "${found}" == "false" ]; then
-        logger "ERROR" "Repository '${repository}' is not found in '${PLATFORM_PATH}/boilerplate/helm-chart-dependencies.yaml' file. Make sure .name is properly align with repository name convention." "${func_name}"
+        logger "ERROR" "Repository '${repository}' is not found in '${PLATFORM_PATH}/boilerplate/hc-c-dependencies.yaml' file. Make sure .name is properly align with repository name convention." "${func_name}"
       fi
     # apis
     elif [[ "${repository}" =~ $prefix_3 ]]; then

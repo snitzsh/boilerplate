@@ -22,7 +22,7 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #   - null
 #
 main () {
-  utilLooperHelmChartDependecies "global-helm-install-repositories"
+  utilLooperHelmChartConfigsDependecies "global-helm-install-repositories"
 }
 
 main

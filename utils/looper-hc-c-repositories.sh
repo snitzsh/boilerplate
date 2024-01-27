@@ -30,7 +30,7 @@ utilLooperHelmChartConfigsRepositories () {
   done < <(utilQueryClustersYaml "${args_1[@]}")
 
   (
-    cd "$PLATFORM_PATH/helm-charts-configs" &&
+    cd "${PLATFORM_PATH}/helm-charts-configs" &&
     for dependency_name in *; do
       echo "${dependency_name}"
       if [ "${dependency_name}" != "platform" ]; then

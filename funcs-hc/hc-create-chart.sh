@@ -31,57 +31,38 @@
 # RETURN:
 #   - null
 #
-funcHelmChartConfigsCreateChart () {
+funcHelmChartCreateChart () {
   local -r func_name="${FUNCNAME[0]}"
   local -r args=("$@")
   local -r dependency_name="${args[0]}"
   local -r chart_name="${args[1]}"
-  local -r region_name="${args[2]}"
-  local -r cluster_name="${args[3]}"
-  # local -r dependency_obj="${args[4]}"
 
   if ! [ -f "./Chart.yaml" ]; then
     # Initial files when creating the repo manually. Don't touch them
-    logger "INFO" "Creating helm chart ${chart_name} for dependency: '${dependency_name}' in '${region_name}/${cluster_name}/' directory." "${func_name}"
-    # TODO: make sure all repos Chart.yaml .name has a postfix of "-config", indead of "<[dependency_name]>-<[chart_name]>"
-    helm create "${chart_name}-configs" > /dev/null
-    mv ./"${dependency_name}-${chart_name}"/{.,}* ./
+    logger "INFO" "Creating helm chart ${chart_name} for dependency: '${dependency_name}' directory." "${func_name}"
+    helm create "${chart_name}" > /dev/null
+    mv ./"${chart_name}"/{.,}* ./
     rm ./templates/*.yaml
-    rm -rf ./"${dependency_name}-${chart_name}"
-    # touch "${chart_name}-values.yaml"
-    utilCreateHelmChartVersionsFolder
+    rm -rf ./"${chart_name}"
     # Clean up files.
     : > templates/tests/test-connection.yaml
     : > templates/_helpers.tpl
     : > templates/NOTES.txt
     : > values.yaml
-    funcHelmChartConfigs_HelpersFile "${args[@]}"
-    local -a args_5=( \
+    funcHelmChart_HelpersFile "${args[@]}"
+    local -a args_2=( \
       "create-common-props" \
       "${dependency_name}" \
       "${chart_name}" \
-      "${region_name}" \
-      "${cluster_name}" \
       "${func_name}" \
-      "null" \
-      "null" \
-      "null" \
-      "[]" \
     )
-    utilQueryHelmChartConfigsValuesYamlFile "${args_5[@]}"
-    local -a args_2=( \
+    utilQueryHelmChartValuesYamlFile "${args_2[@]}"
+    local -a args_3=( \
       "${func_name}" \
-      "Create ${dependency_name}/${chart_name}/${region_name}/${cluster_name} helm chart." \
+      "Create ${dependency_name}/${chart_name} helm chart." \
     )
-    utilGitter "${args_2[@]}"
+    utilGitter "${args_3[@]}"
   else
-    # rm -rf './versions/versions'
-    # local -a args_2=( \
-    #   "${func_name}" \
-    #   "Delete ${dependency_name}/${chart_name}/${region_name}/${cluster_name} helm chart versions/versions duplicate folder." \
-    # )
-    # utilGitter "${args_2[@]}"
-
-    logger "INFO" "helm chart '${chart_name}' already exist for dependency: '${dependency_name}' in '${region_name}/${cluster_name}/' directory." "${func_name}"
+    logger "ERROR" "helm chart '${chart_name}' already exist for dependency: '${dependency_name}'" "${func_name}"
   fi
 }

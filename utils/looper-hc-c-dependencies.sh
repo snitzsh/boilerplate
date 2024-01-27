@@ -9,7 +9,7 @@
 #   - null
 #
 # DESCRIPTION:
-#   - it loops throught ../helm-chart-dependencies.yaml.
+#   - it loops throught ../hc-c-dependencies.yaml.
 #
 # ARGS:
 #   - null
@@ -17,7 +17,7 @@
 # RETURN:
 #   - null
 #
-utilLooperHelmChartDependecies () {
+utilLooperHelmChartConfigsDependecies () {
   local -r func_name="${FUNCNAME[0]}"
   local -r query_name="${1}"
   local dependencies=()
