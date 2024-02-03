@@ -561,7 +561,7 @@ dependencies:
         namespace_name: api-main
         is_deployed: false
         weight: "7"
-        version: 1.0.0
+        version: 0.1.0
         is_up_to_date: false
         namespaced: true
         has_repo: false
@@ -578,7 +578,7 @@ dependencies:
         namespace_name: ui-main
         is_deployed: false
         weight: "7"
-        version: 1.0.0
+        version: 0.1.0
         is_up_to_date: false
         namespaced: true
         has_repo: false

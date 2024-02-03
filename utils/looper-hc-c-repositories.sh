@@ -127,7 +127,7 @@ utilLooperHelmChartConfigsRepositories () {
                     case "${query_name}" in
                       "hc-c-create-helm-chart")
                         funcHelmChartConfigsCreateChart "${args_7[@]}"
-                        # funcHelmChartConfigsUpdateChartYamlFile "${args_7[@]}"
+                        funcHelmChartConfigsUpdateChartYamlFile "${args_7[@]}"
                         # funcHelmChartConfigsUpdateValuesAddDependencyNameAsProperty "${args_7[@]}"
                         ;;
                       "hc-c-create-_helpers-file")
@@ -149,7 +149,7 @@ utilLooperHelmChartConfigsRepositories () {
                       # ./Chart.yaml
                       "hc-c-update-chart-yaml-file")
                         funcHelmChartConfigsUpdateChartYamlFile "${args_7[@]}"
-                        funcHelmChartConfigsUpdateValuesAddDependencyNameAsProperty "${args_7[@]}"
+                        # funcHelmChartConfigsUpdateValuesAddDependencyNameAsProperty "${args_7[@]}"
                         ;;
                       "hc-c-update-values-file-add-dependency-name-as-property")
                         funcHelmChartConfigsUpdateValuesAddDependencyNameAsProperty "${args_7[@]}"
@@ -178,10 +178,10 @@ utilLooperHelmChartConfigsRepositories () {
               done < <(utilQueryClustersYaml "${args_3[@]}")
             done < <(utilQueryClustersYaml "${args[@]}")
           )
-          break
+          # break
         done
       )
-      break
+      # break
     done
   )
 }

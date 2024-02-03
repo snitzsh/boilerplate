@@ -499,7 +499,7 @@ regions:
                   namespace_name: apis
                   is_deployed: false
                   weight: "7"
-                  version: 1.0.0
+                  version: 0.1.0
                   is_up_to_date: false
                   namespaced: true
                   has_repo: false
@@ -516,7 +516,7 @@ regions:
                   namespace_name: uis
                   is_deployed: false
                   weight: "7"
-                  version: 1.0.0
+                  version: 0.1.0
                   is_up_to_date: false
                   namespaced: true
                   has_repo: false
