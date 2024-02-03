@@ -5,6 +5,9 @@
 #   - place the property on the very top.
 #
 # NOTE:
+#   - when creating helm-chart the util `utilQueryHelmChartConfigsValuesYamlFile`
+#     get executed by function `funcHelmChartConfigsCreateChart`.
+#
 #   - Must be executed after creating a helm-chart.
 #     and after `funcHelmChartConfigsUpdateChartYamlFile`
 #
@@ -18,7 +21,6 @@
 # RETURN:
 #   - null
 #
-
 funcHelmChartConfigsUpdateValuesAddDependencyNameAsProperty () {
   local -r func_name="${FUNCNAME[0]}"
   local -ar args=("$@")

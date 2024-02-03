@@ -125,10 +125,11 @@ utilLooperHelmChartConfigsRepositories () {
                     )
                     # /$PLATFORM/helm-charts-configs/<dependency-name>/<[chart-name]>/<[region-name]>/<[cluster-name]>/*
                     case "${query_name}" in
+                      # Done migrating
                       "hc-c-create-helm-chart")
                         funcHelmChartConfigsCreateChart "${args_7[@]}"
                         funcHelmChartConfigsUpdateChartYamlFile "${args_7[@]}"
-                        # funcHelmChartConfigsUpdateValuesAddDependencyNameAsProperty "${args_7[@]}"
+                        funcHelmChartConfigsUpdateValuesAddDependencyNameAsProperty "${args_7[@]}"
                         ;;
                       "hc-c-create-_helpers-file")
                         funcHelmChartConfigs_HelpersFile "${args_7[@]}"
@@ -145,12 +146,12 @@ utilLooperHelmChartConfigsRepositories () {
                         #   is always executed first.`
                         funcHelmChartConfigsUpdateVersionsFolder "${args_7[@]}"
                         ;;
-                      # /*
-                      # ./Chart.yaml
+                      # Done migrating
                       "hc-c-update-chart-yaml-file")
                         funcHelmChartConfigsUpdateChartYamlFile "${args_7[@]}"
-                        # funcHelmChartConfigsUpdateValuesAddDependencyNameAsProperty "${args_7[@]}"
+                        funcHelmChartConfigsUpdateValuesAddDependencyNameAsProperty "${args_7[@]}"
                         ;;
+                      # Done Migrating
                       "hc-c-update-values-file-add-dependency-name-as-property")
                         funcHelmChartConfigsUpdateValuesAddDependencyNameAsProperty "${args_7[@]}"
                         ;;

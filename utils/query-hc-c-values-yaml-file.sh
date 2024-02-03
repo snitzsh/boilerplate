@@ -2,7 +2,10 @@
 
 #
 # TODO:
-#   - maybe use this function in funcHelmChartConfigsCreateChart.
+#   - findout why dependencies[].name as property created in values.yaml
+#     initially is null. Reference This function creates the property
+#     correctly as object:
+#       `funcHelmChartConfigsUpdateValuesAddDependencyNameAsProperty`
 #
 # NOTE:
 #   - null
