@@ -39,6 +39,7 @@ funcHelmChartConfigsCreateChart () {
   local -r region_name="${args[2]}"
   local -r cluster_name="${args[3]}"
   # local -r dependency_obj="${args[4]}"
+  # local -r initial_chart_name="${args[5]}"
 
   if ! [ -f "./Chart.yaml" ]; then
     # Initial files when creating the repo manually. Don't touch them
