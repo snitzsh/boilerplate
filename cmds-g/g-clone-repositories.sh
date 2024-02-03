@@ -20,6 +20,8 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #
 # TODO:
 #   - remove duplicate code.
+#   - only clone if folder doesn't exist and if exist make sure there is
+#     nothing to commit, else reject
 #
 # NOTE:
 #   - null
@@ -85,9 +87,7 @@ cloneRepositories() {
     local args_2=()
     # helm-charts
     if [[ "${repository}" =~ $prefix_1 && ! "${repository}" =~ -configs$ ]]; then
-
       folder_name_level_1="${PLATFORM_PATH}/helm-charts"
-
       IFS=',' read -ra apps_array <<< "${apps}"
       for app_name in "${apps_array[@]}"; do
         args_2=(

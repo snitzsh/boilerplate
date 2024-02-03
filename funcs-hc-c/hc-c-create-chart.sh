@@ -43,12 +43,11 @@ funcHelmChartConfigsCreateChart () {
   if ! [ -f "./Chart.yaml" ]; then
     # Initial files when creating the repo manually. Don't touch them
     logger "INFO" "Creating helm chart ${chart_name} for dependency: '${dependency_name}' in '${region_name}/${cluster_name}/' directory." "${func_name}"
-    # TODO: make sure all repos Chart.yaml .name has a postfix of "-config", indead of "<[dependency_name]>-<[chart_name]>"
+    # # TODO: make sure all repos Chart.yaml .name has a postfix of "-config", indead of "<[dependency_name]>-<[chart_name]>"
     helm create "${chart_name}-configs" > /dev/null
-    mv ./"${dependency_name}-${chart_name}"/{.,}* ./
+    mv ./"${chart_name}-configs"/{.,}* ./
     rm ./templates/*.yaml
-    rm -rf ./"${dependency_name}-${chart_name}"
-    # touch "${chart_name}-values.yaml"
+    rm -rf ./"${chart_name}-configs"
     utilCreateHelmChartVersionsFolder
     # Clean up files.
     : > templates/tests/test-connection.yaml
@@ -82,6 +81,6 @@ funcHelmChartConfigsCreateChart () {
     # )
     # utilGitter "${args_2[@]}"
 
-    logger "INFO" "helm chart '${chart_name}' already exist for dependency: '${dependency_name}' in '${region_name}/${cluster_name}/' directory." "${func_name}"
+    logger "ERROR" "helm chart '${chart_name}' already exist for dependency: '${dependency_name}' in '${region_name}/${cluster_name}/' directory." "${func_name}"
   fi
 }

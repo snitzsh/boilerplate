@@ -3,6 +3,8 @@
 
 #
 # TODO:
+#   - make sure both work for hc-c-* and hc-* charts, currently hc-* comment are the same
+#     as hc-c-* and it comment should reference a different function name.
 #   - make sure to add a emty line if it does NOT exist. Else it will return error.
 #   - install sed gnu if compatible for linux/macOS, instead using macOS's
 #     `poxis sed`

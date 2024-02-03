@@ -198,11 +198,12 @@ utilQueryClustersYaml () {
           | ... comments=""
         '
       ;;
-    "get-{region_name}-{cluster-name}-helm-charts-{dependency_name}-{chart_name}")
+    "read-{region_name}-{cluster_name}-helm-charts-{dependency_name}-{chart_name}")
       local -r region_name="${args[1]}"
       local -r cluster_name="${args[2]}"
       local -r dependency_name="${args[3]}"
       local -r chart_name="${args[4]}"
+
       # shellcheck disable=SC2016
       _region_name="${region_name}" \
       _cluster_name="${cluster_name}" \

@@ -2,7 +2,12 @@
 
 #
 # TODO:
-#   - null
+#   - probably we must do
+#     `git stash` -> 'git pull --rebase' -> 'utilGitter' -> `git stash pop`
+#   - helm-chart-configs/snitzh/api-main and helm-chart-configs/snitzh/ui-main
+#     .gitignore will not ignore files that are already bein monitored by git
+#     that because I commited and push before adding the .gitignore file.
+#     fix it.
 #
 # NOTE:
 #   - null

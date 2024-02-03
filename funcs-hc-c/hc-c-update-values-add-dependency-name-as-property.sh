@@ -31,7 +31,7 @@ funcHelmChartConfigsUpdateValuesAddDependencyNameAsProperty () {
   if [ -f "./Chart.yaml" ]; then
     local dependencies=""
     # NOTE:
-    #   - removed commends because for properties with empty objects, yq will
+    #   - removed comments because for properties with empty objects, yq will
     #     not place the comment after the '{}'. yq does not output the error
     #     for the first time, but the next attempt it will fail because it '{}'
     #     is below the property like this:

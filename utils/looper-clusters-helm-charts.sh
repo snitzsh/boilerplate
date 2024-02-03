@@ -68,7 +68,7 @@ utilLooperClustersHelmCharts () {
         local args_5=()
         for chart_name in "${charts_name_arr[@]}"; do
           local -a args_4=( \
-            "get-{region_name}-{cluster-name}-helm-charts-{dependency_name}-{chart_name}" \
+            "read-{region_name}-{cluster_name}-helm-charts-{dependency_name}-{chart_name}" \
             "${region_name}" \
             "${cluster_name}" \
             "${dependency_name}" \

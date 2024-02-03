@@ -21,12 +21,22 @@ utilQueryHelmChartConfigsValuesYamlFile () {
   local -r args=("$@")
   local -r query_name="${args[0]}"
   local -r dependency_name="${args[1]}"
-  local -r chart_name="${args[2]}"
+  local chart_name="${args[2]}"
   # local -r chart_name="argo-workflows"
   local -r region_name="${args[3]}"
   local -r cluster_name="${args[4]}"
   local -r func_name="${args[5]}"
   local -r values_path="${_path}/${dependency_name}/${chart_name}/${region_name}/${cluster_name}/values.yaml"
+
+  # TODO: is this a good way to override, where *configs repo is different than dependency?
+  if [ "${dependency_name}" == "snitzsh" ]; then
+    if [ "${chart_name}" == "api-main" ]; then
+      chart_name="apis"
+    fi
+    if [ "${chart_name}" == "ui-main" ]; then
+      chart_name="uis"
+    fi
+  fi
 
   # NOTE: Any argument after index 4, will be specific per query.
   case "${query_name}" in
