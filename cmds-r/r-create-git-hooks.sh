@@ -15,14 +15,17 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #   - Exectues the function(s)
 #
 # ARGS:
-#   - null
+#   - $1 : query_name       : r-create-git-hooks                : query name to be executed.
+#   - $2 : folder_name      : <[folder_name]>                   : which forder to target
+#   - $4 : dependency_name  : <[dependency_name | app_name]>    : depenency to update
+#   - $4 : chart_name       : <[chart_name]>                    : chart to update
 #
 # RETURN:
 #   - null
 #
 main () {
-  # utilLooperHelmChartConfigsRepositories "hc-c-update-helm-repositories"
-  utilLooperHelmChartConfigsRepositories "r-create-git-hooks"
+  local -ar args=("$@")
+  utilLooperFoldersRepositories "${args[@]}"
 }
 
-main
+main "$@"

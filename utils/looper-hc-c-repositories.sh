@@ -38,6 +38,7 @@ utilLooperHelmChartConfigsRepositories () {
           initial_chart_name="${chart_name}"
           (
             cd "./${chart_name}" &&
+
             # loops region names
             while IFS= read -r region_name; do
               # Get cluster names
