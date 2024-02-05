@@ -38,25 +38,6 @@ utilLooperHelmChartConfigsRepositories () {
           initial_chart_name="${chart_name}"
           (
             cd "./${chart_name}" &&
-            case "${query_name}" in
-              # TODO: move this to another looper.
-              "r-update-ignore-file-gitignore")
-                local -a args_2=( \
-                  '.gitignore' \
-                  "${dependency_name}" \
-                  "${chart_name}" \
-                )
-                utilHelmChartConfigsUpdateIgnoreFiles "${args_2[@]}"
-                ;;
-              "r-create-git-hooks")
-                # TODO:
-                # - make sure you run `bash main.sh hc-update-helmignore-file`
-                #   after it executes this function.
-                funcRepositoryCreateGitHooks "${args_2[@]}"
-                ;;
-              *)
-                ;;
-            esac
             # loops region names
             while IFS= read -r region_name; do
               # Get cluster names
@@ -137,6 +118,7 @@ utilLooperHelmChartConfigsRepositories () {
                       # TODO:
                       #   - currently function does nothing.
                       # ./values.yaml
+                      # Done migrating
                       "hc-c-get-values")
                         funcHelmChartConfigsGetValues "${args_7[@]}"
                         ;;

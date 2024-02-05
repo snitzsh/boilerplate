@@ -24,6 +24,7 @@ funcHelmChartConfigsGetValues () {
   local -r region_name="${args[2]}"
   local -r cluster_name="${args[3]}"
   local -r file_dependency="${args[4]}"
+  # local -r initial_chart_name="${args[5]}"
 
   if [ -f "./Chart.yaml" ]; then
     echo "${region_name}"

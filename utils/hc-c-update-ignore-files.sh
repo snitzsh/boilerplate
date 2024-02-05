@@ -42,6 +42,9 @@ utilHelmChartConfigsUpdateIgnoreFiles () {
   local -r region_name="${args[3]}"
   local -r cluster_name="${args[4]}"
   # local -r file_dependency="${args[5]}"
+  # local -r initial_chart_name="${args[6]}"
+
+  echo "PASSS!!! xxxxxx"
 
   if [ -f "${query_name}" ]; then
     local proceed="true"

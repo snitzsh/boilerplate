@@ -9,20 +9,24 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #   - maybe we much create a function to sync our helm-charts/ and respositories in git.
 #
 # NOTE:
-#   - null
+#   - Since this function targets different folders, type `null` if argument
+#     does not applied, else bash will pass different arguments order.
 #
 # DESCRIPTION:
 #   - Exectues the function(s)
 #
 # ARGS:
-#   - null
+#   - $1 : query_name       : r-update-gitignore-file           : query name to be executed.
+#   - $2 : folder_name      : <[folder_name]>                   : which forder to target
+#   - $4 : dependency_name  : <[dependency_name | app_name]>    : depenency to update
+#   - $4 : chart_name       : <[chart_name]>                    : chart to update
 #
 # RETURN:
 #   - null
 #
 main () {
-  # utilLooperHelmChartConfigsRepositories "hc-c-update-helm-repositories"
-  utilLooperHelmChartConfigsRepositories "r-update-ignore-file-gitignore"
+  local -ar args=("$@")
+  utilLooperFoldersRepositories "${args[@]}"
 }
 
-main
+main "$@"
