@@ -10,7 +10,7 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #
 # NOTE:
 #   - This command creates a custom-resources definition as a file
-#     on each helm-chart repository.
+#     on each helm-charts-configs repository.
 #
 # DESCRIPTION:
 #   - Exectues the function(s)

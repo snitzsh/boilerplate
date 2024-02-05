@@ -60,6 +60,13 @@ utilLooperHelmChartDependeciesFile () {
         "hc-create-helm-chart")
             funcHelmChartCreateChart "${args_2[@]}"
           ;;
+        "hc-create-_helpers-file")
+          funcHelmChart_HelpersFile "${args_2[@]}"
+          ;;
+        "hc-update-helmignore-file")
+            local -a args_3=(".helmignore" "${args_2[@]}")
+            utilHelmChartConfigsUpdateIgnoreFiles "${args_3[@]}"
+          ;;
         *)
           logger "ERROR" "Unknown query name '${query_name}'." "${func_name}"
           ;;

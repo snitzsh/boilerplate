@@ -44,8 +44,6 @@ utilHelmChartConfigsUpdateIgnoreFiles () {
   # local -r file_dependency="${args[5]}"
   # local -r initial_chart_name="${args[6]}"
 
-  echo "PASSS!!! xxxxxx"
-
   if [ -f "${query_name}" ]; then
     local proceed="true"
     local -a args_2=( \

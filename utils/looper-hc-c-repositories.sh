@@ -129,16 +129,13 @@ utilLooperHelmChartConfigsRepositories () {
                         #   is always executed first.`
                         funcHelmChartConfigsUpdateVersionsFolder "${args_7[@]}"
                         ;;
-                      # Done migrating
                       "hc-c-update-chart-yaml-file")
                         funcHelmChartConfigsUpdateChartYamlFile "${args_7[@]}"
                         funcHelmChartConfigsUpdateValuesAddDependencyNameAsProperty "${args_7[@]}"
                         ;;
-                      # Done Migrating
                       "hc-c-update-values-file-add-dependency-name-as-property")
                         funcHelmChartConfigsUpdateValuesAddDependencyNameAsProperty "${args_7[@]}"
                         ;;
-                      # .<[ignore-file-name]>
                       "hc-c-update-ignore-file-helmignore")
                         local -a args_8=(".helmignore" "${args_7[@]}")
                         utilHelmChartConfigsUpdateIgnoreFiles "${args_8[@]}"
