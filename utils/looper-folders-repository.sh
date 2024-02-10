@@ -22,18 +22,8 @@ utilLooperFoldersRepositories () {
   local -ar args=("$@")
   local -r query_name="${args[0]}"
   local -r folder_name="${args[1]}"
-  local -r arg_dependency_name="${args[2]}"
+  # local -r arg_dependency_name="${args[2]}"
   # contexts: chart_name or app_name
-  local -r arg_chart_name="${args[3]}"
-
-  local -ar allow_folders=( \
-    "apis" \
-    "helm-charts" \
-    "helm-charts-configs" \
-    "mobiles" \
-    "scripts" \
-    "uis" \
-  )
   (
     cd "${PLATFORM_PATH}/${folder_name}" &&
     for dependency_name in *; do
@@ -92,5 +82,4 @@ utilLooperFoldersRepositories () {
       # break
     done
   )
-
 }
