@@ -8,10 +8,10 @@
 #     using yq, that way no loop will be need it.
 #
 # NOTE:
-#   - it loops throught the repositories cloned. ../helm-charts-configs/ directory.
+#   - null
 #
 # DESCRIPTION:
-#   - Creates values files
+#   - it loops throught ../clusters.yaml.
 #
 # ARGS:
 #   - null
@@ -109,6 +109,7 @@ utilLooperClusters () {
                   )
                 fi
               done < <(utilQueryClustersYaml "${args_5[@]}")
+
               # Logs
               if [ "${chart_found}" == "false" ]; then
                 logger "ERROR" "Chart 'argo/argo-cd' not found." "$func_name"

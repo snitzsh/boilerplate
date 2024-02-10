@@ -1,5 +1,5 @@
 #!/bin/bash
 
 gPutRepositories () {
-  echo "This will edit repo name, description, add dev etc."
+  echo "This will edit repo name, description, add dev etc. using git api"
 }

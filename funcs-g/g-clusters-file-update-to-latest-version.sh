@@ -12,12 +12,12 @@
 #   - null
 #
 # ARGS:
-#   - null
-#                                             : may need an argument to get data for specific region.
+#   - $1  : ARRAY  :  ("<[region_name]> | required" "<[cluster_name]> | required" "<[dependency_name]> | required" "<[chart_name]> | required" "<[dependency]> | required" ) : array items must follow the order specified.
+#
 # RETURN:
 #   - null
 #
-funcClustersYamlPutDependencyChartToLatestVersion () {
+funcClustersFileUpdateToLatestVersion () {
   local -r func_name="${FUNCNAME[0]}"
   local -a args=("$@")
   local -r region_name="${args[0]}"

@@ -6,13 +6,13 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 
 #
 # TODO:
-#   - null
+#   - support arguments
 #
 # NOTE:
 #   - null
 #
 # DESCRIPTION:
-#   - null
+#   - updates repos install by helm in local machine.
 #
 # ARGS:
 #   - null

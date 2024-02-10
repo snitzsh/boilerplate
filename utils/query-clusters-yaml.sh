@@ -11,9 +11,7 @@
 #   - Queries the file clusters.yaml file.
 #
 # ARGS:
-#   - ${1} : STRING :  "query_name"           : name of the query specified in `case` statement
-#   - ${2} : ANY    :  ("a", "b") | "a" | 1   : incase the query needs an argument. Example: a query
-#                                             : may need an argument to get data for specific region.
+#   - $1  : ARRAY  :  "${args[@]}"  :  ("<[query_name]> | required" "<[any]> | optional" "...")  :  query name (index 0) is required, everything else is optional.
 #
 # RETURN:
 #   - Array | Boolean : ("name1" "name2") | "false"
