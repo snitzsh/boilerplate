@@ -39,9 +39,9 @@ utilLooperFoldersRepositories () {
     for dependency_name in *; do
       # local initial_chart_name=""
       # # if-statement for testing purposes
-      if [ "${dependency_name}" != "snitzsh" ]; then
-        continue
-      fi
+      # if [ "${dependency_name}" != "snitzsh" ]; then
+      #   continue
+      # fi
       (
         cd "./${dependency_name}" &&
         case "${folder_name}" in

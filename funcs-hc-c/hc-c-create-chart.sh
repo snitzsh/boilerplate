@@ -75,10 +75,19 @@ funcHelmChartConfigsCreateChart () {
     )
     utilGitter "${args_2[@]}"
   else
-    # rm -rf './versions/versions'
+
+    # shellcheck disable=SC2016
+    # _chart_name="${chart_name}" \
+    # yq \
+    #   -ri \
+    #   '
+    #     env(_chart_name) as $_chart_name
+    #     | with(.; .name |= $_chart_name + "-configs")
+    #   ' Chart.yaml
+    # # rm -rf './versions/versions'
     # local -a args_2=( \
     #   "${func_name}" \
-    #   "Delete ${dependency_name}/${chart_name}/${region_name}/${cluster_name} helm chart versions/versions duplicate folder." \
+    #   "Update ${dependency_name}/${chart_name}/${region_name}/${cluster_name} Chart.yaml .name prop." \
     # )
     # utilGitter "${args_2[@]}"
 

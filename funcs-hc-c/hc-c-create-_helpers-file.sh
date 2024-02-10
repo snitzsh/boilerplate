@@ -123,10 +123,10 @@ Create the name of the service account to use
 */}}
 
 EOF
-# sleep 1
-#   local -a args_2=( \
-#     "${func_name}" \
-#     "hc created _helpers.tpl file." \
-#   )
-#   utilGitter "${args_2[@]}"
+sleep 1
+  local -a args_2=( \
+    "${func_name}" \
+    "hc created _helpers.tpl file." \
+  )
+  utilGitter "${args_2[@]}"
 }
