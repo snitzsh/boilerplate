@@ -569,12 +569,12 @@ regions:
             - name: snitzsh
               repository: https://chartmuseum.snitzh.com/charts
               charts:
-                - name: apis
+                - name: api-main # was apis
                   latest_version: null
                   releases: []
-                  condition: apis.disabled
-                  specific_name: apis
-                  namespace_name: apis
+                  condition: api-main.disabled
+                  specific_name: api-main
+                  namespace_name: api-main
                   is_deployed: false
                   weight: "7"
                   version: 0.1.0
@@ -586,12 +586,12 @@ regions:
                   service: tenant
                   software_type: proprietary
                   configs_repository: ""
-                - name: uis
+                - name: ui-main # was uis
                   latest_version: null
                   releases: []
-                  condition: uis.disabled
-                  specific_name: uis
-                  namespace_name: uis
+                  condition: ui-mian.disabled
+                  specific_name: ui-main
+                  namespace_name: ui-main
                   is_deployed: false
                   weight: "7"
                   version: 0.1.0
