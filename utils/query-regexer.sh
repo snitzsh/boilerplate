@@ -16,7 +16,6 @@
 # RETURN:
 #   - null
 #
-
 function utilQueryRegexer () {
   local -ra args=("$@")
   local -r query_name="${args[0]}"

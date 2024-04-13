@@ -16,45 +16,45 @@
 # RETURN:
 #   - null
 #
-function funcEksCtl () {
-  eksctl create cluster \
-    --region us-east-1 \
-    --profile k8s-admin \
-    --name dev \
-    --version 1.22 \
-    --nodegroup-name standard-workers \
-    --node-type t4g.large \
-    --nodes 5 \
-    --managed
-    # --nodes-min 1 \
-    # --nodes-max 10 \
+# function funcEksCtl () {
+#   eksctl create cluster \
+#     --region us-east-1 \
+#     --profile k8s-admin \
+#     --name dev \
+#     --version 1.22 \
+#     --nodegroup-name standard-workers \
+#     --node-type t4g.large \
+#     --nodes 5 \
+#     --managed
+#     # --nodes-min 1 \
+#     # --nodes-max 10 \
 
-  eksctl utils write-kubeconfig \
-    --cluster dev \
-    --region us-east-1 \
-    --profile k8s-admin
+#   eksctl utils write-kubeconfig \
+#     --cluster dev \
+#     --region us-east-1 \
+#     --profile k8s-admin
 
-  # Change name
-  kubectl config rename-context k8-admin@dev.us-east-1.eksctl.io dev
+#   # Change name
+#   kubectl config rename-context k8-admin@dev.us-east-1.eksctl.io dev
 
-  eksctl delete cluster \
-    --region us-east-1 \
-    --profile k8s-admin \
-    --name dev
+#   eksctl delete cluster \
+#     --region us-east-1 \
+#     --profile k8s-admin \
+#     --name dev
 
-  aws ecr get-login-password \
-    --region us-east-1 \
-    --profile k8s-admin |
-      docker login \
-        --username AWS \
-        --password-stdin \
-        076081023637.dkr.ecr.us-east-1.amazonaws.com
+#   aws ecr get-login-password \
+#     --region us-east-1 \
+#     --profile k8s-admin |
+#       docker login \
+#         --username AWS \
+#         --password-stdin \
+#         076081023637.dkr.ecr.us-east-1.amazonaws.com
 
-  # TODO: with terraform, create ecr repositories and s3, etc
+#   # TODO: with terraform, create ecr repositories and s3, etc
 
-  docker tag apis-rust 076081023637.dkr.ecr.us-east-1.amazonaws.com/apis-rust:latest
-  docker push 076081023637.dkr.ecr.us-east-1.amazonaws.com/apis-rust:latest
-}
+#   docker tag apis-rust 076081023637.dkr.ecr.us-east-1.amazonaws.com/apis-rust:latest
+#   docker push 076081023637.dkr.ecr.us-east-1.amazonaws.com/apis-rust:latest
+# }
 
 function funcKindClusterCreate () {
   # Clears all cache file. For local run this:
@@ -89,9 +89,9 @@ function funcKindClusterCreate () {
 #   kubectl get pod -n kubernetes-dashboard
 # }
 
-function deleteKindCluster () {
-  PLATFORM="snitzsh"
-  # bash ../infrastructure-helm/main.sh -a=uninstall
-  kubectl get crd -oname | grep --color=never 'istio.io' | xargs kubectl delete
-  kind delete cluster --name="${PLATFORM}"
-}
+# function deleteKindCluster () {
+#   PLATFORM="snitzsh"
+#   # bash ../infrastructure-helm/main.sh -a=uninstall
+#   kubectl get crd -oname | grep --color=never 'istio.io' | xargs kubectl delete
+#   kind delete cluster --name="${PLATFORM}"
+# }

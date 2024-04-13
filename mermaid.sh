@@ -1,4 +1,5 @@
 #!/bin/bash
+
 #
 # STEPS:
 #   1) Find folders in currents directory
@@ -25,7 +26,7 @@ function main () {
         sed -nE 's/^[[:space:]]*(function[[:space:]]+)?([[:alnum:]_]+)[[:space:]]*\(\).*/\2/p' "${file_path}"
       )
       if [[ "${#func_names[@]}" -gt 1 ]]; then
-        echo "File ${file_path} contains more than one function defined. Consider creating a function per file."
+        echo "File ${file_path} contains ${#func_names[@]} function(s) defined. Consider creating a function per file."
       fi
 
     done < <(\
