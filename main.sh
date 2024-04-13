@@ -144,6 +144,7 @@ export PLATFORM_HELM_CHART_DEPENDENCIES_YAML
 # RETURN:
 #   - null
 #
+
 function main () {
   local -r func_name="${FUNCNAME[0]}"
   local -r args=("$@")

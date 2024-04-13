@@ -1,5 +1,28 @@
 #!/bin/bash
+# shellcheck source=/dev/null
 
-function gPutRepositories () {
-  echo "This will edit repo name, description, add dev etc. using git api"
+
+source "${PLATFORM_PATH}/boilerplate/funcs-g/source-funcs.sh"
+source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
+
+#
+# TODO:
+#   - finish this function
+#
+# NOTE:
+#   - null
+#
+# DESCRIPTION:
+#   - null
+#
+# ARGS:
+#   - null
+#
+# RETURN:
+#   - null
+#
+function main () {
+  gPutRepositories
 }
+
+main
