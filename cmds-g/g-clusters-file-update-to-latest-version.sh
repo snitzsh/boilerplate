@@ -23,7 +23,7 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 # RETURN:
 #   - null
 #
-main () {
+function main () {
   utilLooperClustersHelmCharts "g-clusters-file-update-to-latest-version"
 }
 

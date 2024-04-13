@@ -17,7 +17,7 @@
 # RETURN:
 #   - null
 #
-utilLooperHelmChartConfigsRepositories () {
+function utilLooperHelmChartConfigsRepositories () {
   local -r func_name="${FUNCNAME[0]}"
   local -r query_name="${1}"
   local -a args=( \
@@ -142,7 +142,10 @@ utilLooperHelmChartConfigsRepositories () {
                         ;;
                       # ./
                       "hc-c-update-version")
-                        # TODO: This should never be allow beyond dev clusters.
+                        # TODO:
+                        #   - This should never be allow beyond dev clusters.
+                        #   - make sure when update hc-c-...-configs to newer version the argo-cd.main.dependecies
+                        #     are also updated.
                         funcHelmChartConfigsUpdateVersion "${args_7[@]}"
                         ;;
                       "hc-c-linter")

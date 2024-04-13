@@ -23,7 +23,7 @@
 # RETURN:
 #   - null
 #
-clusterCreate () {
+function clusterCreate () {
   local -r func_name="${FUNCNAME[0]}"
   local -ar args=("$@")
   # Region Name is not the region of aws!

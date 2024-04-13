@@ -21,7 +21,7 @@
 # RETURN:
 #   - null
 #
-utilGitter () {
+function utilGitter () {
   local -r args=("$@")
   local -r func_name="${args[0]}"
   local -r log_msg="${args[1]}"

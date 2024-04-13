@@ -16,7 +16,7 @@
 # RETURN:
 #   - Array | Boolean : ("name1" "name2") | "false"
 #
-utilQueryClustersYaml () {
+function utilQueryClustersYaml () {
   local -r clusters_path="${PLATFORM_PATH}/boilerplate/clusters.yaml"
   local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/hc-c-dependencies.yaml"
   local -r args=("$@")

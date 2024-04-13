@@ -23,6 +23,6 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 # RETURN:
 #   - null
 #
-gClustersFileCreateLowerRegionEnvironment () {
+function gClustersFileCreateLowerRegionEnvironment () {
   echo ""
 }

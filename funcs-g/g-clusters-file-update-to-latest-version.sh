@@ -17,7 +17,7 @@
 # RETURN:
 #   - null
 #
-funcClustersFileUpdateToLatestVersion () {
+function funcClustersFileUpdateToLatestVersion () {
   local -r func_name="${FUNCNAME[0]}"
   local -a args=("$@")
   local -r region_name="${args[0]}"

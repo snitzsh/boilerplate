@@ -31,7 +31,7 @@
 # RETURN:
 #   - null
 #
-funcHelmChartCreateChart () {
+function funcHelmChartCreateChart () {
   local -r func_name="${FUNCNAME[0]}"
   local -r args=("$@")
   local -r dependency_name="${args[0]}"

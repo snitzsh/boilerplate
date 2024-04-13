@@ -17,7 +17,7 @@
 # RETURN:
 #   - null
 #
-utilQueryHelmChartValuesYamlFile () {
+function utilQueryHelmChartValuesYamlFile () {
   local -r _path="${PLATFORM_PATH}/helm-charts/"
   local -r args=("$@")
   local -r query_name="${args[0]}"

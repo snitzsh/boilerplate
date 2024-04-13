@@ -20,7 +20,7 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 # RETURN:
 #   - null
 #
-main () {
+function main () {
   # utilLooperHelmChartConfigsRepositories "hc-c-update-helm-repositories"
   utilLooperHelmChartDependeciesFile "hc-update-helmignore-file"
 }

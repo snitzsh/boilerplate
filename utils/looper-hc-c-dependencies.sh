@@ -17,7 +17,7 @@
 # RETURN:
 #   - null
 #
-utilLooperHelmChartConfigsDependecies () {
+function utilLooperHelmChartConfigsDependecies () {
   local -r func_name="${FUNCNAME[0]}"
   local -r query_name="${1}"
   local dependencies=()

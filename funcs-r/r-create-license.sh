@@ -16,7 +16,7 @@
 # RETURN:
 #   - null
 #
-funcRepositoryCreateLicense () {
+function funcRepositoryCreateLicense () {
   echo ""
 }
 

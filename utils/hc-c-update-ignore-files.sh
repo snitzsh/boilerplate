@@ -33,7 +33,7 @@
 # RETURN:
 #   - null
 #
-utilHelmChartConfigsUpdateIgnoreFiles () {
+function utilHelmChartConfigsUpdateIgnoreFiles () {
   local -r func_name="${FUNCNAME[0]}"
   local -r args=("$@")
   local -r query_name="${args[0]}"

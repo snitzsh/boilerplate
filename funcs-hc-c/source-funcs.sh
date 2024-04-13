@@ -16,7 +16,7 @@
 # RETURN:
 #   - null
 #
-funcSourceHelmChartFuncs () {
+function funcSourceHelmChartFuncs () {
   for func in "${PLATFORM_PATH}"/boilerplate/funcs-hc-c/*; do
     if [ "${func}" == "${PLATFORM_PATH}/boilerplate/funcs-hc-c/source-funcs.sh" ]; then
       continue

@@ -17,7 +17,7 @@
 # RETURN:
 #   - null
 #
-utilQueryHelmChartDependenciesFile () {
+function utilQueryHelmChartDependenciesFile () {
   local -r func_name="${FUNCNAME[0]}"
   local -r _path="${PLATFORM_PATH}/boilerplate/hc-dependencies.yaml"
   local -r args=("$@")

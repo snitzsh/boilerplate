@@ -22,7 +22,7 @@
 #     *   (argo.argo-cd argo.argo-workflows)
 #
 #
-utilGetHelmChartDependecies () {
+function utilGetHelmChartDependecies () {
   local -a arr=()
   local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/hc-c-dependencies.yaml"
   while IFS='' read -r line; do arr+=("$line"); done < <(
@@ -59,7 +59,7 @@ utilGetHelmChartDependecies () {
 #     *   '{...}'
 #
 #
-utilGetHelmChartDependency () {
+function utilGetHelmChartDependency () {
   local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/hc-c-dependencies.yaml"
   local -r dependency_name="${1}"
   local -r chart_name="${2}"
@@ -100,7 +100,7 @@ utilGetHelmChartDependency () {
 # RETURN:
 #   - null
 #
-utilQueryHelmChartConfigsDependenciesFile () {
+function utilQueryHelmChartConfigsDependenciesFile () {
   local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/hc-c-dependencies.yaml"
   local -r query_name="${1}"
 
@@ -144,7 +144,7 @@ utilQueryHelmChartConfigsDependenciesFile () {
 # RETURN:
 #   - null
 #
-utilQueryHelmChartDependenciesFileObjGET () {
+function utilQueryHelmChartDependenciesFileObjGET () {
   local -r obj="${1}"
   local -r prop="${2}"
   local output_type="${3}" # use incase we need to use jq with the output
@@ -184,7 +184,7 @@ utilQueryHelmChartDependenciesFileObjGET () {
 # RETURN:
 #   - null
 #
-utilQueryHelmChartDependenciesFileGET () {
+function utilQueryHelmChartDependenciesFileGET () {
   local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/hc-c-dependencies.yaml"
   local -ar args=("$@")
   local -r query_name="${args[0]}"
@@ -231,7 +231,7 @@ utilQueryHelmChartDependenciesFileGET () {
 # RETURN:
 #   - null
 #
-utilQueryHelmChartDependenciesFilePUT () {
+function utilQueryHelmChartDependenciesFilePUT () {
   local -r helm_chart_dependencies_path="${PLATFORM_PATH}/boilerplate/hc-c-dependencies.yaml"
   local -ar args=("$@")
   local -r query_name="${args[0]}"

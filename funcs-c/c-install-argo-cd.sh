@@ -29,7 +29,7 @@
 # RETURN:
 #   - null
 #
-clusterInstallArgoCD () {
+function clusterInstallArgoCD () {
   local -r func_name="${FUNCNAME[0]}"
   local -ar args=("$@")
   local -r cluster_type="${args[0]}"
@@ -195,6 +195,8 @@ clusterInstallArgoCD () {
   #   - add helm-charts property with all the chart list from /$PLATFORM/boilerplate/clusters.yaml
   #   - Find out why `yq` do not update some existing commnent. File a bug
   #     report in git if you have time.
+  #   - make sure when update hc-c-...-configs to newer version the argo-cd.main.dependecies
+  #     are also updated.
   #
   # NOTE:
   #   - Creates repository template in

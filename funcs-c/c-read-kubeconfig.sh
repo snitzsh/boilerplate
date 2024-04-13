@@ -17,7 +17,7 @@
 # RETURN:
 #   - null
 #
-clusterReadKubeconfig () {
+function clusterReadKubeconfig () {
   local -r func_name="${FUNCNAME[0]}"
   local -ar args=("$@")
   # Region Name is not the region of aws!

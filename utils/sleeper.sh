@@ -16,6 +16,6 @@
 # RETURN:
 #   - null
 #
-utilSleeper () {
+function utilSleeper () {
   sleep 1
 }

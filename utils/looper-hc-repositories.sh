@@ -18,6 +18,6 @@
 #   - null
 #
 
-utilLooperHelmChartRepositoriesFolder () {
+function utilLooperHelmChartRepositoriesFolder () {
   echo "pass"
 }

@@ -23,7 +23,7 @@
 # RETURN:
 #   - null
 #
-utilGetRepositories () {
+function utilGetRepositories () {
   local -r func_name="${FUNCNAME[0]}"
   local -r utc_timestamp=$(date -u +%s)
   # local -r query_string="?per_page=1"

@@ -7,6 +7,8 @@
 #     3) Check diff in ./values vs versions/<[chart_version]>-values.yaml
 #        this one is tricky because we must check for property differences
 #        since in ./values we only have the properties we need for the chart.
+#   - make sure when update hc-c-...-configs to newer version the argo-cd.main.dependecies
+#     are also updated.
 #
 # NOTE:
 #   - null
@@ -25,7 +27,7 @@
 # RETURN:
 #   - null
 #
-funcHelmChartConfigsUpdateVersion () {
+function funcHelmChartConfigsUpdateVersion () {
   local -r func_name="${FUNCNAME[0]}"
   local -r args=("$@")
   local -r dependency_name="${args[0]}"
@@ -35,7 +37,7 @@ funcHelmChartConfigsUpdateVersion () {
   local -r file_dependency="${args[4]}"
 
   if [ -f "./Chart.yaml" ] && [ -f "./values.yaml" ]; then
-    echo "PASS"
+
     local file_dependency_chart_version=""
     file_dependency_chart_version=$(\
       # shellcheck disable=SC2016

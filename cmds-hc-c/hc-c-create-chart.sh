@@ -26,7 +26,7 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 # RETURN:
 #   - null
 #
-main () {
+function main () {
   # utilGetRepositories
   utilLooperHelmChartConfigsRepositories "hc-c-create-helm-chart"
 }

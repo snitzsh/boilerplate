@@ -16,7 +16,7 @@
 # RETURN:
 #   - null
 #
-utilQueryKubeConfig () {
+function utilQueryKubeConfig () {
   local -r _path=~/.kube/config
   local -r args=("$@")
   local -r query_name="${args[0]}"
@@ -74,7 +74,7 @@ utilQueryKubeConfig () {
 # RETURN:
 #   - null
 #
-utilQueryContext () {
+function utilQueryContext () {
   local context="${1}"
   local key="${2}"
 

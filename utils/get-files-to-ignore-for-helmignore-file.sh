@@ -17,7 +17,7 @@
 # RETURN:
 #   - null
 #
-utilGetFilesToIgnoreForHelmIgnore () {
+function utilGetFilesToIgnoreForHelmIgnore () {
 
   local -r current_helm_api_version=$( \
     yq -r '.apiVersion' Chart.yaml

@@ -27,7 +27,7 @@
 # RETURN:
 #   - OBJECT : {}
 #
-utilVersionerGetVersionAsObj () {
+function utilVersionerGetVersionAsObj () {
   local -r version="${1}"
   jq \
     -nr \

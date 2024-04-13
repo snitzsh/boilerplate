@@ -18,7 +18,7 @@
 # RETURN:
 #   - null
 #
-utilCreateFolders () {
+function utilCreateFolders () {
   local -r arr=(
   )
   for folder in "${arr[@]}"; do

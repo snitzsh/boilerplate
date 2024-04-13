@@ -17,7 +17,7 @@
 # RETURN:
 #   - null
 #
-utilLooperFoldersRepositories () {
+function utilLooperFoldersRepositories () {
   local -r func_name="${FUNCNAME[0]}"
   local -ar args=("$@")
   local -r query_name="${args[0]}"

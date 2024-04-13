@@ -6,7 +6,12 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 
 #
 # TODO:
+#   - Scan Dockerfile using hadolint and possibly creeate a report. Only for private repos
+#   - user `clair` command to scan containers.
 #   - maybe we much create a function to sync our helm-charts-configs/ and respositories in git.
+#   - pull docker service generated in git@github.com:snitzsh/script-global-docker_compose-bash.git
+#     and added dynamically added in each private repo to prevent maintaining multiple
+#     docker-compose.yaml.
 #
 # NOTE:
 #   - null
@@ -25,7 +30,8 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #
 function main () {
   local -ar args=("$@")
-  utilLooperFoldersRepositories "${args[@]}"
+  echo "${args[@]}"
+  # utilLooperFoldersRepositories "${args[@]}"
 }
 
 main "$@"

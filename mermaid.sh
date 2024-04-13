@@ -1,5 +1,5 @@
 #!/bin/bash
 
 function main () {
-  echo ""
+  echo "testing"
 }

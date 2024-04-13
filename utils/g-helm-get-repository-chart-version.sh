@@ -16,7 +16,7 @@
 # RETURN:
 #   - null
 #
-utilGlobalHelmGetRepositoryChartVersion () {
+function utilGlobalHelmGetRepositoryChartVersion () {
   local version=""
   local repository_name="${1}"
   local chart_name="${2}"

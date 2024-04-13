@@ -13,7 +13,7 @@
 PLATFORM="snitzsh"
 # https://aws.amazon.com/ec2/instance-types/
 
-eksCTL () {
+function eksCTL () {
   eksctl create cluster \
     --region us-east-1 \
     --profile k8s-admin \
@@ -52,7 +52,8 @@ eksCTL () {
   docker tag apis-rust 076081023637.dkr.ecr.us-east-1.amazonaws.com/apis-rust:latest
   docker push 076081023637.dkr.ecr.us-east-1.amazonaws.com/apis-rust:latest
 }
-kindClusterCreate () {
+
+function kindClusterCreate () {
   # Clears all cache file. For local run this:
   docker system prune --all --force
   kind create cluster --name="${PLATFORM}" --config="./kind-config.yaml"
@@ -85,13 +86,13 @@ kindClusterCreate () {
 #   kubectl get pod -n kubernetes-dashboard
 # }
 
-deleteKindCluster () {
+function deleteKindCluster () {
   # bash ../infrastructure-helm/main.sh -a=uninstall
   kubectl get crd -oname | grep --color=never 'istio.io' | xargs kubectl delete
   kind delete cluster --name="${PLATFORM}"
 }
 
-main () {
+function main () {
   kindClusterCreate
 }
 

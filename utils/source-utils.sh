@@ -16,7 +16,7 @@
 # RETURN:
 #   - null
 #
-utilSourceUtils () {
+function utilSourceUtils () {
   for util in "${PLATFORM_PATH}"/boilerplate/utils/*; do
     if [ "${util}" == "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh" ]; then
       continue

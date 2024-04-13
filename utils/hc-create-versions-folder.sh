@@ -17,7 +17,7 @@
 # RETURN:
 #   - null
 #
-utilCreateHelmChartVersionsFolder () {
+function utilCreateHelmChartVersionsFolder () {
   local -a folders=( \
     "tgzs" \
     "values" \

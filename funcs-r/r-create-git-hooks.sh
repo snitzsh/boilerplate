@@ -18,7 +18,7 @@
 # RETURN:
 #   - null
 #
-funcRepositoryCreateGitHooks () {
+function funcRepositoryCreateGitHooks () {
   echo ""
 }
 

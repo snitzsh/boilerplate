@@ -35,7 +35,7 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 # RETURN:
 #   - null
 #
-cloneRepositories() {
+function cloneRepositories () {
   local -r func_name="${FUNCNAME[0]}"
   local -r endpoint="user/repos"
   local -r file_name="${PLATFORM_PATH}/boilerplate/.cache/$(echo "${endpoint}" | tr '/' '-').json"
@@ -254,7 +254,7 @@ cloneRepositories() {
   done
 }
 
-main() {
+function main () {
   utilCreateFolders
   utilGetRepositories
   cloneRepositories

@@ -16,7 +16,7 @@
 # RETURN:
 #   - null
 #
-funcSourceRepositoryFuncs () {
+function funcSourceRepositoryFuncs () {
   for func in "${PLATFORM_PATH}"/boilerplate/funcs-hc/*; do
     if [ "${func}" == "${PLATFORM_PATH}/boilerplate/funcs-hc/source-funcs.sh" ]; then
       continue
