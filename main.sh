@@ -12,7 +12,7 @@ export PLATFORM="snitzsh"
 # - findout which permission would allow clone-only, currrenlty all optiosn are
 #   selected when creating a token
 #
-export GITHUB_API_TOKEN="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"
+export GITHUB_API_TOKEN="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"
 #
 # TODO:
 # - Save in secrets.
@@ -23,7 +23,7 @@ export MINIKUBE_NORTH_AMERICA_DEV_SLACK_BOT_OAUTH_TOKEN="xoxb-6406684014950-6398
 # TODO:
 # - Save in secrets.
 #
-export GITHUB_API_THROTTLE_INTEVAL=0 # in seconds
+export GITHUB_API_THROTTLE_INTEVAL=1000000 # in seconds
 #
 # TODO:
 # - Save in secrets.

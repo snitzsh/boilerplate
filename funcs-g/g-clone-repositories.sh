@@ -218,6 +218,7 @@ function funcCloneRepositories () {
               --quiet \
               "${SSH_REPOSITORY_ENDPOINT}/${repository}.git" "${repository_nickname}" > /dev/null; then
           # Fetch
+          # TODO: do we need to do pull --rebase?
           (
             cd "${chart_name_folder_name}" \
             && logger "INFO" "Fetching repository data..." "${func_name}" \

@@ -5,7 +5,9 @@
 #   - null
 #
 # NOTE:
-#   - null
+#   - using ./hc-dependencies.yaml because it tells us what the cluster is
+#     using. Technically there shouldn't be an image if its not running going to
+#     be using in a cluser.
 #
 # DESCRIPTION:
 #   - queries `../hc-dependencies.yaml` file.

@@ -1,0 +1,48 @@
+#
+# TODO:
+#   - helm-chart version should the same as [package.json .Cargo.toml] version
+#     and [git and image] tag_name should match the verion.
+#   - make aws api call to get ec2 image version, or any registry. That way
+#     we can handle the next version.
+#
+# NOTE:
+#   - follows the sames docker-composer/values.yaml structure
+#   - It follows the folder structure. Ex:
+#     /uis/snitzsh/main-rust
+#   - Image may belong to multiple helm-charts.
+#   - Since a helm-chart is not attach to helm-chart-.*-configs projects and a
+#     helm-chart-.*-configs is not attached to specific image, this is
+#     independent and will build a new image regardless if its deployed to a
+#     cluster.
+#
+
+# registries to push, if more than one
+# you must have ~/.aws/ config set up.
+registries:
+  aws_ecr:
+    enabled: true # if true, it will push to that registry.
+    account: ""
+    profile: ""
+    region: ""
+    cloud: aws
+# components keys follows local folder structure (if you used boilerplate to
+# clone repos).
+components:
+  apis:
+    snitzsh:
+      main-rust:
+        enabled: false
+        version: 0.1.0
+        tags: []
+  apiss:
+    snitzsh:
+      main-rust:
+        enabled: false
+        version: 0.1.0
+        tags: []
+  uis:
+    snitzsh:
+      main-vue:
+        enabled: true
+        version: 0.1.0
+        tags: []

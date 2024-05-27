@@ -33,7 +33,7 @@ bash main.sh patch-helm-chart-repos-chart-yaml-file.sh
 # - Fill the form with the following values:
 #   - Name: "boilerplate-repository"
 #   - Expire: "30 Days"
-#   - Description: "This key only gives read-only permission to all repositories: public and private.""
+#   - Description: "This key only gives read-only permission to all repositories: public and private."
 #   - Repository access: "All repositories"
 #   - Permissions: "Contents" -> Read-Only
 #   - Click [Create]
@@ -91,7 +91,8 @@ echo "$GATEWAY_URL"
 # 6) add annotations to each applications/edit `values.yaml`
 ```
 
-# Fetch new version for clusters.yaml and hc-helm-charts-configs
+## Fetch new version for clusters.yaml and hc-helm-charts-configs
+
 ```bash
 # 1) run `bash main.sh g-clusters-file-put-to-latest-version`
 #    - check .releases[]
@@ -104,4 +105,11 @@ echo "$GATEWAY_URL"
 # 6) then run again `bash main.sh g-clusters-file-put-to-latest-version` to clean up releases
 # 7 run bash main.sh hc-update-versions-folder to clean up /versions a   gain
 #
+```
+
+## Commands
+
+```bash
+# 
+bash main.sh r-create-images "apis,uis" "snitzsh" "main-rust"
 ```

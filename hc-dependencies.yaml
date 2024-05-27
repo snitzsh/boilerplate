@@ -1,12 +1,29 @@
+#
+# NOTE:
+#   - points to helm-charts/<[dependency_name]>/<[chart_name]>/
+#     chart can support multiple: apis, uis
+#
+# TODO:
+#   - make sure the to create a helm-chart for scripts: (job, cronjobs, processing etc.)
+#   - follow the same folder structure apis/<[app_name]>/<[project_name]>
+#     current yaml structure below is hard to follow.
 dependencies:
   - name: snitzsh
     repository: "" # <[helm-chart hub]> url so we can push the repo to hub
     charts:
       - name: apis
+        # TODO:
+        #   - helm-chart version should the same as [package.json .Cargo.toml] version
+        #     and [git and image] tag_name should match the verion.
         latest_version: 0.1.0
         releases: []
         repository: "" # <[helm-chart hub]> url so we can push the repo to hub
+        projects: # targets /uis/snitzsh/main-vue
+          - "main-rust"
+          - "main-fastify"
       - name: uis
-        latest_version: 0.1.0
+        latest_version: 0.1.0 # TODO: helm-chart version should be the name as the package.json version
         releases: []
+        projects: # targets /uis/snitzsh/main-vue
+          - "main-vue"
         repository: "" # <[helm-chart hub]> url so we can push the repo to hub

@@ -4,7 +4,6 @@
 # TODO:
 #   - Add ARGS.
 #   - Maybe output a log if api resturn 0 data.
-#   - Findout if api request returns error if token is invalid.
 #   - Only cache the useful data, currently all info is cached most of it
 #     useless for this purpose.
 #
@@ -46,6 +45,7 @@ function utilGetRepositories () {
   fi
 
   if [ "${allow_api_request}" == true ]; then
+    # Api request
     curl \
       --silent \
       --request GET \
@@ -56,6 +56,19 @@ function utilGetRepositories () {
         --arg timestamp "${utc_timestamp}" \
         '. | {"data": ., "timestamp": ($timestamp | tonumber) }' \
       > "${file_name}"
+    # Checks for API error.
+    local api_response_message=""
+    api_response_message=$(\
+      jq \
+        '
+          if .data | type != "array" then
+            .data.message
+          end
+        ' "${file_name}" \
+    )
+    if [ "${api_response_message}" != "" ]; then
+      logger "ERROR" "API /${endpoint}${query_string} ${api_response_message}. Token may have expired." "${func_name}"
+    fi
   else
     local -r timer=$(
       jq \

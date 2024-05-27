@@ -550,6 +550,13 @@ dependencies:
         service: third-party
         software_type: open-source
         configs_repository: "" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
+  #
+  # NOTE:
+  #   - `main` is the default name, if you want to create another apis for
+  #      another app, call it api-<[xxx]>-<[projects]>.
+  #   - projects allows to have multiple apis with the same-name,
+  #     but different language, example python.
+  #
   - name: snitzsh
     repository: https://chartmuseum.snitzh.com/charts
     charts:
@@ -566,7 +573,7 @@ dependencies:
         namespaced: true
         has_repo: false
         platform_repository: true
-        language: helm
+        language: helm # language of the chart
         service: tenant
         software_type: proprietary
         configs_repository: "git@github.com:snitzsh/helm-chart-snitzsh-api-main-configs.git" # the ssh repo name that calls the public chart. This serves as a wrapper to have control of the configurations. Repository must be created in our organization, else argo-cd will fail.
@@ -583,7 +590,7 @@ dependencies:
         namespaced: true
         has_repo: false
         platform_repository: true
-        language: helm
+        language: helm # language of the chart
         service: tenant
         software_type: proprietary
         # This is useful to prevent being attack to a single repository.

@@ -25,4 +25,4 @@ function main () {
   funcCloneRepositories
 }
 
-main
+main "$@"
