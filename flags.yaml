@@ -1,0 +1,30 @@
+cmds:
+  global:
+    flags:
+      --cluster-type:
+          default: "minikube"
+          options: [] # will be generated automatically
+      --region-name:
+          default: "north-america"
+          options: [] # will be generated automatically
+      --cluster-name:
+          default: "dev"
+          options: [] # will be generated automatically
+  r-create-images:
+    flags:
+      --components:
+          default: "null"
+          options: [] # will be generated automatically
+      --apps:
+          default: "null"
+          options: [] # will be generated automatically
+      --projects:
+          default: "null"
+          options: [] # will be generated automatically
+      --action:
+          default: "null"
+          options:
+            - up
+            - down
+# Current command executed
+exc: {}

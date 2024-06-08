@@ -18,31 +18,47 @@
 
 # registries to push, if more than one
 # you must have ~/.aws/ config set up.
+
+apps:
+  - snitzsh
+# user: ""
+# domain: ""
+image_only: false
+merge_apps: true
+
 registries:
-  aws_ecr:
-    enabled: true # if true, it will push to that registry.
-    account: ""
-    profile: ""
-    region: ""
-    cloud: aws
+  - docker
+
+platform: "linux/arm64" # mac or linux
+
+# env: {}
+
 # components keys follows local folder structure (if you used boilerplate to
 # clone repos).
 components:
-  apis:
-    snitzsh:
-      main-rust:
-        enabled: false
-        version: 0.1.0
-        tags: []
-  apiss:
-    snitzsh:
-      main-rust:
-        enabled: false
-        version: 0.1.0
-        tags: []
-  uis:
-    snitzsh:
-      main-vue:
-        enabled: true
-        version: 0.1.0
-        tags: []
+  private:
+    apis:
+      snitzsh:
+        main-rust:
+          enabled: true
+          version: 0.1.0
+          # all tags created (must match git repo and aws registry)
+          # ex: {"aws_ecr": {"dev": {"tags": ["tag_1", "tag_2"], "current_tag": ""}}}
+          tags: {}
+    uis:
+      snitzsh:
+        main-vue:
+          enabled: true
+          version: 0.1.0
+          # all tags created (must match git repo and aws registry)
+          # ex: {"aws_ecr": {"dev": {"tags": ["tag_1", "tag_2"], "current_tag": ""}}}
+          tags: {}
+
+# docker:
+#   volumes: ""
+#   networks: ""
+
+# auth:
+#   email: ""
+#   username: ""
+#   password: ""

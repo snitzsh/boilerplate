@@ -3,6 +3,8 @@
 #
 # TODO:
 #   - after building images, tag to remote registry and push
+#   - support sync of tags on different cloud registries and add them in
+#     docker-images.yaml
 #
 # NOTE:
 #   - it loops through ./hc-c-dependencies.yaml
@@ -25,10 +27,15 @@
 function utilLooperRRepositories () {
   local -r func_name="${FUNCNAME[0]}"
   local -a args=("$@")
-  local -r query_name="${args[0]}"
-  local -r components="${args[1]}" # apis, uis, scripts
-  local -r apps="${args[2]}" # snitzsh, lottery, xxx2
-  local -r projects="${args[3]}" # main-rust
+  local -r query_name=$(utilReadArgValue "${func_name}" "null" "query-name" "${args[0]}")
+  # apis, uis, scripts
+  local -r components=$(utilReadArgValue "${func_name}" "${query_name}" "components" "${args[0]}")
+  # snitzsh, lottery, xxx2
+  local -r apps=$(utilReadArgValue "${func_name}" "${query_name}" "apps" "${args[0]}")
+  # main-rust
+  local -r projects=$(utilReadArgValue "${func_name}" "${query_name}" "projects" "${args[0]}")
+  # up | down
+  local -r action=$(utilReadArgValue "${func_name}" "${query_name}" "action" "${args[0]}")
   local -r docker_composer_path="${PLATFORM_PATH}/scripts/global/docker_compose-bash"
 
   case "${query_name}" in
@@ -39,10 +46,70 @@ function utilLooperRRepositories () {
         "${apps}" \
         "${projects}" \
       )
-      utilQueryDockerImagesFile "${args_2[@]}"
+      local docker_images_yaml=""
+      # TODO:
+      #   - Here we need to get the repositories version from package.json
+      #     or .rust version
+      docker_images_yaml=$(utilQueryDockerImagesFile "${args_2[@]}")
+
       (
+        # shellcheck disable=SC2016
         cd "${docker_composer_path}" && \
-        ls
+        # 1 - docker-componse.yml
+        # 0 - docker-images.yaml
+        echo "${docker_images_yaml}" \
+        | yq \
+            eval-all \
+            '
+              (
+                select(fileIndex == 1)
+                | (.components | keys) as $t_keys
+                | .apps |= []
+                | .registries |= []
+                | $t_keys[] as $_type
+                | .components[$_type] |= (
+                    to_entries
+                    | map(
+                        .value |= (
+                          to_entries
+                          | map(
+                              .value |= (
+                                to_entries
+                                | map(
+                                    .value.enabled |= false
+                                  )
+                                | from_entries
+                                | with_entries(
+                                    select(.value | length > 0)
+                                  )
+                              )
+                            )
+                          | from_entries
+                          | with_entries(
+                              select(.value | length > 0)
+                            )
+                        )
+                      )
+                    | from_entries
+                    | with_entries(
+                        select(.value | length > 0)
+                      )
+                  )
+              ) *+ select(fileIndex == 0)
+              | . as $item ireduce ({}; . * $item )
+            ' - values.yaml \
+          | helm template . -f - \
+          | if [ "${action}" == "up" ]; then
+              docker compose -f - \
+                --progress "auto" \
+                up \
+                  --build \
+                  --detach \
+                  --force-recreate
+            else
+              docker compose -f - \
+                down
+            fi
       )
       ;;
     # Else

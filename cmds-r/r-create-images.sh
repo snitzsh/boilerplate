@@ -9,13 +9,21 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #   - null
 #
 # NOTE:
-#   - null
+#   - Excution ex:
+#     ```bash
+#     bash main.sh r-create-images \
+#       --components="apis,uis" \
+#       --apps="snitzsh" \
+#       --projects="main-rust,main-vue"
+#     ```
 #
 # DESCRIPTION:
 #   - null
 #
 # ARGS:
-#   - null
+#   - --components="component_1,component_2"
+#   - --apps="app_1,app_2"
+#   - --projects="project_1,project_2"
 #
 # RETURN:
 #   - null
@@ -25,17 +33,4 @@ function main () {
   utilLooperRRepositories "${args[@]}"
 }
 
-#
-# TODO:
-#   - parse arguments and default "null" if not specified
-#
-# Arguments:
-#   $1 - components - "component1,component2" or "null"
-#   $2 - apps - "apps1,app2" or "null"
-#   $3 - projects "project1, project2" or "null"
-#
-# NOTE:
-#   - if one of the above is "null", it will build everything.
-#   - it does not handle if "null,apis", avoid that.
-#
 main "$@"

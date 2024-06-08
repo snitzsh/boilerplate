@@ -1,4 +1,5 @@
 #!/bin/bash
+
 #
 # TODO:
 # - Save in secrets.
@@ -110,23 +111,11 @@ export PLATFORM_REGEX_ONLY_NUMBERS="^[0-9]*$"
 PLATFORM_USERS=$( \
   yq '.' "$PLATFORM_PATH/boilerplate/users.yaml" \
 )
+
 export PLATFORM_USERS
-#
-# NOTE
-#   - set as global to prevent getting the same file data in each funcs/utils
-#
-PLATFORM_CLUSTERS_YAML=$( \
-  yq '.' "$PLATFORM_PATH/boilerplate/clusters.yaml" \
-)
-export PLATFORM_CLUSTERS_YAML
-#
-# NOTE
-#   - set as global to prevent getting the same file data in each funcs/utils
-#
-PLATFORM_HELM_CHART_DEPENDENCIES_YAML=$( \
-  yq '.' "$PLATFORM_PATH/boilerplate/hc-c-dependencies.yaml" \
-)
-export PLATFORM_HELM_CHART_DEPENDENCIES_YAML
+
+# shellcheck source=/dev/null
+source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 
 #
 # TODO:
@@ -273,7 +262,10 @@ function main () {
     exit 1
   fi
 
-  bash "cmds-${starts_with}/${1}.sh" "${args[@]}"
+  local args_parsed=""
+  args_parsed=$(utilArgsParser "${args[@]}")
+
+  bash "cmds-${starts_with}/${1}.sh" "${args_parsed}"
 }
 
 main "$@"

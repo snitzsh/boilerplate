@@ -140,6 +140,7 @@ function utilQueryDockerImagesFile () {
       # TODO
       #   - support defaults when $components, $apps, $p_search are null
       #     if null, it should search for all available options.
+      #   - maybe just use yq?
       yq \
         -r \
         -o json \
@@ -156,7 +157,7 @@ function utilQueryDockerImagesFile () {
             | splitStr($apps) as $a_search
             | splitStr($projects) as $p_search
             | .
-            | .components |= (
+            | .components.private |= (
                 .
                 | to_entries
                 | map(
@@ -192,7 +193,8 @@ function utilQueryDockerImagesFile () {
                   )
               )
             | .
-          '
+          ' \
+          | yq -P
       ;;
     *)
       ;;
