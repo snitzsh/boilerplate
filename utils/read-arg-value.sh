@@ -31,7 +31,6 @@ function utilReadArgValue () {
     "*")
       ;;
   esac
-
   # shellcheck disable=SC2016
   _func_name="${func_name}" \
   _arg="${arg}" \
@@ -39,7 +38,7 @@ function utilReadArgValue () {
   yq \
     -n \
     '
-      ("--" + env(_arg)) as $_arg
+      env(_arg) as $_arg
       | env(_arg_2) as $_arg_2
       | $_arg_2[]
       | select(.arg == $_arg)

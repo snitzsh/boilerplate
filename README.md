@@ -109,7 +109,4 @@ echo "$GATEWAY_URL"
 
 ## Commands
 
-```bash
-# 
-bash main.sh r-create-images "apis,uis" "snitzsh" "main-rust"
-```
+flags.yaml

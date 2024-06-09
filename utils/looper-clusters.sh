@@ -21,10 +21,10 @@
 function utilLooperClusters () {
   local -r func_name="${FUNCNAME[0]}"
   local -a args=("$@")
-  local -r query_name="${args[0]}"
-  local -r cluster_type="${args[1]}"
-  local -r region_name_to_build="${args[2]}"
-  local -r cluster_name_to_build="${args[3]}"
+  local -r query_name=$(utilReadArgValue "${func_name}" "null" "query-name" "${args[0]}")
+  local -r cluster_type=$(utilReadArgValue "${func_name}" "${query_name}" "cluster-type" "${args[0]}")
+  local -r region_name_to_build=$(utilReadArgValue "${func_name}" "${query_name}" "region-name" "${args[0]}")
+  local -r cluster_name_to_build=$(utilReadArgValue "${func_name}" "${query_name}" "cluster-name" "${args[0]}")
   local -a args_1=( \
     "get-regions-name" \
   )

@@ -11,6 +11,8 @@
 #   - the first item return is the command (a.k.a query_name)
 #   - not all characters are supporters as argument value. currently only
 #     -, are known characters(it can be more)
+#   - it doesn't currently the .arg return does not include `--` (--arg-1=a).
+#     it returns it like like this: {arg: arg, ...}
 #
 # DESCRIPTION:
 #   - null
@@ -34,15 +36,16 @@ function utilArgsParser () {
           | split(" --")
           | .[0]
           | [{
-              "arg": "--query-name",
-              "value": .
+              "arg": "query-name",
+              "value": .,
+              "init": "--query-name"
             }]
         ) as $cmd
       | [(
-          ($_args | match("(?:--(\w+)|-([a-zA-Z]))\s*(?:=\s*|\s+)([^\s,]+(?:,[^\s,]+)*)"; "g")) as $result
+          ($_args | match("(?:--([\w-]+)|-([a-zA-Z]))\s*(?:=\s*|\s+)([^\s,]+(?:,[^\s,]+)*)"; "g")) as $result
           | $result.string as $result_string
           | $result_string
-          | . | match("(-{1,2}\w+)\s*(?:=\s*)?(.+)", "g")
+          | . | match("-{1,2}([\w-]+)\s*(?:=\s*)?(.+)", "g")
           | {
               "arg": .captures[0].string,
               "value": (.captures[1].string | trim),

@@ -1,5 +1,8 @@
 cmds:
   global:
+    description: "this is not a command, rather a placeholder to list global flags."
+    notes: []
+    exc-example: ""
     flags:
       --cluster-type:
           default: "minikube"
@@ -10,7 +13,48 @@ cmds:
       --cluster-name:
           default: "dev"
           options: [] # will be generated automatically
+  c-create-cluster:
+    description: "Creates cluster based in clusters.yaml"
+    notes:
+      - "Supports global flags."
+    exc-example: |
+      bash main.sh c-create-cluster \
+        --cluster-type="minikube" \
+        --region-name="north-america" \
+        --cluster-name="dev"
+    flags: {}
+  c-delete-cluster:
+    description: "Deletes cluster based in clusters.yaml"
+    notes:
+      - "Supports global flags."
+    exc-example: |
+      bash main.sh c-delete-cluster \
+        --cluster-type="minikube" \
+        --region-name="north-america" \
+        --cluster-name="dev"
+    flags: {}
+  c-install-argo-cd:
+    description: "Installs argo-cd, which deployed all the helm-charts."
+    notes:
+      - "A cluster must be running."
+      - "Supports global flags."
+    exc-example: |
+      bash main.sh c-install-argo-cd \
+        --cluster-type="minikube" \
+        --region-name="north-america" \
+        --cluster-name="dev"
+    flags: {}
+  # NOTE:
+  #   - Don't support global.flags
   r-create-images:
+    description: "Creates images only or docker containers for testing."
+    notes: []
+    exc-example: |
+      bash main.sh r-create-images \
+        --components="apis,uis" \
+        --apps="snitzsh" \
+        --projects="main-rust" \
+        --action="up"
     flags:
       --components:
           default: "null"
