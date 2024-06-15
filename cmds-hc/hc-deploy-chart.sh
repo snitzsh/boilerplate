@@ -6,23 +6,23 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 
 #
 # TODO:
-#   - null
+#   - read flags.yaml file
 #
 # NOTE:
-#   - null
+#   - read flags.yaml file
 #
 # DESCRIPTION:
-#   - null
+#   - read flags.yaml file
 #
 # ARGS:
-#   - null
+#   - read flags.yaml file
 #
 # RETURN:
 #   - null
 #
 function main () {
-  # utilGetRepositories
-  utilLooperHelmChartDependeciesFile "hc-deploy-chart"
+  local -ar args=("$@")
+  utilLooperHelmChartDependeciesFile "${args[@]}"
 }
 
-main
+main "$@"

@@ -58,7 +58,42 @@ cmds:
             --cluster-name="dev"
       flags: {}
   cmds-g: {}
-  cmds-hc: {}
+  cmds-hc:
+    hc-create-_helpers-file:
+      descriptions: ""
+      notes: []
+      exec-example: |
+        bash main.sh \
+          hc-create-_helpers-file
+      flags: {}
+    hc-create-chart:
+      descriptions: ""
+      notes: []
+      exec-example: |
+        bash main.sh \
+          hc-create-chart
+      flags: {}
+    hc-deploy-chart:
+      descriptions: ""
+      notes: []
+      exec-example: |
+        bash main.sh \
+          hc-deploy-chart
+      flags: {}
+    hc-deploy-new-version-to-hub:
+      descriptions: ""
+      notes: []
+      exec-example: |
+        bash main.sh \
+          hc-deploy-new-version-to-hub
+      flags: {}
+    hc-update-helmignore-file:
+      descriptions: ""
+      notes: []
+      exec-example: |
+        bash main.sh \
+          hc-update-helmignore-file
+      flags: {}
   cmds-hc-c:
     hc-c-create-_helpers-file:
       descriptions: "Use with caution! Resets helm default helpers."

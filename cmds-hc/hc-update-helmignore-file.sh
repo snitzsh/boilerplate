@@ -6,23 +6,23 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 
 #
 # TODO:
-#   - null
+#   - read flags.yaml file
 #
 # NOTE:
-#   - null
+#   - read flags.yaml file
 #
 # DESCRIPTION:
-#   - Exectues the function(s)
+#   - read flags.yaml file
 #
 # ARGS:
-#   - null
+#   - read flags.yaml file
 #
 # RETURN:
 #   - null
 #
 function main () {
-  # utilLooperHelmChartConfigsRepositories "hc-c-update-helm-repositories"
-  utilLooperHelmChartDependeciesFile "hc-update-helmignore-file"
+  local -ar args=("$@")
+  utilLooperHelmChartDependeciesFile "${args[@]}"
 }
 
-main
+main "$@"
