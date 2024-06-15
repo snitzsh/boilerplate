@@ -15,20 +15,20 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #     `cluster_name` and `region_name`.
 #
 # NOTE:
-#   - null
+#   - read flags.yaml file
 #
 # DESCRIPTION:
-#   - Exectues the function(s)
+#   - read flags.yaml file
 #
 # ARGS:
-#   - null
+#   - read flags.yaml file
 #
 # RETURN:
 #   - null
 #
 function main () {
-  # utilGetRepositories
-  utilLooperHelmChartConfigsRepositories "hc-c-create-helm-chart"
+  local -ar args=("$@")
+  utilLooperHelmChartConfigsRepositories "${args[@]}"
 }
 
-main
+main "$@"

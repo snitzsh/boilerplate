@@ -9,20 +9,20 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #   - maybe we much create a function to sync our helm-charts-configs/ and respositories in git.
 #
 # NOTE:
-#   - null
+#   - read flags.yaml file
 #
 # DESCRIPTION:
-#   - Exectues the function(s)
+#   - read flags.yaml file
 #
 # ARGS:
-#   - null
+#   - read flags.yaml file
 #
 # RETURN:
 #   - null
 #
 function main () {
-  # utilGetRepositories
-  utilLooperHelmChartConfigsRepositories "hc-c-update-chart-yaml-file"
+  local -ar args=("$@")
+  utilLooperHelmChartConfigsRepositories "${args[@]}"
 }
 
-main
+main "$@"

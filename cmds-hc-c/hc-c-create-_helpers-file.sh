@@ -6,24 +6,23 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 
 #
 # TODO:
-#   - null
+#   - read flags.yaml file
 #
 # NOTE:
-#   - USE WITH CAUSION: you may rewrite _helper.tpl specific functions manually
-#     created by the DevOps.
+#   - read flags.yaml file
 #
 # DESCRIPTION:
-#   - Exectues the function(s)
+#   - read flags.yaml file
 #
 # ARGS:
-#   - null
+#   - read flags.yaml file
 #
 # RETURN:
 #   - null
 #
 function main () {
-  # utilGetRepositories
-  utilLooperHelmChartConfigsRepositories "hc-c-create-_helpers-file"
+  local -ar args=("$@")
+  utilLooperHelmChartConfigsRepositories "${args[@]}"
 }
 
-main
+main "$@"

@@ -59,7 +59,72 @@ cmds:
       flags: {}
   cmds-g: {}
   cmds-hc: {}
-  cmds-hc-c: {}
+  cmds-hc-c:
+    hc-c-create-_helpers-file:
+      descriptions: "Use with caution! Resets helm default helpers."
+      notes:
+        - "USE WITH CAUTION! It doesn't have any safeguards to go back. Maily use if the helm-chart is new or if you haven't created a custom function in _helpers file."
+      exec-example: |
+        bash main.sh \
+          hc-c-create-_helpers-file
+      flags: {}
+    hc-c-create-chart:
+      descriptions: "Creates a helm-chart"
+      notes: []
+      exec-example: |
+        bash main.sh \
+          hc-c-create-chart
+      flags: {}
+    hc-c-create-custom-resource-definitions:
+      descriptions: "This command creates a custom-resources definition as a file on each helm-charts-configs repository."
+      notes:
+        - "cmd is still in the works."
+      exec-example: |
+        bash main.sh \
+          hc-c-create-custom-resource-definitions
+      flags: {}
+    hc-c-read-values:
+      descriptions: "This outputs the values.yaml of a chart"
+      notes: []
+      exec-example: |
+        bash main.sh \
+          hc-c-read-values
+      flags: {}
+    hc-c-update-chart-yaml-file:
+      descriptions: ""
+      notes: []
+      exec-example: |
+        bash main.sh \
+          hc-c-update-chart-yaml-file
+      flags: {}
+    hc-c-update-helmignore-file:
+      descriptions: ""
+      notes: []
+      exec-example: |
+        bash main.sh \
+          hc-c-update-helmignore-file
+      flags: {}
+    hc-c-update-values-file-add-dependency-name-as-property:
+      descriptions: ""
+      notes: []
+      exec-example: |
+        bash main.sh \
+          hc-c-update-values-file-add-dependency-name-as-property
+      flags: {}
+    hc-c-update-version:
+      descriptions: ""
+      notes: []
+      exec-example: |
+        bash main.sh \
+          hc-c-update-version
+      flags: {}
+    hc-c-update-versions-folder:
+      descriptions: ""
+      notes: []
+      exec-example: |
+        bash main.sh \
+          hc-c-update-versions-folder
+      flags: {}
   # NOTE:
   #   - Don't support global.flags
   cmds-r:

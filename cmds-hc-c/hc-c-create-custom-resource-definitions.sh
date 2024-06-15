@@ -6,24 +6,23 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 
 #
 # TODO:
-#   - On the works...
+#   - read flags.yaml file
 #
 # NOTE:
-#   - This command creates a custom-resources definition as a file
-#     on each helm-charts-configs repository.
+#   - read flags.yaml file
 #
 # DESCRIPTION:
-#   - Exectues the function(s)
+#   - read flags.yaml file
 #
 # ARGS:
-#   - null
+#   - read flags.yaml file
 #
 # RETURN:
 #   - null
 #
 function main () {
-  # utilGetRepositories
-  utilLooperHelmChartConfigsRepositories "hc-c-create-custom-resource-definitions"
+  local -ar args=("$@")
+  utilLooperHelmChartConfigsRepositories "${args[@]}"
 }
 
-main
+main "$@"
