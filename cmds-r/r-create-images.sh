@@ -9,21 +9,13 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #   - null
 #
 # NOTE:
-#   - Excution ex:
-#     ```bash
-#     bash main.sh r-create-images \
-#       --components="apis,uis" \
-#       --apps="snitzsh" \
-#       --projects="main-rust,main-vue"
-#     ```
+#   - read flags.yanl file
 #
 # DESCRIPTION:
-#   - null
+#   - read flags.yanl file
 #
 # ARGS:
-#   - --components="component_1,component_2"
-#   - --apps="app_1,app_2"
-#   - --projects="project_1,project_2"
+#   - read flags.yanl file
 #
 # RETURN:
 #   - null

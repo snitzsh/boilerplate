@@ -19,8 +19,8 @@
 function utilLooperFoldersRepositories () {
   local -r func_name="${FUNCNAME[0]}"
   local -ar args=("$@")
-  local -r query_name="${args[0]}"
-  local -r folder_name="${args[1]}"
+  local -r query_name=$(utilReadArgValue "${func_name}" "null" "query-name" "${args[0]}")
+  local -r folder_name=$(utilReadArgValue "${func_name}" "${query_name}" "folder-name" "${args[0]}")
   # local -r arg_dependency_name="${args[2]}"
   # contexts: chart_name or app_name
   (

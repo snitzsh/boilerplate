@@ -1,74 +1,196 @@
 cmds:
-  global:
-    description: "this is not a command, rather a placeholder to list global flags."
+  example-cmd:
+    descriptions: ""
     notes: []
-    exc-example: ""
-    flags:
-      --cluster-type:
-          default: "minikube"
-          options: [] # will be generated automatically
-      --region-name:
-          default: "north-america"
-          options: [] # will be generated automatically
-      --cluster-name:
-          default: "dev"
-          options: [] # will be generated automatically
-  c-create-cluster:
-    description: "Creates cluster based in clusters.yaml"
-    notes:
-      - "Supports global flags."
-    exc-example: |
-      bash main.sh c-create-cluster \
-        --cluster-type="minikube" \
-        --region-name="north-america" \
-        --cluster-name="dev"
+    exec-example: |
+      echo ""
     flags: {}
-  c-delete-cluster:
-    description: "Deletes cluster based in clusters.yaml"
-    notes:
-      - "Supports global flags."
-    exc-example: |
-      bash main.sh c-delete-cluster \
-        --cluster-type="minikube" \
-        --region-name="north-america" \
-        --cluster-name="dev"
-    flags: {}
-  c-install-argo-cd:
-    description: "Installs argo-cd, which deployed all the helm-charts."
-    notes:
-      - "A cluster must be running."
-      - "Supports global flags."
-    exc-example: |
-      bash main.sh c-install-argo-cd \
-        --cluster-type="minikube" \
-        --region-name="north-america" \
-        --cluster-name="dev"
-    flags: {}
+  cmds-c:
+    global:
+      description: "this is not a command, rather a placeholder to list global flags."
+      notes: []
+      exec-example: ""
+      flags:
+        --cluster-type:
+            default: "minikube"
+            required: false
+            options: [] # will be generated automatically
+        --region-name:
+            default: "north-america"
+            required: false
+            options: [] # will be generated automatically
+        --cluster-name:
+            default: "dev"
+            required: false
+            options: [] # will be generated automatically
+    c-create-cluster:
+      description: "Creates cluster based in clusters.yaml"
+      notes:
+        - "Supports global flags."
+      exec-example: |
+        bash main.sh \
+          c-create-cluster \
+            --cluster-type="minikube" \
+            --region-name="north-america" \
+            --cluster-name="dev"
+      flags: {}
+    c-delete-cluster:
+      description: "Deletes cluster based in clusters.yaml"
+      notes:
+        - "Supports global flags."
+      exec-example: |
+        bash main.sh \
+          c-delete-cluster \
+            --cluster-type="minikube" \
+            --region-name="north-america" \
+            --cluster-name="dev"
+      flags: {}
+    c-install-argo-cd:
+      description: "Installs argo-cd, which deployed all the helm-charts."
+      notes:
+        - "A cluster must be running."
+        - "Supports global flags."
+      exec-example: |
+        bash main.sh \
+          c-install-argo-cd \
+            --cluster-type="minikube" \
+            --region-name="north-america" \
+            --cluster-name="dev"
+      flags: {}
+  cmds-g: {}
+  cmds-hc: {}
+  cmds-hc-c: {}
   # NOTE:
   #   - Don't support global.flags
-  r-create-images:
-    description: "Creates images only or docker containers for testing."
-    notes: []
-    exc-example: |
-      bash main.sh r-create-images \
-        --components="apis,uis" \
-        --apps="snitzsh" \
-        --projects="main-rust" \
-        --action="up"
-    flags:
-      --components:
+  cmds-r:
+    r-create-dockerfile-scan:
+      description: "Scans images for security."
+      notes:
+        - "cmd is still in the works."
+        - "--folder-name flag does not support multi-folders separated by commma"
+      exec-example: |
+        bash main.sh \
+          r-create-dockerfile-scan \
+            --folder-name="apis"
+      flags:
+        --folder-name:
           default: "null"
-          options: [] # will be generated automatically
-      --apps:
+          required: true
+          options: # will be generated automatically, for now they are static.
+            - apis
+            - helm-charts
+            - helm-chart-configs
+            - mobiles
+            - scripts
+            - uis
+    r-create-git-hooks:
+      descriptions: "Creates githooks for future version management on each push."
+      notes:
+        - "cmd is still in the works."
+        - "--folder-name flag does not support multi-folders separated by commma"
+      exec-example: |
+        bash main.sh \
+          r-create-dockerfile-scan \
+            --folder-name="apis"
+      flags:
+        --folder-name:
           default: "null"
-          options: [] # will be generated automatically
-      --projects:
+          required: true
+          options: # will be generated automatically, for now they are static.
+            - apis
+            - helm-charts
+            - helm-chart-configs
+            - mobiles
+            - scripts
+            - uis
+    r-create-images:
+      description: "Creates images only or docker containers for testing."
+      notes: []
+      exec-example: |
+        bash main.sh \
+          r-create-images \
+            --components="apis,uis" \
+            --apps="snitzsh" \
+            --projects="main-rust" \
+            --action="up"
+      flags:
+        --components:
+            default: "null"
+            required: true
+            options: [] # will be generated automatically
+        --apps:
+            default: "null"
+            required: true
+            options: [] # will be generated automatically
+        --projects:
+            default: "null"
+            required: true
+            options: [] # will be generated automatically
+        --action:
+            default: "null"
+            required: true
+            options:
+              - up
+              - down
+    r-create-license:
+      descriptions: "Creates license."
+      notes:
+        - "cmd is still in the works."
+        - "--folder-name flag does not support multi-folders separated by commma"
+      exec-example: |
+        bash main.sh \
+          r-create-dockerfile-scan \
+            --folder-name="apis"
+      flags:
+        --folder-name:
           default: "null"
-          options: [] # will be generated automatically
-      --action:
+          required: true
+          options: # will be generated automatically, for now they are static.
+            - apis
+            - helm-charts
+            - helm-chart-configs
+            - mobiles
+            - scripts
+            - uis
+    r-deploy-images-to-registry:
+      descriptions: "Deploys image or helm-chart to cloud."
+      notes:
+        - "cmd is still in the works."
+        - "--folder-name flag does not support multi-folders separated by commma"
+      exec-example: |
+        bash main.sh \
+          r-create-dockerfile-scan \
+            --folder-name="apis"
+      flags:
+        --folder-name:
           default: "null"
-          options:
-            - up
-            - down
+          required: true
+          options: # will be generated automatically, for now they are static.
+            - apis
+            - helm-charts
+            - helm-chart-configs
+            - mobiles
+            - scripts
+            - uis
+    r-update-gitignore-file:
+      description: "Syncs the gitignore files for all projects."
+      notes:
+        - "--folder-name flag does not support multi-folders separated by commma"
+      exec-example: |
+        bash main.sh \
+          r-update-gitignore-file \
+            --folder-name="apis"
+      flags:
+        --folder-name:
+          default: "null"
+          required: true
+          options: # will be generated automatically, for now they are static.
+            - apis
+            - helm-charts
+            - helm-chart-configs
+            - mobiles
+            - scripts
+            - uis
+
 # Current command executed
 exc: {}

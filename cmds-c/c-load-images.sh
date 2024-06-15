@@ -10,7 +10,7 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #   - null
 #
 # NOTE:
-#   - Gets kubeconfig from aws eks.
+#   - Load images to minikube or other local k8s cluster (not cloud registries).
 #
 # DESCRIPTION:
 #   - null

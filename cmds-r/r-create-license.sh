@@ -6,19 +6,16 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 
 #
 # TODO:
-#   - null
+#   - finish functionality
 #
 # NOTE:
-#   - null
+#   - read flags.yanl file
 #
 # DESCRIPTION:
-#   - Exectues the function(s)
+#   - read flags.yanl file
 #
 # ARGS:
-#   - $1 : query_name       : r-create-license                  : query name to be executed.
-#   - $2 : folder_name      : <[folder_name]>                   : which forder to target
-#   - $4 : dependency_name  : <[dependency_name | app_name]>    : depenency to update
-#   - $4 : chart_name       : <[chart_name]>                    : chart to update
+#   - read flags.yanl file
 #
 # RETURN:
 #   - null

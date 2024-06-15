@@ -9,16 +9,13 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #   - maybe we much create a function to sync our helm-charts-configs/ and respositories in git.
 #
 # NOTE:
-#   - null
+#   - read flags.yanl file
 #
 # DESCRIPTION:
-#   - Exectues the function(s)
+#   - read flags.yanl file
 #
 # ARGS:
-#   - $1 : query_name       : r-create-git-hooks                : query name to be executed.
-#   - $2 : folder_name      : <[folder_name]>                   : which forder to target
-#   - $4 : dependency_name  : <[dependency_name | app_name]>    : depenency to update
-#   - $4 : chart_name       : <[chart_name]>                    : chart to update
+#   - read flags.yanl file
 #
 # RETURN:
 #   - null
