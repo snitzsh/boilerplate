@@ -24,7 +24,8 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #   - null
 #
 function main () {
-  utilLooperClustersHelmCharts "g-clusters-file-update-to-latest-version"
+  local -ar args=("$@")
+  utilLooperClustersHelmCharts "${args[@]}"
 }
 
-main
+main "$@"

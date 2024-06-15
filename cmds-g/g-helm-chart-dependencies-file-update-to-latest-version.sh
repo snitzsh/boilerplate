@@ -21,7 +21,8 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #   - null
 #
 function main () {
-  utilLooperHelmChartConfigsDependecies "global-update-to-latest-version"
+  local -ar args=("$@")
+  utilLooperHelmChartConfigsDependecies "${args[@]}"
 }
 
-main
+main "$@"

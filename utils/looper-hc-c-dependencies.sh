@@ -18,7 +18,8 @@
 #
 function utilLooperHelmChartConfigsDependecies () {
   local -r func_name="${FUNCNAME[0]}"
-  local -r query_name="${1}"
+  local -a args=("$@")
+  local -r query_name=$(utilReadArgValue "${func_name}" "null" "query-name" "${args[0]}")
   local dependencies=()
 
   while IFS='' read -r line; do dependencies+=("$line"); done < <(
@@ -28,33 +29,33 @@ function utilLooperHelmChartConfigsDependecies () {
   local chart_name=""
   local dependency_name=""
   local file_dependency=""
-  local -a args=()
+  local -a args_1=()
   for dependency in "${dependencies[@]}"; do
     dependency_name=$(echo "${dependency}" | yq -r 'split("|") | .[0]')
     chart_name=$(echo "${dependency}" | yq -r 'split("|") | .[1]')
 
     file_dependency=$(utilGetHelmChartDependency "${dependency_name}" "${chart_name}")
 
-    args=(
+    args_1=(
       "${dependency_name}"
       "${chart_name}"
       "${file_dependency}"
     )
 
     case "${query_name}" in
-      "global-helm-install-repositories")
-        funcGlobalHelmInstallRepositories "${args[@]}"
+      "g-helm-install-repositories")
+        funcGlobalHelmInstallRepositories "${args_1[@]}"
         ;;
       # TODO:
       #   - take this function out of this loop, make it on its
       #     own. This function executes only locally, without
       #     affecting the repo.
-      "global-helm-update-repositories")
-        funcGlobalHelmUpdateRepositories "${args[@]}"
+      "g-helm-update-repositories")
+        funcGlobalHelmUpdateRepositories "${args_1[@]}"
         ;;
-      "global-update-to-latest-version")
-        funcGlobalHelmUpdateRepositories "${args[@]}"
-        funcGlobalHelmChartDependenciesFileUpdateToLatestVersion "${args[@]}"
+      "g-helm-chart-dependencies-file-update-to-latest-version")
+        funcGlobalHelmUpdateRepositories "${args_1[@]}"
+        funcGlobalHelmChartDependenciesFileUpdateToLatestVersion "${args_1[@]}"
         ;;
       *)
         logger "ERROR" "'${query_name}' is not supported." "${func_name}"

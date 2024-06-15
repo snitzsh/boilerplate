@@ -57,7 +57,65 @@ cmds:
             --region-name="north-america" \
             --cluster-name="dev"
       flags: {}
-  cmds-g: {}
+    c-load-images: {}
+    c-read-kubeconfig: {}
+  cmds-g:
+    g-clone-repositories:
+      descriptions: ""
+      notes: []
+      exec-example: |
+        bash main.sh \
+          g-clone-repositories
+      flags: {}
+    g-clusters-file-create-lower-region-environment:
+      descriptions: ""
+      notes: []
+      exec-example: |
+        bash main.sh \
+          g-clusters-file-create-lower-region-environment
+      flags: {}
+    g-clusters-file-update-to-latest-version:
+      descriptions: ""
+      notes: []
+      exec-example: |
+        bash main.sh \
+          g-clusters-file-update-to-latest-version
+      flags: {}
+    g-helm-chart-dependencies-file-update-to-latest-version:
+      descriptions: ""
+      notes: []
+      exec-example: |
+        bash main.sh \
+          g-helm-chart-dependencies-file-update-to-latest-version
+      flags: {}
+    g-helm-install-repositories:
+      descriptions: ""
+      notes: []
+      exec-example: |
+        bash main.sh \
+          g-helm-install-repositories
+      flags: {}
+    g-helm-update-repositores:
+      descriptions: ""
+      notes: []
+      exec-example: |
+        bash main.sh \
+          g-helm-update-repositores
+      flags: {}
+    g-kind-cluster:
+      descriptions: ""
+      notes: []
+      exec-example: |
+        bash main.sh \
+          g-kind-cluster
+      flags: {}
+    g-put-repositories:
+      descriptions: ""
+      notes: []
+      exec-example: |
+        bash main.sh \
+          g-put-repositories
+      flags: {}
   cmds-hc:
     hc-create-_helpers-file:
       descriptions: ""

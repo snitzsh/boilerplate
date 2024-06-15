@@ -19,7 +19,8 @@
 #
 function utilLooperClustersHelmCharts () {
   local -r func_name="${FUNCNAME[0]}"
-  local -r query_name="${1}"
+  local -a args=("$@")
+  local -r query_name=$(utilReadArgValue "${func_name}" "null" "query-name" "${args[0]}")
   local -a args_1=( \
     "get-regions-name" \
   )

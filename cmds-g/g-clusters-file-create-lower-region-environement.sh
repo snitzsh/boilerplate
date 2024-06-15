@@ -7,6 +7,7 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #
 # TODO:
 #   - Support arguments
+#   - cmd still in the works
 #
 # NOTE:
 #   - null
