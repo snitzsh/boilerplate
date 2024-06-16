@@ -126,7 +126,9 @@ function utilLooperHelmChartConfigsRepositories () {
                       "hc-c-update-versions-folder")
                         # TODO:
                         # - make sure the `bash main.sh g-clusters-file-put-to-latest-version`
-                        #   is always executed first.`
+                        #   is always executed first.`. Maybe create a flag
+                        #   `--g-clusters-file-put-to-latest-version`, if true,
+                        #   then proceed.
                         funcHelmChartConfigsUpdateVersionsFolder "${args_7[@]}"
                         ;;
                       "hc-c-update-chart-yaml-file")

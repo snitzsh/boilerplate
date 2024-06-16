@@ -64,6 +64,7 @@ function funcHelmChartConfigsUpdateVersionsFolder () {
           | .releases[]
         ' \
     )
+
     # NOTE:
     #   - tgzs folder must be executed first, because all the other folders
     #     depend on this 'xxx.tgz' file to exist first.
@@ -109,6 +110,7 @@ function funcHelmChartConfigsUpdateVersionsFolder () {
               | .
             '
         )
+
         if [ "${file_version}" != "false" ]; then
           sub_folder_files_versions+=("${file_version}")
         fi
@@ -140,6 +142,7 @@ function funcHelmChartConfigsUpdateVersionsFolder () {
               | . == $_file_version
             '
         )
+
         if [ "${is_version_found}" == "false" ]; then
           versions_to_remove+=("${file_version}")
         fi

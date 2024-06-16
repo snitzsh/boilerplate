@@ -2,6 +2,7 @@ cmds:
   example-cmd:
     descriptions: ""
     notes: []
+    todos: []
     exec-example: |
       echo ""
     flags: {}
@@ -9,6 +10,7 @@ cmds:
     global:
       description: "this is not a command, rather a placeholder to list global flags."
       notes: []
+      todos: []
       exec-example: ""
       flags:
         --cluster-type:
@@ -27,6 +29,7 @@ cmds:
       description: "Creates cluster based in clusters.yaml"
       notes:
         - "Supports global flags."
+      todos: []
       exec-example: |
         bash main.sh \
           c-create-cluster \
@@ -38,6 +41,7 @@ cmds:
       description: "Deletes cluster based in clusters.yaml"
       notes:
         - "Supports global flags."
+      todos: []
       exec-example: |
         bash main.sh \
           c-delete-cluster \
@@ -50,6 +54,7 @@ cmds:
       notes:
         - "A cluster must be running."
         - "Supports global flags."
+      todos: []
       exec-example: |
         bash main.sh \
           c-install-argo-cd \
@@ -63,6 +68,7 @@ cmds:
     g-clone-repositories:
       descriptions: ""
       notes: []
+      todos: []
       exec-example: |
         bash main.sh \
           g-clone-repositories
@@ -70,6 +76,7 @@ cmds:
     g-clusters-file-create-lower-region-environment:
       descriptions: ""
       notes: []
+      todos: []
       exec-example: |
         bash main.sh \
           g-clusters-file-create-lower-region-environment
@@ -77,6 +84,7 @@ cmds:
     g-clusters-file-update-to-latest-version:
       descriptions: ""
       notes: []
+      todos: []
       exec-example: |
         bash main.sh \
           g-clusters-file-update-to-latest-version
@@ -84,6 +92,7 @@ cmds:
     g-helm-chart-dependencies-file-update-to-latest-version:
       descriptions: ""
       notes: []
+      todos: []
       exec-example: |
         bash main.sh \
           g-helm-chart-dependencies-file-update-to-latest-version
@@ -91,6 +100,7 @@ cmds:
     g-helm-install-repositories:
       descriptions: ""
       notes: []
+      todos: []
       exec-example: |
         bash main.sh \
           g-helm-install-repositories
@@ -98,6 +108,7 @@ cmds:
     g-helm-update-repositores:
       descriptions: ""
       notes: []
+      todos: []
       exec-example: |
         bash main.sh \
           g-helm-update-repositores
@@ -105,6 +116,7 @@ cmds:
     g-kind-cluster:
       descriptions: ""
       notes: []
+      todos: []
       exec-example: |
         bash main.sh \
           g-kind-cluster
@@ -112,6 +124,7 @@ cmds:
     g-put-repositories:
       descriptions: ""
       notes: []
+      todos: []
       exec-example: |
         bash main.sh \
           g-put-repositories
@@ -120,6 +133,7 @@ cmds:
     hc-create-_helpers-file:
       descriptions: ""
       notes: []
+      todos: []
       exec-example: |
         bash main.sh \
           hc-create-_helpers-file
@@ -127,6 +141,7 @@ cmds:
     hc-create-chart:
       descriptions: ""
       notes: []
+      todos: []
       exec-example: |
         bash main.sh \
           hc-create-chart
@@ -134,6 +149,7 @@ cmds:
     hc-deploy-chart:
       descriptions: ""
       notes: []
+      todos: []
       exec-example: |
         bash main.sh \
           hc-deploy-chart
@@ -141,6 +157,7 @@ cmds:
     hc-deploy-new-version-to-hub:
       descriptions: ""
       notes: []
+      todos: []
       exec-example: |
         bash main.sh \
           hc-deploy-new-version-to-hub
@@ -148,6 +165,7 @@ cmds:
     hc-update-helmignore-file:
       descriptions: ""
       notes: []
+      todos: []
       exec-example: |
         bash main.sh \
           hc-update-helmignore-file
@@ -157,6 +175,7 @@ cmds:
       descriptions: "Use with caution! Resets helm default helpers."
       notes:
         - "USE WITH CAUTION! It doesn't have any safeguards to go back. Maily use if the helm-chart is new or if you haven't created a custom function in _helpers file."
+      todos: []
       exec-example: |
         bash main.sh \
           hc-c-create-_helpers-file
@@ -164,6 +183,7 @@ cmds:
     hc-c-create-chart:
       descriptions: "Creates a helm-chart"
       notes: []
+      todos: []
       exec-example: |
         bash main.sh \
           hc-c-create-chart
@@ -172,6 +192,7 @@ cmds:
       descriptions: "This command creates a custom-resources definition as a file on each helm-charts-configs repository."
       notes:
         - "cmd is still in the works."
+      todos: []
       exec-example: |
         bash main.sh \
           hc-c-create-custom-resource-definitions
@@ -179,6 +200,7 @@ cmds:
     hc-c-read-values:
       descriptions: "This outputs the values.yaml of a chart"
       notes: []
+      todos: []
       exec-example: |
         bash main.sh \
           hc-c-read-values
@@ -186,6 +208,7 @@ cmds:
     hc-c-update-chart-yaml-file:
       descriptions: ""
       notes: []
+      todos: []
       exec-example: |
         bash main.sh \
           hc-c-update-chart-yaml-file
@@ -193,6 +216,7 @@ cmds:
     hc-c-update-helmignore-file:
       descriptions: ""
       notes: []
+      todos: []
       exec-example: |
         bash main.sh \
           hc-c-update-helmignore-file
@@ -200,20 +224,37 @@ cmds:
     hc-c-update-values-file-add-dependency-name-as-property:
       descriptions: ""
       notes: []
+      todos: []
       exec-example: |
         bash main.sh \
           hc-c-update-values-file-add-dependency-name-as-property
       flags: {}
     hc-c-update-version:
       descriptions: ""
-      notes: []
+      notes:
+        - each iteration per chart calls helm dependency update for all repos, it
+          should only do a iteration per repo, insead of all repos.
+      todos: []
       exec-example: |
         bash main.sh \
           hc-c-update-version
       flags: {}
     hc-c-update-versions-folder:
-      descriptions: ""
-      notes: []
+      descriptions: "Fetch each helm-chart all newer versions and creates of
+                    file in helm-chart-configs/<[dependency_name]>/<[chart_name]>/<[region_name]>/<[cluster_name]>/versions/*
+                    folders. It will push to github"
+      notes:
+        - Must execute `bash main.sh g-clusters-file-update-to-latest-version`
+          to get the new versions if helm-chart is not up-up-date.
+        - be cautious because some chart versions are not consitent, sometimes
+          they are `v1.x.x` or `1.x.x`
+      todos:
+        - there is a bug that creates tgz2 folder when the command gets executed
+          multiple times. For now it must be removed manually if it happens.
+        - currently every time you execute the command, it will fetch the
+          versions again. Support caching.
+        - keep versions in upper environments. Maybe uploaded to s3 to prevent
+          having duplicated version tgzs files.
       exec-example: |
         bash main.sh \
           hc-c-update-versions-folder
@@ -226,6 +267,7 @@ cmds:
       notes:
         - "cmd is still in the works."
         - "--folder-name flag does not support multi-folders separated by commma"
+      todos: []
       exec-example: |
         bash main.sh \
           r-create-dockerfile-scan \
@@ -246,6 +288,7 @@ cmds:
       notes:
         - "cmd is still in the works."
         - "--folder-name flag does not support multi-folders separated by commma"
+      todos: []
       exec-example: |
         bash main.sh \
           r-create-dockerfile-scan \
@@ -264,6 +307,7 @@ cmds:
     r-create-images:
       description: "Creates images only or docker containers for testing."
       notes: []
+      todos: []
       exec-example: |
         bash main.sh \
           r-create-images \
@@ -295,6 +339,7 @@ cmds:
       notes:
         - "cmd is still in the works."
         - "--folder-name flag does not support multi-folders separated by commma"
+      todos: []
       exec-example: |
         bash main.sh \
           r-create-dockerfile-scan \
@@ -315,6 +360,7 @@ cmds:
       notes:
         - "cmd is still in the works."
         - "--folder-name flag does not support multi-folders separated by commma"
+      todos: []
       exec-example: |
         bash main.sh \
           r-create-dockerfile-scan \
@@ -334,6 +380,7 @@ cmds:
       description: "Syncs the gitignore files for all projects."
       notes:
         - "--folder-name flag does not support multi-folders separated by commma"
+      todos: []
       exec-example: |
         bash main.sh \
           r-update-gitignore-file \
