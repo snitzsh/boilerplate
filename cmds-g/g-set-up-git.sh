@@ -1,0 +1,2 @@
+- This set up in not http. It's to be able to use the cli.
+- Add this commnad in flags.yaml

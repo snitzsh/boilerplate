@@ -6,6 +6,19 @@
 #   - Repo/project
 #
 export PLATFORM="snitzsh"
+
+#
+# TODO:
+# - Save in secrets.
+#   - Repo/project
+# NOTE:
+#  - use to create pub private certificates. Main email of the company.
+#
+export EMAIL="narc.informant.snitch@gmail.com"
+
+export SSH_KEYGEN_COMMENT="${EMAIL}"
+export SSH_KEYGEN_DSA="ed25519"
+
 #
 # TODO:
 # - Save in secrets.
@@ -13,7 +26,7 @@ export PLATFORM="snitzsh"
 # - findout which permission would allow clone-only, currrenlty all optiosn are
 #   selected when creating a token
 #
-export GITHUB_API_TOKEN="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"
+export GITHUB_API_TOKEN="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"
 #
 # TODO:
 # - Save in secrets.
@@ -35,9 +48,39 @@ export GITHUB_DOMAIN="https://api.github.com"
 #   - Save in secrets.
 #
 # NOTE:
+#   - Path Location of cert for the cluster.
+#
+export CLUSTER_SSH_KEY_PATH="${HOME}/.ssh/${PLATFORM}"
+#
+# TODO:
+#   - Save in secrets.
+#   - maybe the cache folder should be created in main.sh instead of executed
+#     on a command, since it must exist.
+#     for prod maybe use /tmp folder?
+#
+# NOTE:
+#   - Path location for cache api calls and other cache related things.
+#     cache folder is created by utilCreateFolders.
+#
+export CACHE_PATH="${HOME}/Documents/${PLATFORM}/boilerplate/.cache"
+
+#
+# TODO:
+#   - Save in secrets.
+#
+# NOTE:
+#   - Path Location for aws configs and credentials.
+#
+export AWS_SSH_KEY_PATH="${HOME}/.aws"
+#
+# TODO:
+#   - Save in secrets.
+#
+# NOTE:
 #   - ArgoCD only allows this repo.
 #
 export SSH_REPOSITORY_ENDPOINT="git@github.com:snitzsh"
+
 #
 # TODO:
 #   - Save in secrets.
@@ -119,7 +162,10 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 
 #
 # TODO:
-#   - null
+#   - create a function that checks for all the commands we are using:
+#     check yq, cp, mv are install.
+#   - do health checks on AWS permisions and Github authtoken permissions. Else
+#     it can be dangerous performinig certain actions.
 #
 # NOTE:
 #   - null

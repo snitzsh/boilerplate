@@ -2,7 +2,8 @@
 
 #
 # TODO:
-#   - null
+#   - on cluster.yaml, makes clusters prop an array, because there can be
+#     multiple clusters in the same region
 #
 # NOTE:
 #   - if ${1} is not specified it return "false"
@@ -72,6 +73,47 @@ function utilQueryClustersYaml () {
         ' "${clusters_path}" \
       )
       echo "${chart_obj}"
+      ;;
+    # TODO:
+    #   - maybe catch the error here, if region_name or cluster_name are
+    #     missing in the argument or yq can't find it.
+    #
+    # NOTE:
+    #   - it doesn't return .helm_charts prop.
+    #
+    # RETURN:
+    #   - returns {"active": ..., ..., "cloud": ...}
+    #
+    "read-{region_name}-{cluster_name}-configs")
+      local -r region_name="${args[1]}"
+      local -r cluster_name="${args[2]}"
+
+      # shellcheck disable=SC2016
+      _region_name="${region_name}" \
+      _cluster_name="${cluster_name}" \
+      yq \
+        '
+          env(_region_name) as $region_name
+          | env(_cluster_name) as $cluster_name
+          | .regions[$region_name].clusters[$cluster_name]
+          | del(.helm_charts)
+          | .
+        ' "${clusters_path}"
+      ;;
+    "read-{region_name}-{cluster_name}-configs-prop")
+      local -r cluster_configs="${args[1]}"
+      local -r prop_name="${args[2]}"
+
+      # shellcheck disable=SC2016
+      _cluster_configs="${cluster_configs}" \
+      _prop_name="${prop_name}" \
+      yq \
+        -n \
+        '
+          env(_cluster_configs) as $cluster_configs
+          | env(_prop_name) as $prop_name
+          | $cluster_configs[$prop_name]
+        '
       ;;
     # Get regions name
     # NOTE:

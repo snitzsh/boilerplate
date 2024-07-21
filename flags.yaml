@@ -25,6 +25,19 @@ cmds:
             default: "dev"
             required: false
             options: [] # will be generated automatically
+    c-create-argo-cd-ssh-key:
+      description: "Creates ssh keys for argo-cd repositories."
+      notes:
+        - "Update the key in ./hc-c-argo-argo-cd/<[region_name]>/<[cluster_name]>/values.yaml"
+        - "Upload key to github"
+      todos: []
+      exec-example: |
+        bash main.sh \
+          c-create-argo-cd-ssh-key \
+            --cluster-type="minikube" \
+            --region-name="north-america" \
+            --cluster-name="dev"
+      flags: {}
     c-create-cluster:
       description: "Creates cluster based in clusters.yaml"
       notes:

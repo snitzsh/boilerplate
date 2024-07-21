@@ -20,7 +20,10 @@ source "${PLATFORM_PATH}/boilerplate/utils/source-utils.sh"
 #
 function main () {
   utilCreateFolders
-  utilGetRepositories
+  local -ar args_2=( \
+    "get-user-repos" \
+  )
+  utilsGithubApis "${args_2[@]}"
   funcCloneRepositories
 }
 

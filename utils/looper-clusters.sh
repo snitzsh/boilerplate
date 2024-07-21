@@ -25,10 +25,23 @@ function utilLooperClusters () {
   local -r cluster_type=$(utilReadArgValue "${func_name}" "${query_name}" "cluster-type" "${args[0]}")
   local -r region_name_to_build=$(utilReadArgValue "${func_name}" "${query_name}" "region-name" "${args[0]}")
   local -r cluster_name_to_build=$(utilReadArgValue "${func_name}" "${query_name}" "cluster-name" "${args[0]}")
+  local -r cluster_dependency_name="argo"
+  local -r cluster_chart_name="argo-cd"
   local -a args_1=( \
     "get-regions-name" \
   )
   local case_executed="false"
+
+  local -a cluster_args=( \
+    "read-{region_name}-{cluster_name}-configs" \
+    "${region_name_to_build}" \
+    "${cluster_name_to_build}" \
+  )
+
+  local cluster_configs=""
+  cluster_configs=$( \
+    utilQueryClustersYaml "${cluster_args[@]}" \
+  )
 
   # Get region names
   while IFS= read -r region_name; do
@@ -73,7 +86,7 @@ function utilLooperClusters () {
           esac
 
           while IFS= read -r dependency_name; do
-            if [ "${dependency_name}" == "argo" ]; then
+            if [ "${dependency_name}" == "${cluster_dependency_name}" ]; then
               dependency_found="true"
               local -a args_5=( \
                 "get-{region_name}-{cluster_name}-{dependencies_name}-charts-name" \
@@ -84,7 +97,7 @@ function utilLooperClusters () {
               local chart_found="false"
 
               while IFS= read -r chart_name; do
-                if [ "${chart_name}" == "argo-cd" ]; then
+                if [ "${chart_name}" == "${cluster_chart_name}" ]; then
                   chart_found="true"
                   local -a args_6=( \
                     "${cluster_type}" \
@@ -92,10 +105,14 @@ function utilLooperClusters () {
                     "${cluster_name}" \
                     "${dependency_name}" \
                     "${chart_name}" \
+                    "${cluster_configs}" \
                   )
                   (
                     cd "${PLATFORM_PATH}/helm-charts-configs/${dependency_name}/${chart_name}/${region_name}/${cluster_name}" &&
                     case "${query_name}" in
+                      "c-create-argo-cd-ssh-key")
+                        clusterArgoCDSshKey "${args_6[@]}"
+                        ;;
                       "c-install-argo-cd")
                         clusterInstallArgoCD "${args_6[@]}"
                         ;;

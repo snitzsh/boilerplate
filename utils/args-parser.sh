@@ -6,6 +6,9 @@
 #   - support '[]' or '{}' arguments
 #   - if expected argument is not passed set a default to all, ex:
 #     --clusters=...,cluster_2,cluster_3,...
+#   - pass --architecture="machine executing the script", pass it for all cmd
+#   - what if I make function to support --arg-1 --arg-2, instead of
+#     $1 $2?
 #
 # NOTE:
 #   - the first item return is the command (a.k.a query_name)

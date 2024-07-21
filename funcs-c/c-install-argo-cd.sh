@@ -36,6 +36,7 @@ function clusterInstallArgoCD () {
   local -r cluster_name="${args[2]}"
   local -r dependency_name="${args[3]}"
   local -r chart_name="${args[4]}"
+  # local -r cluster_configs="${args[5]}"
   local chart_version_number=""
 
   chart_version_number=$(
@@ -78,6 +79,7 @@ function clusterInstallArgoCD () {
     "snitzsh.api-main" \
     "snitzsh.ui-main" \
   )
+
   local -a repository_names=()
 
   while IFS= read -r dependency_name_2; do
@@ -135,6 +137,10 @@ function clusterInstallArgoCD () {
   #
   # TODO:
   #   - findout how the cert was created and make it as automated as possible.
+  #   - when creating an ssh using future cmd-ssh-genkey use git https to add
+  #     the .pub key in github and push private key in aws-secrets and use
+  #     external secret to pull the aws-secrets, argo-cd use the external-secret
+  #     https://rderik.com/blog/setting-up-access-to-a-private-repository-in-argocd-with-ssm-parameter-store-and-external-secrets-operator/
   #
   local cert=""
   cert=$(
@@ -372,7 +378,7 @@ function clusterInstallArgoCD () {
   # TODO:
   #   - this one fails because it doesn't initial installation is not
   #     synchronous so when this executes the password is not yet created.
-  #
+  #   - create aws secrets and pull it with external-secrets or sealedsecret.
   #   - Add this command as part of notes in chart, create a command to handle
   #     this.
   #

@@ -20,8 +20,8 @@
 #
 function funcCloneRepositories () {
   local -r func_name="${FUNCNAME[0]}"
-  local -r endpoint="user/repos"
-  local -r file_name="${PLATFORM_PATH}/boilerplate/.cache/$(echo "${endpoint}" | tr '/' '-').json"
+  local output_path_folder="${CACHE_PATH}"
+  local -r file_name="${output_path_folder}/github/get-user-repos.json"
   local -a repositories=()
   local -a helm_chart_dependencies=()
   local -a apps="${APPS}"
