@@ -136,12 +136,16 @@ function clusterCreate () {
                 | .
               ' \
       )
-      # minikube profile list
-      # minikube stop --profile north-america.dev
-      # minikube start --profile north-america.dev # for re-starting an existing cluster.
-      # minikube delete --profile north-america.qa
 
-      # Creates cluster only if it does NOT exist.
+      # TODO:
+      #   - should we make addons dynamic?
+      # NOTE:
+      #   - usefull commands:
+      #     - minikube profile list
+      #     - minikube stop --profile north-america.dev
+      #     - minikube start --profile north-america.dev # for re-starting an existing cluster.
+      #     - minikube delete --profile north-america.qa
+      #   - Creates cluster only if it does NOT exist.
       if [ "${cluster_exist}" != "true" ]; then
         minikube \
           start \
@@ -153,9 +157,17 @@ function clusterCreate () {
       else
         logger "WARN" "Cluster '${profile}' already exist. Execute: 'minikube profile list' in the cli." "${func_name}"
       fi
+
+      bash main.sh c-create-argo-cd-ssh-key \
+        --cluster-type="${cluster_type}" \
+        --region-name="${region_name}" \
+        --cluster-name="${cluster_name}"
       # TODO
       #   - check if we need to check if cluster truly exit
-      bash "${PLATFORM_PATH}/boilerplate/main.sh" c-install-argo-cd "${cluster_type}" "${region_name}" "${cluster_name}"
+      bash "${PLATFORM_PATH}/boilerplate/main.sh" c-install-argo-cd \
+        --cluster-type="${cluster_type}" \
+        --region-name="${region_name}" \
+        --cluster-name="${cluster_name}"
       ;;
     *)
       logger "ERROR" "Cluster type '${cluster_type}' does not exist. Check the arguments you passing when calling the command function in the cli." "${func_name}"

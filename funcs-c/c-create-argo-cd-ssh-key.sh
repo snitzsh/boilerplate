@@ -6,8 +6,13 @@
 #
 # NOTE:
 #   - if minikube, it will default to aws
-#   - Must check local ssh first, because we must run the script as if it is
-#     the very first time.
+#   - secret source of truth is cloud
+#       - if secret doesn't exist in cloud, it creates a ssh-key locally then
+#         upload to cloud (aws) and github
+#       - if secret exist, it will donwload and match or upload the key to
+#         github. if it does not match script will exit.
+#   - For testing, if you generate a secret with a dummy-name, make sure remove
+#     it from the cloud and github.
 #
 # DESCRIPTION:
 #   - Deletes AWS eks cluster.
@@ -25,8 +30,8 @@ function clusterArgoCDSshKey () {
   local -r cluster_type="${args[0]}"
   local -r region_name="${args[1]}"
   local -r cluster_name="${args[2]}"
-  local -r dependency_name="${args[3]}"
-  local -r chart_name="${args[4]}"
+  # local -r dependency_name="${args[3]}"
+  # local -r chart_name="${args[4]}"
   local -r cluster_configs="${args[5]}"
   local cloud_name=""
   local cloud_region=""

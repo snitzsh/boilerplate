@@ -39,6 +39,32 @@ function clusterInstallArgoCD () {
   # local -r cluster_configs="${args[5]}"
   local chart_version_number=""
 
+  # Gets Secret
+  local -r secret_file_name="local"
+  local -r secret_name="${region_name}/${cluster_name}/argo/argo-cd"
+  local -r secret_name_path="${CLUSTER_SSH_KEY_PATH}/${secret_name}"
+  local cert=""
+  cert=$(
+    cat "${secret_name_path}/${secret_file_name}" 2> /dev/null
+  )
+  if [ -z "${cert}" ]; then
+    # bash main.sh c-create-argo-cd-ssh-key --cluster-type="minikube" --region-name="north-america" --cluster-name="dev"
+    logger "ERROR" "Secret don't exist. Either cmd \'c-create-argo-cd-ssh-key \' silently failed or something that creates the secrets failed" "${func_name}"
+    exit 1
+  fi
+
+  local -r args_xx=( \
+    "read-{region_name}-{cluster_name}-helm-charts-{dependency_name}-{chart_name}" \
+    "${region_name}" \
+    "${cluster_name}" \
+    "argo" \
+    "argo-cd" \
+  )
+  local -r argo_cd_namespace=$( \
+    utilQueryClustersYaml "${args_xx[@]}" \
+      | yq '.namespace_name' \
+  )
+
   chart_version_number=$(
     # shellcheck disable=SC2016
     _chart_name="${chart_name}" \
@@ -134,18 +160,6 @@ function clusterInstallArgoCD () {
   )
   echo "${repository_names[@]}"
   local argo_cd_repositories=""
-  #
-  # TODO:
-  #   - findout how the cert was created and make it as automated as possible.
-  #   - when creating an ssh using future cmd-ssh-genkey use git https to add
-  #     the .pub key in github and push private key in aws-secrets and use
-  #     external secret to pull the aws-secrets, argo-cd use the external-secret
-  #     https://rderik.com/blog/setting-up-access-to-a-private-repository-in-argocd-with-ssm-parameter-store-and-external-secrets-operator/
-  #
-  local cert=""
-  cert=$(
-    cat ~/.ssh/"${PLATFORM}"/"${region_name}"/"${cluster_name}"/"${dependency_name}"/"${chart_name}"
-  )
   #
   # TODO:
   #   - Create a cli questions to decide which repos should included/excluded.
@@ -301,17 +315,11 @@ function clusterInstallArgoCD () {
 
   sleep 1
 
-  # TODO:
-  #   - find a way to pass the .namespace from the
-  #     `clusters.argo[].argo-cd.namespace_name`
-  #     because it ensure we apply the argo-cd in the proper namespace,
-  #     even if its in the default. Currenlty is using the $chart_name
-  #
   local argo_cd_installed
   argo_cd_installed=$( \
     # shellcheck disable=SC2016
     helm \
-      -n "${chart_name}" \
+      -n "${argo_cd_namespace}" \
         list \
           -o yaml \
           | \
