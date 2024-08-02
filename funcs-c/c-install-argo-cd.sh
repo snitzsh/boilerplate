@@ -361,6 +361,7 @@ function clusterInstallArgoCD () {
     #   --create-namespace \
     #   --version "5.51.6"
     # helm dependency build
+
     #
     # NOTE:
     #  - Install the chart of the repository, using the repository values.
@@ -374,7 +375,12 @@ function clusterInstallArgoCD () {
       --namespace "${chart_name}" \
       --create-namespace
   else
-    echo ""
+    #
+    # TODO:
+    #   - Check if something actually change instead of just updating the chart.
+    #     prevent creating new revision every time it upgrades a chart if it is
+    #     necessary.
+    #
     helm \
       --namespace "${chart_name}" \
       upgrade \
@@ -382,23 +388,41 @@ function clusterInstallArgoCD () {
       -f values.yaml \
       .
   fi
+  local execute_kubectl_cmds="false"
+  if kubectl \
+    -n "${argo_cd_namespace}" \
+    wait \
+      --for=condition=ready \
+      --timeout="5m" \
+      pod \
+        -l app.kubernetes.io/component=server \
+    > /dev/null 2>&1; then
+    execute_kubectl_cmds="true"
+  else
+    logger "ERROR" "Timed out waiting for pods to be ready or another error occurred." "${func_name}"
+    # Additional error handling can go here
+    exit 1
+  fi
+
   #
   # TODO:
-  #   - this one fails because it doesn't initial installation is not
-  #     synchronous so when this executes the password is not yet created.
   #   - create aws secrets and pull it with external-secrets or sealedsecret.
   #   - Add this command as part of notes in chart, create a command to handle
   #     this.
   #
   #   - Only output password for minikube (local) development
   #
-  local argo_cd_password
-  argo_cd_password=$(\
-    kubectl \
-      -n "${chart_name}" \
-        get secret argocd-initial-admin-secret \
-          -o jsonpath="{.data.password}" \
-          | base64 -d
-  )
-  echo "ArgoCD: Password: ${argo_cd_password}"
+  if [ "${execute_kubectl_cmds}" == "true" ]; then
+    if [ "$cluster_type" == "minikube" ]; then
+      local argo_cd_password
+      argo_cd_password=$(\
+        kubectl \
+          -n "${chart_name}" \
+            get secret argocd-initial-admin-secret \
+              -o jsonpath="{.data.password}" \
+              | base64 -d
+      )
+      echo "ArgoCD: Password: ${argo_cd_password}"
+    fi
+  fi
 }
